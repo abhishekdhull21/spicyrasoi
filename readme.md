@@ -1,7 +1,7 @@
 # API Use Guide
 
-- [Category add](#add-category "Category add")
-- [Category fetch](#etch-category "Category fetch")
+- [Category add](#category-add "Category add")
+- [Category fetch](#fetch-category "Category fetch")
 
 # #Category Add
 
