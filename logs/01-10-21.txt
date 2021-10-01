@@ -71,3 +71,77 @@ category/add.php,{
     "admin":"2",
     "category":"<b>ftg</b>"
 }
+category/fetch.php,{
+    "admin":"2",
+    "category":"<b>ftg</b>"
+}
+category/fetch.php,{
+    "admin":"2",
+    "category":"<b>ftg</b>"
+}
+category/fetch.php,{
+    "admin":"2",
+    "category":"<b>ftg</b>"
+}
+category/fetch.php,{
+    "admin":"2",
+    "category":"<b>ftg</b>"
+}
+category/fetch.php,{
+    "admin":"2",
+    "category":"<b>ftg</b>"
+}
+category/fetch.php,{
+    "admin":"2",
+    "category":"<b>ftg</b>"
+}
+category/fetch.php,{
+    "admin":"2",
+    "category":"<b>ftg</b>"
+}
+category/fetch.php,{
+    "admin":"2",
+    "category":"<b>ftg</b>"
+}
+category/fetch.php,{
+    "status":false
+}
+category/fetch.php,{
+    "status":false
+}
+category/fetch.php,{
+    "status":false
+}
+category/fetch.php,{
+    "status":FALSE
+}
+category/fetch.php,{
+    "status":TRUE
+}
+category/fetch.php,{
+    "status":false
+}
+category/fetch.php,{
+    "status":false
+}
+category/fetch.php,{
+    "status":"false"
+}
+category/fetch.php,{
+    "status":"true"
+}
+category/fetch.php,{
+    "status":TRUE
+}
+category/fetch.php,{
+    "status":"TRUE"
+}
+category/fetch.php,{
+    "status":"false"
+}
+category/fetch.php,{
+    "status":"true"
+}
+category/fetch.php,{
+    "status":"true"
+}
