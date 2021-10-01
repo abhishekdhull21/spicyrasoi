@@ -10,6 +10,13 @@
 
 > /category/add.php
 
+**Request**
+
+    {
+        "admin":"2",
+        "category":"ftg"
+    }
+
 **Response**
 
 _Success:_
