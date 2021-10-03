@@ -41,11 +41,11 @@
     </div>
 
     <!-- Navbar -->
-    <?php include("components/navbar.php"); ?>
+    <?php include("navbar.php"); ?>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <?php include("components/sidebar.php"); ?>
+    <?php include("sidebar.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -150,7 +150,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <?php include("components/footer.php"); ?>
+  <?php include("footer.php"); ?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
