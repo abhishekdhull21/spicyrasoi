@@ -103,7 +103,7 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
-              <a href="#">
+              <a href="add_user.php">
               <div class="inner">
                 <h3>User</h3>
 
