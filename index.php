@@ -52,7 +52,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
               <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
             </ol>
           </div><!-- /.col -->
@@ -69,11 +69,13 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
+            <a href="#">
               <div class="inner">
-                <h3>150</h3>
+                <h3>All Category</h3>
 
-                <p>All Category</p>
+                <p>Open all Category</p>
               </div>
+            </a>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
@@ -84,11 +86,13 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
+            <a href="#">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>All Product</h3>
 
-                <p>All Product</p>
+                <p>Check all Product</p>
               </div>
+            </a>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
@@ -99,11 +103,13 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
+              <a href="#">
               <div class="inner">
                 <h3>44</h3>
 
                 <p>User Registrations</p>
               </div>
+              </a>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
@@ -114,11 +120,13 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
+            <a href="#">
               <div class="inner">
-                <h3>65</h3>
+                <h3>Bill</h3>
 
-                <p>Unique Visitors</p>
+                <p>Create New Bill</p>
               </div>
+            </a>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
