@@ -71,7 +71,7 @@
             <div class="small-box bg-info">
             <a href="#">
               <div class="inner">
-                <h3>All Category</h3>
+                <h3> Category</h3>
 
                 <p>Open all Category</p>
               </div>
@@ -86,9 +86,9 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
-            <a href="#">
+            <a href="allproduct.php">
               <div class="inner">
-                <h3>All Product</h3>
+                <h3>Product</h3>
 
                 <p>Check all Product</p>
               </div>
@@ -105,7 +105,7 @@
             <div class="small-box bg-warning">
               <a href="#">
               <div class="inner">
-                <h3>44</h3>
+                <h3>User</h3>
 
                 <p>User Registrations</p>
               </div>
@@ -120,6 +120,78 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
+            <a href="#">
+              <div class="inner">
+                <h3>Bill</h3>
+
+                <p>Create New Bill</p>
+              </div>
+            </a>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+
+        <!-- Row 2nd start from here -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+            <a href="#">
+              <div class="inner">
+                <h3>All Category</h3>
+
+                <p>Open all Category</p>
+              </div>
+            </a>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="addcategory.php" class="small-box-footer">Add New <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+            <a href="#">
+              <div class="inner">
+                <h3>All Product</h3>
+
+                <p>Check all Product</p>
+              </div>
+            </a>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="addproduct.php" class="small-box-footer">Add More <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <a href="#">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>User Registrations</p>
+              </div>
+              </a>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
             <a href="#">
               <div class="inner">
                 <h3>Bill</h3>
