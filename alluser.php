@@ -97,7 +97,6 @@
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Discount</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >HSN Code</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -114,18 +113,6 @@
                     <td  >U</td>
                     <td  >U</td>
                     <td  >U</td>
-                    <td  > 
-                    <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                    </td>
                   </tr>
                   <tr class="even">
                     <td class="dtr-control" tabindex="0"><?php echo $i ?></td>
@@ -139,18 +126,6 @@
                     <td  >A</td>
                     <td  >6</td>
                     <td  >A</td>
-                    <td  >
-                    <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                    </td>
                   </tr>
                   <?php } ?>
                   

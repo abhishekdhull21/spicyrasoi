@@ -113,14 +113,14 @@
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="alluser.php" class="small-box-footer">Check All User <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
-            <a href="#">
+            <a href="bill.php">
               <div class="inner">
                 <h3>Bill</h3>
 
@@ -141,17 +141,17 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
-            <a href="#">
+            <a href="user/login.php">
               <div class="inner">
-                <h3>All Category</h3>
+                <h3>Login</h3>
 
-                <p>Open all Category</p>
+                <p>Create Account</p>
               </div>
             </a>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="addcategory.php" class="small-box-footer">Add New <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="addcategory.php" class="small-box-footer">Only for demo <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
