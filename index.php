@@ -143,15 +143,15 @@
             <div class="small-box bg-success">
             <a href="#">
               <div class="inner">
-                <h3>All Category</h3>
+                <h3>Login</h3>
 
-                <p>Open all Category</p>
+                <p>Create Account</p>
               </div>
             </a>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="addcategory.php" class="small-box-footer">Add New <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="addcategory.php" class="small-box-footer">Only for demo <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
