@@ -103,13 +103,13 @@
 
                         <div class="form-group">
                           <label>Store Price</label>
-                          <input type="text" id="productStorePrice" class="form-control" placeholder="Enter Store Price">
+                          <input type="number" min="0" id="productStorePrice" class="form-control" placeholder="Enter Store Price">
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Swiggy Price</label>
-                          <input type="text" id="productSwiggyPrice" class="form-control" placeholder="Enter Swiggy Price">
+                          <input type="number" min="0" id="productSwiggyPrice" class="form-control" placeholder="Enter Swiggy Price">
                         </div>
                       </div>
                     </div>
@@ -119,13 +119,13 @@
 
                         <div class="form-group">
                           <label>Zomato Price</label>
-                          <input type="text" id="productZomatoPrice" class="form-control" placeholder="Enter Zomato Price">
+                          <input type="number" min="0" id="productZomatoPrice" class="form-control" placeholder="Enter Zomato Price">
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Local Price</label>
-                          <input type="text" id="localPrice" class="form-control" placeholder="Enter Local Price">
+                          <input type="number" min="0" id="localPrice" class="form-control" placeholder="Enter Local Price">
                         </div>
                       </div>
                     </div>
@@ -145,9 +145,18 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Discount (In %)</label>
-                          <input type="text" id="productDiscount" class="form-control" placeholder="Enter Discount (In %)">
+                          <input type="number" id="productDiscount" class="form-control" max="100" min="0" placeholder="Enter Discount (In %)">
                         </div>
                       </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <p id="gstlabel" hidden>Price after GST <span id="priceAfterGST">00</span></p>
+                      </div>
+                      <div class="col-sm-6">
+                        <p id="discountlabel" hidden>Price after Discount <span id="priceAfterDiscount">00</span></p>
+                      </div>
+
                     </div>
                     <div class="row">
                       <div class="col-sm-6">
