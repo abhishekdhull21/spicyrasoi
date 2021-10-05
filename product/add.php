@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $err = mysqli_error($con);
                 }
             } else {
-                $err = "Category already exists";
+                $err = "Product already exists";
             }
         } else {
             $err = mysqli_error($con);
