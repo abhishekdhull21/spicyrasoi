@@ -58,8 +58,8 @@
                                     </li>
                                     
                                     <li><a href="./contact.php">Contact</a></li>
-                                    <li><a href="spicyrasoi/user/createuser.php">Register</a></li>
-                                    <li><a href="spicyrasoi/user/login.php">Login</a></li>
+                                    <li><a href="./news.php">Register</a></li>
+                                    <li><a href="./news.php">Login</a></li>
                                 </ul>
                             </nav>
                             <div class="top-info">
@@ -89,19 +89,19 @@
                         <div class="col-lg-12">
                             <div class="slider-nav">
                                 <a href="#" class="single-slider-nav">
-                                    <img src="img/nav-3.jpg" alt="">
+                                    <img src="img/nav-1.jpg" alt="">
                                     <div class="nav-text active">
-                                        <p>Order Now<i class="lnr lnr-arrow-right"></i></p>
+                                        <p>Pool<i class="lnr lnr-arrow-right"></i></p>
                                     </div>
                                 </a>
                                 <a href="#" class="single-slider-nav">
                                     <img src="img/nav-2.jpg" alt="">
                                     <div class="nav-text">
-                                        <p>Open 24 * 7<i class="lnr lnr-arrow-right"></i></p>
+                                        <p>Sauna<i class="lnr lnr-arrow-right"></i></p>
                                     </div>
                                 </a>
                                 <a href="#" class="single-slider-nav last">
-                                    <img src="img/nav-1.jpg" alt="">
+                                    <img src="img/nav-3.jpg" alt="">
                                     <div class="nav-text">
                                         <p>Restaurant<i class="lnr lnr-arrow-right"></i></p>
                                     </div>
@@ -135,10 +135,10 @@
                             </div>
                             <div class="room-text">
                                 <div class="room-title">
-                                    <h2>Your Fav. Food</h2>
+                                    <h2>Junior Suite</h2>
                                     <div class="room-price">
                                         <span>From</span>
-                                        <h2>49 </h2>
+                                        <h2>$252</h2>
                                     </div>
                                 </div>
                                 <div class="room-features">
@@ -167,49 +167,46 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                    <div class="room-item">
-                            <div class="room-pic-slider room-pic-item owl-carousel">
-                                <div class="room-pic">
-                                    <img src="img/room-slider/room-3.jpg" alt="">
-                                </div>
-                                <div class="room-pic">
-                                    <img src="img/room-slider/room-1.jpg" alt="">
-                                </div>
-                                <div class="room-pic">
-                                    <img src="img/room-slider/room-2.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="room-text">
-                                <div class="room-title">
-                                    <h2>Pizza</h2>
-                                    <div class="room-price">
-                                        <span>From</span>
-                                        <h2>49</h2>
+                        <div class="check-form">
+                            <h2>Register Your Hotel With Us</h2>
+                            <form action="#">
+                                <div class="datepicker">
+                                    <div class="date-select">
+                                        <p>From</p>
+                                        <input type="text" class="datepicker-1" value="dd / mm / yyyy">
+                                        <img src="img/calendar.png" alt="">
+                                    </div>
+                                    <div class="date-select to">
+                                        <p>To</p>
+                                        <input type="text" class="datepicker-2" value="dd / mm / yyyy">
+                                        <img src="img/calendar.png" alt="">
                                     </div>
                                 </div>
-                                <div class="room-features">
-                                    <div class="room-info">
-                                        <i class="flaticon-019-television"></i>
-                                        <span>Smart TV</span>
+                                <div class="room-quantity">
+                                    <div class="single-quantity">
+                                        <p>Adults</p>
+                                        <div class="pro-qty"><input type="text" value="0"></div>
                                     </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-029-wifi"></i>
-                                        <span>High Wi-fii</span>
+                                    <div class="single-quantity">
+                                        <p>Children</p>
+                                        <div class="pro-qty"><input type="text" value="0"></div>
                                     </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-003-air-conditioner"></i>
-                                        <span>AC</span>
-                                    </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-036-parking"></i>
-                                        <span>Parking</span>
-                                    </div>
-                                    <div class="room-info last">
-                                        <i class="flaticon-007-swimming-pool"></i>
-                                        <span>Pool</span>
+                                    <div class="single-quantity last">
+                                        <p>Rooms</p>
+                                        <div class="pro-qty"><input type="text" value="0"></div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="room-selector">
+                                    <p>Room</p>
+                                    <select class="suit-select">
+                                        <option>Eg. Master suite</option>
+                                        <option value="">Double Room</option>
+                                        <option value="">Single Room</option>
+                                        <option value="">Special Room</option>
+                                    </select>
+                                </div>
+                                <button type="button">CHECK Availability <i class="lnr lnr-arrow-right"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -257,7 +254,7 @@
                     <div class="col-lg-6 p-0 ">
                         <div class="facilities-text-warp">
                             <div class="facilities-text">
-                                <h2>Best Food</h2>
+                                <h2>Wellness Center</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipis-cing elit. Mauris tincidunt consectetur
                                     turpis, eget consequat.</p>
                                 <a href="#" class="primary-btn fac-btn">Visit Center <i class="lnr lnr-arrow-right"></i></a>
@@ -267,7 +264,7 @@
                     <div class="col-lg-6 p-0 order-lg-1 order-2">
                         <div class="facilities-text-warp">
                             <div class="facilities-text">
-                                <h2>Best Food</h2>
+                                <h2>Wellness Center</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipis-cing elit. Mauris tincidunt consectetur
                                     turpis, eget consequat.</p>
                                 <a href="#" class="primary-btn fac-btn">Visit Center <i class="lnr lnr-arrow-right"></i></a>
@@ -275,7 +272,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 p-0 order-lg-2 order-1">
-                        <div class="facilities-img set-bg" data-setbg="img/facilities-1.jpg"></div>
+                        <div class="facilities-img set-bg" data-setbg="img/facilities-2.jpg"></div>
                     </div>
                 </div>
             </div>
@@ -298,7 +295,7 @@
                         <div class="tab-content">
                             <div class="tab-pane fade-in active" id="testimonial-1" role="tabpanel">
                                 <div class="single-testimonial-item">
-                                    <span class="test-date">04/10/2021</span>
+                                    <span class="test-date">02/02/2019</span>
                                     <div class="test-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -314,7 +311,7 @@
                             </div>
                             <div class="tab-pane fade" id="testimonial-2" role="tabpanel">
                                 <div class="single-testimonial-item">
-                                    <span class="test-date">01/10/2021</span>
+                                    <span class="test-date">02/02/2019</span>
                                     <div class="test-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -330,7 +327,7 @@
                             </div>
                             <div class="tab-pane fade" id="testimonial-3" role="tabpanel">
                                 <div class="single-testimonial-item">
-                                    <span class="test-date">02/10/2021</span>
+                                    <span class="test-date">02/02/2019</span>
                                     <div class="test-rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -358,7 +355,7 @@
                                         <img src="img/testimonial/author-1.jpg" alt="">
                                     </div>
                                     <div class="author-text">
-                                        <h5>Sudhir <span>Narwana</span></h5>
+                                        <h5>John Doe <span>Berlin</span></h5>
                                     </div>
                                 </a>
                             </li>
@@ -368,17 +365,17 @@
                                         <img src="img/testimonial/author-2.jpg" alt="">
                                     </div>
                                     <div class="author-text">
-                                        <h5>Angel <span>Jind</span></h5>
+                                        <h5>John Doe <span>Berlin</span></h5>
                                     </div>
                                 </a>
                             </li>
                             <li>
                                 <a data-toggle="tab" href="#testimonial-3" role="tab">
                                     <div class="author-pic">
-                                        <img src="img/testimonial/author-1.jpg" alt="">
+                                        <img src="img/testimonial/author-3.jpg" alt="">
                                     </div>
                                     <div class="author-text">
-                                        <h5>Abhishek <span>Jind</span></h5>
+                                        <h5>John Doe <span>Berlin</span></h5>
                                     </div>
                                 </a>
                             </li>
@@ -394,7 +391,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Follow us on Instagram @ajay.sheokand</h2>
+                    <h2>Follow us on Instagram @yourhotel</h2>
                 </div>
             </div>
         </div>
