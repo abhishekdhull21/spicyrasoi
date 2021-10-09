@@ -28,9 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     // condition to check request in json 
     // if(strpos($content_type, "application/json") !== false){
-    if (isset($data['username']) && isset($data['mobile'])) {
+    if (isset($data['username']) && isset($data['mobile']) && isset($data['password'])) {
         if (strlen($data['mobile']) == 10) {
             $mobile = $data['mobile'];
+            $password = md5($data['password']);
             if (strlen($data['username']) > 0)
                 $username = filter_var($data['username'], FILTER_SANITIZE_STRING);;
             if (isset($data['dob'])) $dob = $data['dob'];
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "SELECT user_id FROM `users` where user_mobile = '$mobile'";
             if ($result = mysqli_query($con, $sql)) {
                 if (mysqli_num_rows($result) < 1) {
-                    $sql = "INSERT INTO `users`( `user_name`, `user_mobile`, `user_email`, `user_sex`, `user_dob`, `user_address`) VALUES('$username','$mobile','$email','$sex','$dob','$address')                    ";
+                    $sql = "INSERT INTO `users`( `user_name`, `user_mobile`, `user_email`, `password`) VALUES('$username','$mobile','$email','$password')                    ";
 
                     if ($result =  mysqli_query($con, $sql)) {
 

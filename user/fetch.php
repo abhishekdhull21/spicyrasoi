@@ -17,6 +17,9 @@ $file = fopen("../logs/" . date("d-m-y") . ".txt", "a");
 fwrite($file, (date('H:i:s') . "  user/fetch.php," . file_get_contents('php://input') . "\n"));
 
 $response = "";
+// print_r($_SERVER);
+$device =  ($_SERVER['SystemRoot']);
+$platform =  ($_SERVER['REMOTE_ADDR']);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // The request is using the POST method
     header("Content-Type:application/json");
@@ -26,9 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // if(strpos($content_type, "application/json") !== false){
     if (isset($data['mobile']) && isset($data['password'])) {
         $mobile = $data['mobile'];
-        $password = $data['password'];
+        $password = ($data['password']);
+        do {
+            $token = genrate_token(256);
+            $res = check_token($con, $token);
+        } while ($res["success"]);
+
         //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
-        $sql = "`user_id`as userid,
+        $sql = "SELECT `user_id` as userid,
         `user_name` as username,
         `user_mobile`as mobile,
         `user_email` as email,
@@ -37,12 +45,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         `user_address` as address, `join_on`, `email_verified`, `mobile_verified`, `user_verified`, `user_status` FROM `users` where `user_mobile` ='$mobile' and `password`='$password'";
         if ($result = mysqli_query($con, $sql)) {
             if (mysqli_num_rows($result) > 0) {
-
-                $response = array(
-                    "success" => true,
-                    "data" => mysqli_fetch_all($result, MYSQLI_ASSOC),
-                    "error" => ""
-                );
+                $arr = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                // print_r($arr);
+                $res_token = add_new_token($con, $token, $arr[0]['userid'], $device, $platform);
+                if ($res_token === true)
+                    $response = array(
+                        "success" => true,
+                        "token" => $token,
+                        "data" => $arr,
+                        "error" => ""
+                    );
+                else $err = $res_token;
             } else {
                 $err = "No User found";
             }
