@@ -137,8 +137,11 @@ $(document).ready(function () {
         console.log(result);
 
         const json = result;
-        if (json.success) $(location).prop("href", "../../index.php");
-        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        if (json.success) {
+          localStorage.setItem("token", json.token);
+          $(location).prop("href", "../index.php?user=" + result["token"]);
+        } else
+          swal({ title: "Error Occured", text: json.error, icon: "error" });
 
         // $("#btnAddCategory").attr("disabled");
         $("#btnLogin").html("Login");
