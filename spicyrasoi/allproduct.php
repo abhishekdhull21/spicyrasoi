@@ -48,7 +48,7 @@
     include("navbar.php"); ?>
     <!-- /.navbar -->
 
-    
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -71,101 +71,91 @@
 
       <!-- Main content -->
       <section class="content">
-<<<<<<< HEAD:allproduct.php
+
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
-=======
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-           
-            <!-- /.card -->
->>>>>>> a608658593aefe89cc9a2872c3140fd054b78b11:spicyrasoi/allproduct.php
 
-              <!-- /.card -->
+              <div class="container">
+                <div class="row">
+                  <div class="col-12">
 
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">All Listed Product </h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <?php
-                    $url = "http://api.spicyrasoi.com/product/fetch.php";
-                    // $json = file_get_contents($url);
-                    // $data = json_decode(request($url));
+                    <!-- /.card -->
 
 
-                    // $sql = "SELECT * from product limit 1";
-                    // if ($res = mysqli_query($con, $sql))
-                    //   while ($user = mysqli_fetch_assoc($res))
-                    echo ' hello';
+                    <!-- /.card -->
 
-                    // else
-                    //   echo ('error' . mysqli_error($con));
-                    ?>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
-                          <thead>
-                            <tr role="row">
-                              <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">S.No.</th> -->
-                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Category</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Store Price</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Swiggy Price</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Zomato Price</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Local Price</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">GST</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Discount</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Unit Name</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">HSN Code</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th>
-                            </tr>
-                          </thead>
-                          <tbody id="allProductTable">
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">All Listed Product </h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                          <?php
+                          $url = "http://api.spicyrasoi.com/product/fetch.php";
+                          // $json = file_get_contents($url);
+                          // $data = json_decode(request($url));
+
+
+                          // $sql = "SELECT * from product limit 1";
+                          // if ($res = mysqli_query($con, $sql))
+                          //   while ($user = mysqli_fetch_assoc($res))
+                          // else
+                          //   echo ('error' . mysqli_error($con));
+                          ?>
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                                <thead>
+                                  <tr role="row">
+                                    <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">S.No.</th> -->
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Category</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Store Price</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Swiggy Price</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Zomato Price</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Local Price</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">GST</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Discount</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Unit Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">HSN Code</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="allProductTable">
 
 
 
 
-                            <!-- <td> <a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> Delete </a> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> Edit </a> </td> -->
+                                  <!-- <td> <a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash"> </i> Delete </a> <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-pencil-alt"> </i> Edit </a> </td> -->
 
-                          </tbody>
-                          <!-- <tfoot>
+                                </tbody>
+                                <!-- <tfoot>
                             <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
                             </tfoot> -->
-                        </table>
-                      </div>
-                    </div>
+                              </table>
+                            </div>
+                          </div>
 
+                        </div>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
                   </div>
+                  <!-- /.col -->
                 </div>
-                <!-- /.card-body -->
+                <!-- /.row -->
               </div>
-              <!-- /.card -->
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+              <!-- /.container-fluid -->
       </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <?php include("footer.php"); ?>
 
-<<<<<<< HEAD:allproduct.php
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-=======
-  
->>>>>>> a608658593aefe89cc9a2872c3140fd054b78b11:spicyrasoi/allproduct.php
+
   </div>
   <!-- ./wrapper -->
 

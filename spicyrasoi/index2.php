@@ -2,25 +2,7 @@
 <html lang="en">
 
 <head>
-  <?php
-  session_start();
-  include_once 'class/User.php';
-  require_once '../config.php';
-  $isLogined = true;
-  $token = "";
-  if (!isset($_GET['user']) || $_GET['user'] == 'undefined') {
-    if (!isset($_SESSION['token']))
-      $isLogined = false;
-  } else {
 
-    $_SESSION['token'] = $_GET['user'];
-  }
-  $token = $_SESSION['token'];
-
-  $user = new User($con);
-  ($user->fetchUser($token));
-  $_SESSION['user'] = serialize($user);
-  ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Spicy Rasoi</title>
@@ -279,15 +261,7 @@
   <script src="dist/js/demo.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
-  <?php
-  if (!$isLogined) { ?>
-    <script>
-      swal("Start from login", "Something went wrong", "warning")
-        .then(() => {
-          location.href = "user/login.php";
-        });
-    </script>
-  <?php } ?>
+
 </body>
 
 </html>

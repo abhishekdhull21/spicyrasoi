@@ -4,11 +4,11 @@ class User
     private $con;
     private $userid;
     public $username;
-    private $mobile;
-    private $email;
-    private $sex;
-    private $dob;
-    private $address;
+    public $mobile;
+    public $email;
+    public $sex;
+    public $dob;
+    public $address;
     function __construct($con)
     {
         $this->con = $con;

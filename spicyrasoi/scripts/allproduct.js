@@ -64,7 +64,6 @@ $(document).ready(function () {
             { data: "product_name" },
             { data: "store_price" },
             { data: "swiggy_price" },
-            ,
             { data: "zomato_price" },
             { data: "local_price" },
             { data: "gst" },
