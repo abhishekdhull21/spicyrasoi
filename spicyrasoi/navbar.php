@@ -19,13 +19,13 @@
             <a href="#" class="nav-link">View Order</a>
           </li>
           <li class="nav-item">
-            <a href="bill.php" class="nav-link">New Bill</a>
+            <a href="genbill.php" class="nav-link">New Bill</a>
           </li>
           <li class="nav-item">
-            <a href="bill.php" class="nav-link">Swiggy</a>
+            <a href="genbill.php" class="nav-link">Swiggy</a>
           </li>
           <li class="nav-item">
-            <a href="bill.php" class="nav-link">Zamato</a>
+            <a href="genbill.php" class="nav-link">Zamato</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Dilvery</a>
