@@ -45,7 +45,18 @@
 
     // use function PHPSTORM_META\type;
 
-    include("navbar.php"); ?>
+    include("navbar.php"); 
+   // require 'config.php';
+   // $sql = "SELECT * FROM submit ";
+	 // $result = $conn->query($sql);
+
+	//if ($result->num_rows > 0) {
+		//echo "Output fetched successfully";
+ 	 	// output data of each row
+//  }
+		?>
+
+    ?>
     <!-- /.navbar -->
 
     
@@ -71,17 +82,9 @@
 
       <!-- Main content -->
       <section class="content">
-<<<<<<< HEAD:allproduct.php
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
             <div class="col-12">
-=======
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-           
-            <!-- /.card -->
->>>>>>> a608658593aefe89cc9a2872c3140fd054b78b11:spicyrasoi/allproduct.php
 
               <!-- /.card -->
 
@@ -93,7 +96,7 @@
                 <div class="card-body">
                   <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <?php
-                    $url = "http://api.spicyrasoi.com/product/fetch.php";
+                    //$url = "http://api.spicyrasoi.com/product/fetch.php";
                     // $json = file_get_contents($url);
                     // $data = json_decode(request($url));
 
@@ -101,7 +104,7 @@
                     // $sql = "SELECT * from product limit 1";
                     // if ($res = mysqli_query($con, $sql))
                     //   while ($user = mysqli_fetch_assoc($res))
-                    echo ' hello';
+                    //echo ' hello';
 
                     // else
                     //   echo ('error' . mysqli_error($con));
@@ -157,17 +160,7 @@
     <!-- /.content-wrapper -->
     <?php include("footer.php"); ?>
 
-<<<<<<< HEAD:allproduct.php
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-=======
-  
->>>>>>> a608658593aefe89cc9a2872c3140fd054b78b11:spicyrasoi/allproduct.php
-  </div>
-  <!-- ./wrapper -->
+   
 
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>

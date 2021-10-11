@@ -41,7 +41,38 @@
     </div>
 
     <!-- Navbar -->
-    <?php include("navbar.php"); ?>
+    <?php include("navbar.php"); 
+         $host = "sql487.main-hosting.eu";
+         $username = "u709711065_spicyrasoi";
+         $password = "NewPassword@1234";
+         $db = "u709711065_spicyrasoi";
+         $con = mysqli_connect($host, $username, $password, $db);
+         
+         if (mysqli_connect_errno()){
+         echo("Error");
+         }
+         else
+         {
+           //echo("Successfull");
+           $sql = "SELECT * FROM users ";
+           $res = $con->query($sql);
+           if ($res->num_rows > 0) {
+		          //echo "Output fetched successfully";
+ 
+              }
+         }
+             //die("error");
+         date_default_timezone_set("Asia/Calcutta");
+         
+  //  $sql = "SELECT * FROM users ";
+	//  $result = $conn->query($sql);
+
+	// if ($result->num_rows > 0) {
+	// 	echo "Output fetched successfully";
+ 
+    //}
+    
+    ?>
     <!-- /.navbar -->
 
  
@@ -84,7 +115,7 @@
                     <div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                   <thead>
                   <tr role="row">
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">S.No.</th>
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">User ID</th>
                       <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"  >Mob. No.</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"  >Email</th>
@@ -98,22 +129,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                      <?php for($i=1;$i<=20;$i++){ ?>
+                  <?php
+                    while($row = $res->fetch_assoc()) {
+                      //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
+                      ?>
+                     
                   <tr class="odd">
-                    <td class="dtr-control"><?php echo $i ?></td>
-                    <td class="sorting_1">All others</td>
-                    <td  >-</td>
-                    <td  >-</td>
-                    <td  >U</td>
-                    <td  >U</td>
-                    <td  >U</td>
-                    <td  >U</td>
+                    <td class="dtr-control"><?php echo $row['user_id']; ?> </td>
+                    <td class="sorting_1"><?php echo $row['user_name']; ?></td>
+                    <td  ><?php echo $row['user_mobile']; ?> </td>
+                    <td  ><?php echo $row['user_email']; ?></td>
+                    <td  ><?php echo $row['user_sex']; ?></td>
+                    <td  ><?php echo $row['user_mobile']; ?></td>
+                    <td  ><?php echo $row['user_address']; ?></td>
+                    <td  ><?php echo $row['user_name']; ?></td>
                     <!-- <td  >U</td>
                     <td  >U</td>
                     <td  >U</td> -->
                   </tr>
-                  <tr class="even">
-                    <td class="dtr-control" tabindex="0"><?php echo $i ?></td>
+                  <!-- <tr class="even">
+                    <td class="dtr-control" tabindex="0">1</td>
                     <td class="sorting_1">AOL browser (AOL desktop)</td>
                     <td  >Win XP</td>
                     <td  >6</td>
@@ -121,10 +156,7 @@
                     <td  >Win XP</td>
                     <td  >Win XP</td>
                     <td  >6</td>
-                    <!-- <td  >A</td>
-                    <td  >6</td>
-                    <td  >A</td> -->
-                  </tr>
+                  </tr> -->
                   <?php } ?>
                   
                 </tbody>
