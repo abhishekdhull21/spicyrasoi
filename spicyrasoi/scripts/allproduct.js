@@ -60,6 +60,7 @@ $(document).ready(function () {
           paging: true,
           destroy: true,
           searching: false,
+          buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
           columns: [
             { data: "product_name" },
             { data: "store_price" },

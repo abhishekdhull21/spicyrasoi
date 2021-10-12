@@ -71,7 +71,6 @@
 
       <!-- Main content -->
       <section class="content">
-
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
@@ -79,12 +78,8 @@
               <div class="container">
                 <div class="row">
                   <div class="col-12">
-
                     <!-- /.card -->
-
-
                     <!-- /.card -->
-
                     <div class="card">
                       <div class="card-header">
                         <h3 class="card-title">All Listed Product </h3>
@@ -96,8 +91,6 @@
                           $url = "http://api.spicyrasoi.com/product/fetch.php";
                           // $json = file_get_contents($url);
                           // $data = json_decode(request($url));
-
-
                           // $sql = "SELECT * from product limit 1";
                           // if ($res = mysqli_query($con, $sql))
                           //   while ($user = mysqli_fetch_assoc($res))
@@ -124,7 +117,6 @@
                                   </tr>
                                 </thead>
                                 <tbody id="allProductTable">
-
 
 
 
