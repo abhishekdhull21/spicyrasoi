@@ -40,7 +40,7 @@
     <?php include("navbar.php"); ?>
     <!-- /.navbar -->
 
-    
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -65,97 +65,95 @@
       <section class="content">
         <div class="container-fluid">
           <div class="row">
-          <?php for($r=1; $r<=3;$r++){ ?>
-          <div class="col-md-3">
-          <?php for($a=1; $a<=5;$a++){ ?>
-            <div class="card card-primary collapsed-card">
-              <div class="card-header">
-                <h3 class="card-title">Pizza <?php echo($a)?></h3>
+            <?php for ($r = 1; $r <= 3; $r++) { ?>
+              <div class="col-md-3">
+                <?php for ($a = 1; $a <= 5; $a++) { ?>
+                  <div class="card card-primary collapsed-card">
+                    <div class="card-header">
+                      <h3 class="card-title">Pizza <?php echo ($a) ?></h3>
 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Add</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php for($i=1; $i<=7;$i++){ ?>
-                  <tr>
-                    <td>Extra Cheese Margherita Burger</td>
-                    <td>49</td>
-                    <td class="text-right py-0 align-middle">
-                      <div class="btn-group btn-group-sm">
-                        <a href="#" class="btn btn-info"><i class="fas fa-plus"></i></a>
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                        </button>
                       </div>
-                    </td>
-                  </tr>
-                  <?php } ?>
-            </tbody>
-              </table>
+                      <!-- /.card-tools -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Add</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php for ($i = 1; $i <= 7; $i++) { ?>
+                            <tr>
+                              <td>Extra Cheese Margherita Burger</td>
+                              <td>49</td>
+                              <td class="text-right py-0 align-middle">
+                                <div class="btn-group btn-group-sm">
+                                  <a href="#" class="btn btn-info"><i class="fas fa-plus"></i></a>
+                                </div>
+                              </td>
+                            </tr>
+                          <?php } ?>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                <?php } ?>
+                <!-- /.card -->
               </div>
-              <!-- /.card-body -->
-            </div>
+            <?php } ?>
 
-       <?php } ?>
-            
-            <!-- /.card -->
-          </div>
-          <?php } ?>
-          
-          
+
             <!-- /.col -->
             <div class="col-md-3 table-responsive">
-            <div class="row">
+              <div class="row">
                 <div class="col-12">
                   <h4>
-                     Spicy Rasoi
+                    Spicy Rasoi
                     <small class="float-right">Date: 2/10/2014</small>
                   </h4>
                 </div>
                 <!-- /.col -->
               </div>
-              
-            <table class="table table-striped">
-                    <thead>
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>S.No.</th>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php for ($i = 1; $i <= 3; $i++) { ?>
                     <tr>
-                      <th>S.No.</th>
-                      <th>Item</th>
-                      <th>Qty</th>
-                      <th>Price</th>
-                      <th>Subtotal</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php for($i=1; $i<=3;$i++){ ?> 
-                    <tr>
-                      <td><?php echo($i); ?></td>
+                      <td><?php echo ($i); ?></td>
                       <td>Burger</td>
                       <td>2</td>
                       <td>49</td>
                       <td>98</td>
                     </tr>
-                    <?php } ?>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td><b>Grand Total</b></td>
-                      <td>588</td>
-                    </tr>
-                    </tbody>
-                  </table>
+                  <?php } ?>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>Grand Total</b></td>
+                    <td>588</td>
+                  </tr>
+                </tbody>
+              </table>
 
-                  <div class="row no-print">
+              <div class="row no-print">
                 <div class="col-12">
                   <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
                   <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
@@ -167,22 +165,22 @@
                 </div>
               </div>
 
-                 
+
 
             </div>
             <!-- /.col -->
-            
+
           </div>
-         
+
           <!-- /.row -->
         </div><!-- /.container-fluid -->
       </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <?php include("footer.php"); ?>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <?php include("footer.php"); ?>
 
-  
+
   </div>
   <!-- ./wrapper -->
 

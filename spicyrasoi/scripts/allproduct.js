@@ -65,7 +65,11 @@ $(document).ready(function () {
           columns: [
             { data: "product_name" },
             { data: "store_price" },
+<<<<<<< HEAD
             { data: "swiggy_price" },     
+=======
+            { data: "swiggy_price" },
+>>>>>>> e84a42df0530794cd5f0396d9695bedf0b2230fb
             { data: "zomato_price" },
             { data: "local_price" },
             { data: "gst" },

@@ -165,7 +165,7 @@ $(document).ready(function () {
     const user = {
       username: $("#username").val(),
       mobile: $("#mobile").val(),
-      email: $("#mobile").val(),
+      email: $("#email").val(),
       password: $("#password").val(),
     };
     // console.log("cate: " + user);
@@ -217,6 +217,61 @@ $(document).ready(function () {
     });
   });
 
-  
-});
+  //Update Profile
+  $("#btnUpdateProfile").click(function (e) {
+    e.preventDefault();
+    const user = {
+      username: $("#username").val(),
+      mobile: $("#mobile").val(),
+      sex: $("#sex").val(),
+      address: $("#address").val(),
+    };
+    // console.log("cate: " + user);
+    if (user.mobile == "" || user.username == "") {
+      swal("Warning", "Please fill all field", "warning");
+      return;
+    }
 
+    $(document).ajaxSend(() => {
+      $("#btnUpdateProfile").prop("disabled", true);
+      $("#btnUpdateProfile").html("Logining...");
+    });
+    $.ajax({
+      url: constant.url + "/user/update.php",
+      method: "POST",
+      data: JSON.stringify(user),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        console.log(result);
+
+        const json = result;
+        if (json.success)
+          swal(
+            "Good Job",
+            "You have successfully updated your profile",
+            "success",
+            {
+              button: true,
+            }
+          ).then(() => {
+            $(location).prop("href", "./login.php");
+          });
+        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        console.info(json.success);
+        // $("#btnAddCategory").attr("disabled");
+        $("#btnUpdateProfile").html("Submit");
+      },
+    });
+    $(document).ajaxError((res) => {
+      console.error(res);
+
+      $("#btnUpdateProfile").attr("disabled", false);
+      $("#btnUpdateProfile").html("Submit");
+    });
+    $(document).ajaxComplete((res) => {
+      $("#btnUpdateProfile").attr("disabled", false);
+      $("#btnUpdateProfile").html("Submit");
+    });
+  });
+});

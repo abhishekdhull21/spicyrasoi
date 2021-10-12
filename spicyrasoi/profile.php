@@ -82,7 +82,7 @@ $user = unserialize($_SESSION['user']);
                     <img class="profile-user-img img-fluid img-circle" src="dist/img/user4-128x128.jpg" alt="User profile picture">
                   </div>
 
-                  <h3 class="profile-username text-center">Sudhir</h3>
+                  <h3 class="profile-username text-center"><?php echo $user->username; ?></h3>
 
                   <p class="text-muted text-center">Marketing Expert</p>
 
@@ -91,16 +91,16 @@ $user = unserialize($_SESSION['user']);
                       <b>GST No.</b> <a class="float-right">098765432101235</a>
                     </li>
                     <li class="list-group-item">
-                      <b>Mob. No.</b> <a class="float-right">0987654321</a>
+                      <b>Mob. No.</b> <a class="float-right"><?php echo $user->mobile; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Email</b> <a class="float-right">sudhir@gmail.com</a>
+                      <b>Email</b> <a class="float-right"><?php echo $user->email; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Gender</b> <a class="float-right">Male</a>
+                      <b>Gender</b> <a class="float-right"><?php echo $user->sex; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Address</b> <a class="float-right">13,287</a>
+                      <b>Address</b> <a class="float-right"><?php echo $user->address; ?></a>
                     </li>
                   </ul>
 
@@ -145,15 +145,15 @@ $user = unserialize($_SESSION['user']);
                     <div class="tab-pane active" id="settings">
                       <form class="form-horizontal">
                         <div class="form-group row">
-                          <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                          <label for="username" class="col-sm-2 col-form-label">Name</label>
                           <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputName" value="<?php echo $user->username; ?>" placeholder="Name">
+                            <input type="email" class="form-control" id="username" value="<?php echo $user->username; ?>" placeholder="Name">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputEmail" class="col-sm-2 col-form-label">Mob. No.</label>
+                          <label for="mobile" class="col-sm-2 col-form-label">Mob. No.</label>
                           <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                            <input type="number" value="<?php echo $user->mobile; ?>" class="form-control" id="mobile" placeholder="Mobile">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -163,9 +163,9 @@ $user = unserialize($_SESSION['user']);
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputSkills" class="col-sm-2 col-form-label">Gender</label>
+                          <label for="sex" class="col-sm-2 col-form-label">Gender</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                            <input type="text" value="<?php echo $user->sex; ?>" class="form-control" id="sex" placeholder="Male | Female">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -175,9 +175,9 @@ $user = unserialize($_SESSION['user']);
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputExperience" class="col-sm-2 col-form-label">Address</label>
+                          <label for="address" class="col-sm-2 col-form-label">Address</label>
                           <div class="col-sm-10">
-                            <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                            <textarea class="form-control" id="address" placeholder="Experience"><?php echo $user->address; ?></textarea>
                           </div>
                         </div>
 
@@ -192,7 +192,7 @@ $user = unserialize($_SESSION['user']);
                         </div>
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" class="btn btn-danger">Update</button>
+                            <button type="submit" id="btnUpdateProfile" class="btn btn-danger">Update</button>
                           </div>
                         </div>
                       </form>
