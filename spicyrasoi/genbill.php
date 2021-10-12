@@ -91,6 +91,7 @@
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body">
+
                         <table class="table">
                           <thead>
                             <tr>
@@ -109,7 +110,7 @@
                                 <td><?php echo ($product['store_price']); ?></td>
                                 <td class="text-right py-0 align-middle">
                                   <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
+                                    <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product['store_price']; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
                                     <label class="custom-control-label" for="addProductCart_<?php echo $product['product_id']; ?>"></label>
                                   </div>
                                   <!-- <div class="btn-group btn-group-sm">
@@ -152,16 +153,14 @@
                     <th>Subtotal</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <?php for ($i = 1; $i <= 3; $i++) { ?>
-                    <tr>
-                      <td><?php echo ($i); ?></td>
-                      <td>Burger</td>
-                      <td>2</td>
-                      <td>49</td>
-                      <td>98</td>
-                    </tr>
-                  <?php } ?>
+                <tbody id="cartItems">
+                  <!-- <tr>
+                    <td><?php echo ($i); ?></td>
+                    <td>Burger</td>
+                    <td>2</td>
+                    <td>49</td>
+                    <td>98</td>
+                  </tr> -->
                   <tr>
                     <td></td>
                     <td></td>
@@ -238,8 +237,48 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <!-- <script src="dist/js/pages/dashboard.js"></script> -->
   <script>
+    var i = 1;
+
+    function calPrice(root, qty) {
+      console.log(root.parentNode.querySelectorAll("#subTotal"));
+      var tr = root.parentNode;
+      var subTotal = tr.querySelectorAll("#subTotal")[0];
+      var price = tr.querySelectorAll("#price")
+      var subTotalPrice = subTotal.innerHTML;
+      var finalPrice = (qty * price[0].innerHTML);
+      subTotal.innerHTML = finalPrice;
+    }
+
     function addToCart(e) {
-      console.log(e);
+      var price = 0;
+      var subtotal = 0;
+
+
+
+      console.log(e.checked);
+      // if item added
+
+      if (e.checked === true) {
+        // alert("added");
+        var id, name;
+        $(e).attr("data-productid", (i, d) => id = d);
+        $(e).attr("data-productname", (i, d) => name = d);
+        $(e).attr("data-productprice", (i, d) => price = d);
+        var itemRow = '<tr id="cartItem' + id + '">';
+        itemRow += '<td>' + (i++) + '</td>';
+        itemRow += '<td>' + name + '</td>';
+        itemRow += '<td><input style="width:42px" onchange=calPrice(this.parentNode,this.value) type="number" value="1" ></td>';
+        itemRow += '<td id="price">' + price + '</td>';
+        itemRow += '<td id="subTotal">' + subtotal + '</td>';
+
+        itemRow += ' </tr>';
+        $("#cartItems").prepend(itemRow)
+        console.log($("#cartItems"));
+      }
+      // if item removed
+      if (e.checked === false) {
+        // alert("removed");
+      }
     }
     $(document).ready(function() {
 
