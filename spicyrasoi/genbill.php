@@ -166,7 +166,7 @@
                     <td></td>
                     <td></td>
                     <td><b>Grand Total</b></td>
-                    <td>588</td>
+                    <td id="grandtotalprice">00</td>
                   </tr>
                 </tbody>
               </table>
@@ -239,6 +239,15 @@
   <script>
     var i = 1;
 
+    function calGrandTotal(price, type) {
+      console.log($('#grandtotalprice'));
+      const grandtotal = $('#grandtotalprice')[0];
+      if (type === true)
+        grandtotal.innerHTML = (grandtotal.innerHTML * 1) + (price * 1);
+      else
+        grandtotal.innerHTML = (grandtotal.innerHTML) - (price);
+    }
+
     function calPrice(root, qty) {
       console.log(root.parentNode.querySelectorAll("#subTotal"));
       var tr = root.parentNode;
@@ -252,18 +261,15 @@
     function addToCart(e) {
       var price = 0;
       var subtotal = 0;
-
-
-
-      console.log(e.checked);
+      var id, name;
+      $(e).attr("data-productid", (i, d) => id = d);
+      $(e).attr("data-productname", (i, d) => name = d);
+      $(e).attr("data-productprice", (i, d) => price = d);
       // if item added
-
       if (e.checked === true) {
         // alert("added");
-        var id, name;
-        $(e).attr("data-productid", (i, d) => id = d);
-        $(e).attr("data-productname", (i, d) => name = d);
-        $(e).attr("data-productprice", (i, d) => price = d);
+
+        calGrandTotal(price, true);
         var itemRow = '<tr id="cartItem' + id + '">';
         itemRow += '<td>' + (i++) + '</td>';
         itemRow += '<td>' + name + '</td>';
@@ -278,6 +284,11 @@
       // if item removed
       if (e.checked === false) {
         // alert("removed");
+        console.log($("#cartItem" + id))
+        calGrandTotal(price, false);
+
+        $("#cartItem" + id).remove();
+        i--;
       }
     }
     $(document).ready(function() {
