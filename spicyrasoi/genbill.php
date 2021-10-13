@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php require_once "../config.php"; ?>
 
 <head>
   <meta charset="utf-8">
@@ -31,10 +32,10 @@
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
   <div class="wrapper">
 
-    <!-- Preloader -->
+    <!-- Preloader
     <div class="preloader flex-column justify-content-center align-items-center">
       <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-    </div>
+    </div> -->
 
     <!-- Navbar -->
     <?php include("navbar.php"); ?>
@@ -65,51 +66,70 @@
       <section class="content">
         <div class="container-fluid">
           <div class="row">
-            <?php for ($r = 1; $r <= 3; $r++) { ?>
-              <div class="col-md-3">
-                <?php for ($a = 1; $a <= 5; $a++) { ?>
-                  <div class="card card-primary collapsed-card">
-                    <div class="card-header">
-                      <h3 class="card-title">Pizza <?php echo ($a) ?></h3>
+            <div class="col-md-9">
+              <div class="row">
+                <?php
+                $sql = "SELECT * FROM category  WHERE status = true";
+                $n = mysqli_query($con, $sql);
+                $i = 1;
+                while ($row = mysqli_fetch_assoc($n)) {
+                  $cat_id = $row['cat_id'];
+                  if ($i++ % 4 == 0) {
+                    echo '</div><div class="row">';
+                  } ?>
+                  <div class="col-md-3">
 
-                      <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                        </button>
+                    <div class="card card-primary collapsed-card">
+                      <div class="card-header">
+                        <h3 class="card-title"><?php echo ($row['cat_name']) . $i; ?></h3>
+
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                          </button>
+                        </div>
+                        <!-- /.card-tools -->
                       </div>
-                      <!-- /.card-tools -->
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th>Item</th>
-                            <th>Price</th>
-                            <th>Add</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php for ($i = 1; $i <= 7; $i++) { ?>
-                            <tr>
-                              <td>Extra Cheese Margherita Burger</td>
-                              <td>49</td>
-                              <td class="text-right py-0 align-middle">
-                                <div class="btn-group btn-group-sm">
-                                  <a href="#" class="btn btn-info"><i class="fas fa-plus"></i></a>
-                                </div>
-                              </td>
-                            </tr>
-                          <?php } ?>
-                        </tbody>
-                      </table>
-                    </div>
-                    <!-- /.card-body -->
-                  </div>
-                <?php } ?>
-                <!-- /.card -->
-              </div>
-            <?php } ?>
+                      <!-- /.card-header -->
+                      <div class="card-body">
 
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Product</th>
+                              <th>Price</th>
+                              <th>Add</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $res = mysqli_query($con, "SELECT * FROM `product` WHERE category = $cat_id");
+                            while ($product = mysqli_fetch_assoc($res)) {
+                            ?>
+                              <tr>
+                                <td><?php echo ($product['product_name']); ?></td>
+                                <td><?php echo ($product['store_price']); ?></td>
+                                <td class="text-right py-0 align-middle">
+                                  <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product['store_price']; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
+                                    <label class="custom-control-label" for="addProductCart_<?php echo $product['product_id']; ?>"></label>
+                                  </div>
+                                  <!-- <div class="btn-group btn-group-sm">
+                                    <a href="#" class="btn btn-info"><i class="fas fa-plus"></i></a>
+                                  </div> -->
+                                </td>
+                              </tr>
+                            <?php } ?>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+
+                <?php } ?>
+              </div>
+            </div>
 
             <!-- /.col -->
             <div class="col-md-3 table-responsive">
@@ -117,7 +137,7 @@
                 <div class="col-12">
                   <h4>
                     Spicy Rasoi
-                    <small class="float-right">Date: 2/10/2014</small>
+                    <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
                   </h4>
                 </div>
                 <!-- /.col -->
@@ -133,22 +153,20 @@
                     <th>Subtotal</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <?php for ($i = 1; $i <= 3; $i++) { ?>
-                    <tr>
-                      <td><?php echo ($i); ?></td>
-                      <td>Burger</td>
-                      <td>2</td>
-                      <td>49</td>
-                      <td>98</td>
-                    </tr>
-                  <?php } ?>
+                <tbody id="cartItems">
+                  <!-- <tr>
+                    <td><?php echo ($i); ?></td>
+                    <td>Burger</td>
+                    <td>2</td>
+                    <td>49</td>
+                    <td>98</td>
+                  </tr> -->
                   <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td><b>Grand Total</b></td>
-                    <td>588</td>
+                    <td id="grandtotalprice">00</td>
                   </tr>
                 </tbody>
               </table>
@@ -215,9 +233,68 @@
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
+  <!-- <script src="dist/js/demo.js"></script> -->
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="dist/js/pages/dashboard.js"></script>
+  <!-- <script src="dist/js/pages/dashboard.js"></script> -->
+  <script>
+    var i = 1;
+
+    function calGrandTotal(price, type) {
+      console.log($('#grandtotalprice'));
+      const grandtotal = $('#grandtotalprice')[0];
+      if (type === true)
+        grandtotal.innerHTML = (grandtotal.innerHTML * 1) + (price * 1);
+      else
+        grandtotal.innerHTML = (grandtotal.innerHTML) - (price);
+    }
+
+    function calPrice(root, qty) {
+      console.log(root.parentNode.querySelectorAll("#subTotal"));
+      var tr = root.parentNode;
+      var subTotal = tr.querySelectorAll("#subTotal")[0];
+      var price = tr.querySelectorAll("#price")
+      var subTotalPrice = subTotal.innerHTML;
+      var finalPrice = (qty * price[0].innerHTML);
+      subTotal.innerHTML = finalPrice;
+    }
+
+    function addToCart(e) {
+      var price = 0;
+      var subtotal = 0;
+      var id, name;
+      $(e).attr("data-productid", (i, d) => id = d);
+      $(e).attr("data-productname", (i, d) => name = d);
+      $(e).attr("data-productprice", (i, d) => price = d);
+      // if item added
+      if (e.checked === true) {
+        // alert("added");
+
+        calGrandTotal(price, true);
+        var itemRow = '<tr id="cartItem' + id + '">';
+        itemRow += '<td>' + (i++) + '</td>';
+        itemRow += '<td>' + name + '</td>';
+        itemRow += '<td><input style="width:42px" onchange=calPrice(this.parentNode,this.value) type="number" value="1" ></td>';
+        itemRow += '<td id="price">' + price + '</td>';
+        itemRow += '<td id="subTotal">' + subtotal + '</td>';
+
+        itemRow += ' </tr>';
+        $("#cartItems").prepend(itemRow)
+        console.log($("#cartItems"));
+      }
+      // if item removed
+      if (e.checked === false) {
+        // alert("removed");
+        console.log($("#cartItem" + id))
+        calGrandTotal(price, false);
+
+        $("#cartItem" + id).remove();
+        i--;
+      }
+    }
+    $(document).ready(function() {
+
+    })
+  </script>
 </body>
 
 </html>
