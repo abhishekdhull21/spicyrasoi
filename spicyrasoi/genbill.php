@@ -238,55 +238,90 @@
   <!-- <script src="dist/js/pages/dashboard.js"></script> -->
   <script>
     var i = 1;
+    var grandtotalPrice = 0;
+    const products = {
+      data: [],
+      totalPrice: 0
+    };
 
-    function calGrandTotal(price, type) {
+    function calGrandTotal(update, price, type) {
       console.log($('#grandtotalprice'));
       const grandtotal = $('#grandtotalprice')[0];
-      if (type === true)
-        grandtotal.innerHTML = (grandtotal.innerHTML * 1) + (price * 1);
-      else
-        grandtotal.innerHTML = (grandtotal.innerHTML) - (price);
+      // if (update === true) {
+      //   grandtotal.innerHTML = grandtotalPrice;
+
+      //   return;
+      // }
+      // if (type === true)
+      //   grandtotalPrice = (grandtotal.innerHTML * 1) + (price * 1);
+      // else
+      //   grandtotalPrice = (grandtotal.innerHTML) - (price);
+      grandtotal.innerHTML = products.totalPrice;
     }
 
-    function calPrice(root, qty) {
-      console.log(root.parentNode.querySelectorAll("#subTotal"));
+
+
+    function calPrice(root, qty, t) {
+      // console.log(root.parentNode.querySelectorAll("#subTotal"));
       var tr = root.parentNode;
       var subTotal = tr.querySelectorAll("#subTotal")[0];
-      var price = tr.querySelectorAll("#price")
-      var subTotalPrice = subTotal.innerHTML;
-      var finalPrice = (qty * price[0].innerHTML);
-      subTotal.innerHTML = finalPrice;
+      var price = tr.querySelectorAll("#price")[0];
+      // var subTotalPrice = subTotal.innerHTML;
+      // var finalPrice = (qty * price.innerHTML);
+      products.data[t].qty = parseInt(qty);
+      products.totalPrice -= parseInt(products.data[t].subtotal);
+      // console.log(); // = tprice;
+      var totalPrice = qty * products.data[t].price;
+      products.data[t].subtotal = totalPrice;
+      subTotal.innerHTML = totalPrice;
+      products.totalPrice += totalPrice;
+      console.log(products);
+
+      // grandtotalPrice = grandtotalPrice - parseInt(price.innerHTML) + finalPrice;
+      calGrandTotal(true);
     }
 
     function addToCart(e) {
       var price = 0;
       var subtotal = 0;
       var id, name;
+
       $(e).attr("data-productid", (i, d) => id = d);
       $(e).attr("data-productname", (i, d) => name = d);
       $(e).attr("data-productprice", (i, d) => price = d);
+
+      console.log(products);
       // if item added
       if (e.checked === true) {
         // alert("added");
+        products.data[i] = {
+          id: id,
+          name: name,
+          price: parseInt(price),
+          qty: 1,
+          subtotal: price,
 
-        calGrandTotal(price, true);
+        }
+        products.totalPrice += products.data[i].price;
+        calGrandTotal(false, price, true);
+
         var itemRow = '<tr id="cartItem' + id + '">';
-        itemRow += '<td>' + (i++) + '</td>';
+        itemRow += '<td>' + (i) + '</td>';
         itemRow += '<td>' + name + '</td>';
-        itemRow += '<td><input style="width:42px" onchange=calPrice(this.parentNode,this.value) type="number" value="1" ></td>';
+        itemRow += '<td><input style="width:42px" onchange=calPrice(this.parentNode,this.value,' + i + ') type="number" value="1" ></td>';
         itemRow += '<td id="price">' + price + '</td>';
-        itemRow += '<td id="subTotal">' + subtotal + '</td>';
+        itemRow += '<td id="subTotal">' + price + '</td>';
 
         itemRow += ' </tr>';
         $("#cartItems").prepend(itemRow)
         console.log($("#cartItems"));
+        i++;
       }
       // if item removed
       if (e.checked === false) {
         // alert("removed");
         console.log($("#cartItem" + id))
-        calGrandTotal(price, false);
-
+        calGrandTotal(false, price, false);
         $("#cartItem" + id).remove();
         i--;
       }
