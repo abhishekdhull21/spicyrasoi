@@ -275,7 +275,7 @@
         itemRow += '<td>' + name + '</td>';
         itemRow += '<td><input style="width:42px" onchange=calPrice(this.parentNode,this.value) type="number" value="1" ></td>';
         itemRow += '<td id="price">' + price + '</td>';
-        itemRow += '<td id="subTotal">' + subtotal + '</td>';
+        itemRow += '<td id="subTotal">' + price + '</td>';
 
         itemRow += ' </tr>';
         $("#cartItems").prepend(itemRow)
