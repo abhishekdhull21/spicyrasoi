@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once "../config.php"; ?>
+<?php require_once "../config.php";
+session_start();
+if (isset($_GET['table'])) {
+  $tableid = $_GET['table'];
+  if (!isset($_SESSION['tables']))
+    $_SESSION['tables'] = array();
+  $arr = $_SESSION['tables'];
+
+  $activeTables = sizeof($arr);
+  if (!in_array($tableid, $arr))
+    $_SESSION['tables'][$activeTables] = $tableid;
+}
+?>
 
 <head>
   <meta charset="utf-8">
@@ -237,15 +249,15 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <!-- <script src="dist/js/pages/dashboard.js"></script> -->
   <script>
-    var i = 1;
+    var i = 0;
     var grandtotalPrice = 0;
-    const products = {
+    let products = {
       data: [],
       totalPrice: 0
     };
 
     function calGrandTotal(update, price, type) {
-      console.log($('#grandtotalprice'));
+      // console.log($('#grandtotalprice'));
       const grandtotal = $('#grandtotalprice')[0];
       // if (update === true) {
       //   grandtotal.innerHTML = grandtotalPrice;
@@ -281,40 +293,48 @@
       calGrandTotal(true);
     }
 
-    function addToCart(e) {
+    function addToCart(e, savedProduct) {
       var price = 0;
-      var subtotal = 0;
+      var qty = 1;
       var id, name;
-
+      console.log(e)
       $(e).attr("data-productid", (i, d) => id = d);
       $(e).attr("data-productname", (i, d) => name = d);
       $(e).attr("data-productprice", (i, d) => price = d);
 
-      console.log(products);
+      var subtotal = price;
       // if item added
       if (e.checked === true) {
         // alert("added");
-        products.data[i] = {
-          id: id,
-          name: name,
-          price: parseInt(price),
-          qty: 1,
-          subtotal: price,
+        if (savedProduct != null) {
+          products.data.push(savedProduct);
+          price = savedProduct.price;
+          subtotal = savedProduct.subtotal; //price;
+          qty = savedProduct.qty;
+          products.totalPrice += parseInt(subtotal);
+        } else {
+          products.data[i] = {
+            id: id,
+            name: name,
+            price: parseInt(price),
+            qty: 1,
+            subtotal: price,
 
+          }
+          products.totalPrice += products.data[i].price;
         }
-        products.totalPrice += products.data[i].price;
+        console.log(products);
         calGrandTotal(false, price, true);
 
         var itemRow = '<tr id="cartItem' + id + '">';
-        itemRow += '<td>' + (i) + '</td>';
+        itemRow += '<td>' + (i + 1) + '</td>';
         itemRow += '<td>' + name + '</td>';
-        itemRow += '<td><input min="1" style="width:42px" onchange=calPrice(this.parentNode,this.value,' + i + ') type="number" value="1" ></td>';
+        itemRow += '<td><input min="1" style="width:42px" onchange="calPrice(this.parentNode,this.value,' + i + ' );" type="number" value=' + qty + ' / ></td>';
         itemRow += '<td id="price">' + price + '</td>';
-        itemRow += '<td id="subTotal">' + price + '</td>';
-
+        itemRow += '<td id="subTotal">' + subtotal + '</td>';
         itemRow += ' </tr>';
-        $("#cartItems").prepend(itemRow)
-        console.log($("#cartItems"));
+        $("#cartItems").append(itemRow)
+        // console.log($("#cartItems"));
         i++;
       }
       // if item removed
@@ -322,7 +342,7 @@
         i--;
         // alert("removed");
         var product = id;
-        console.log($("#cartItem" + id));
+        // console.log($("#cartItem" + id));
         // if (products.data[i].id == id) {
         products.data.map((v, i) => {
           if (v.id == product) {
@@ -338,8 +358,43 @@
       }
     }
     $(document).ready(function() {
+      const sp = {
+        data: [{
+            "id": "2",
+            "name": "Banana Shake",
+            "price": 40,
+            "qty": 2,
+            "subtotal": "80"
+          },
+          {
+            "id": "3",
+            "name": "Mango Shake",
+            "price": 90,
+            "qty": 1,
+            "subtotal": "90"
+          },
+          {
+            "id": "6",
+            "name": "Banana",
+            "price": 30,
+            "qty": 1,
+            "subtotal": "30"
+          }
 
-    })
+        ],
+        totalPrice: 200
+      }
+
+
+
+
+      sp.data.map((data) => {
+        $("#addProductCart_" + data.id).prop("checked", "checked");
+        addToCart(document.getElementById("addProductCart_" + data.id), data, sp.totalPrice);
+        // addToCart($("#addProductCart_" + data.id));
+      });
+
+    });
   </script>
 </body>
 

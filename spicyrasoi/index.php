@@ -61,7 +61,7 @@ $_SESSION['user'] = serialize($user);
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
-
+      <?php include 'activetable.php'; ?>
       <!-- Main content -->
       <div class="content">
         <div class="container">
@@ -73,13 +73,21 @@ $_SESSION['user'] = serialize($user);
                 </div>
                 <div class="card-body">
 
-                  <?php for ($i = 1; $i <= 7; $i++) { ?>
+                  <?php for ($i = 1; $i <= 7; $i++) {
+                    if (in_array($i, $_SESSION['tables'])) {
 
-                    <a class="btn btn-app bg-success">
-                      <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
-                    </a>
 
-                  <?php } ?>
+                  ?>
+                      <a class="btn btn-app bg-danger" href="<?php echo "genbill.php?table=" . $i ?>">
+                        <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
+                      </a>
+                    <?php } else { ?>
+                      <a class="btn btn-app bg-success" href="<?php echo "genbill.php?table=" . $i ?>">
+                        <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
+                      </a>
+
+                  <?php }
+                  } ?>
 
                 </div>
               </div>
