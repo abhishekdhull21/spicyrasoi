@@ -308,7 +308,7 @@
         var itemRow = '<tr id="cartItem' + id + '">';
         itemRow += '<td>' + (i) + '</td>';
         itemRow += '<td>' + name + '</td>';
-        itemRow += '<td><input style="width:42px" onchange=calPrice(this.parentNode,this.value,' + i + ') type="number" value="1" ></td>';
+        itemRow += '<td><input min="1" style="width:42px" onchange=calPrice(this.parentNode,this.value,' + i + ') type="number" value="1" ></td>';
         itemRow += '<td id="price">' + price + '</td>';
         itemRow += '<td id="subTotal">' + price + '</td>';
 
@@ -319,11 +319,22 @@
       }
       // if item removed
       if (e.checked === false) {
-        // alert("removed");
-        console.log($("#cartItem" + id))
-        calGrandTotal(false, price, false);
-        $("#cartItem" + id).remove();
         i--;
+        // alert("removed");
+        var product = id;
+        console.log($("#cartItem" + id));
+        // if (products.data[i].id == id) {
+        products.data.map((v, i) => {
+          if (v.id == product) {
+            console.log(v.id);
+            products.totalPrice -= v.subtotal;
+            calGrandTotal();
+            $("#cartItem" + product).remove();
+          }
+        })
+        // }
+
+
       }
     }
     $(document).ready(function() {
