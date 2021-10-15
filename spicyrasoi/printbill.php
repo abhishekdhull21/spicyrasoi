@@ -106,8 +106,9 @@
       const products = JSON.parse(localStorage.getItem("bill"));
       products.data.map((d, index) => {
 
+
         var itemRow = '<tr id="cartItem' + d.id + '">';
-        itemRow += '<td>' + (index + 1) + '</td>';
+        itemRow += '<td>' + (products.data.length - index) + '</td>';
         itemRow += '<td>' + d.name + '</td>';
         itemRow += '<td>' + d.qty + '</td>';
         itemRow += '<td id="price">' + d.price + '</td>';
