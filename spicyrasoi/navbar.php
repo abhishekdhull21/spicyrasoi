@@ -1,8 +1,8 @@
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
   <div class="container-fluid">
     <a href="index.php" class="navbar-brand">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Spicy Rasoi</span>
+      <img src="dist/img/AdminLTELogo.png" alt="Spicy Rasoi" class="brand-image elevation-3" style="opacity: 1">
+      <span class="brand-text font-weight-light"><b>Spicy Rasoi</b></span>
     </a>
 
     <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
