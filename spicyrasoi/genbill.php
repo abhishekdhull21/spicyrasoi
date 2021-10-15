@@ -12,6 +12,15 @@ if (isset($_GET['table'])) {
   if (!in_array($tableid, $arr))
     $_SESSION['tables'][$activeTables] = $tableid;
 }
+$method = "store_price";
+if (isset($_GET['method'])) {
+
+  if ($_GET['method'] == "swiggy")
+    $method = "swiggy_price";
+  else if ($_GET['method'] == "zomato")
+    $method = "zomato_price";
+  // echo $method;
+}
 ?>
 
 <head>
@@ -119,10 +128,10 @@ if (isset($_GET['table'])) {
                             ?>
                               <tr>
                                 <td><?php echo ($product['product_name']); ?></td>
-                                <td><?php echo ($product['store_price']); ?></td>
+                                <td><?php echo ($product[$method]); ?></td>
                                 <td class="text-right py-0 align-middle">
                                   <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product['store_price']; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
+                                    <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product[$method]; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
                                     <label class="custom-control-label" for="addProductCart_<?php echo $product['product_id']; ?>"></label>
                                   </div>
                                   <!-- <div class="btn-group btn-group-sm">
@@ -185,7 +194,7 @@ if (isset($_GET['table'])) {
 
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="#"  class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a>
+                  <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
                   <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
                   <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
@@ -393,7 +402,7 @@ if (isset($_GET['table'])) {
       $("#btnprintbill").on("click", () => {
         console.log("clicked")
         localStorage.setItem("bill", JSON.stringify(products));
-        window.open( "printbill.php","_blank");
+        window.open("printbill.php", "_blank");
         location.reload();
       });
     });
