@@ -74,9 +74,8 @@ $_SESSION['user'] = serialize($user);
                 <div class="card-body">
 
                   <?php for ($i = 1; $i <= 7; $i++) {
+                    // if (isset($_SESSION['tables']))
                     if (in_array($i, $_SESSION['tables'])) {
-
-
                   ?>
                       <a class="btn btn-app bg-danger" href="<?php echo "genbill.php?table=" . $i ?>"><i class="fas fa-chair"></i>
                         <h5 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h5> <br>

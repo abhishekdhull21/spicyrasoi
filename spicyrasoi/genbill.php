@@ -2,6 +2,7 @@
 <html lang="en">
 <?php require_once "../config.php";
 session_start();
+$tableid = 0;
 if (isset($_GET['table'])) {
   $tableid = $_GET['table'];
   if (!isset($_SESSION['tables']))
@@ -11,6 +12,15 @@ if (isset($_GET['table'])) {
   $activeTables = sizeof($arr);
   if (!in_array($tableid, $arr))
     $_SESSION['tables'][$activeTables] = $tableid;
+}
+$method = "store_price";
+if (isset($_GET['method'])) {
+
+  if ($_GET['method'] == "swiggy")
+    $method = "swiggy_price";
+  else if ($_GET['method'] == "zomato")
+    $method = "zomato_price";
+  // echo $method;
 }
 ?>
 
@@ -119,10 +129,10 @@ if (isset($_GET['table'])) {
                             ?>
                               <tr>
                                 <td><?php echo ($product['product_name']); ?></td>
-                                <td><?php echo ($product['store_price']); ?></td>
+                                <td><?php echo ($product[$method]); ?></td>
                                 <td class="text-right py-0 align-middle">
                                   <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product['store_price']; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
+                                    <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product[$method]; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
                                     <label class="custom-control-label" for="addProductCart_<?php echo $product['product_id']; ?>"></label>
                                   </div>
                                   <!-- <div class="btn-group btn-group-sm">
@@ -154,7 +164,8 @@ if (isset($_GET['table'])) {
                 </div>
                 <!-- /.col -->
               </div>
-
+              <input type="text" hidden id="tableid" value="<?php echo $tableid; ?>">
+              <input type="text" hidden id="method" value="<?php echo $method; ?>">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -186,6 +197,7 @@ if (isset($_GET['table'])) {
               <div class="row no-print">
                 <div class="col-12">
                   <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
+                  <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
                   <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
                   <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
@@ -250,8 +262,13 @@ if (isset($_GET['table'])) {
   <script>
     var i = 0;
     var grandtotalPrice = 0;
+    var table = $('#table').val() != '' ? $('#tableid').val() : 0;
+    var type = $('#method').val() != '' ? $('#method').val() : "store_price";
+
     let products = {
       data: [],
+      table: table,
+      type: type,
       totalPrice: 0
     };
 
@@ -286,7 +303,7 @@ if (isset($_GET['table'])) {
       products.data[t].subtotal = totalPrice;
       subTotal.innerHTML = totalPrice;
       products.totalPrice += totalPrice;
-      console.log(products);
+      // console.log(products);
 
       // grandtotalPrice = grandtotalPrice - parseInt(price.innerHTML) + finalPrice;
       calGrandTotal(true);
@@ -345,7 +362,7 @@ if (isset($_GET['table'])) {
         // if (products.data[i].id == id) {
         products.data.map((v, i) => {
           if (v.id == product) {
-            console.log(v.id);
+            // console.log(v.id);
             products.totalPrice -= v.subtotal;
             calGrandTotal();
             $("#cartItem" + product).remove();
@@ -391,7 +408,7 @@ if (isset($_GET['table'])) {
       });
       // print bill on click
       $("#btnprintbill").on("click", () => {
-        console.log("clicked")
+        // console.log("clicked");
         localStorage.setItem("bill", JSON.stringify(products));
         window.open("printbill.php", "_blank");
         location.reload();
