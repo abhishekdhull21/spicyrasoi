@@ -158,7 +158,7 @@ if (isset($_GET['table'])) {
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>S.No.</th>
+                    <!-- <th>S.No.</th> -->
                     <th>Item</th>
                     <th>Qty</th>
                     <th>Price</th>
@@ -167,14 +167,14 @@ if (isset($_GET['table'])) {
                 </thead>
                 <tbody id="cartItems">
                   <!-- <tr>
-                    <td><?php echo ($i); ?></td>
+                    <td></td>
                     <td>Burger</td>
                     <td>2</td>
                     <td>49</td>
                     <td>98</td>
                   </tr> -->
                   <tr>
-                    <td></td>
+                    <!-- <td></td> -->
                     <td></td>
                     <td></td>
                     <td><b>Grand Total</b></td>
@@ -185,12 +185,10 @@ if (isset($_GET['table'])) {
 
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                  <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                    Payment
-                  </button>
+                  <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> COT and Save</a>
+                  <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
                   <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                    <i class="fas fa-download"></i> Generate PDF
+                    <i class="fas fa-print"></i> Final Print
                   </button>
                 </div>
               </div>
@@ -327,7 +325,7 @@ if (isset($_GET['table'])) {
         calGrandTotal(false, price, true);
 
         var itemRow = '<tr id="cartItem' + id + '">';
-        itemRow += '<td>' + (i + 1) + '</td>';
+        // itemRow += '<td>' + (i + 1) + '</td>';
         itemRow += '<td>' + name + '</td>';
         itemRow += '<td><input min="1" style="width:42px" onchange="calPrice(this.parentNode,this.value,' + i + ' );" type="number" value=' + qty + ' / ></td>';
         itemRow += '<td id="price">' + price + '</td>';
@@ -389,8 +387,8 @@ if (isset($_GET['table'])) {
 
 
       sp.data.map((data) => {
-        $("#addProductCart_" + data.id).prop("checked", "checked");
-        addToCart(document.getElementById("addProductCart_" + data.id), data, sp.totalPrice);
+        //$("#addProductCart_" + data.id).prop("checked", "checked");
+        //addToCart(document.getElementById("addProductCart_" + data.id), data, sp.totalPrice);
         // addToCart($("#addProductCart_" + data.id));
       });
 
