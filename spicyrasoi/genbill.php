@@ -185,12 +185,12 @@ if (isset($_GET['table'])) {
 
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="printbill.php" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> COT and Save</a>
+                  <a href="#"  class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
-                  <!-- <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                   <a href="printbill.php"> <i class="fas fa-print"></i> Final Print</a>
+                  <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
+                  <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
+                    <i class="fas fa-print"></i> Final Print
                   </button> -->
-                  <a href="printbill.php" rel="noopener" target="_blank" class="btn btn-default float-right"><i class="fas fa-print"></i> COT and Save</a>
                 </div>
               </div>
 
@@ -332,7 +332,7 @@ if (isset($_GET['table'])) {
         itemRow += '<td id="price">' + price + '</td>';
         itemRow += '<td id="subTotal">' + subtotal + '</td>';
         itemRow += ' </tr>';
-        $("#cartItems").append(itemRow)
+        $("#cartItems").prepend(itemRow)
         // console.log($("#cartItems"));
         i++;
       }
@@ -384,15 +384,18 @@ if (isset($_GET['table'])) {
         totalPrice: 200
       }
 
-
-
-
       sp.data.map((data) => {
         //$("#addProductCart_" + data.id).prop("checked", "checked");
         //addToCart(document.getElementById("addProductCart_" + data.id), data, sp.totalPrice);
         // addToCart($("#addProductCart_" + data.id));
       });
-
+      // print bill on click
+      $("#btnprintbill").on("click", () => {
+        console.log("clicked")
+        localStorage.setItem("bill", JSON.stringify(products));
+        window.open( "printbill.php","_blank");
+        location.reload();
+      });
     });
   </script>
 </body>
