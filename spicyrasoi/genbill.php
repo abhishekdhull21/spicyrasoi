@@ -2,6 +2,7 @@
 <html lang="en">
 <?php require_once "../config.php";
 session_start();
+$tableid = 0;
 if (isset($_GET['table'])) {
   $tableid = $_GET['table'];
   if (!isset($_SESSION['tables']))
@@ -163,7 +164,8 @@ if (isset($_GET['method'])) {
                 </div>
                 <!-- /.col -->
               </div>
-
+              <input type="text" hidden id="tableid" value="<?php echo $tableid; ?>">
+              <input type="text" hidden id="method" value="<?php echo $method; ?>">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -259,8 +261,13 @@ if (isset($_GET['method'])) {
   <script>
     var i = 0;
     var grandtotalPrice = 0;
+    var table = $('#table').val() != '' ? $('#tableid').val() : 0;
+    var type = $('#method').val() != '' ? $('#method').val() : "store_price";
+
     let products = {
       data: [],
+      table: table,
+      type: type,
       totalPrice: 0
     };
 
@@ -295,7 +302,7 @@ if (isset($_GET['method'])) {
       products.data[t].subtotal = totalPrice;
       subTotal.innerHTML = totalPrice;
       products.totalPrice += totalPrice;
-      console.log(products);
+      // console.log(products);
 
       // grandtotalPrice = grandtotalPrice - parseInt(price.innerHTML) + finalPrice;
       calGrandTotal(true);
@@ -354,7 +361,7 @@ if (isset($_GET['method'])) {
         // if (products.data[i].id == id) {
         products.data.map((v, i) => {
           if (v.id == product) {
-            console.log(v.id);
+            // console.log(v.id);
             products.totalPrice -= v.subtotal;
             calGrandTotal();
             $("#cartItem" + product).remove();
@@ -400,7 +407,7 @@ if (isset($_GET['method'])) {
       });
       // print bill on click
       $("#btnprintbill").on("click", () => {
-        console.log("clicked")
+        // console.log("clicked");
         localStorage.setItem("bill", JSON.stringify(products));
         window.open("printbill.php", "_blank");
         location.reload();
