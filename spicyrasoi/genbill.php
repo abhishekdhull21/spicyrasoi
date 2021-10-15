@@ -185,11 +185,12 @@ if (isset($_GET['table'])) {
 
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> COT and Save</a>
+                  <a href="printbill.php" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> COT and Save</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
-                  <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                    <i class="fas fa-print"></i> Final Print
-                  </button>
+                  <!-- <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                   <a href="printbill.php"> <i class="fas fa-print"></i> Final Print</a>
+                  </button> -->
+                  <a href="printbill.php" rel="noopener" target="_blank" class="btn btn-default float-right"><i class="fas fa-print"></i> COT and Save</a>
                 </div>
               </div>
 

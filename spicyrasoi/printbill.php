@@ -64,7 +64,6 @@ if (isset($_GET['table'])) {
                 </thead>
                 <tbody id="cartItems">
                   <tr>
-                    
                     <td>Burger</td>
                     <td>2</td>
                     <td>49</td>
@@ -123,8 +122,6 @@ if (isset($_GET['table'])) {
       //   grandtotalPrice = (grandtotal.innerHTML) - (price);
       grandtotal.innerHTML = products.totalPrice;
     }
-
-
 
     function calPrice(root, qty, t) {
       // console.log(root.parentNode.querySelectorAll("#subTotal"));
