@@ -26,10 +26,17 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
 </head>
 
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
   <div class="wrapper">
+
+  
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
@@ -37,7 +44,30 @@
     </div>
 
     <!-- Navbar -->
-    <?php include("navbar.php"); ?>
+    <?php include("navbar.php"); 
+    $host = "sql487.main-hosting.eu";
+    $username = "u709711065_spicyrasoi";
+    $password = "NewPassword@1234";
+    $db = "u709711065_spicyrasoi";
+    $con = mysqli_connect($host, $username, $password, $db);
+    
+    if (mysqli_connect_errno()){
+    echo("Error");
+    }
+    else
+    {
+      //echo("Successfull");
+      $sql = "SELECT cat_name FROM category c";
+      $res = $con->query($sql);
+      if ($res->num_rows > 0) {
+         //echo "Output fetched successfully";
+
+         }
+    }
+        //die("error");
+    date_default_timezone_set("Asia/Calcutta");
+    
+    ?>
     <!-- /.navbar -->
 
     
@@ -48,11 +78,11 @@
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Add Category</h1>
+              <h1 class="m-0">Category</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Home </a> / Category</li>
                 <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
               </ol>
             </div><!-- /.col -->
@@ -63,12 +93,12 @@
 
       <!-- Main content -->
       <section class="content">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
             <!-- left column -->
-            <div class="col-md-6">
+            <div class="col-md-4">
               <!-- general form elements -->
-              <div class="card card-primary">
+              <div class="card card-success">
                 <div class="card-header">
                   <h3 class="card-title">Add Category</h3>
                 </div>
@@ -87,11 +117,70 @@
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" id="btnAddCategory">Submit</button>
+                <button type="submit" class="btn btn-primary" id="btnAddCategory">Add</button>
               </div>
               </form>
             </div>
             <!-- /.card -->
+
+            <div class="col-md-8">
+              <!-- general form elements -->
+
+              <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">All Listed Category </h3>
+                <a href="addcategory.php"> <i class="fas fa-sync float-right"> Refresh</i> </a>
+              </div>
+              <div class="card-body">
+              <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                   
+                   <div class="row">
+                     <div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                 <thead>
+                 <tr role="row">
+                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">S.No.</th>
+                     <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
+                     <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Action</th>
+                   
+                   </tr>
+                 </thead>
+                 <tbody>
+                 <?php
+                   $i=0;
+                   while($row = $res->fetch_assoc()) {
+                     
+                     $i++; 
+
+                     //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
+                     ?>
+                    
+                 <tr class="odd">
+                   <td class="dtr-control"><?php echo ($i); ?> 
+                   </td>
+                   <td class="sorting_1"><?php echo $row['cat_name']; ?></td>
+                   <td  ><a href=""> <i class="fas fa-trash-alt"> Remove</i></a> </td>
+                  
+                   
+                   <!-- <td  >U</td>
+                   <td  >U</td>
+                   <td  >U</td> -->
+                 </tr>
+                 <?php } ?>
+                 
+               </tbody>
+                 <!-- <tfoot>
+                 <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
+                 </tfoot> -->
+               </table></div></div>
+              
+           </div>
+              </div>
+
+              </div>
+              <!-- /.card-body -->
+
+             
+            </div>
 
           </div>
           <!--/.col (left) -->
@@ -143,6 +232,38 @@
   <script src="dist/js/demo.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
+    <!-- DataTables  & Plugins -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/jszip/jszip.min.js"></script>
+<script src="plugins/pdfmake/pdfmake.min.js"></script>
+<script src="plugins/pdfmake/vfs_fonts.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+
 </body>
 
 </html>
