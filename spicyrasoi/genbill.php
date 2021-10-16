@@ -196,7 +196,8 @@ if (isset($_GET['method'])) {
 
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a>
+                  <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
+                  <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
                   <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
                   <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">

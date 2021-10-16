@@ -1,8 +1,8 @@
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
   <div class="container-fluid">
     <a href="index.php" class="navbar-brand">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Spicy Rasoi</span>
+      <img src="dist/img/AdminLTELogo.png" alt="Spicy Rasoi" class="brand-image elevation-3" style="opacity: 1">
+      <span class="brand-text font-weight-light"><b>Spicy Rasoi</b></span>
     </a>
 
     <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,28 +13,28 @@
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a href="index.php" class="nav-link">Home</a>
+          <a href="index.php" class="nav-link"><i class="fas fa-home"> Home</i></a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">View Order</a>
+          <a href="#" class="nav-link"><i class="fas fa-file-invoice"> View Order</i></a>
         </li>
         <li class="nav-item">
-          <a href="genbill.php" class="nav-link">New Bill</a>
+          <a href="genbill.php" class="nav-link"><i class="fas fa-receipt"> New Bill</i></a>
         </li>
         <li class="nav-item">
-          <a href="genbill.php?method=swiggy" class="nav-link">Swiggy</a>
+          <a href="genbill.php" class="nav-link"><i class="fas fa-hamburger"> Swiggy</i></a>
         </li>
         <li class="nav-item">
-          <a href="genbill.php?method=zomato" class="nav-link">Zamato</a>
+          <a href="genbill.php" class="nav-link"><i class="fas fa-hamburger"> Zamato</i></a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">Dilvery</a>
+          <a href="#" class="nav-link"><i class="fas fa-truck-pickup"> Dilvery</i></a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">Process</a>
+          <a href="#" class="nav-link"><i class="fas fa-sync"> Process</i></a>
         </li>
         <li class="nav-item">
-          <a href="setting.php" class="nav-link"><b>Settings</b></a>
+          <a href="setting.php" class="nav-link"><b><i class="fas fa-cog"> Settings</i></b></a>
         </li>
         <!-- <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
@@ -52,6 +52,11 @@
     <!-- Right navbar links -->
     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
       <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-cart-arrow-down"> Cart</i>
+        </a>
+      </li>
+      <li class="nav-item">
         <div class="btn-group">
           <button type="button" class="btn btn-success">Profile</button>
           <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -66,9 +71,7 @@
           </div>
         </div>
       </li>
-      <!-- <li class="nav-item">
-          <p>Logout </p>
-        </li> -->
+
     </ul>
   </div>
 </nav>
