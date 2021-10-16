@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // if(strpos($content_type, "application/json") !== false){
     if (isset($data['mobile']) && isset($data['password'])) {
         $mobile = $data['mobile'];
-        $password = ($data['password']);
+        $password = md5($data['password']);
         do {
             $token = genrate_token(256);
             $res = check_token($con, $token);
