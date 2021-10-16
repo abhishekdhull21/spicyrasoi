@@ -408,9 +408,23 @@ if (isset($_GET['method'])) {
       // print bill on click
       $("#btnprintbill").on("click", () => {
         // console.log("clicked");
-        localStorage.setItem("bill", JSON.stringify(products));
-        window.open("printbill.php", "_blank");
-        location.reload();
+        if (products.data.length < 1) return;
+        $.ajax({
+          url: constant.url + "order/orders.php",
+          method: "POST",
+          data: JSON.stringify(products),
+          contentType: "application/json",
+          dataType: "json",
+          success: function(result) {
+            console.log(result);
+            if (result.success == true) {
+              alert("print")
+              localStorage.setItem("bill", JSON.stringify(products));
+              window.open("printbill.php", "_blank");
+              location.reload();
+            }
+          },
+        });
       });
     });
   </script>
