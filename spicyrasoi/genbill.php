@@ -264,31 +264,33 @@ if (isset($_GET['method'])) {
     var grandtotalPrice = 0;
     var table = $('#table').val() != '' ? $('#tableid').val() : 0;
     var type = $('#method').val() != '' ? $('#method').val() : "store_price";
-
-    let products = {
+    // product object acc to bill list
+    const products = {
       data: [],
       table: table,
       type: type,
       totalPrice: 0
     };
-
+    // calculate final bill
     function calGrandTotal(update, price, type) {
       // console.log($('#grandtotalprice'));
       const grandtotal = $('#grandtotalprice')[0];
-      // if (update === true) {
-      //   grandtotal.innerHTML = grandtotalPrice;
-
-      //   return;
-      // }
-      // if (type === true)
-      //   grandtotalPrice = (grandtotal.innerHTML * 1) + (price * 1);
-      // else
-      //   grandtotalPrice = (grandtotal.innerHTML) - (price);
+      $.ajax({
+        url: constant.url + "table/order.php",
+        method: "POST",
+        data: JSON.stringify({
+          data: products,
+          table: products.table
+        }),
+        contentType: 'application/json',
+        error: (data) => {
+          // console.log(data);
+          swal("Error Occurred", "Something going wrong", "error");
+        }
+      });
       grandtotal.innerHTML = products.totalPrice;
     }
-
-
-
+    // cal subtotal
     function calPrice(root, qty, t) {
       // console.log(root.parentNode.querySelectorAll("#subTotal"));
       var tr = root.parentNode;
@@ -308,12 +310,12 @@ if (isset($_GET['method'])) {
       // grandtotalPrice = grandtotalPrice - parseInt(price.innerHTML) + finalPrice;
       calGrandTotal(true);
     }
-
+    // fun to add item into bill list
     function addToCart(e, savedProduct) {
       var price = 0;
       var qty = 1;
       var id, name;
-      console.log(e)
+      // console.log(e)
       $(e).attr("data-productid", (i, d) => id = d);
       $(e).attr("data-productname", (i, d) => name = d);
       $(e).attr("data-productprice", (i, d) => price = d);
@@ -339,7 +341,7 @@ if (isset($_GET['method'])) {
           }
           products.totalPrice += products.data[i].price;
         }
-        console.log(products);
+        // console.log(products);
         calGrandTotal(false, price, true);
 
         var itemRow = '<tr id="cartItem' + id + '">';
@@ -374,38 +376,28 @@ if (isset($_GET['method'])) {
       }
     }
     $(document).ready(function() {
-      const sp = {
-        data: [{
-            "id": "2",
-            "name": "Banana Shake",
-            "price": 40,
-            "qty": 2,
-            "subtotal": "80"
-          },
-          {
-            "id": "3",
-            "name": "Mango Shake",
-            "price": 90,
-            "qty": 1,
-            "subtotal": "90"
-          },
-          {
-            "id": "6",
-            "name": "Banana",
-            "price": 30,
-            "qty": 1,
-            "subtotal": "30"
+      // fetch table item
+      $.ajax({
+        method: "POST",
+        url: constant.url + "table/orderfetch.php",
+        data: JSON.stringify({
+          table: $('#tableid').val() != null ? $('#tableid').val() : 0
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: (res) => {
+          // console.log(res);
+          if (res.success) {
+            const arr = res.data;
+            arr.data.map((d) => {
+              $("#addProductCart_" + d.id).prop("checked", "checked");
+              addToCart(document.getElementById("addProductCart_" + d.id), d, arr.totalPrice);
+              addToCart($("#addProductCart_" + d.id));
+            });
           }
-
-        ],
-        totalPrice: 200
-      }
-
-      sp.data.map((data) => {
-        //$("#addProductCart_" + data.id).prop("checked", "checked");
-        //addToCart(document.getElementById("addProductCart_" + data.id), data, sp.totalPrice);
-        // addToCart($("#addProductCart_" + data.id));
+        }
       });
+
       // print bill on click
       $("#btnprintbill").on("click", () => {
         // console.log("clicked");
@@ -417,7 +409,7 @@ if (isset($_GET['method'])) {
           contentType: "application/json",
           dataType: "json",
           success: function(result) {
-            console.log(result);
+            // console.log(result);
             if (result.success == true) {
               alert("print")
               localStorage.setItem("bill", JSON.stringify(products));
