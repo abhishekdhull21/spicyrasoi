@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" class="" style="height: auto;"><head>
+<html lang="en" class="" style="height: auto;">
+
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Spicy Rasoi</title>
@@ -11,103 +13,197 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
+
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
-<div class="wrapper">
+  <div class="wrapper">
 
-  <!-- Navbar -->
-  <?php include("navbar.php") ?>
-  <!-- /.navbar -->
+    <!-- Navbar -->
+    <?php include("navbar.php") ?>
+    <!-- /.navbar -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="min-height: 1145.31px;">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0"> Settings </h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Settings</a></li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 1145.31px;">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0"> Settings </h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Settings</a></li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-          <div class="card">
-              <div class="card-header">
-                <h5 class="card-title m-0">Settings</h5>
+      <!-- Main content -->
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Product & Category</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <!-- we are adding the accordion ID so Bootstrap's collapse plugin detects it -->
+                  <div id="accordion">
+                    <div class="card card-primary">
+                      <div class="card-header">
+                        <h4 class="card-title w-100">
+                          <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="false">
+                            Category <i class="fas fa-caret-down float-right"></i>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" class="collapse" data-parent="#accordion" style="">
+                        <div class="card-body">
+                          <a href="addcategory.php" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-success">300</span> -->
+                            <i class="fas fa-plus-circle"></i> Add Category
+                          </a>
+                          <a href="#" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-success">300</span> -->
+                            <i class="fas fa-file"></i> All Category
+                          </a>
+                          <!-- <a class="btn btn-app bg-secondary">
+                  <span class="badge bg-success">300</span>
+                  <i class="fas fa-barcode"></i> Products
+                </a> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card card-danger">
+                      <div class="card-header">
+                        <h4 class="card-title w-100">
+                          <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false">
+                            Product <i class="fas fa-caret-down float-right"></i>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
+                        <div class="card-body">
+                          <a href="addproduct.php" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-purple">891</span> -->
+                            <i class="fas fa-plus-circle"></i> Add Product
+                          </a>
+                          <a href="allproduct.php" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-purple">891</span> -->
+                            <i class="fab fa-product-hunt"></i> All Product
+                          </a>
+                          <!-- <a class="btn btn-app bg-success">
+                  <span class="badge bg-purple">891</span>
+                  <i class="fas fa-users"></i> Users
+                </a> -->
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+                <!-- /.card-body -->
               </div>
-              <div class="card-body">
-              <div class="row">
-          <div class="col-lg-3" style="padding: 10px;">
-              <a href="addproduct.php">  <button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-bell"></i> New Product +</button> </a>
-                <!-- <button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-bell"></i> .btn-block</button>  -->
-          </div>
-          <div class="col-lg-3" style="padding: 10px;">
-               <a href="allproduct.php"> <button type="button" class="btn btn-outline-success btn-block"><i class="fa fa-bell"></i>  View Product</button> </a>
-          </div>
-          <div class="col-lg-3" style="padding: 10px;">
-               <a href="addcategory.php"> <button type="button" class="btn btn-outline-secondary btn-block"><i class="fa fa-bell"></i> Category</button> </a>
-          </div>
-          <div class="col-lg-3" style="padding: 10px;">
-               <a href=""> <button type="button" class="btn btn-outline-danger btn-block"><i class="fa fa-bell"></i> Report</button> </a>
-          </div>
-              </div>  
-              <div class="row">
-          <div class="col-lg-3" style="padding: 10px;">
-              <a href="add_user.php">  <button type="button" class="btn btn-outline-danger btn-block"><i class="fa fa-bell"></i> New User +</button> </a>
-                <!-- <button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-bell"></i> .btn-block</button>  -->
-          </div>
-          <div class="col-lg-3" style="padding: 10px;">
-               <a href="alluser.php"> <button type="button" class="btn btn-outline-secondary btn-block"><i class="fa fa-bell"></i>  View User </button> </a>
-          </div>
-          <div class="col-lg-3" style="padding: 10px;">
-               <a href=""> <button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-bell"></i> Category</button> </a>
-          </div>
-          <div class="col-lg-3" style="padding: 10px;">
-              <a href="">  <button type="button" class="btn btn-outline-success btn-block"><i class="fa fa-bell"></i> Report</button> </a>
-          </div>
-              </div>  
+              <!-- /.card -->
             </div>
+            <!-- /.col -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">User & Reports</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <!-- we are adding the accordion ID so Bootstrap's collapse plugin detects it -->
+                  <div id="accordion">
+
+
+                    <div class="card card-success">
+                      <div class="card-header">
+                        <h4 class="card-title w-100">
+                          <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false">
+                            User <i class="fas fa-caret-down float-right"></i>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseThree" class="collapse" data-parent="#accordion" style="">
+                        <div class="card-body">
+                          <a href="./user/createuser.php" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-purple">891</span> -->
+                            <i class="fas fa-users"></i> Add Users
+                          </a>
+                          <a href="alluser.php" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-purple">891</span> -->
+                            <i class="fas fa-users"></i> View Users
+                          </a>
+                          <!-- <a class="btn btn-app bg-success">
+                  <span class="badge bg-purple">891</span>
+                  <i class="fas fa-users"></i> Users
+                </a> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card card-secondary">
+                      <div class="card-header">
+                        <h4 class="card-title w-100">
+                          <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false">
+                            Reports <i class="fas fa-caret-down float-right"></i>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseFour" class="collapse" data-parent="#accordion" style="">
+                        <div class="card-body">
+                          <a href="#" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-purple">891</span> -->
+                            <i class="fas fa-users"></i> R1
+                          </a>
+                          <a href="#" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-purple">891</span> -->
+                            <i class="fas fa-users"></i> R2
+                          </a>
+                          <a href="#" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-purple">891</span> -->
+                            <i class="fas fa-users"></i> R3
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
             </div>
-<!-- /.card -->
+            <!-- /.col -->
           </div>
-          <!-- /.col-md-6 -->
-         
-          <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
-        
-      </div><!-- /.container-fluid -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content -->
     </div>
-    <!-- /.content -->
+    <!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <?php include("footer.php"); ?>
   </div>
-  <!-- /.content-wrapper -->
-  <!-- Main Footer -->
-  <?php include("footer.php"); ?>
-</div>
-<!-- ./wrapper -->
+  <!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
+  <!-- REQUIRED SCRIPTS -->
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
 
 
-</body></html>
+</body>
+
+</html>

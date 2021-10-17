@@ -112,7 +112,8 @@
               <div class="card-body">
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                    
-                    <div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                    <div class="row">
+                      <div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                   <thead>
                   <tr role="row">
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">S.No.</th>
@@ -122,7 +123,7 @@
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Swiggy Price</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Zamoto Price</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Local Price</th>
-                      <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Address</th> -->
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Action</th>
                       <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Discount</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >HSN Code</th> -->
@@ -147,21 +148,10 @@
                     <td  ><?php echo $row['swiggy_price']; ?></td>
                     <td  ><?php echo $row['zomato_price']; ?></td>
                     <td  ><?php echo $row['local_price']; ?></td>
-                    
-                    <!-- <td  >U</td>
-                    <td  >U</td>
+                    <td  ><a href="#"><i class="fas fa-trash-alt"> Remove</i></a> | <a href="#"> <i class="fas fa-edit"> Edit</i> </a></td>
+                    <!--<td  >U</td>
                     <td  >U</td> -->
                   </tr>
-                  <!-- <tr class="even">
-                    <td class="dtr-control" tabindex="0">1</td>
-                    <td class="sorting_1">AOL browser (AOL desktop)</td>
-                    <td  >Win XP</td>
-                    <td  >6</td>
-                    <td  >A</td>
-                    <td  >Win XP</td>
-                    <td  >Win XP</td>
-                    <td  >6</td>
-                  </tr> -->
                   <?php } ?>
                   
                 </tbody>
