@@ -10,7 +10,7 @@ fwrite($file, (ROOTPATH . "::" . file_get_contents('php://input') . "\n"));
 $data = json_decode(file_get_contents('php://input'), true);
 if (isset($data['table'])  && isset($data['status'])) {
     $status = $data['status'] != null ? $data['status'] : 0;
-    $sql = "UPDATE  table_session SET status = $status";
+    $sql = "UPDATE  tables_session SET status = $status";
     if ($result =  mysqli_query($con, $sql)) {
         $response = array(
             "success" => true,
