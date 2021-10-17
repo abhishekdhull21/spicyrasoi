@@ -17,7 +17,7 @@ if (isset($data['table']) && isset($data['data'])) {
     if ($res = mysqli_query($con, $sql)) {
         $sql = "INSERT INTO `tables_session`( `table_id`, `data`) VALUES ($table,'$obj')";
         if ($res->num_rows > 0)
-            $sql = "UPDATE `tables_session` SET `data` = '$obj' where `table_id` = $table";
+            $sql = "UPDATE `tables_session` SET `data` = '$obj', `status`= 1 where `table_id` = $table";
         if ($res = mysqli_query($con, $sql)) {
             $response = array(
                 "success" => true,
