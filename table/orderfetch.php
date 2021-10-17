@@ -20,9 +20,7 @@ if (isset($data['table'])) {
                 "data" => json_decode(mysqli_fetch_assoc($result)["data"], true),
                 "error" => ""
             );
-        } else {
-            $err = "No Table found";
-        }
+        } else $err = "No Table found";
     } else $err = mysqli_error($con);
 } else $err = "send key table";
 sendPostRes($response, $err);
