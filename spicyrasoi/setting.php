@@ -79,6 +79,31 @@
                         </div>
                       </div>
                     </div>
+                    <div class="card card-success">
+                      <div class="card-header">
+                        <h4 class="card-title w-100">
+                          <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapsefive" aria-expanded="false">
+                            Customer <i class="fas fa-caret-down float-right"></i>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapsefive" class="collapse" data-parent="#accordion" >
+                        <div class="card-body">
+                          <a href="add_customer.php" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-success">300</span> -->
+                            <i class="fas fa-plus-circle"></i> Add Customer
+                          </a>
+                          <a href="#" class="btn btn-app bg-success">
+                            <!-- <span class="badge bg-success">300</span> -->
+                            <i class="fas fa-file"></i> All Customer
+                          </a>
+                          <!-- <a class="btn btn-app bg-secondary">
+                  <span class="badge bg-success">300</span>
+                  <i class="fas fa-barcode"></i> Products
+                </a> -->
+                        </div>
+                      </div>
+                    </div>
                     <div class="card card-danger">
                       <div class="card-header">
                         <h4 class="card-title w-100">

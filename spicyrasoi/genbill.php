@@ -150,7 +150,38 @@ if (isset($_GET['method'])) {
                     <i class="fas fa-print"></i> Final Print
                   </button> -->
                 </div>
+              </div><br>
+              <!-- Custormer Details  -->
+
+              <div class="row">
+                <div class="col-12">
+                <div class="form-group">
+                          <!-- <label>Food Type</label> -->
+                          <select id="gstProduct" class="form-control">
+                            <option value="cash">Cash</option>
+                            <option value="#">Avilable Soon</option>
+                            <!-- <option value="non-veg">Non-Veg</option> -->
+                            <!-- <option value="28">28%</option> -->
+                          </select>
+                        </div>
+                <!-- <input type="text" class="form-control" id="customer_name" placeholder="Customer Name"><br>
+                <input type="text" class="form-control" id="customer_mob_no" placeholder="Customer Mobile No."><br>
+                <button type="submit" class="btn btn-primary" id="btnAddCustomer">Add Customer</button> -->
+                </div>
               </div>
+                <div class="row">
+               <div class="col-12">
+                <!-- <input type="text" class="form-control" id="customer_mob_no" placeholder="Customer Mobile No."> -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+               <div class="col-12">
+               <!-- <button type="submit" class="btn btn-primary" id="btnAddCustomer">Add Customer</button> -->
+                </div>
+                <!-- /.col -->
+              </div>
+
               <div class="row">
                 <div class="col-12">
                   <h4>
