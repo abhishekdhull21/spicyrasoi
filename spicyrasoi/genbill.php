@@ -194,6 +194,8 @@ if (isset($_GET['method'])) {
                 <div class="col-12">
                   <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
                   <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> KOT and Save</a>
+                  <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
+                  <a href="#" class="btn btn-danger float-right" id="btnbillclear"><i class="fas fa-broom"></i> Clear Table</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
                   <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
                   <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
@@ -271,19 +273,20 @@ if (isset($_GET['method'])) {
     function calGrandTotal(update, price, type) {
       // console.log($('#grandtotalprice'));
       const grandtotal = $('#grandtotalprice')[0];
-      $.ajax({
-        url: constant.url + "table/order.php",
-        method: "POST",
-        data: JSON.stringify({
-          data: products,
-          table: products.table
-        }),
-        contentType: 'application/json',
-        error: (data) => {
-          // console.log(data);
-          swal("Error Occurred", "Something going wrong", "error");
-        }
-      });
+      if (products.table > 0)
+        $.ajax({
+          url: constant.url + "table/order.php",
+          method: "POST",
+          data: JSON.stringify({
+            data: products,
+            table: products.table
+          }),
+          contentType: 'application/json',
+          error: (data) => {
+            // console.log(data);
+            swal("Error Occurred", "Something going wrong", "error");
+          }
+        });
       grandtotal.innerHTML = products.totalPrice;
     }
     // cal subtotal
@@ -385,14 +388,42 @@ if (isset($_GET['method'])) {
           // console.log(res);
           if (res.success) {
             const arr = res.data;
+
             arr.data.map((d) => {
-              $("#addProductCart_" + d.id).prop("checked", "checked");
-              addToCart(document.getElementById("addProductCart_" + d.id), d, arr.totalPrice);
-              addToCart($("#addProductCart_" + d.id));
+              if ($("#addProductCart_" + d.id) != null) {
+                $("#addProductCart_" + d.id).prop("checked", "true");
+                addToCart(document.getElementById("addProductCart_" + d.id), d, arr.totalPrice);
+                addToCart($("#addProductCart_" + d.id));
+              }
             });
           }
         }
       });
+
+      // clear table
+      function clearTable(alert) {
+        $.ajax({
+          url: constant.url + "table/update.php",
+          method: "POST",
+          data: JSON.stringify({
+            table: products.table,
+            status: 0
+          }),
+          contentType: "application/json",
+          dataType: "json",
+          success: function(result) {
+            // console.log(result);
+            if (result.success == true) {
+              if (alert === true)
+                swal("You done it", "Table successfully cleared", "success")
+                .then((res) => {
+                  if (res)
+                    location.reload()
+                });
+            }
+          },
+        });
+      }
 
       // print bill on click
       $("#btnprintbill").on("click", () => {
@@ -407,13 +438,21 @@ if (isset($_GET['method'])) {
           success: function(result) {
             // console.log(result);
             if (result.success == true) {
-              alert("print")
+              clearTable();
+              alert("redirected to print page")
               localStorage.setItem("bill", JSON.stringify(products));
               window.open("printbill.php", "_blank");
               location.reload();
             }
           },
         });
+      });
+
+      // clear bill list
+      $("#btnbillclear").on("click", () => {
+        console.log("clicked");
+        if (products.data.length < 1) return;
+        clearTable(true);
       });
     });
   </script>
