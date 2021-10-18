@@ -132,6 +132,31 @@
                       <div class="col-sm-6">
 
                         <div class="form-group">
+                          <label>GST Type</label>
+                          <select id="gstProduct" class="form-control">
+                            <option value="include">Include</option>
+                            <option value="exclude">Exclude</option>
+                            <!-- <option value="18">18%</option>
+                            <option value="28">28%</option> -->
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label>Food Type</label>
+                          <select id="gstProduct" class="form-control">
+                            <option value="not_defined">Not Defined</option>
+                            <option value="veg">Veg</option>
+                            <option value="non-veg">Non-Veg</option>
+                            <!-- <option value="28">28%</option> -->
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+
+                        <div class="form-group">
                           <label>GST</label>
                           <select id="gstProduct" class="form-control">
                             <option value="0">0%</option>
@@ -148,6 +173,7 @@
                         </div>
                       </div>
                     </div>
+                    
                     <div class="row">
                       <div class="col-sm-6">
                         <p id="gstlabel" hidden>Price after GST <span id="priceAfterGST">00</span></p>
@@ -162,7 +188,7 @@
 
                         <div class="form-group">
                           <label>Unit Name</label>
-                          <input type="text" id="productUnitName" class="form-control" placeholder="Enter Unit Name">
+                          <input type="text" id="productUnitName" class="form-control" placeholder="Enter Unit Name" value="PCS">
                         </div>
                       </div>
                       <div class="col-sm-6">

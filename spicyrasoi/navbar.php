@@ -16,7 +16,7 @@
           <a href="index.php" class="nav-link"><i class="fas fa-home"> Home</i></a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link"><i class="fas fa-file-invoice"> View Order</i></a>
+          <a href="#" class="nav-link"><i class="fas fa-file-invoice"> Event's</i></a>
         </li>
         <li class="nav-item">
           <a href="genbill.php" class="nav-link"><i class="fas fa-receipt"> New Bill</i></a>
@@ -52,8 +52,8 @@
     <!-- Right navbar links -->
     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
       <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-cart-arrow-down"> Cart</i>
+        <a class="nav-link" href="#" role="button">
+        <i class="fas fa-cart-plus"> Cart</i>
         </a>
       </li>
       <li class="nav-item">

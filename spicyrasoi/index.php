@@ -77,12 +77,12 @@ $_SESSION['user'] = serialize($user);
                     // if (isset($_SESSION['tables']))
                     if (in_array($i, $_SESSION['tables'])) {
                   ?>
-                      <a class="btn btn-app bg-danger" href="<?php echo "genbill.php?table=" . $i ?>"><i class="fas fa-chair"></i>
-                        <h5 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h5> <br>
+                      <a class="btn btn-app bg-secondary" href="<?php echo "genbill.php?table=" . $i ?>">
+                        <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
                       </a>
                     <?php } else { ?>
-                      <a class="btn btn-app bg-success" href="<?php echo "genbill.php?table=" . $i ?>"><i class="fas fa-chair"></i>
-                        <h5 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h5> <br>
+                      <a class="btn btn-app bg-secondary" href="<?php echo "genbill.php?table=" . $i ?>">
+                        <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
                       </a>
 
                   <?php }
@@ -99,7 +99,7 @@ $_SESSION['user'] = serialize($user);
 
                   <?php for ($i = 1; $i <= 5; $i++) { ?>
 
-                    <a class="btn btn-app bg-success"> <i class="fas fa-chair"></i>
+                    <a class="btn btn-app bg-secondary"> 
                       <h5 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h5> <br>
                     </a>
 
@@ -119,8 +119,8 @@ $_SESSION['user'] = serialize($user);
 
                   <?php for ($i = 1; $i <= 4; $i++) { ?>
 
-                    <a class="btn btn-app bg-success"><i class="fas fa-person-booth"></i>
-                      <h5 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h5> <br>
+                    <a class="btn btn-app bg-secondary">
+                      <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
                     </a>
 
                   <?php } ?>
@@ -136,8 +136,8 @@ $_SESSION['user'] = serialize($user);
 
                   <?php for ($i = 1; $i <= 3; $i++) { ?>
 
-                    <a class="btn btn-app bg-success"><i class="fas fa-border-all"></i>
-                      <h5 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h5> <br>
+                    <a class="btn btn-app bg-secondary">
+                      <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
                     </a>
 
                   <?php } ?>
@@ -153,8 +153,8 @@ $_SESSION['user'] = serialize($user);
 
                   <?php for ($i = 1; $i <= 2; $i++) { ?>
 
-                    <a class="btn btn-app bg-success"><i class="fas fa-border-all"></i>
-                      <h5 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h5> <br>
+                    <a class="btn btn-app bg-secondary">
+                      <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
                     </a>
 
                   <?php } ?>

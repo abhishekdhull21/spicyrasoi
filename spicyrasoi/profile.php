@@ -84,7 +84,7 @@ $user = unserialize($_SESSION['user']);
 
                   <h3 class="profile-username text-center"><?php echo $user->username; ?></h3>
 
-                  <p class="text-muted text-center">Marketing Expert</p>
+                  <p class="text-muted text-center">Narwana</p>
 
                   <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
@@ -94,13 +94,28 @@ $user = unserialize($_SESSION['user']);
                       <b>Mob. No.</b> <a class="float-right"><?php echo $user->mobile; ?></a>
                     </li>
                     <li class="list-group-item">
+                      <b>Phone No.</b> <a class="float-right"><?php echo $user->mobile; ?></a>
+                    </li>
+                    <li class="list-group-item">
                       <b>Email</b> <a class="float-right"><?php echo $user->email; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Gender</b> <a class="float-right"><?php echo $user->sex; ?></a>
+                      <b>Country</b> <a class="float-right">India</a>
                     </li>
                     <li class="list-group-item">
-                      <b>Address</b> <a class="float-right"><?php echo $user->address; ?></a>
+                      <b>State</b> <a class="float-right">Haryana</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Distt.</b> <a class="float-right">Jind</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>City/Village</b> <a class="float-right">Narwana</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Reg. Date</b> <a class="float-right">17/10/2021</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Valid Upto</b> <a class="float-right">17/10/2022</a>
                     </li>
                   </ul>
 

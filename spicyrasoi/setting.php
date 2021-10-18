@@ -62,7 +62,7 @@
                           </a>
                         </h4>
                       </div>
-                      <div id="collapseOne" class="collapse" data-parent="#accordion" style="">
+                      <div id="collapseOne" class="collapse" data-parent="#accordion" >
                         <div class="card-body">
                           <a href="addcategory.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-success">300</span> -->
@@ -87,7 +87,7 @@
                           </a>
                         </h4>
                       </div>
-                      <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
+                      <div id="collapseTwo" class="collapse" data-parent="#accordion" >
                         <div class="card-body">
                           <a href="addproduct.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
@@ -97,10 +97,7 @@
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fab fa-product-hunt"></i> All Product
                           </a>
-                          <!-- <a class="btn btn-app bg-success">
-                  <span class="badge bg-purple">891</span>
-                  <i class="fas fa-users"></i> Users
-                </a> -->
+                        
                         </div>
                       </div>
                     </div>
@@ -132,7 +129,7 @@
                           </a>
                         </h4>
                       </div>
-                      <div id="collapseThree" class="collapse" data-parent="#accordion" style="">
+                      <div id="collapseThree" class="collapse" data-parent="#accordion" >
                         <div class="card-body">
                           <a href="./user/createuser.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
@@ -157,7 +154,7 @@
                           </a>
                         </h4>
                       </div>
-                      <div id="collapseFour" class="collapse" data-parent="#accordion" style="">
+                      <div id="collapseFour" class="collapse" data-parent="#accordion" >
                         <div class="card-body">
                           <a href="#" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->

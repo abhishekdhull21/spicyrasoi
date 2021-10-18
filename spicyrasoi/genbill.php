@@ -66,23 +66,7 @@ if (isset($_GET['method'])) {
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0">Add Item in Bill</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
+     <br>
 
       <!-- Main content -->
       <section class="content">
@@ -155,10 +139,22 @@ if (isset($_GET['method'])) {
 
             <!-- /.col -->
             <div class="col-md-3 table-responsive">
+            <div class="row no-print">
+                <div class="col-12">
+                  <a href="#" class="btn btn-default" id="#"><i class="fas fa-print"></i> Book</a>
+                  <a href="#" class="btn btn-default" id="#"><i class="fas fa-print"></i> Add Food</a>
+                  <a href="#" class="btn btn-default float-right" id="#"><i class="fas fa-print"></i> Billing</a>
+                  <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
+                  <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
+                  <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
+                    <i class="fas fa-print"></i> Final Print
+                  </button> -->
+                </div>
+              </div>
               <div class="row">
                 <div class="col-12">
                   <h4>
-                    Spicy Rasoi
+                    Product Cart
                     <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
                   </h4>
                 </div>
@@ -197,7 +193,7 @@ if (isset($_GET['method'])) {
               <div class="row no-print">
                 <div class="col-12">
                   <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
-                  <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a>
+                  <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> KOT and Save</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
                   <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
                   <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
