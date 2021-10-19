@@ -48,6 +48,55 @@ $(document).ready(function () {
       $("#btnAddCategory").html("Submit");
     });
   });
+  //add new Subcategory
+  $("#btnAddSubCategory").on("click", function (e) {
+    e.preventDefault();
+    const title = $("#addSubCategoryInput").val();
+    const category = $("#cat_id").val();
+    console.log("cate: " + category);
+    if (category == null && category === "") {
+      console.log($("#addSubCategoryInput").val());
+      return;
+    }
+
+    $(document).ajaxSend(() => {
+      $("#btnAddSubCategory").prop("disabled", true);
+      $("#btnAddSubCategory").html("Processing...");
+    });
+    $.ajax({
+      url: constant.url + "/category/subadd.php",
+      method: "POST",
+      data: JSON.stringify({
+        admin: "2", //TODO: change with admin id
+        title: title,
+        resturent: 10,
+        category: category,
+      }),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        // console.log(result.success);
+
+        const json = result;
+        if (json.success)
+          swal("Good Job", "New Sub-Category Created", "success");
+        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        console.info(json.success);
+        // $("#btnAddCategory").attr("disabled");
+        $("#btnAddSubCategory").html("Submit");
+      },
+    });
+    $(document).ajaxError((res) => {
+      console.error(res);
+
+      $("#btnAddSubCategory").attr("disabled", false);
+      $("#btnAddSubCategory").html("Submit");
+    });
+    $(document).ajaxComplete((res) => {
+      $("#btnAddSubCategory").attr("disabled", false);
+      $("#btnAddSubCategory").html("Submit");
+    });
+  });
   // add product
   $("#addProductSubmit").click(function (e) {
     e.preventDefault();

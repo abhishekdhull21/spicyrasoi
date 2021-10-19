@@ -66,7 +66,7 @@ if (isset($_GET['method'])) {
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-     <br>
+      <br>
 
       <!-- Main content -->
       <section class="content">
@@ -139,7 +139,7 @@ if (isset($_GET['method'])) {
 
             <!-- /.col -->
             <div class="col-md-3 table-responsive">
-            <div class="row no-print">
+              <div class="row no-print">
                 <div class="col-12">
                   <a href="#" class="btn btn-default" id="#"><i class="fas fa-print"></i> Book</a>
                   <a href="#" class="btn btn-default" id="#"><i class="fas fa-print"></i> Add Food</a>
@@ -155,29 +155,29 @@ if (isset($_GET['method'])) {
 
               <div class="row">
                 <div class="col-12">
-                <div class="form-group">
-                          <!-- <label>Food Type</label> -->
-                          <select id="gstProduct" class="form-control">
-                            <option value="cash">Cash</option>
-                            <option value="#">Avilable Soon</option>
-                            <!-- <option value="non-veg">Non-Veg</option> -->
-                            <!-- <option value="28">28%</option> -->
-                          </select>
-                        </div>
-                <!-- <input type="text" class="form-control" id="customer_name" placeholder="Customer Name"><br>
+                  <div class="form-group">
+                    <!-- <label>Food Type</label> -->
+                    <select id="idCostmerType" class="form-control">
+                      <option value="Cash">Cash</option>
+                      <option value="#">Avilable Soon</option>
+                      <!-- <option value="non-veg">Non-Veg</option> -->
+                      <!-- <option value="28">28%</option> -->
+                    </select>
+                  </div>
+                  <!-- <input type="text" class="form-control" id="customer_name" placeholder="Customer Name"><br>
                 <input type="text" class="form-control" id="customer_mob_no" placeholder="Customer Mobile No."><br>
                 <button type="submit" class="btn btn-primary" id="btnAddCustomer">Add Customer</button> -->
                 </div>
               </div>
-                <div class="row">
-               <div class="col-12">
-                <!-- <input type="text" class="form-control" id="customer_mob_no" placeholder="Customer Mobile No."> -->
+              <div class="row">
+                <div class="col-12">
+                  <!-- <input type="text" class="form-control" id="customer_mob_no" placeholder="Customer Mobile No."> -->
                 </div>
                 <!-- /.col -->
               </div>
               <div class="row">
-               <div class="col-12">
-               <!-- <button type="submit" class="btn btn-primary" id="btnAddCustomer">Add Customer</button> -->
+                <div class="col-12">
+                  <!-- <button type="submit" class="btn btn-primary" id="btnAddCustomer">Add Customer</button> -->
                 </div>
                 <!-- /.col -->
               </div>
@@ -298,8 +298,16 @@ if (isset($_GET['method'])) {
       data: [],
       table: table,
       type: type,
+      customerType: $("#idCostmerType").val(),
+      orderid: 0,
+      billNo: 0,
       totalPrice: 0
     };
+    // on change idCostmerType
+    $("#idCostmerType").on("change", () => {
+      products.customerType = $(this).val();
+    })
+
     // calculate final bill
     function calGrandTotal(update, price, type) {
       // console.log($('#grandtotalprice'));
@@ -470,7 +478,8 @@ if (isset($_GET['method'])) {
             // console.log(result);
             if (result.success == true) {
               clearTable();
-              alert("redirected to print page")
+              products.orderid = result.data.orderid;
+              // alert("redirected to print page")
               localStorage.setItem("bill", JSON.stringify(products));
               window.open("printbill.php", "_blank");
               location.reload();

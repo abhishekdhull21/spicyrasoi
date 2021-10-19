@@ -38,63 +38,63 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-        <div class="row">
-      <div class="col-12">
-        <h2 class="page-header">
-        <i class="fas fa-hotel"></i> Biryani Adda
-          <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
-        </h2>
-      </div>
-      <!-- /.col -->
-    </div>
-           <!-- info row -->
-    <div class="row invoice-info">
-      <div class="col-sm-4 invoice-col">
-        From
-        <address>
-          <strong>Biryani Adda</strong><br>
-          Huda market<br>
-          Kaithal<br>
-          Phone: 9899673586<br>
-          
-        </address>
-      </div>
-      <!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        To
-        <address>
-          <strong>Cash</strong><br>
-          <!-- 795 Folsom Ave, Suite 600<br>
+          <div class="row">
+            <div class="col-12">
+              <h2 class="page-header">
+                <i class="fas fa-hotel"></i> Biryani Adda
+                <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
+              </h2>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- info row -->
+          <div class="row invoice-info">
+            <div class="col-sm-4 invoice-col">
+              From
+              <address>
+                <strong>Biryani Adda</strong><br>
+                Huda market<br>
+                Kaithal<br>
+                Phone: 9899673586<br>
+
+              </address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+              To
+              <address>
+                <strong><span id="customerType">null</strong><br>
+                <!-- 795 Folsom Ave, Suite 600<br>
           San Francisco, CA 94107<br>
           Phone: (555) 539-1037<br>
           Email: john.doe@example.com -->
-        </address>
-      </div>
-      <!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <b>Bill No. : 001</b><br>
-        <!-- <b>Order No. : 0034</b><br> -->
-        <br>
-        <!-- <b>Order ID:</b> 4F3S8J<br>
+              </address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+              <b>Bill No. : 001</b><br>
+              <b>Order No. : <span id="orderid">00</span></b><br>
+              <br>
+              <!-- <b>Order ID:</b> 4F3S8J<br>
         <b>Payment Due:</b> 2/22/2014<br>
         <b>Account:</b> 968-34567 -->
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
           <div class="row">
 
             <!-- /.col -->
             <div class="col-12 table-responsive">
-              
-                <!-- <div class="col-12">
+
+              <!-- <div class="col-12">
                   <h4>
                     Bill
                     <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
                   </h4>
                 </div> -->
-                <!-- /.col -->
-              
+              <!-- /.col -->
+
 
               <table class="table table-striped">
                 <thead>
@@ -113,7 +113,7 @@
                     <td></td>
                     <td></td>
                     <td><b>Grand Total</b></td>
-                    <td id="grandtotalprice">98</td>
+                    <td id="grandtotalprice">00</td>
                   </tr>
                 </tbody>
               </table>
@@ -147,6 +147,8 @@
     $(document).ready(function() {
       console.log(JSON.parse(localStorage.getItem("bill")));
       const products = JSON.parse(localStorage.getItem("bill"));
+      $('#orderid').html(products.orderid);
+      $('#customerType').html(products.customerType);
       products.data.map((d, index) => {
 
 
