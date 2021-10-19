@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $title =  filter_var($data['title'], FILTER_SANITIZE_STRING);
         if ($result = mysqli_query($con, "SELECT `name` FROM `subcategory` where `name` = '$title' and `cat_id` = $category")) {
             if (mysqli_num_rows($result) < 1) {
-                $sql = "INSERT INTO `subcategory`( `cat_id`, `name`, `created_by`, `resturent_id`) VALUES($category,$title,$admin,$resturent)";
+                $sql = "INSERT INTO `subcategory`( `cat_id`, `name`, `created_by`, `resturent_id`) VALUES($category,'$title',$admin,$resturent)";
                 if ($result =  mysqli_query($con, $sql)) {
 
                     $response = array(
