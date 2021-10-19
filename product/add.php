@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // if(strpos($content_type, "application/json") !== false){
     if (isset($data['category']) && isset($data['product']) && isset($data['store-price']) && isset($data['swiggy-price']) && isset($data['zomato-price']) && isset($data['local-price']) && isset($data['gst']) && isset($data['discount']) && isset($data['unit-name']) && isset($data['hsn-code'])) {
         $category = $data['category'] != '' ? $data['category'] : 0;
+        $subcategory = $data['subcategory'] != '' ? $data['subcategory'] : 0;
         $store_price = $data['store-price'] != '' ? $data['store-price'] : 0;
         $swiggy_price = $data['swiggy-price'] != '' ? $data['swiggy-price'] : 0;
         $zomato_price = $data['zomato-price'] != '' ? $data['zomato-price'] : 0;
@@ -35,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $unit =  filter_var($data['unit-name'], FILTER_SANITIZE_STRING);
         if ($result = mysqli_query($con, "SELECT product_name FROM `product` where product_name = '$product'")) {
             if (mysqli_num_rows($result) < 1) {
-                $sql = "INSERT INTO `product`( `category`, `product_name`, `store_price`, `swiggy_price`, `zomato_price`, `local_price`, `gst`, `discount`, `unit_name`, `hsn_code`) VALUES($category,'$product',$store_price,$swiggy_price,$zomato_price,$local_price,'$gst',$discount,'$unit','$hsn')";
+                $sql = "INSERT INTO `product`( `category`,`sub_category`, `product_name`, `store_price`, `swiggy_price`, `zomato_price`, `local_price`, `gst`, `discount`, `unit_name`, `hsn_code`) VALUES($category,$subcategory,'$product',$store_price,$swiggy_price,$zomato_price,$local_price,'$gst',$discount,'$unit','$hsn')";
 
 
                 if ($result =  mysqli_query($con, $sql)) {
@@ -54,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $err = mysqli_error($con);
         }
     } else {
-        $err = "set key as -> `product`, `category`, `store-price`, `zomato-price`, `swiggy-price`, `local-price`, `discount`, `gst`, `unit-name`, `hsn-code`";
+        $err = "set key as -> `product`, `category`, `subcategory`, `store-price`, `zomato-price`, `swiggy-price`, `local-price`, `discount`, `gst`, `unit-name`, `hsn-code`";
     }
 } else {
     $err = "Header should be POST";
