@@ -22,7 +22,81 @@ if (isset($_GET['method'])) {
     $method = "zomato_price";
   // echo $method;
 }
+function showProduct($cat_id, $subid)
+{
+  global $con, $method; ?>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Add</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id and `sub_category` = $subid";
+      if ($subid == false)
+        $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id ";
+
+      $resproduct = mysqli_query($con, $sql);
+
+      while ($product = mysqli_fetch_assoc($resproduct)) {
+      ?>
+        <tr>
+          <td><?php echo ($product['product_name']); ?></td>
+          <td><?php echo ($product[$method]); ?></td>
+          <td class="text-right py-0 align-middle">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product[$method]; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
+              <label class="custom-control-label" for="addProductCart_<?php echo $product['product_id']; ?>"></label>
+            </div>
+          </td>
+        </tr>
+      <?php } ?>
+    </tbody>
+  </table>
+<?php } ?>
+<!-- end of showProduct -->
+
+<?php
+function fetchSubCategory($cat_id)
+{
+  global $con;
+
+  $sql = "SELECT * FROM subcategory where `cat_id` = $cat_id";
+  $res = mysqli_query($con, $sql);
+  if (mysqli_num_rows($res) < 1)
+    showProduct($cat_id, false);
+  else {
+    while ($sub = mysqli_fetch_assoc($res)) {
+      $subid = $sub['id'];
+
 ?>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary collapsed-card">
+            <div class="card-header">
+              <h3 class="card-title"><?php echo ($sub['name']); ?></h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <?php showProduct($cat_id, $subid); ?>
+            </div><!-- /.card-body -->
+          </div><!-- /.card -->
+        </div>
+      </div>
+<?php }
+  }
+} ?>
+
+
+
 
 <head>
   <meta charset="utf-8">
@@ -32,7 +106,7 @@ if (isset($_GET['method'])) {
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="plugi  ns/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -84,11 +158,9 @@ if (isset($_GET['method'])) {
                     echo '</div><div class="row">';
                   } ?>
                   <div class="col-md-3">
-
                     <div class="card card-primary collapsed-card">
                       <div class="card-header">
-                        <h3 class="card-title"><?php echo ($row['cat_name']) . $i; ?></h3>
-
+                        <h3 class="card-title"><?php echo ($row['cat_name']); ?></h3>
                         <div class="card-tools">
                           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
                           </button>
@@ -97,46 +169,18 @@ if (isset($_GET['method'])) {
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body">
+                        <?php
+                        fetchSubCategory($cat_id);
+                        ?>
 
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>Product</th>
-                              <th>Price</th>
-                              <th>Add</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-                            $res = mysqli_query($con, "SELECT * FROM `product` WHERE category = $cat_id");
-                            while ($product = mysqli_fetch_assoc($res)) {
-                            ?>
-                              <tr>
-                                <td><?php echo ($product['product_name']); ?></td>
-                                <td><?php echo ($product[$method]); ?></td>
-                                <td class="text-right py-0 align-middle">
-                                  <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product[$method]; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
-                                    <label class="custom-control-label" for="addProductCart_<?php echo $product['product_id']; ?>"></label>
-                                  </div>
-                                  <!-- <div class="btn-group btn-group-sm">
-                                    <a href="#" class="btn btn-info"><i class="fas fa-plus"></i></a>
-                                  </div> -->
-                                </td>
-                              </tr>
-                            <?php } ?>
-                          </tbody>
-                        </table>
                       </div>
                       <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
                   </div>
-
                 <?php } ?>
-              </div>
+              </div><!-- /.row -->
             </div>
-
             <!-- /.col -->
             <div class="col-md-3 table-responsive">
               <div class="row no-print">
@@ -237,12 +281,8 @@ if (isset($_GET['method'])) {
 
 
 
-            </div>
-            <!-- /.col -->
-
-          </div>
-
-          <!-- /.row -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </section>
       <!-- /.content -->

@@ -40,7 +40,7 @@
     <?php include("navbar.php"); ?>
     <!-- /.navbar -->
 
-    
+
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -90,6 +90,16 @@
                           </select>
                         </div>
                       </div>
+                      <!-- select -->
+                      <div class="form-group">
+                        <label> Sub-Category</label>
+                        <select class="form-control" id="dropdownSubCategory">
+                          <option value=0>Wait</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Product Name</label>
@@ -173,7 +183,7 @@
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div class="col-sm-6">
                         <p id="gstlabel" hidden>Price after GST <span id="priceAfterGST">00</span></p>
@@ -231,7 +241,7 @@
     <!-- /.content-wrapper -->
     <?php include("footer.php"); ?>
 
-   
+
   </div>
   <!-- ./wrapper -->
 

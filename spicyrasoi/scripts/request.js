@@ -97,12 +97,44 @@ $(document).ready(function () {
       $("#btnAddSubCategory").html("Submit");
     });
   });
+  //load Subcategory on change category
+  $("#dropdownCategory").on("change", function (e) {
+    e.preventDefault();
+    const category = $("#dropdownCategory").val();
+    // const category = $("#cat_id").val();
+
+    $.ajax({
+      url: constant.url + "/category/subfetch.php",
+      method: "POST",
+      data: JSON.stringify({
+        category: category,
+      }),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        // console.log(result.success);
+        const json = result;
+        $("#dropdownSubCategory").children().remove();
+        if (json.success) {
+          json.data.map((d, i) => {
+            var option = "<option value='" + d.id + "'>" + d.name + "</option>";
+            $("#dropdownSubCategory").append(option);
+          });
+        } else {
+          var option = "<option value='0'> No Sub-Category </option>";
+          $("#dropdownSubCategory").append(option);
+          swal({ title: "Error Occured", text: json.error, icon: "error" });
+        }
+      },
+    });
+  });
   // add product
   $("#addProductSubmit").click(function (e) {
     e.preventDefault();
     // alert();
     const product = $("#productName").val();
     const category = $("#dropdownCategory").val();
+    const subcategory = $("#dropdownSubCategory").val();
     const storePrice = $("#productStorePrice").val(); //("#addCategoryInput").val();
     const localPrice = $("#localPrice").val(); //("#addCategoryInput").val();
     const swiggyPrice = $("#productSwiggyPrice").val(); //("#addCategoryInput").val();
@@ -124,6 +156,7 @@ $(document).ready(function () {
       data: JSON.stringify({
         product: product,
         category: category,
+        subcategory: subcategory,
         discount: discount,
         gst: gstProduct,
         "unit-name": unitName,
