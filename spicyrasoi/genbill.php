@@ -106,7 +106,7 @@ function fetchSubCategory($cat_id)
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugi  ns/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -123,6 +123,8 @@ function fetchSubCategory($cat_id)
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
 </head>
 
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
@@ -185,7 +187,56 @@ function fetchSubCategory($cat_id)
             <div class="col-md-3 table-responsive">
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="#" class="btn btn-default" id="#"><i class="fas fa-print"></i> Book</a>
+                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                    Book
+                  </button>
+                  <!-- Pop Window Body -->
+                  <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Customer</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                        <div class="card card-success">
+                <div class="card-header">
+                  <h3 class="card-title">Add Customer</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form>
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Customer Name</label>
+                      <input type="text" class="form-control" id="customer_name" placeholder="Enter Customer Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Mobile No.</label>
+                      <input type="text" class="form-control" id="customer_mob_no" placeholder="Enter Mobile No.">
+                    </div>
+
+                  </div>
+
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary" id="btnAddCategory">Add</button>
+              </div>
+              </form>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
                   <a href="#" class="btn btn-default" id="#"><i class="fas fa-print"></i> Add Food</a>
                   <a href="#" class="btn btn-default float-right" id="#"><i class="fas fa-print"></i> Billing</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->

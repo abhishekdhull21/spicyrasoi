@@ -33,6 +33,8 @@ $_SESSION['user'] = serialize($user);
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
 </head>
 
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
