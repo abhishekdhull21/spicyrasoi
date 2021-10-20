@@ -28,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $swiggy_price = $data['swiggy-price'] != '' ? $data['swiggy-price'] : 0;
         $zomato_price = $data['zomato-price'] != '' ? $data['zomato-price'] : 0;
         $local_price = $data['local-price'] != '' ? $data['local-price'] : 0;
-
         $discount = $data['discount'] != '' ? $data['discount'] : 0;
         $gst = $data['gst'] != '' ? $data['gst'] : 0;
         // $hsn = $data['hsn-ceod'] != '' ? $data['hsn-code'] : 0;
