@@ -181,9 +181,9 @@
                       </div>
                       <div id="collapseFour" class="collapse" data-parent="#accordion" >
                         <div class="card-body">
-                          <a href="#" class="btn btn-app bg-success">
+                          <a href="invoice.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> R1
+                            <i class="fas fa-users"></i> Invoice
                           </a>
                           <a href="#" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->

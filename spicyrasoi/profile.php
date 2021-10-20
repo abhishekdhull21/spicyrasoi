@@ -162,7 +162,7 @@ $user = unserialize($_SESSION['user']);
                         <div class="form-group row">
                           <label for="username" class="col-sm-2 col-form-label">Name</label>
                           <div class="col-sm-10">
-                            <input type="email" class="form-control" id="username" value="<?php echo $user->username; ?>" placeholder="Name">
+                            <input type="text" class="form-control" id="username" value="<?php echo $user->username; ?>" placeholder="Name">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -172,27 +172,45 @@ $user = unserialize($_SESSION['user']);
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputName2" class="col-sm-2 col-form-label">GST No.</label>
+                          <label for="phone" class="col-sm-2 col-form-label">Phone No.</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                            <input type="number" value="<?php echo $user->mobile; ?>" class="form-control" id="phone" placeholder="Phone">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="sex" class="col-sm-2 col-form-label">Gender</label>
+                          <label for="gst_no" class="col-sm-2 col-form-label">GST No.</label>
                           <div class="col-sm-10">
-                            <input type="text" value="<?php echo $user->sex; ?>" class="form-control" id="sex" placeholder="Male | Female">
+                            <input type="text" class="form-control" id="gst_no" placeholder="GST No.">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="inputSkills" class="col-sm-2 col-form-label">State</label>
+                          <label for="email" class="col-sm-2 col-form-label">Email</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                          <input type="email" class="form-control" id="email" placeholder="Email">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="address" class="col-sm-2 col-form-label">Address</label>
+                          <label for="country" class="col-sm-2 col-form-label">Country</label>
                           <div class="col-sm-10">
-                            <textarea class="form-control" id="address" placeholder="Experience"><?php echo $user->address; ?></textarea>
+                            <input type="text" class="form-control" id="country" placeholder="Country">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="state" class="col-sm-2 col-form-label">State</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="state" placeholder="State">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="district" class="col-sm-2 col-form-label">District</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="district" placeholder="District">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="city" class="col-sm-2 col-form-label">City / Village </label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="city" placeholder="City / Village">
                           </div>
                         </div>
 

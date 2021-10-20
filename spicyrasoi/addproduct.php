@@ -90,15 +90,16 @@
                           </select>
                         </div>
                       </div>
+                      <div class="col-sm-6">
                       <!-- select -->
                       <div class="form-group">
                         <label> Sub-Category</label>
-                        <select class="form-control" id="dropdownSubCategory">
+                        <select class="form-control" id="dropdownSubCategory" >
                           <option value=0>Wait</option>
                         </select>
                       </div>
                     </div>
-
+                    </div>
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group">
