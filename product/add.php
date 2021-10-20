@@ -27,11 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $swiggy_price = $data['swiggy-price'] != '' ? $data['swiggy-price'] : 0;
         $zomato_price = $data['zomato-price'] != '' ? $data['zomato-price'] : 0;
         $local_price = $data['local-price'] != '' ? $data['local-price'] : 0;
-        $gst_type = $data['gst_type'] != '' ? $data['gst_type'] : 0;
-        $food_type = $data['food_type'] != '' ? $data['food_type'] :0;
+       
         $discount = $data['discount'] != '' ? $data['discount'] : 0;
         $gst = $data['gst'] != '' ? $data['gst'] : 0;
         // $hsn = $data['hsn-ceod'] != '' ? $data['hsn-code'] : 0;
+        $gst_type =  filter_var($data['gst_type'], FILTER_SANITIZE_STRING);
+        $food_type =  filter_var($data['food_type'], FILTER_SANITIZE_STRING);
         $hsn =  filter_var($data['hsn-code'], FILTER_SANITIZE_STRING);
         $product =  filter_var($data['product'], FILTER_SANITIZE_STRING);
         $unit =  filter_var($data['unit-name'], FILTER_SANITIZE_STRING);
