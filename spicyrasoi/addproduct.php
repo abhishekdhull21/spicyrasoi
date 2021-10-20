@@ -143,7 +143,7 @@
 
                         <div class="form-group">
                           <label>GST Type</label>
-                          <select id="gstProduct" class="form-control">
+                          <select id="gst_type" class="form-control">
                             <option value="include">Include</option>
                             <option value="exclude">Exclude</option>
                             <!-- <option value="18">18%</option>
@@ -154,7 +154,7 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Food Type</label>
-                          <select id="gstProduct" class="form-control">
+                          <select id="food_type" class="form-control">
                             <option value="not_defined">Not Defined</option>
                             <option value="veg">Veg</option>
                             <option value="non-veg">Non-Veg</option>

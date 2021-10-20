@@ -210,12 +210,12 @@ function fetchSubCategory($cat_id)
                 <form>
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Customer Name</label>
-                      <input type="text" class="form-control" id="customer_name" placeholder="Enter Customer Name">
-                    </div>
-                    <div class="form-group">
                       <label for="exampleInputEmail1">Mobile No.</label>
                       <input type="text" class="form-control" id="customer_mob_no" placeholder="Enter Mobile No.">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Customer Name</label>
+                      <input type="text" class="form-control" id="customer_name" placeholder="Enter Customer Name">
                     </div>
 
                   </div>
@@ -227,6 +227,8 @@ function fetchSubCategory($cat_id)
                 <button type="submit" class="btn btn-primary" id="btnAddCategory">Add</button>
               </div>
               </form>
+
+
                         </div>
                         <div class="modal-footer justify-content-between">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

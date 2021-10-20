@@ -68,6 +68,8 @@ $(document).ready(function () {
             { data: "swiggy_price" },     
             { data: "zomato_price" },
             { data: "local_price" },
+            { data: "gst_type"},
+            { data: "food_type"},
             { data: "gst" },
             { data: "discount" },
             { data: "unit_name" },

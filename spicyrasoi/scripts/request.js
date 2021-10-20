@@ -137,6 +137,8 @@ $(document).ready(function () {
     const subcategory = $("#dropdownSubCategory").val();
     const storePrice = $("#productStorePrice").val(); //("#addCategoryInput").val();
     const localPrice = $("#localPrice").val(); //("#addCategoryInput").val();
+    const gst_type = $("#gst_type").val();
+    const food_type = $("#food_type").val();
     const swiggyPrice = $("#productSwiggyPrice").val(); //("#addCategoryInput").val();
     const zomatoPrice = $("#productZomatoPrice").val(); //("#addCategoryInput").val();
     const gstProduct = $("#gstProduct").val();
@@ -159,6 +161,8 @@ $(document).ready(function () {
         subcategory: subcategory,
         discount: discount,
         gst: gstProduct,
+        gst_type: gst_type,
+        food_type: food_type,
         "unit-name": unitName,
         "hsn-code": hsnCode,
         "store-price": storePrice,
