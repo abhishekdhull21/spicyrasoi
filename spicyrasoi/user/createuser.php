@@ -23,8 +23,19 @@
       </div>
       <div class="card-body">
         <p class="login-box-msg">Register a new membership</p>
-
+       
+       
+        
         <form action="" method="post">
+        <div class="input-group mb-3">
+                     
+                        <!-- <label>Gender</label> -->
+                        <select class="form-control">
+                          <option value="male">Select Resturent / Hotel</option>
+                          <option value="female">Female</option>
+                        </select>                      
+                    
+                    </div>
           <div class="input-group mb-3">
             <input type="text" id="username" class="form-control" placeholder="Full name">
             <div class="input-group-append">

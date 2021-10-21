@@ -115,14 +115,12 @@
                     <div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                   <thead>
                   <tr role="row">
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">User ID</th>
-                      <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"  >Mob. No.</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"  >Email</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Gender</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >GST No.</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >State</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Address</th>
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"  >Date</th>
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Invoice No.</th>
+                      <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name Of Customer</th>
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"  >Total Amount</th>
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"  >Mode</th>
+                     
                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Action</th>
                      <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >HSN Code</th> -->
@@ -135,30 +133,13 @@
                       ?>
                      
                   <tr class="odd">
-                    <td class="dtr-control"><?php echo $row['user_id']; ?> </td>
-                    <td class="sorting_1"><?php echo $row['user_name']; ?></td>
-                    <td  ><?php echo $row['user_mobile']; ?> </td>
-                    <td  ><?php echo $row['user_email']; ?></td>
-                    <td  ><?php echo $row['user_sex']; ?></td>
-                    <td  ><?php echo $row['user_mobile']; ?></td>
-                    <td  ><?php echo $row['user_address']; ?></td>
-                    <td  ><?php echo $row['user_name']; ?></td>
+                    <td class="dtr-control"><?php echo ("01-10-2021"); ?> </td>
+                    <td class="dtr-control"><?php echo ("1"); ?> </td>
+                    <td class="sorting_1"><?php echo ("Sudhir"); ?></td>
+                    <td  ><?php echo ("1000"); ?> </td>
+                    <td class="dtr-control"><?php echo ("Cash"); ?> </td>
                     <td  ><a href="#"><i class="fas fa-trash-alt"> Remove</i></a> | <a href="#"> <i class="fas fa-edit"> Edit</i> </a></td>
-                   
-                    <!-- <td  >U</td>
-                    <td  >U</td>
-                    <td  >U</td> -->
                   </tr>
-                  <!-- <tr class="even">
-                    <td class="dtr-control" tabindex="0">1</td>
-                    <td class="sorting_1">AOL browser (AOL desktop)</td>
-                    <td  >Win XP</td>
-                    <td  >6</td>
-                    <td  >A</td>
-                    <td  >Win XP</td>
-                    <td  >Win XP</td>
-                    <td  >6</td>
-                  </tr> -->
                   <?php } ?>
                   
                 </tbody>
