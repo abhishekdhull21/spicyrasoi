@@ -147,6 +147,7 @@
     $(document).ready(function() {
       console.log(JSON.parse(localStorage.getItem("bill")));
       const products = JSON.parse(localStorage.getItem("bill"));
+      console.log(products);
       $('#orderid').html(products.orderid);
       $('#customerType').html(products.customerType);
       products.data.map((d, index) => {

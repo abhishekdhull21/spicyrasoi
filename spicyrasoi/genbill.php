@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once "../config.php";
+<?php
 session_start();
+require_once "../config.php";
+require_once "class/User.php";
+require_once "islogin.php";
 $tableid = 0;
+// print_r($user);
 if (isset($_GET['table'])) {
   $tableid = $_GET['table'];
   if (!isset($_SESSION['tables']))
@@ -24,7 +28,7 @@ if (isset($_GET['method'])) {
 }
 function showProduct($cat_id, $subid)
 {
-  global $con, $method; ?>
+  global $con, $method, $admin_id, $restaurant; ?>
   <table class="table">
     <thead>
       <tr>
@@ -35,9 +39,9 @@ function showProduct($cat_id, $subid)
     </thead>
     <tbody>
       <?php
-      $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id and `sub_category` = $subid";
+      $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id and `sub_category` = $subid  and restaurant = $restaurant";
       if ($subid == false)
-        $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id ";
+        $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id  and restaurant = $restaurant";
 
       $resproduct = mysqli_query($con, $sql);
 
@@ -62,12 +66,13 @@ function showProduct($cat_id, $subid)
 <?php
 function fetchSubCategory($cat_id)
 {
-  global $con;
+  global $con, $admin_id, $restaurant;
 
-  $sql = "SELECT * FROM subcategory where `cat_id` = $cat_id";
+  $sql = "SELECT * FROM subcategory where `cat_id` = $cat_id  and restaurant = $restaurant";
   $res = mysqli_query($con, $sql);
   if (mysqli_num_rows($res) < 1)
     showProduct($cat_id, false);
+  // print_r($res);
   else {
     while ($sub = mysqli_fetch_assoc($res)) {
       $subid = $sub['id'];
@@ -86,15 +91,16 @@ function fetchSubCategory($cat_id)
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <?php showProduct($cat_id, $subid); ?>
+              <?php showProduct($cat_id, $subid);
+              ?>
             </div><!-- /.card-body -->
           </div><!-- /.card -->
         </div>
       </div>
 <?php }
   }
-} ?>
-
+}
+?>
 
 
 
@@ -151,7 +157,7 @@ function fetchSubCategory($cat_id)
             <div class="col-md-9">
               <div class="row">
                 <?php
-                $sql = "SELECT * FROM category  WHERE status = true";
+                $sql = "SELECT * FROM category  WHERE admin_id = $admin_id and restaurant = $restaurant AND status = true ";
                 $n = mysqli_query($con, $sql);
                 $i = 1;
                 while ($row = mysqli_fetch_assoc($n)) {
@@ -201,32 +207,32 @@ function fetchSubCategory($cat_id)
                           </button>
                         </div>
                         <div class="modal-body">
-                        <div class="card card-success">
-                <div class="card-header">
-                  <h3 class="card-title">Add Customer</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form>
-                  <div class="card-body">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Mobile No.</label>
-                      <input type="text" class="form-control" id="customer_mob_no" placeholder="Enter Mobile No.">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Customer Name</label>
-                      <input type="text" class="form-control" id="customer_name" placeholder="Enter Customer Name">
-                    </div>
+                          <div class="card card-success">
+                            <div class="card-header">
+                              <h3 class="card-title">Add Customer</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form>
+                              <div class="card-body">
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Mobile No.</label>
+                                  <input type="text" class="form-control" id="customer_mob_no" placeholder="Enter Mobile No.">
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Customer Name</label>
+                                  <input type="text" class="form-control" id="customer_name" placeholder="Enter Customer Name">
+                                </div>
 
-                  </div>
+                              </div>
 
-              </div>
-              <!-- /.card-body -->
+                          </div>
+                          <!-- /.card-body -->
 
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary" id="btnAddCategory">Add</button>
-              </div>
-              </form>
+                          <div class="card-footer">
+                            <button type="submit" class="btn btn-primary" id="btnAddCategory">Add</button>
+                          </div>
+                          </form>
 
 
                         </div>
@@ -290,6 +296,8 @@ function fetchSubCategory($cat_id)
               </div>
               <input type="text" hidden id="tableid" value="<?php echo $tableid; ?>">
               <input type="text" hidden id="method" value="<?php echo $method; ?>">
+              <input type="text" hidden id="admin_id" value="<?php echo $admin_id; ?>">
+              <input type="text" hidden id="restaurant" value="<?php echo $restaurant; ?>">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -386,11 +394,15 @@ function fetchSubCategory($cat_id)
     var grandtotalPrice = 0;
     var table = $('#table').val() != '' ? $('#tableid').val() : 0;
     var type = $('#method').val() != '' ? $('#method').val() : "store_price";
+    var admin_id = $('#admin_id').val() != '' ? $('#admin_id').val() : 0;
+    var restaurant = $('#restaurant').val() != '' ? $('#restaurant').val() : 0;
     // product object acc to bill list
     const products = {
       data: [],
       table: table,
       type: type,
+      admin_id: admin_id,
+      restaurant: restaurant,
       customerType: $("#idCostmerType").val(),
       orderid: 0,
       billNo: 0,
@@ -411,6 +423,8 @@ function fetchSubCategory($cat_id)
           method: "POST",
           data: JSON.stringify({
             data: products,
+            admin_id: products.admin_id,
+            restaurant: products.restaurant,
             table: products.table
           }),
           contentType: 'application/json',
@@ -506,13 +520,14 @@ function fetchSubCategory($cat_id)
 
       }
     }
+    // fetch table item
     $(document).ready(function() {
-      // fetch table item
       $.ajax({
         method: "POST",
         url: constant.url + "table/orderfetch.php",
         data: JSON.stringify({
-          table: $('#tableid').val() != null ? $('#tableid').val() : 0
+          table: $('#tableid').val() != null ? $('#tableid').val() : 0,
+          restaurant: $('#restaurant').val() != null ? $('#restaurant').val() : 0,
         }),
         contentType: "application/json",
         dataType: "json",

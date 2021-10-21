@@ -4,21 +4,7 @@ require_once '../config.php';
 
 ?>
 <!DOCTYPE html>
-<?php
-$isLogined = true;
-$token = "";
-if (!isset($_GET['user']) || $_GET['user'] == 'undefined') {
-  if (!isset($_SESSION['token']))
-    $isLogined = false;
-} else {
-
-  $_SESSION['token'] = $_GET['user'];
-}
-$token = $_SESSION['token'];
-
-$user = new User($con);
-($user->fetchUser($token));
-$_SESSION['user'] = serialize($user);
+<?php require_once('islogin.php');
 ?>
 <html lang="en" class="" style="height: auto;">
 
@@ -101,7 +87,7 @@ $_SESSION['user'] = serialize($user);
 
                   <?php for ($i = 1; $i <= 5; $i++) { ?>
 
-                    <a class="btn btn-app bg-secondary"> 
+                    <a class="btn btn-app bg-secondary">
                       <h5 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h5> <br>
                     </a>
 
