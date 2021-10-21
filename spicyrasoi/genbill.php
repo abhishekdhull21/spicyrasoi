@@ -160,11 +160,12 @@ function fetchSubCategory($cat_id)
                 $sql = "SELECT * FROM category  WHERE admin_id = $admin_id and restaurant = $restaurant AND status = true ";
                 $n = mysqli_query($con, $sql);
                 $i = 1;
-                while ($row = mysqli_fetch_assoc($n)) {
-                  $cat_id = $row['cat_id'];
-                  if ($i++ % 4 == 0) {
-                    echo '</div><div class="row">';
-                  } ?>
+                if (mysqli_num_rows($n) > 0)
+                  while ($row = mysqli_fetch_assoc($n)) {
+                    $cat_id = $row['cat_id'];
+                    if ($i++ % 4 == 0) {
+                      echo '</div><div class="row">';
+                    } ?>
                   <div class="col-md-3">
                     <div class="card card-primary collapsed-card">
                       <div class="card-header">
@@ -186,7 +187,10 @@ function fetchSubCategory($cat_id)
                     </div>
                     <!-- /.card -->
                   </div>
-                <?php } ?>
+                <?php }
+                else echo "No Record found";
+
+                ?>
               </div><!-- /.row -->
             </div>
             <!-- /.col -->
@@ -520,8 +524,8 @@ function fetchSubCategory($cat_id)
 
       }
     }
-    // fetch table item
     $(document).ready(function() {
+      // fetch table item
       $.ajax({
         method: "POST",
         url: constant.url + "table/orderfetch.php",
