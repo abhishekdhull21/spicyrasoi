@@ -20,9 +20,11 @@ $data = json_decode(file_get_contents('php://input'), true);
 if ($data != null) {
     $grandtotal = $data['totalPrice'];
     $table = $data['table'] != null ? $data['table'] : 0;
+    $admin_id = $data['admin_id'] != null ? $data['admin_id'] : 0;
+    $restaurant = $data['restaurant'] != null ? $data['restaurant'] : 0;
     $type = $data['type'] != null ? $data['type'] : "store_price";
     $orderid = date('Hisu') . $table;
-    $sql = "INSERT INTO `orders`(`orderid`, `order_value`, `order_type`)  values({$orderid},{$grandtotal},'$type')";
+    $sql = "INSERT INTO `orders`(`orderid`, `order_value`, `order_type`,admin_id,restaurant)  values({$orderid},{$grandtotal},'$type',$admin_id,$restaurant)";
     if (mysqli_query($con, $sql)) {
         foreach ($data['data'] as $row => $value) {
             // print_r($value);
