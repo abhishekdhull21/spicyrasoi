@@ -1,6 +1,7 @@
 // fetch category
 const constant = {
   url: "http://api.spicyrasoi.com/",
+  // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 $(document).ready(function () {
   //add new category
@@ -21,7 +22,8 @@ $(document).ready(function () {
       url: constant.url + "/category/add.php",
       method: "POST",
       data: JSON.stringify({
-        admin: "2", //TODO: change with admin id
+        admin_id: admin_id,
+        restaurant: restaurant,
         category: category,
       }),
       contentType: "application/json",
@@ -53,7 +55,7 @@ $(document).ready(function () {
     e.preventDefault();
     const title = $("#addSubCategoryInput").val();
     const category = $("#cat_id").val();
-    console.log("cate: " + category);
+    // console.log("cate: " + category);
     if (category == null && category === "") {
       console.log($("#addSubCategoryInput").val());
       return;
@@ -67,9 +69,9 @@ $(document).ready(function () {
       url: constant.url + "/category/subadd.php",
       method: "POST",
       data: JSON.stringify({
-        admin: "2", //TODO: change with admin id
+        admin_id: admin_id,
         title: title,
-        resturent: 10,
+        restaurant: restaurant,
         category: category,
       }),
       contentType: "application/json",
@@ -108,6 +110,8 @@ $(document).ready(function () {
       method: "POST",
       data: JSON.stringify({
         category: category,
+        admin_id: admin_id,
+        restaurant: restaurant,
       }),
       contentType: "application/json",
       dataType: "json",
@@ -157,6 +161,8 @@ $(document).ready(function () {
       method: "POST",
       data: JSON.stringify({
         product: product,
+        admin_id: admin_id,
+        restaurant: restaurant,
         category: category,
         subcategory: subcategory,
         discount: discount,

@@ -1,10 +1,9 @@
 // fetch category
-
 $(document).ready(function () {
   $.ajax({
     url: constant.url + "/category/fetch.php",
     method: "POST",
-
+    data: JSON.stringify({ admin_id: admin_id, restaurant: restaurant }),
     contentType: "application/json",
     dataType: "json",
     success: function (result) {

@@ -41,7 +41,7 @@
           <div class="row">
             <div class="col-12">
               <h2 class="page-header">
-                <i class="fas fa-hotel"></i> Biryani Adda
+                <i class="fas fa-hotel"></i>Spicy Rasoi
                 <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
               </h2>
             </div>
@@ -52,10 +52,11 @@
             <div class="col-sm-4 invoice-col">
               From
               <address>
-                <strong>Biryani Adda</strong><br>
-                Huda market<br>
-                Kaithal<br>
-                Phone: 9899673586<br>
+                <strong id="restaurant">null</strong><br>
+                <address id="address">
+                  null
+                </address>
+                Phone: <span id="phone">null</span><br>
 
               </address>
             </div>
@@ -72,7 +73,7 @@
             </div>
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
-              <b>Bill No. : 001</b><br>
+              <b>Bill No. : <span id="bill">null</span></b><br>
               <b>Order No. : <span id="orderid">00</span></b><br>
               <br>
               <!-- <b>Order ID:</b> 4F3S8J<br>
@@ -143,26 +144,44 @@
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
   <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script src="scripts/request.js"></script>
   <script>
     $(document).ready(function() {
-      console.log(JSON.parse(localStorage.getItem("bill")));
+      // console.log(JSON.parse(localStorage.getItem("bill")));
       const products = JSON.parse(localStorage.getItem("bill"));
-      $('#orderid').html(products.orderid);
-      $('#customerType').html(products.customerType);
-      products.data.map((d, index) => {
+      console.log(products);
+      $.ajax({
+        url: constant.url + "restaurant/fetch.php",
+        method: "POST",
+        data: JSON.stringify(products),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          console.log(result);
+          if (result.success == true) {
+            result = result.data[0];
+            $("#restaurant").html(result.name);
+            $("#address").html(result.address);
+            $("#phone").html(result.mobile);
+            $('#orderid').html(products.orderid);
+            $('#customerType').html(products.customerType);
+            products.data.map((d, index) => {
 
 
-        var itemRow = '<tr id="cartItem' + d.id + '">';
-        itemRow += '<td>' + (products.data.length - index) + '</td>';
-        itemRow += '<td>' + d.name + '</td>';
-        itemRow += '<td>' + d.qty + '</td>';
-        itemRow += '<td id="price">' + d.price + '</td>';
-        itemRow += '<td id="subTotal">' + d.subtotal + '</td>';
-        itemRow += ' </tr>';
-        $("#cartItems").prepend(itemRow)
+              var itemRow = '<tr id="cartItem' + d.id + '">';
+              itemRow += '<td>' + (products.data.length - index) + '</td>';
+              itemRow += '<td>' + d.name + '</td>';
+              itemRow += '<td>' + d.qty + '</td>';
+              itemRow += '<td id="price">' + d.price + '</td>';
+              itemRow += '<td id="subTotal">' + d.subtotal + '</td>';
+              itemRow += ' </tr>';
+              $("#cartItems").prepend(itemRow)
+            });
+            $("#grandtotalprice").html(products.totalPrice);
+            window.addEventListener("load", window.print());
+          }
+        },
       });
-      $("#grandtotalprice").html(products.totalPrice);
-      window.addEventListener("load", window.print());
 
     });
   </script>
