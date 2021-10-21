@@ -21,14 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     // condition to check request in json 
     // if(strpos($content_type, "application/json") !== false){
-    if (isset($data['title']) && isset($data['admin']) && isset($data['category']) && isset($data['resturent'])) {
-        $admin = $data['admin'];
-        $resturent = $data['resturent'];
+    if (isset($data['title']) && isset($data['admin_id']) && isset($data['category']) && isset($data['restaurant'])) {
+        $admin = $data['admin_id'];
+        $restaurant = $data['restaurant'];
         $category = $data['category'];
         $title =  filter_var($data['title'], FILTER_SANITIZE_STRING);
-        if ($result = mysqli_query($con, "SELECT `name` FROM `subcategory` where `name` = '$title' and `cat_id` = $category")) {
+        if ($result = mysqli_query($con, "SELECT `name` FROM `subcategory` where `name` = '$title' and `cat_id` = $category and restaurant = $restaurant")) {
             if (mysqli_num_rows($result) < 1) {
-                $sql = "INSERT INTO `subcategory`( `cat_id`, `name`, `created_by`, `resturent_id`) VALUES($category,'$title',$admin,$resturent)";
+                $sql = "INSERT INTO `subcategory`( `cat_id`, `name`, `admin_id`, `restaurant`, `created_by`) VALUES($category,'$title',$admin,$restaurant,$admin,$resturent)";
                 if ($result =  mysqli_query($con, $sql)) {
 
                     $response = array(
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $err = mysqli_error($con);
         }
     } else {
-        $err = "set key as -> `admin` and `title`,resturent ";
+        $err = "set key as -> `admin_id` and `title`,restaurant ";
     }
 } else {
     $err = "Header should be POST";

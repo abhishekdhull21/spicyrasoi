@@ -12,7 +12,7 @@ define('ROOTPATH', dirname(__FILE__));
 
 // $content_type = (getallheaders());
 $file = fopen("../logs/" . date("d-m-y") . ".txt", "a");
-fwrite($file, ("category/add.php," . file_get_contents('php://input') . "\n"));
+fwrite($file, (ROOTPATH . "/add.php," . file_get_contents('php://input') . "\n"));
 
 $response = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,12 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     // condition to check request in json 
     // if(strpos($content_type, "application/json") !== false){
-    if (isset($data['category']) && isset($data['admin'])) {
-        $admin = $data['admin'];
+    if (isset($data['category']) && isset($data['admin_id']) && isset($data['restaurant'])) {
+        $admin = $data['admin_id'];
+        $restaurant = $data['restaurant'];
         $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
-        if ($result = mysqli_query($con, "SELECT cat_name FROM `category` where cat_name = '$category'")) {
+        if ($result = mysqli_query($con, "SELECT cat_name FROM `category` where cat_name = '$category' and restaurant = $restaurant")) {
             if (mysqli_num_rows($result) < 1) {
-                $sql = "INSERT INTO category (`cat_name`,`created_by`) VALUES('$category',$admin)";
+                $sql = "INSERT INTO category (`cat_name`,admin_id,`created_by`,restaurant) VALUES('$category',$admin,$admin,$restaurant)";
 
 
                 if ($result =  mysqli_query($con, $sql)) {
@@ -45,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $err = mysqli_error($con);
         }
     } else {
-        $err = "set key as -> `admin` and `category` ";
+        $err = "set key as -> `admin_id` and `category` restaurant ";
     }
 } else {
     $err = "Header should be POST";

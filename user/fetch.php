@@ -52,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $response = array(
                         "success" => true,
                         "token" => $token,
-                        "data" => $arr,
                         "error" => ""
                     );
                 else $err = $res_token;

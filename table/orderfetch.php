@@ -8,12 +8,14 @@ $response = "";
 define('ROOTPATH', dirname(__FILE__));
 header("Content-Type:application/json");
 $file = fopen("../logs/" . date("d-m-y") . ".txt", "a");
-fwrite($file, (date('H:i:s',) . ROOTPATH . "  :" . file_get_contents('php://input') . "\n"));
+fwrite($file, (date('H:i:s',) . ROOTPATH . " orderfetch.php  :" . file_get_contents('php://input') . "\n"));
 $data = json_decode(file_get_contents('php://input'), true);
 // $data = json_encode($data);
-if (isset($data['table'])) {
+if (isset($data['table'])  && isset($data['restaurant'])) {
     $table = $data['table'];
-    if ($result = mysqli_query($con, "SELECT data FROM `tables_session` where table_id = $table and `status`=1")) {
+    // $admin_id = $data['admin_id'];
+    $restaurant = $data['restaurant'];
+    if ($result = mysqli_query($con, "SELECT data FROM `tables_session` where table_id = $table and restaurant = $restaurant  and `status`=1")) {
         if (mysqli_num_rows($result) > 0) {
             $response = array(
                 "success" => true,
@@ -22,5 +24,5 @@ if (isset($data['table'])) {
             );
         } else $err = "No Table found";
     } else $err = mysqli_error($con);
-} else $err = "send key table";
+} else $err = "send key table and restaurant";
 sendPostRes($response, $err);
