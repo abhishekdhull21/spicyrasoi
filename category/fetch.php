@@ -23,26 +23,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // print_r($data);
     // condition to check request in json 
     // if(strpos($content_type, "application/json") !== false){
-    if (isset($data['status']))
-        $status = $data['status'];
-    //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
-    if ($result = mysqli_query($con, "SELECT * FROM `category` where `status` = $status")) {
-        if (mysqli_num_rows($result) > 0) {
+    if (isset($data['restaurant'])) {
+        if (isset($data['status']))
+            $status = $data['status'];
+        $restaurant = $data['restaurant'];
+        //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
+        if ($result = mysqli_query($con, "SELECT * FROM `category` where `status` = $status and restaurant = $restaurant")) {
+            if (mysqli_num_rows($result) > 0) {
 
-            $response = array(
-                "success" => true,
-                "data" => mysqli_fetch_all($result, MYSQLI_ASSOC),
-                "error" => ""
-            );
+                $response = array(
+                    "success" => true,
+                    "data" => mysqli_fetch_all($result, MYSQLI_ASSOC),
+                    "error" => ""
+                );
+            } else {
+                $err = "No Category found";
+            }
         } else {
-            $err = "No Category found";
+            $err = mysqli_error($con);
         }
     } else {
-        $err = mysqli_error($con);
+        $err = "set key as -> `restaurant`  ";
     }
-    // } else {
-    //     $err = "set key as -> `admin` and `category` ";
-    // }
 } else {
     $err = "Header should be POST";
 }

@@ -13,7 +13,7 @@ define('ROOTPATH', dirname(__FILE__));
 
 // $content_type = (getallheaders());
 $file = fopen("../logs/" . date("d-m-y") . ".txt", "a");
-fwrite($file, ("category/fetch.php," . file_get_contents('php://input') . "\n"));
+fwrite($file, (ROOTPATH . "/subfetch.php," . file_get_contents('php://input') . "\n"));
 
 $response = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,27 +23,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // print_r($data);
     // condition to check request in json 
     // if(strpos($content_type, "application/json") !== false){
-    if (isset($data['category']))
+    if (isset($data['category']) && isset($data['restaurant'])) {
         $category = $data['category'];
-    // $status = $data['status'];
-    //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
-    if ($result = mysqli_query($con, "SELECT * FROM `subcategory` where `status` = 1 and `cat_id` = $category")) {
-        if (mysqli_num_rows($result) > 0) {
+        $restaurant = $data['restaurant'];
+        // $status = $data['status'];
+        //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
+        if ($result = mysqli_query($con, "SELECT * FROM `subcategory` where `status` = 1 and `cat_id` = $category and restaurant = $restaurant ")) {
+            if (mysqli_num_rows($result) > 0) {
 
-            $response = array(
-                "success" => true,
-                "data" => mysqli_fetch_all($result, MYSQLI_ASSOC),
-                "error" => ""
-            );
+                $response = array(
+                    "success" => true,
+                    "data" => mysqli_fetch_all($result, MYSQLI_ASSOC),
+                    "error" => ""
+                );
+            } else {
+                $err = "No Category found";
+            }
         } else {
-            $err = "No Category found";
+            $err = mysqli_error($con);
         }
     } else {
-        $err = mysqli_error($con);
+        $err = "set key as -> `restaurant` and `category` ";
     }
-    // } else {
-    //     $err = "set key as -> `admin` and `category` ";
-    // }
 } else {
     $err = "Header should be POST";
 }
