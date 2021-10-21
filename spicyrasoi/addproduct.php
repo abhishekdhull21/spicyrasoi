@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+require_once('../config.php');
+require_once('class/User.php');
+require_once('islogin.php');
+
+?>
 
 <head>
   <meta charset="utf-8">
@@ -39,7 +46,7 @@
     <!-- Navbar -->
     <?php include("navbar.php"); ?>
     <!-- /.navbar -->
-
+    <?php require_once('logininfo.php'); ?>
 
 
     <!-- Content Wrapper. Contains page content -->
@@ -91,14 +98,14 @@
                         </div>
                       </div>
                       <div class="col-sm-6">
-                      <!-- select -->
-                      <div class="form-group">
-                        <label> Sub-Category</label>
-                        <select class="form-control" id="dropdownSubCategory" >
-                          <option value=0>Wait</option>
-                        </select>
+                        <!-- select -->
+                        <div class="form-group">
+                          <label> Sub-Category</label>
+                          <select class="form-control" id="dropdownSubCategory">
+                            <option value=0>Wait</option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-6">

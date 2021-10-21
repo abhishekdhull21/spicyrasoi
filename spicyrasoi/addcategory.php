@@ -45,19 +45,22 @@
 
     <!-- Navbar -->
     <?php
+    session_start();
     include("../config.php");
+    include("class/User.php");
     include("navbar.php");
+    require_once("islogin.php");
     // $host = "sql487.main-hosting.eu";
     // $username = "u709711065_spicyrasoi";
     // $password = "NewPassword@1234";
     // $db = "u709711065_spicyrasoi";
-    $con = mysqli_connect($host, $username, $password, $db);
+    // $con = mysqli_connect($host, $username, $password, $db);
 
     if (mysqli_connect_errno()) {
       echo ("Error");
     } else {
       //echo("Successfull");
-      $sql = "SELECT cat_name FROM category c";
+      $sql = "SELECT cat_name FROM category where admin_id = $admin_id and restaurant = $restaurant";
       $res = $con->query($sql);
       if ($res->num_rows > 0) {
         //echo "Output fetched successfully";
@@ -69,7 +72,7 @@
 
     ?>
     <!-- /.navbar -->
-
+    <?php require_once('logininfo.php'); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -134,7 +137,8 @@
                       <div class="form-group">
                         <select class="js-example-basic-single form-control" id="cat_id">
                           <?php
-                          $res = mysqli_query($con, "SELECT * from category");
+                          $swl = "SELECT * from category where admin_id = $admin_id and restaurant = $restaurant";
+                          $res = mysqli_query($con, $swl);
                           while ($row = mysqli_fetch_assoc($res)) {
                           ?>
                             <option value="<?php echo $row['cat_id']; ?>"><?php echo $row['cat_name']; ?></option>
@@ -184,6 +188,7 @@
                           <tbody>
                             <?php
                             $i = 0;
+                            $res = mysqli_query($con, $swl);
                             while ($row = $res->fetch_assoc()) {
 
                               $i++;
@@ -287,6 +292,8 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
   <!-- Page specific script -->
+
+
   <script>
     $(function() {
       $("#example1").DataTable({
@@ -306,6 +313,7 @@
       });
     });
   </script>
+  <!-- select search -->
   <script>
     $('.js-example-basic-single').select2({
       placeholder: 'Select an option'
