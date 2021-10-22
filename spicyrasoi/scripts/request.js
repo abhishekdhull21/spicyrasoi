@@ -1,7 +1,7 @@
 // fetch category
 const constant = {
-  url: "http://api.spicyrasoi.com/",
-  // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
+  //url: "http://apis.spicyrasoi.com/",
+  url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 $(document).ready(function () {
   //add new category
@@ -200,6 +200,57 @@ $(document).ready(function () {
       $("#addProductSubmit").html("Submit");
     });
   });
+  // add restaurant
+  $("#btnAddRestaurant").click(function (e) {
+    e.preventDefault();
+    // alert();
+    const restaurant = {
+      admin_id: admin_id,
+      name: $("#rname").val() != null ? $("#rname").val() : "",
+      mobile: $("#rmobile").val(),
+      phone: $("#rphone").val(),
+      email: $("#remail").val(), //("#addCategoryInput").val();
+      gst: $("#rgst_no").val(),
+      country: $("#rcountry").val(),
+      state: $("#rstate").val(), //("#addCategoryInput").val();
+      district: $("#rdistrict").val(), //("#addCategoryInput").val();
+      city: $("#rcity").val(),
+    };
+    if (restaurant == null && restaurant.length == 0) return;
+
+    $(document).ajaxSend(() => {
+      $("#btnAddRestaurant").attr("disabled", true);
+      $("#btnAddRestaurant").html("Processing...");
+    });
+    $.ajax({
+      url: constant.url + "/restaurant/add.php",
+      method: "POST",
+      data: JSON.stringify(restaurant),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        // console.log(result.success);
+
+        const json = result;
+        if (json.success)
+          swal("Good Job", "New Restaurant Created!!", "success");
+        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        console.info(json.success);
+        // $("#btnAddCategory").attr("disabled");
+        $("#btnAddRestaurant").html("Submit");
+      },
+    });
+    $(document).ajaxError((res) => {
+      console.error(res);
+
+      $("#btnAddRestaurant").attr("disabled", false);
+      $("#btnAddRestaurant").html("Submit");
+    });
+    $(document).ajaxComplete((res) => {
+      $("#btnAddRestaurant").attr("disabled", false);
+      $("#btnAddRestaurant").html("Submit");
+    });
+  });
 
   //login userAgent
   $("#btnLogin").click(function (e) {
@@ -254,11 +305,16 @@ $(document).ready(function () {
   //register userAgent
   $("#btnRegister").click(function (e) {
     e.preventDefault();
+    if ($("#restaurant").val() < 1) {
+      swal("Make Sure", "you select correct restaurant", "info");
+      return;
+    }
     const user = {
       username: $("#username").val(),
       mobile: $("#mobile").val(),
       email: $("#email").val(),
       password: $("#password").val(),
+      restaurant: $("#restaurant").val(),
     };
     // console.log("cate: " + user);
     if (
@@ -312,14 +368,21 @@ $(document).ready(function () {
   //Update Profile
   $("#btnUpdateProfile").click(function (e) {
     e.preventDefault();
-    const user = {
-      username: $("#username").val(),
+    const urestaurant = {
+      admin_id: admin_id,
+      restaurant: restaurant,
+      name: $("#name").val() != null ? $("#name").val() : "",
       mobile: $("#mobile").val(),
-      sex: $("#sex").val(),
-      address: $("#address").val(),
+      phone: $("#phone").val(),
+      email: $("#email").val(), //("#addCategoryInput").val();
+      gst: $("#gst_no").val(),
+      country: $("#country").val(),
+      state: $("#state").val(), //("#addCategoryInput").val();
+      district: $("#district").val(), //("#addCategoryInput").val();
+      city: $("#city").val(),
     };
     // console.log("cate: " + user);
-    if (user.mobile == "" || user.username == "") {
+    if (restaurant == "") {
       swal("Warning", "Please fill all field", "warning");
       return;
     }
@@ -329,9 +392,9 @@ $(document).ready(function () {
       $("#btnUpdateProfile").html("Logining...");
     });
     $.ajax({
-      url: constant.url + "/user/update.php",
+      url: constant.url + "/restaurant/update.php",
       method: "POST",
-      data: JSON.stringify(user),
+      data: JSON.stringify(urestaurant),
       contentType: "application/json",
       dataType: "json",
       success: function (result) {
@@ -347,7 +410,8 @@ $(document).ready(function () {
               button: true,
             }
           ).then(() => {
-            $(location).prop("href", "./login.php");
+            location.reload();
+            // $(location).prop("href", "./login.php");
           });
         else swal({ title: "Error Occured", text: json.error, icon: "error" });
         console.info(json.success);

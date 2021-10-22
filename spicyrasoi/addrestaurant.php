@@ -4,8 +4,9 @@
 session_start();
 include_once 'class/User.php';
 require_once '../config.php';
+require_once 'islogin.php';
 
-$user = unserialize($_SESSION['user']);
+// $user = unserialize($_SESSION['user']);
 
 ?>
 
@@ -47,7 +48,7 @@ $user = unserialize($_SESSION['user']);
     <!-- Navbar -->
     <?php include("navbar.php"); ?>
     <!-- /.navbar -->
-
+    <?php require_once('logininfo.php'); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -56,7 +57,7 @@ $user = unserialize($_SESSION['user']);
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Profile</h1>
+              <h1 class="m-0"><?php echo $user->username; ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -73,7 +74,7 @@ $user = unserialize($_SESSION['user']);
       <section class="content">
         <div class="container">
           <div class="row">
-           
+
             <!-- /.col -->
             <div class="col-md-8">
               <div class="card">
@@ -107,57 +108,69 @@ $user = unserialize($_SESSION['user']);
                     <div class="tab-pane active" id="settings">
                       <form class="form-horizontal">
                         <div class="form-group row">
-                          <label for="username" class="col-sm-2 col-form-label">Name</label>
+                          <label for="rname" class="col-sm-2 col-form-label">Name</label>
                           <div class="col-sm-10">
+<<<<<<< HEAD
                             <input type="text" class="form-control" id="username" placeholder="Name">
+=======
+                            <input type="text" class="form-control" id="rname" value="" placeholder="Restaurant Name" required>
+>>>>>>> 7fbb1c62125df8f91edaba93805ade55598c15aa
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="mobile" class="col-sm-2 col-form-label">Mob. No.</label>
+                          <label for="rmobile" class="col-sm-2 col-form-label">Mob. No.</label>
                           <div class="col-sm-10">
+<<<<<<< HEAD
                             <input type="number" class="form-control" id="mobile" placeholder="Mobile">
+=======
+                            <input type="number" class="form-control" id="rmobile" placeholder="Mobile" required>
+>>>>>>> 7fbb1c62125df8f91edaba93805ade55598c15aa
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="phone" class="col-sm-2 col-form-label">Phone No.</label>
+                          <label for="rphone" class="col-sm-2 col-form-label">Phone No.</label>
                           <div class="col-sm-10">
+<<<<<<< HEAD
                             <input type="number" class="form-control" id="phone" placeholder="Phone No.">
+=======
+                            <input type="number" class="form-control" id="rphone" placeholder="Phone">
+>>>>>>> 7fbb1c62125df8f91edaba93805ade55598c15aa
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="gst_no" class="col-sm-2 col-form-label">GST No.</label>
+                          <label for="rgst_no" class="col-sm-2 col-form-label">GST No.</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="gst_no" placeholder="GST No.">
+                            <input type="text" class="form-control" id="rgst_no" placeholder="GST No.">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="email" class="col-sm-2 col-form-label">Email</label>
+                          <label for="remail" class="col-sm-2 col-form-label">Email</label>
                           <div class="col-sm-10">
-                          <input type="email" class="form-control" id="email" placeholder="Email">
+                            <input type="email" class="form-control" id="remail" placeholder="Email">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="country" class="col-sm-2 col-form-label">Country</label>
+                          <label for="rcountry" class="col-sm-2 col-form-label">Country</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="country" placeholder="Country">
+                            <input type="text" value="INDIA" class="form-control" id="rcountry" placeholder="Country">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="state" class="col-sm-2 col-form-label">State</label>
+                          <label for="rstate" class="col-sm-2 col-form-label">State</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="state" placeholder="State">
+                            <input type="text" class="form-control" id="rstate" value="Haryana" placeholder="State">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="district" class="col-sm-2 col-form-label">District</label>
+                          <label for="rdistrict" class="col-sm-2 col-form-label">District</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="district" placeholder="District">
+                            <input type="text" class="form-control" id="rdistrict" placeholder="District">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="city" class="col-sm-2 col-form-label">City / Village </label>
+                          <label for="rcity" class="col-sm-2 col-form-label">City / Village </label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="city" placeholder="City / Village">
+                            <input type="text" class="form-control" id="rcity" placeholder="City / Village">
                           </div>
                         </div>
 
@@ -172,7 +185,7 @@ $user = unserialize($_SESSION['user']);
                         </div> -->
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" id="btnUpdateProfile" class="btn btn-danger">Add Restaurant </button>
+                            <button type="submit" id="btnAddRestaurant" class="btn btn-danger">Add Restaurant </button>
                           </div>
                         </div>
                       </form>
@@ -232,6 +245,8 @@ $user = unserialize($_SESSION['user']);
   <script src="dist/js/demo.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
+  <script src="scripts/request.js"></script>
+  <?php require_once("isloginfooter.php"); ?>
 </body>
 
 </html>

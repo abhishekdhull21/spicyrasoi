@@ -176,15 +176,7 @@ require_once '../config.php';
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
 
-  <?php
-  if (!$isLogined) { ?>
-    <script>
-      swal("Start from login", "Something went wrong", "warning")
-        .then(() => {
-          location.href = "user/login.php";
-        });
-    </script>
-  <?php } ?>
+  <?php include_once('isloginfooter.php'); ?>
 </body>
 
 </html>
