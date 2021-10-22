@@ -23,19 +23,26 @@
       </div>
       <div class="card-body">
         <p class="login-box-msg">Register a new membership</p>
-       
-       
-        
+
+
+
         <form action="" method="post">
-        <div class="input-group mb-3">
-                     
-                        <!-- <label>Gender</label> -->
-                        <select class="form-control">
-                          <option value="male">Select Resturent / Hotel</option>
-                          <option value="female">Female</option>
-                        </select>                      
-                    
-                    </div>
+          <div class="input-group mb-3">
+
+            <!-- <label>Gender</label> -->
+
+            <select id="restaurant" class="form-control">
+              <option value="0">Select Resturent / Hotel</option>
+              <?php
+              require_once("../../config.php");
+              $sql = "SELECT name,restaurantid as id from restaurant";
+              $res = mysqli_query($con, $sql);
+              while ($row = mysqli_fetch_assoc($res)) {
+              ?>
+                <option value="<?php echo $row['id']; ?>"> <?php echo $row['name']; ?></option>
+              <?php } ?>
+            </select>
+          </div>
           <div class="input-group mb-3">
             <input type="text" id="username" class="form-control" placeholder="Full name">
             <div class="input-group-append">

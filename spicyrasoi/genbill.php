@@ -162,11 +162,11 @@ function fetchSubCategory($cat_id)
                 if ($restaurant == "" || $admin_id == "") {
                   if (isset($_SESSION['token'])) {
 
-                    print_r($user->fetchUser($_SESSION['token']));
+                    ($user->fetchUser($_SESSION['token']));
                   } else $isLogined = false;
                 }
-                print_r($user);
-                echo $sql = "SELECT * FROM category  WHERE restaurant = $user->restaurant AND status = true ";
+                // print_r($user);
+                $sql = "SELECT * FROM category  WHERE restaurant = $user->restaurant AND status = true ";
                 $n = mysqli_query($con, $sql);
                 $i = 1;
                 if (mysqli_num_rows($n) > 0)
