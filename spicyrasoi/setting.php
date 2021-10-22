@@ -185,9 +185,9 @@
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-users"></i> Invoice
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
+                          <a href="addrestaurant.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> R2
+                            <i class="fas fa-users"></i> Add Restaurant
                           </a>
                           <a href="#" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
