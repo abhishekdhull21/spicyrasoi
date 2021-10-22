@@ -32,7 +32,7 @@
             <!-- <label>Gender</label> -->
 
             <select id="restaurant" class="form-control">
-              <option value="0">Select Resturent / Hotel</option>
+              <option value="0">Select Restaurant / Hotel</option>
               <?php
               require_once("../../config.php");
               $sql = "SELECT name,restaurantid as id from restaurant";
