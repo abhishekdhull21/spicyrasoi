@@ -569,6 +569,7 @@ function fetchSubCategory($cat_id)
           url: constant.url + "table/update.php",
           method: "POST",
           data: JSON.stringify({
+            restaurant: restaurant,
             table: products.table,
             status: 0
           }),

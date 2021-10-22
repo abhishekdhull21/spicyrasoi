@@ -12,8 +12,9 @@ if (!isset($_GET['user']) || $_GET['user'] == 'undefined') {
 } else {
     $_SESSION['token'] = $_GET['user'];
 }
-$token = $_SESSION['token'];
+// if ($isLogined)
 if (!isset($_SESSION['user'])) {
+    $token = $_SESSION['token'];
     $user = new User($con);
     $user->fetchUser($token);
     // if ($user->userid != null && $user->userid != null) {
