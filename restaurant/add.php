@@ -12,7 +12,7 @@ define('ROOTPATH', dirname(__FILE__));
 
 // $content_type = (getallheaders());
 $file = fopen("../logs/" . date("d-m-y") . ".txt", "a");
-fwrite($file, (ROOTPATH . "/add.php," / date("g-m-s") . file_get_contents('php://input') . "\n"));
+fwrite($file, (ROOTPATH . "/add.php," . date("g-m-s") . file_get_contents('php://input') . "\n"));
 
 $response = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,15 +21,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     // condition to check request in json 
     // if(strpos($content_type, "application/json") !== false){
-    if (isset($data['name']) && isset($data['admin_id']) && isset($data['address']) && isset($data['mobile'])) {
-        $admin_id = $data['admin_id'] != '' ? $data['admin_id'] : 0;
+    //{"admin_id":123460,"name":"Test Name","mobile":"123","phone":"147","email":"sdfk@agkjla.cld","gst":"12456","country":"INDIA","state":"Haryana","district":"Jind","city":"Ramrai"}
+    if (isset($data['name']) && isset($data['admin_id']) && isset($data['phone']) && isset($data['mobile']) && isset($data['email']) && isset($data['gst']) && isset($data['country']) && isset($data['state']) && isset($data['district']) && isset($data['city'])) {
 
+        $admin_id = $data['admin_id'] != '' ? $data['admin_id'] : 0;
         $name =  filter_var($data['name'], FILTER_SANITIZE_STRING);
-        $address =  filter_var($data['address'], FILTER_SANITIZE_STRING);
+        $phone =  filter_var($data['phone'], FILTER_SANITIZE_STRING);
         $mobile =  filter_var($data['mobile'], FILTER_SANITIZE_STRING);
-        if ($result = mysqli_query($con, "SELECT restaurantid FROM `restaurant` WHERE name = '$restaurant'")) {
+        $email =  filter_var($data['email'], FILTER_SANITIZE_STRING);
+        $gst =  filter_var($data['gst'], FILTER_SANITIZE_STRING);
+        $country =  filter_var($data['country'], FILTER_SANITIZE_STRING);
+        $state =  filter_var($data['state'], FILTER_SANITIZE_STRING);
+        $district =  filter_var($data['district'], FILTER_SANITIZE_STRING);
+        $city =  filter_var($data['city'], FILTER_SANITIZE_STRING);
+
+        if ($result = mysqli_query($con, "SELECT restaurantid FROM `restaurant` WHERE name = '$name' and $mobile = '$mobile'")) {
             if (mysqli_num_rows($result) < 1) {
-                $sql = "INSERT INTO `restaurant`( `name`, `address`, `mobile`, `added_by`) VALUES ('$name', '$address', '$mobile', $admin_id)";
+                $sql = "INSERT INTO `restaurant`(  `name`,  `mobile`, `phone`, `email`, `gst`, `country`, `state`, `district`, `city`, `added_by`) VALUES ('$name', '$mobile', '$phone', '$email','$gst','$country','$state','$district','$city','$admin_id')";
                 if ($result =  mysqli_query($con, $sql)) {
 
                     $response = array(
@@ -46,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $err = mysqli_error($con);
         }
     } else {
-        $err = "set key as -> admin_id, mobile, name and address";
+        $err = "set key as -> admin_id, mobile, name,phone,gst,coutry,city,district, state,email";
     }
 } else {
     $err = "Header should be `POST`";
