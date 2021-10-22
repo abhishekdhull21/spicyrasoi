@@ -109,19 +109,19 @@ $user = unserialize($_SESSION['user']);
                         <div class="form-group row">
                           <label for="username" class="col-sm-2 col-form-label">Name</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="username" value="<?php echo $user->username; ?>" placeholder="Name">
+                            <input type="text" class="form-control" id="username" placeholder="Name">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="mobile" class="col-sm-2 col-form-label">Mob. No.</label>
                           <div class="col-sm-10">
-                            <input type="number" value="<?php echo $user->mobile; ?>" class="form-control" id="mobile" placeholder="Mobile">
+                            <input type="number" class="form-control" id="mobile" placeholder="Mobile">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="phone" class="col-sm-2 col-form-label">Phone No.</label>
                           <div class="col-sm-10">
-                            <input type="number" value="<?php echo $user->mobile; ?>" class="form-control" id="phone" placeholder="Phone">
+                            <input type="number" class="form-control" id="phone" placeholder="Phone No.">
                           </div>
                         </div>
                         <div class="form-group row">
