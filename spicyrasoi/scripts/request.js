@@ -1,7 +1,7 @@
 // fetch category
 const constant = {
-  url: "http://apis.spicyrasoi.com/",
-  // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
+  //url: "http://apis.spicyrasoi.com/",
+  url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 $(document).ready(function () {
   //add new category
@@ -368,14 +368,21 @@ $(document).ready(function () {
   //Update Profile
   $("#btnUpdateProfile").click(function (e) {
     e.preventDefault();
-    const user = {
-      username: $("#username").val(),
+    const urestaurant = {
+      admin_id: admin_id,
+      restaurant: restaurant,
+      name: $("#name").val() != null ? $("#name").val() : "",
       mobile: $("#mobile").val(),
-      sex: $("#sex").val(),
-      address: $("#address").val(),
+      phone: $("#phone").val(),
+      email: $("#email").val(), //("#addCategoryInput").val();
+      gst: $("#gst_no").val(),
+      country: $("#country").val(),
+      state: $("#state").val(), //("#addCategoryInput").val();
+      district: $("#district").val(), //("#addCategoryInput").val();
+      city: $("#city").val(),
     };
     // console.log("cate: " + user);
-    if (user.mobile == "" || user.username == "") {
+    if (restaurant == "") {
       swal("Warning", "Please fill all field", "warning");
       return;
     }
@@ -385,9 +392,9 @@ $(document).ready(function () {
       $("#btnUpdateProfile").html("Logining...");
     });
     $.ajax({
-      url: constant.url + "/user/update.php",
+      url: constant.url + "/restaurant/update.php",
       method: "POST",
-      data: JSON.stringify(user),
+      data: JSON.stringify(urestaurant),
       contentType: "application/json",
       dataType: "json",
       success: function (result) {
@@ -403,7 +410,8 @@ $(document).ready(function () {
               button: true,
             }
           ).then(() => {
-            $(location).prop("href", "./login.php");
+            location.reload();
+            // $(location).prop("href", "./login.php");
           });
         else swal({ title: "Error Occured", text: json.error, icon: "error" });
         console.info(json.success);

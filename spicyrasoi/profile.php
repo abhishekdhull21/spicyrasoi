@@ -4,7 +4,7 @@
 session_start();
 include_once 'class/User.php';
 require_once '../config.php';
-
+require_once("islogin.php");
 $user = unserialize($_SESSION['user']);
 
 ?>
@@ -12,7 +12,7 @@ $user = unserialize($_SESSION['user']);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo $user->username; ?>Spicy Rasoi</title>
+  <title>Spicy Rasoi</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -48,6 +48,7 @@ $user = unserialize($_SESSION['user']);
     <?php include("navbar.php"); ?>
     <!-- /.navbar -->
 
+    <?php require_once("logininfo.php"); ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -68,7 +69,11 @@ $user = unserialize($_SESSION['user']);
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
-
+      <?php
+      $sql = "SELECT b.name,b.mobile,b.phone,b.email,b.gst,b.country,b.state,b.state,b.district,b.city,b.add_on FROM users a, restaurant b where a.restaurant = b.restaurantid and a.user_id = $user->userid";
+      $res = mysqli_query($con, $sql);
+      $row = mysqli_fetch_assoc($res);
+      ?>
       <!-- Main content -->
       <section class="content">
         <div class="container">
@@ -82,37 +87,37 @@ $user = unserialize($_SESSION['user']);
                     <img class="profile-user-img img-fluid img-circle" src="dist/img/user4-128x128.jpg" alt="User profile picture">
                   </div>
 
-                  <h3 class="profile-username text-center"><?php echo $user->username; ?></h3>
+                  <h3 class="profile-username text-center"><?php echo $row['name']; ?></h3>
 
-                  <p class="text-muted text-center">Narwana</p>
+                  <p class="text-muted text-center"><?php echo $row['city']; ?></p>
 
                   <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
-                      <b>GST No.</b> <a class="float-right">098765432101235</a>
+                      <b>GST No.</b> <a class="float-right"><?php echo $row['gst']; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Mob. No.</b> <a class="float-right"><?php echo $user->mobile; ?></a>
+                      <b>Mob. No.</b> <a class="float-right"><?php echo $row['mobile']; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Phone No.</b> <a class="float-right"><?php echo $user->mobile; ?></a>
+                      <b>Phone No.</b> <a class="float-right"><?php echo $row['phone']; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Email</b> <a class="float-right"><?php echo $user->email; ?></a>
+                      <b>Email</b> <a class="float-right"><?php echo $row['email']; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Country</b> <a class="float-right">India</a>
+                      <b>Country</b> <a class="float-right"><?php echo $row['country']; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>State</b> <a class="float-right">Haryana</a>
+                      <b>State</b> <a class="float-right"><?php echo $row['state']; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Distt.</b> <a class="float-right">Jind</a>
+                      <b>Distt.</b> <a class="float-right"><?php echo $row['district']; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>City/Village</b> <a class="float-right">Narwana</a>
+                      <b>City/Village</b> <a class="float-right"><?php echo $row['city']; ?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Reg. Date</b> <a class="float-right">17/10/2021</a>
+                      <b>Reg. Date</b> <a class="float-right"><?php echo $row['add_on']; ?></a>
                     </li>
                     <li class="list-group-item">
                       <b>Valid Upto</b> <a class="float-right">17/10/2022</a>
@@ -162,55 +167,55 @@ $user = unserialize($_SESSION['user']);
                         <div class="form-group row">
                           <label for="username" class="col-sm-2 col-form-label">Name</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="username" value="<?php echo $user->username; ?>" placeholder="Name">
+                            <input type="text" class="form-control" id="name" value="<?php echo $row['name']; ?>" placeholder="Name">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="mobile" class="col-sm-2 col-form-label">Mob. No.</label>
                           <div class="col-sm-10">
-                            <input type="number" value="<?php echo $user->mobile; ?>" class="form-control" id="mobile" placeholder="Mobile">
+                            <input type="number" value="<?php echo $row['mobile']; ?>" class="form-control" id="mobile" placeholder="Mobile">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="phone" class="col-sm-2 col-form-label">Phone No.</label>
                           <div class="col-sm-10">
-                            <input type="number" value="<?php echo $user->mobile; ?>" class="form-control" id="phone" placeholder="Phone">
+                            <input type="number" value="<?php echo $row['phone']; ?>" class="form-control" id="phone" placeholder="Phone">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="gst_no" class="col-sm-2 col-form-label">GST No.</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="gst_no" placeholder="GST No.">
+                            <input type="text" class="form-control" value="<?php echo $row['gst']; ?>" id="gst_no" placeholder="GST No.">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="email" class="col-sm-2 col-form-label">Email</label>
                           <div class="col-sm-10">
-                          <input type="email" class="form-control" id="email" placeholder="Email">
+                            <input type="email" class="form-control" id="email" value="<?php echo $row['email']; ?>" placeholder="Email">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="country" class="col-sm-2 col-form-label">Country</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="country" placeholder="Country">
+                            <input type="text" value="<?php echo $row['country']; ?>" class="form-control" id="country" placeholder="Country">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="state" class="col-sm-2 col-form-label">State</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="state" placeholder="State">
+                            <input type="text" value="<?php echo $row['state']; ?>" class="form-control" id="state" placeholder="State">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="district" class="col-sm-2 col-form-label">District</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="district" placeholder="District">
+                            <input type="text" value="<?php echo $row['district']; ?>" class="form-control" id="district" placeholder="District">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="city" class="col-sm-2 col-form-label">City / Village </label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="city" placeholder="City / Village">
+                            <input type="text" class="form-control" id="city" value="<?php echo $row['city']; ?>" placeholder="City / Village">
                           </div>
                         </div>
 
@@ -285,6 +290,8 @@ $user = unserialize($_SESSION['user']);
   <script src="dist/js/demo.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
+  <script src="scripts/request.js"></script>
+  <?php require_once("isloginfooter.php"); ?>
 </body>
 
 </html>
