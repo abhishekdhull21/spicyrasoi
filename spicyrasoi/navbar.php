@@ -53,7 +53,7 @@
     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
       <li class="nav-item">
         <a class="nav-link" href="#" role="button">
-        <i class="fas fa-cart-plus"> Cart</i>
+          <i class="fas fa-cart-plus"> Cart</i>
         </a>
       </li>
       <li class="nav-item">
@@ -67,7 +67,7 @@
             <!-- <a class="dropdown-item" href="#">Another action</a>
                       <a class="dropdown-item" href="#">Something else here</a> -->
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Log Out</a>
+            <a class="dropdown-item" href="user/logout.php">Log Out</a>
           </div>
         </div>
       </li>

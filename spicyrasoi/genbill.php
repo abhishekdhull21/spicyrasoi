@@ -5,6 +5,7 @@ session_start();
 require_once "../config.php";
 require_once "class/User.php";
 require_once "islogin.php";
+// print_r($user);
 $tableid = 0;
 // print_r($user);
 if (isset($_GET['table'])) {
@@ -26,6 +27,7 @@ if (isset($_GET['method'])) {
     $method = "zomato_price";
   // echo $method;
 }
+// print_r($_SESSION);
 function showProduct($cat_id, $subid)
 {
   global $con, $method, $admin_id, $restaurant; ?>
@@ -157,7 +159,14 @@ function fetchSubCategory($cat_id)
             <div class="col-md-9">
               <div class="row">
                 <?php
-                $sql = "SELECT * FROM category  WHERE admin_id = $admin_id and restaurant = $restaurant AND status = true ";
+                if ($restaurant == "" || $admin_id == "") {
+                  if (isset($_SESSION['token'])) {
+
+                    print_r($user->fetchUser($_SESSION['token']));
+                  } else $isLogined = false;
+                }
+                print_r($user);
+                echo $sql = "SELECT * FROM category  WHERE restaurant = $user->restaurant AND status = true ";
                 $n = mysqli_query($con, $sql);
                 $i = 1;
                 if (mysqli_num_rows($n) > 0)
@@ -393,6 +402,9 @@ function fetchSubCategory($cat_id)
   <!-- <script src="dist/js/demo.js"></script> -->
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <!-- <script src="dist/js/pages/dashboard.js"></script> -->
+  <?php include_once('isloginfooter.php'); ?>
+
+
   <script>
     var i = 0;
     var grandtotalPrice = 0;
