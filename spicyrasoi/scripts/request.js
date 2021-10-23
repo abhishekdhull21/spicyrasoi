@@ -374,15 +374,16 @@ $(document).ready(function () {
       name: $("#name").val() != null ? $("#name").val() : "",
       mobile: $("#mobile").val(),
       phone: $("#phone").val(),
-      email: $("#email").val(), //("#addCategoryInput").val();
+      email: $("#email").val(),
       gst: $("#gst_no").val(),
       country: $("#country").val(),
-      state: $("#state").val(), //("#addCategoryInput").val();
-      district: $("#district").val(), //("#addCategoryInput").val();
+      state: $("#state").val(),
+      district: $("#district").val(),
       city: $("#city").val(),
     };
+    // console.log(urestaurant);
     // console.log("cate: " + user);
-    if (restaurant == "") {
+    if (urestaurant == "") {
       swal("Warning", "Please fill all field", "warning");
       return;
     }
@@ -428,6 +429,136 @@ $(document).ready(function () {
     $(document).ajaxComplete((res) => {
       $("#btnUpdateProfile").attr("disabled", false);
       $("#btnUpdateProfile").html("Submit");
+    });
+  });
+  //add customer
+  $("#btnAddCustomer").click(function (e) {
+    e.preventDefault();
+    const urestaurant = {
+      admin_id: admin_id,
+      restaurant: restaurant,
+      name: $("#name").val() != null ? $("#name").val() : "",
+      sex: $("#sex").val(),
+      mobile: $("#mobile").val(),
+      phone: $("#phone").val(),
+      email: $("#email").val(), //("#addCategoryInput").val();
+      gst: $("#gst_no").val(),
+      country: $("#country").val(),
+      state: $("#state").val(), //("#addCategoryInput").val();
+      district: $("#district").val(), //("#addCategoryInput").val();
+      city: $("#city").val(),
+      pincode: $("#pincode").val(), //("#addCategoryInput").val();
+      id_proof: $("#id_proof").val(), //("#addCategoryInput").val();
+      whereto: $("#whereto").val(),
+      wherefrom: $("#wherefrom").val(),
+      checkin: $("#checkin").val(),
+      checkout: $("#checkout").val(),
+    };
+    // console.log("cate: " + user);
+    if (restaurant == "") {
+      swal("Warning", "Please fill all field", "warning");
+      return;
+    }
+
+    $(document).ajaxSend(() => {
+      $("#btnAddCustomer").prop("disabled", true);
+      $("#btnAddCustomer").html("Logining...");
+    });
+    $.ajax({
+      url: constant.url + "/customer/add.php",
+      method: "POST",
+      data: JSON.stringify(urestaurant),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        console.log(result);
+
+        const json = result;
+        if (json.success)
+          swal(
+            "Good Job",
+            "You have successfully added new Customer",
+            "success",
+            {
+              buttons: ["Reload", "OK"],
+            }
+          ).then(() => {
+            location.reload();
+            // $(location).prop("href", "./login.php");
+          });
+        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        console.info(json.success);
+        // $("#btnAddCategory").attr("disabled");
+        $("#btnAddCustomer").html("Submit");
+      },
+    });
+    $(document).ajaxError((res) => {
+      console.error(res);
+
+      $("#btnAddCustomer").attr("disabled", false);
+      $("#btnAddCustomer").html("Submit");
+    });
+    $(document).ajaxComplete((res) => {
+      $("#btnAddCustomer").attr("disabled", false);
+      $("#btnAddCustomer").html("Submit");
+    });
+  });
+  //add short customer
+  $("#btnAddShortCustomer").click(function (e) {
+    e.preventDefault();
+    const urestaurant = {
+      admin_id: admin_id,
+      restaurant: restaurant,
+      name: $("#customer_name").val() != null ? $("#customer_name").val() : "",
+      mobile: $("#customer_mob_no").val(),
+    };
+    // console.log("cate: " + user);
+    if (restaurant == "") {
+      swal("Warning", "Please fill all field", "warning");
+      return;
+    }
+
+    $(document).ajaxSend(() => {
+      $("#btnAddShortCustomer").prop("disabled", true);
+      $("#btnAddShortCustomer").html("Logining...");
+    });
+    $.ajax({
+      url: constant.url + "/customer/shortadd.php",
+      method: "POST",
+      data: JSON.stringify(urestaurant),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        console.log(result);
+
+        const json = result;
+        if (json.success)
+          swal(
+            "Good Job",
+            "You have successfully added new Customer",
+            "success",
+            {
+              buttons: ["Reload", "OK"],
+            }
+          ).then(() => {
+            location.reload();
+            // $(location).prop("href", "./login.php");
+          });
+        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        console.info(json.success);
+        // $("#btnAddCategory").attr("disabled");
+        $("#btnAddShortCustomer").html("Submit");
+      },
+    });
+    $(document).ajaxError((res) => {
+      console.error(res);
+
+      $("#btnAddShortCustomer").attr("disabled", false);
+      $("#btnAddShortCustomer").html("Submit");
+    });
+    $(document).ajaxComplete((res) => {
+      $("#btnAddShortCustomer").attr("disabled", false);
+      $("#btnAddShortCustomer").html("Submit");
     });
   });
 });

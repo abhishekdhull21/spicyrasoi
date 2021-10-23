@@ -18,7 +18,7 @@ class User
     }
     function getUserid($token)
     {
-        echo  $sql = "SELECT user_id as userid  FROM `logined_user` WHERE token = '$token' limit 1";
+        $sql = "SELECT user_id as userid  FROM `logined_user` WHERE token = '$token' limit 1";
         if ($result = mysqli_query($this->con, $sql)) {
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);

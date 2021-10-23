@@ -54,9 +54,11 @@
               <address>
                 <strong id="restaurant">null</strong><br>
                 <address id="address">
-                  null
+                  <span id="city"></span> <span id="district"></span><br>
+                  <span id="state"></span>
+                  <span id="country"></span><br>
+                  Phone: <span id="phone">null</span><br>
                 </address>
-                Phone: <span id="phone">null</span><br>
 
               </address>
             </div>
@@ -64,7 +66,7 @@
             <div class="col-sm-4 invoice-col">
               To
               <address>
-                <strong><span id="customerType">null</strong><br>
+                <strong><span id="customerName">null</strong><br>
                 <!-- 795 Folsom Ave, Suite 600<br>
           San Francisco, CA 94107<br>
           Phone: (555) 539-1037<br>
@@ -161,10 +163,15 @@
           if (result.success == true) {
             result = result.data[0];
             $("#restaurant").html(result.name);
-            $("#address").html(result.address);
+            $("#city").html(result.city);
+            $("#district").html(result.district);
+            $("#state").html(result.state);
+            $("#country").html(result.country);
             $("#phone").html(result.mobile);
             $('#orderid').html(products.orderid);
-            $('#customerType').html(products.customerType);
+            $('#bill').html(products.billNo);
+
+            $('#customerName').html(products.customerName);
             products.data.map((d, index) => {
 
 

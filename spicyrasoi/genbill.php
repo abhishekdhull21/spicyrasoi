@@ -37,6 +37,7 @@ function showProduct($cat_id, $subid)
         <th>Product</th>
         <th>Price</th>
         <th>Add</th>
+        <th>Type</th>
       </tr>
     </thead>
     <tbody>
@@ -57,6 +58,16 @@ function showProduct($cat_id, $subid)
               <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product[$method]; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
               <label class="custom-control-label" for="addProductCart_<?php echo $product['product_id']; ?>"></label>
             </div>
+          </td>
+          <td class="align-middle">
+            <?php
+            if ($product['food_type'] == 'veg') {
+            ?>
+              <img src="../img/icons/vegicon.png" style="width: 25px; height: 25px;" alt="veg">
+            <?php } else { ?>
+              <img src="../img/icons/novegicon.png" style="width: 25px; height: 25px;" alt="non-veg">
+            <?php } ?>
+
           </td>
         </tr>
       <?php } ?>
@@ -133,6 +144,9 @@ function fetchSubCategory($cat_id)
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
+  <!-- select2  css -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 </head>
 
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
@@ -156,7 +170,7 @@ function fetchSubCategory($cat_id)
       <section class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-9">
+            <div class="col-lg-8">
               <div class="row">
                 <?php
                 if ($restaurant == "" || $admin_id == "") {
@@ -175,7 +189,7 @@ function fetchSubCategory($cat_id)
                     if ($i++ % 4 == 0) {
                       echo '</div><div class="row">';
                     } ?>
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="card card-primary collapsed-card">
                       <div class="card-header">
                         <h3 class="card-title"><?php echo ($row['cat_name']); ?></h3>
@@ -203,7 +217,7 @@ function fetchSubCategory($cat_id)
               </div><!-- /.row -->
             </div>
             <!-- /.col -->
-            <div class="col-md-3 table-responsive">
+            <div class="col-lg-4 table-responsive">
               <div class="row no-print">
                 <div class="col-12">
                   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
@@ -229,11 +243,11 @@ function fetchSubCategory($cat_id)
                             <form>
                               <div class="card-body">
                                 <div class="form-group">
-                                  <label for="exampleInputEmail1">Mobile No.</label>
-                                  <input type="text" class="form-control" id="customer_mob_no" placeholder="Enter Mobile No.">
+                                  <label for="customer_mob_no">Mobile No.</label>
+                                  <input type="number" class="form-control" id="customer_mob_no" placeholder="Enter Mobile No.">
                                 </div>
                                 <div class="form-group">
-                                  <label for="exampleInputEmail1">Customer Name</label>
+                                  <label for="customer_name">Customer Name</label>
                                   <input type="text" class="form-control" id="customer_name" placeholder="Enter Customer Name">
                                 </div>
 
@@ -243,7 +257,7 @@ function fetchSubCategory($cat_id)
                           <!-- /.card-body -->
 
                           <div class="card-footer">
-                            <button type="submit" class="btn btn-primary" id="btnAddCategory">Add</button>
+                            <button type="submit" class="btn btn-primary" id="btnAddShortCustomer">Add</button>
                           </div>
                           </form>
 
@@ -273,9 +287,15 @@ function fetchSubCategory($cat_id)
                 <div class="col-12">
                   <div class="form-group">
                     <!-- <label>Food Type</label> -->
-                    <select id="idCostmerType" class="form-control">
-                      <option value="Cash">Cash</option>
-                      <option value="#">Avilable Soon</option>
+                    <select id="selectCustomerBillName" class="js-example-basic-single form-control">
+                      <option value="0,Cash">Cash</option>
+                      <?php
+                      $swl = "SELECT * from customer where restaurant = $restaurant";
+                      $res = mysqli_query($con, $swl);
+                      while ($row = mysqli_fetch_assoc($res)) {
+                      ?>
+                        <option value="<?php echo $row['user_id']; ?>,<?php echo $row['user_name']; ?>"><?php echo $row['user_name']; ?></option>
+                      <?php } ?>
                       <!-- <option value="non-veg">Non-Veg</option> -->
                       <!-- <option value="28">28%</option> -->
                     </select>
@@ -399,6 +419,9 @@ function fetchSubCategory($cat_id)
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.js"></script>
   <!-- AdminLTE for demo purposes -->
+  <!-- select2 js -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
   <!-- <script src="dist/js/demo.js"></script> -->
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <!-- <script src="dist/js/pages/dashboard.js"></script> -->
@@ -413,19 +436,22 @@ function fetchSubCategory($cat_id)
     var admin_id = $('#admin_id').val() != '' ? $('#admin_id').val() : 0;
     var restaurant = $('#restaurant').val() != '' ? $('#restaurant').val() : 0;
     // product object acc to bill list
+    const customer = $("#selectCustomerBillName").val().split(",");
     const products = {
       data: [],
       table: table,
       type: type,
       admin_id: admin_id,
       restaurant: restaurant,
+      customerName: customer[1],
+      customerID: customer[0],
       customerType: $("#idCostmerType").val(),
       orderid: 0,
       billNo: 0,
       totalPrice: 0
     };
     // on change idCostmerType
-    $("#idCostmerType").on("change", () => {
+    $("#selectCustomerBillName").on("change", () => {
       products.customerType = $(this).val();
     })
 
@@ -621,6 +647,14 @@ function fetchSubCategory($cat_id)
       });
     });
   </script>
+
+  <!-- select search -->
+  <script>
+    $('#selectCustomerBillName').select2({
+      placeholder: 'Select an option'
+    });
+  </script>
+
 </body>
 
 </html>

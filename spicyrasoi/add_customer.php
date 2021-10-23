@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+include_once 'class/User.php';
+require_once '../config.php';
+require_once("islogin.php");
+$user = unserialize($_SESSION['user']);
+
+?>
 
 <head>
     <meta charset="utf-8">
@@ -39,8 +47,7 @@
         <!-- Navbar -->
         <?php include("navbar.php"); ?>
         <!-- /.navbar -->
-
-
+        <?php require_once("logininfo.php"); ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -84,13 +91,13 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Mobile No.</label>
-                                                    <input type="text" id="c_mob_no" class="form-control" placeholder="Enter Mobile No.">
+                                                    <input type="text" id="mobile" class="form-control" placeholder="Enter Mobile No.">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Customer Name</label>
-                                                    <input type="text" id="c_name" class="form-control" placeholder="Enter Name">
+                                                    <input type="text" id="name" class="form-control" placeholder="Enter Name">
                                                 </div>
                                             </div>
                                         </div>
@@ -99,7 +106,7 @@
 
                                                 <div class="form-group">
                                                     <label>Gender</label>
-                                                    <select class="form-control" id="dropdownSubCategory">
+                                                    <select class="form-control" id="sex">
                                                         <option value=0>Select</option>
                                                         <option value="Male">Male</option>
                                                         <option value="Female">Female</option>
@@ -125,7 +132,7 @@
                                                         <option value="Puducherry">Puducherry</option>
                                                         <option value="Goa">Goa</option>
                                                         <option value="Gujarat">Gujarat</option>
-                                                        <option value="Haryana">Haryana</option>
+                                                        <option selected value="Haryana">Haryana</option>
                                                         <option value="Himachal Pradesh">Himachal Pradesh</option>
                                                         <option value="Jammu and Kashmir">Jammu and Kashmir</option>
                                                         <option value="Jharkhand">Jharkhand</option>
@@ -188,13 +195,13 @@
 
                                                 <div class="form-group">
                                                     <label>Check In</label>
-                                                    <input type="text" id="productUnitName" class="form-control" placeholder="" value="PCS">
+                                                    <input type="date" id="checkin" class="form-control" placeholder="" value="PCS">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Check Out</label>
-                                                    <input type="text" id="hsnCode" class="form-control" placeholder="">
+                                                    <input type="date" id="checkout" class="form-control" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
@@ -204,15 +211,15 @@
 
                                                 <div class="form-group">
                                                     <label>Aadhar Card No.</label>
-                                                    <input type="text" id="id_proof" class="form-control" placeholder="ID Proof" >
+                                                    <input type="number" min="111111111111" max="999999999999" id="id_proof" class="form-control" placeholder="ID Proof">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Customer Photo</label>
-                                                        <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="customFile">
-                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="customFile">
+                                                        <label class="custom-file-label" for="customFile">Choose file</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -224,13 +231,13 @@
 
                                                 <div class="form-group">
                                                     <label>Where To</label>
-                                                    <input type="text" id="productUnitName" class="form-control" placeholder="Where To">
+                                                    <input type="text" id="whereto" class="form-control" placeholder="Where To">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>Where From</label>
-                                                    <input type="text" id="hsnCode" class="form-control" placeholder="Where From">
+                                                    <input type="text" id="wherefrom" class="form-control" placeholder="Where From">
                                                 </div>
                                             </div>
                                         </div>
@@ -238,7 +245,7 @@
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="card-footer">
-                                                    <button type="submit" id="addProductSubmit" class="btn btn-primary">Submit</button>
+                                                    <button type="submit" id="btnAddCustomer" class="btn btn-primary">Submit</button>
                                                 </div>
                                                 <!-- <div class="card-footer">
                   <button type="Reset" class="btn btn-primary">Reset</button>
@@ -306,6 +313,8 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
     <script src="scripts/productpage.js"></script>
+    <?php require_once("isloginfooter.php"); ?>
+
 </body>
 
 </html>

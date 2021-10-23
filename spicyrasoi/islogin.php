@@ -30,3 +30,6 @@ if (!isset($_SESSION['user'])) {
         $admin_id = $user->userid;
     }
 }
+
+if (!$isLogined)
+    header('location:user/login.php');

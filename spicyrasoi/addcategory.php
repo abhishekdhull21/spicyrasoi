@@ -137,7 +137,7 @@
                       <div class="form-group">
                         <select class="js-example-basic-single form-control" id="cat_id">
                           <?php
-                          $swl = "SELECT * from category where admin_id = $admin_id and restaurant = $restaurant";
+                          $swl = "SELECT * from category where  restaurant = $restaurant";
                           $res = mysqli_query($con, $swl);
                           while ($row = mysqli_fetch_assoc($res)) {
                           ?>
