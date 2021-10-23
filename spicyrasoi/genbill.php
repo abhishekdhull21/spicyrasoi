@@ -436,7 +436,7 @@ function fetchSubCategory($cat_id)
     var admin_id = $('#admin_id').val() != '' ? $('#admin_id').val() : 0;
     var restaurant = $('#restaurant').val() != '' ? $('#restaurant').val() : 0;
     // product object acc to bill list
-    const customer = $("#selectCustomerBillName").val().split(",");
+    var customer = $("#selectCustomerBillName").val().split(",");
     const products = {
       data: [],
       table: table,
@@ -445,15 +445,19 @@ function fetchSubCategory($cat_id)
       restaurant: restaurant,
       customerName: customer[1],
       customerID: customer[0],
-      customerType: $("#idCostmerType").val(),
+      customerType: $("#idCustomerType").val(),
       orderid: 0,
       billNo: 0,
       totalPrice: 0
     };
     // on change idCostmerType
     $("#selectCustomerBillName").on("change", () => {
-      products.customerType = $(this).val();
-    })
+      customer = $("#selectCustomerBillName").val().split(",");
+
+      products.customerName = customer[1];
+      products.customerID = customer[0];
+      products.customerType = customer[1];
+    });
 
     // calculate final bill
     function calGrandTotal(update, price, type) {
@@ -649,11 +653,35 @@ function fetchSubCategory($cat_id)
   </script>
 
   <!-- select search -->
-  <script>
+  <!-- <script>
     $('#selectCustomerBillName').select2({
-      placeholder: 'Select an option'
+      ajax: {
+        method: 'POST',
+        url: constant.url + '/customer/fetch.php',
+        data: JSON.stringify({
+          restaurant: restaurant
+        }),
+        dataType: "json",
+        processResults: function(data) {
+          // data = data.data;
+          // params.page = params.page || 1;
+          var data1 = $.map(data.data, function(obj) {
+            obj.id = obj.id || obj.user_id; // replace pk with your identifier
+            obj.text = obj.text || obj.user_name; // replace pk with your identifier
+
+            return obj;
+          });
+          console.log(data1)
+          return {
+            results: data1
+          };
+        }
+
+
+      }
+
     });
-  </script>
+  </script> -->
 
 </body>
 
