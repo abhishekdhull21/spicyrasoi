@@ -65,7 +65,7 @@ function showProduct($cat_id, $subid)
             ?>
               <img src="../img/icons/vegicon.png" style="width: 25px; height: 25px;" alt="veg">
             <?php } else { ?>
-              <img src="../img/icons/novegicon.png" style="width: 25px; height: 25px;" alt="non-veg">
+              <img src="../img/icons/nonvegicon.png" style="width: 25px; height: 25px;" alt="non-veg">
             <?php } ?>
 
           </td>
