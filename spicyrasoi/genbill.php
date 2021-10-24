@@ -244,7 +244,8 @@ function fetchSubCategory($cat_id)
                               <div class="card-body">
                                 <div class="form-group">
                                   <label for="customer_mob_no">Mobile No.</label>
-                                  <input type="number" class="form-control" id="customer_mob_no" placeholder="Enter Mobile No.">
+                                  <input type="number" class="form-control" id="customer_mob_no" placeholder="Enter Mobile No."><br>
+
                                 </div>
                                 <div class="form-group">
                                   <label for="customer_name">Customer Name</label>
@@ -257,7 +258,8 @@ function fetchSubCategory($cat_id)
                           <!-- /.card-body -->
 
                           <div class="card-footer">
-                            <button type="submit" class="btn btn-primary" id="btnAddShortCustomer">Add</button>
+                            <button type="submit" class="btn btn-primary" disabled id="btnAddShortCustomer">Add</button>
+                            <button type="submit" disabled="true" class="btn btn-primary" id="btnCustomerSelect">Select</button>
                           </div>
                           </form>
 
@@ -443,8 +445,8 @@ function fetchSubCategory($cat_id)
       type: type,
       admin_id: admin_id,
       restaurant: restaurant,
-      customerName: customer[1],
-      customerID: customer[0],
+      customerName: "",
+      customerID: 0,
       customerType: $("#idCustomerType").val(),
       orderid: 0,
       billNo: 0,
@@ -489,8 +491,8 @@ function fetchSubCategory($cat_id)
       var price = tr.querySelectorAll("#price")[0];
       // var subTotalPrice = subTotal.innerHTML;
       // var finalPrice = (qty * price.innerHTML);
-      products.data[t].qty = parseInt(qty);
-      products.totalPrice -= parseInt(products.data[t].subtotal);
+      products.data[t].qty = parseFloat(qty);
+      products.totalPrice -= parseFloat(products.data[t].subtotal);
       // console.log(); // = tprice;
       var totalPrice = qty * products.data[t].price;
       products.data[t].subtotal = totalPrice;
@@ -520,12 +522,12 @@ function fetchSubCategory($cat_id)
           price = savedProduct.price;
           subtotal = savedProduct.subtotal; //price;
           qty = savedProduct.qty;
-          products.totalPrice += parseInt(subtotal);
+          products.totalPrice += parseFloat(subtotal);
         } else {
           products.data[i] = {
             id: id,
             name: name,
-            price: parseInt(price),
+            price: parseFloat(price),
             qty: 1,
             subtotal: price,
 
@@ -562,8 +564,6 @@ function fetchSubCategory($cat_id)
           }
         })
         // }
-
-
       }
     }
     $(document).ready(function() {
@@ -682,7 +682,7 @@ function fetchSubCategory($cat_id)
 
     });
   </script> -->
-
+  <!-- <script src="scripts/request.js"></script> -->
 </body>
 
 </html>
