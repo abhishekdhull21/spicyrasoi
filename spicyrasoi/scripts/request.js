@@ -532,19 +532,17 @@ $(document).ready(function () {
         console.log(result);
 
         const json = result;
-        if (json.success)
+        if (json.success) {
+          products.customerName = json.data[0].user_name;
+          products.customerID = json.data[0].user_id;
           swal(
             "Good Job",
             "You have successfully added new Customer",
-            "success",
-            {
-              buttons: ["Reload", "OK"],
-            }
-          ).then(() => {
-            location.reload();
-            // $(location).prop("href", "./login.php");
-          });
-        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+            "success"
+          );
+          // $(location).prop("href", "./login.php");
+        } else
+          swal({ title: "Error Occured", text: json.error, icon: "error" });
         console.info(json.success);
         // $("#btnAddCategory").attr("disabled");
         $("#btnAddShortCustomer").html("Submit");
@@ -559,6 +557,37 @@ $(document).ready(function () {
     $(document).ajaxComplete((res) => {
       $("#btnAddShortCustomer").attr("disabled", false);
       $("#btnAddShortCustomer").html("Submit");
+    });
+  });
+
+  // add into product object
+  $("#btnCustomerSelect").on("click", (e) => {
+    e.preventDefault();
+  });
+
+  // add customer on genbill mobile no change
+  $("#customer_mob_no").on("change", (e) => {
+    console.log("changed");
+    $.ajax({
+      url: constant.url + "/customer/fetchwithmobile.php",
+      method: "POST",
+      data: JSON.stringify({
+        restaurant: restaurant,
+        mobile: $("#customer_mob_no").val(),
+      }),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        console.log(result);
+        // console.info(json.success);
+        const json = result;
+        if (json.success) {
+          $("#customer_name").val(json.data[0].user_name);
+          $("#btnCustomerSelect").prop("disabled", false);
+          $("#btnAddShortCustomer").prop("disabled", true);
+        } else $("#btnAddShortCustomer").prop("disabled", false);
+        // $("#btnAddCategory").attr("disabled");
+      },
     });
   });
 });
