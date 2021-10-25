@@ -353,8 +353,23 @@ function fetchSubCategory($cat_id)
                   </tr> -->
                   <tr>
                     <!-- <td></td> -->
-                    <td></td>
-                    <td></td>
+                    <td><b>Mode</b></td>
+                    <td><select id="selectCustomerBillName" class="js-example-basic-single form-control">
+                      <option value="0,Cash">Cash</option>
+                      <option value="1,Bank">Bank</option>
+                      <option value="2,Gpay">GPay</option>
+                      <option value="3,PhonePe">PhonePe</option>
+                      <option value="4,UPI">UPI</option>
+                      <option value="5,Other">Other</option>
+                      </select></td>
+                    <td><b>Recived</b></td>
+                    <td ><input type="number" class="form-control" id="addSubCategoryInput" ></td>
+                  </tr>
+                  <tr>
+                    <!-- <td></td> -->
+                    <td><b>Discount</b></td>
+                    <td> <input type="number" class="form-control" id="addSubCategoryInput" value=0>
+                    </td>
                     <td><b>Grand Total</b></td>
                     <td id="grandtotalprice">00</td>
                   </tr>
