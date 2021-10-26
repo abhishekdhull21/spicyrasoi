@@ -28,6 +28,9 @@
           <a href="genbill.php" class="nav-link"><i class="fas fa-hamburger"> Zamato</i></a>
         </li>
         <li class="nav-item">
+          <a href="genbill.php" class="nav-link"><i class="fas fa-receipt"> GST Bill</i></a>
+        </li>
+        <li class="nav-item">
           <a href="#" class="nav-link"><i class="fas fa-truck-pickup"> Dilvery</i></a>
         </li>
         <li class="nav-item">

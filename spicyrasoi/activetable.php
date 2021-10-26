@@ -12,7 +12,7 @@
         array_push($arr, $row['table_id']);
     $_SESSION['tables'] = $arr;
     // $arr = $_SESSION['tables'];
-    print_r($_SESSION['tables']);
+    //print_r($_SESSION['tables']);
 
 
     ?>

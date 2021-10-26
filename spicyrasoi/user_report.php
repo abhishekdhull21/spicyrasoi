@@ -39,39 +39,15 @@ require_once("islogin.php");
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
     <div class="wrapper">
 
-        <!-- Preloader -->
-        <!-- <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-    </div> -->
-
         <!-- Navbar -->
         <?php
         include_once("navbar.php");
         // require_once("../config.php");
         require_once("logininfo.php");
-        //  $con = mysqli_connect($host, $username, $password, $db);
-
-        //  if (mysqli_connect_errno()){
-        //  echo("Error");
-        //  }
-        //  else
-        //  {
-        //    //echo("Successfull");
-        //    if ($res->num_rows > 0) {
-        //       //echo "Output fetched successfully";
-
-        //       }
-        //  }
-        //die("error");
+       
         date_default_timezone_set("Asia/Calcutta");
 
-        //  $sql = "SELECT * FROM users ";
-        //  $result = $conn->query($sql);
-
-        // if ($result->num_rows > 0) {
-        // 	echo "Output fetched successfully";
-
-        //}
+       
 
         ?>
         <!-- /.navbar -->
@@ -84,7 +60,7 @@ require_once("islogin.php");
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Invoice Report </h1>
+                            <h1 class="m-0">User Report </h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -107,7 +83,7 @@ require_once("islogin.php");
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Invoice </h3>
+                                    <h3 class="card-title">User Report </h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -118,16 +94,16 @@ require_once("islogin.php");
                                                 <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                                                     <thead>
                                                         <tr role="row">
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Date</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Invoice No.</th>
-                                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name Of Customer</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Total Amount</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Mode</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">From</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">SNo.</th>
+                                                            <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Invoice No.</th> -->
+                                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name </th>
+                                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Mob.No. </th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Passord</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Type</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Gender</th>
+
                                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th>
-                                                            <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >HSN Code</th> -->
-                                                        </tr>
+                                                           </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php
@@ -138,15 +114,13 @@ require_once("islogin.php");
                                                         ?>
 
                                                             <tr class="odd">
-                                                                <td class="dtr-control"><?php echo $row['date']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $row['orderid'];; ?> </td>
-                                                                <td class="sorting_1"><?php echo $row['name']; ?></td>
-                                                                <td><?php echo $row['order_value']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode
-                                                                                        ?> 
-                                                                </td>
-
-                                                                <td>Table1</td>
+                                                                <td class="dtr-control"><?php echo ("1") ?> </td>
+                                                                <td class="dtr-control"><?php echo ("Name") ?> </td>
+                                                                <td class="dtr-control"><?php echo ("Mob. No.") ?> </td>
+                                                                <td class="dtr-control"><?php echo ("Password") ?> </td>
+                                                                <td class="sorting_1"><?php echo ("Admin") ?></td>
+                                                                <td><?php echo ("Male") ?> </td>
+                                                
                                                                 <td>
                                                                     <div class="btn-group">
                                                                         <button type="button" class="btn btn-info">Action</button>
@@ -154,8 +128,10 @@ require_once("islogin.php");
                                                                             <span class="sr-only">Toggle Dropdown</span>
                                                                         </button>
                                                                         <div class="dropdown-menu" role="menu" >
+                                                                            <a class="dropdown-item" href="#">Permission</a>
                                                                             <a class="dropdown-item" href="#">Edit</a>
-                                                                            <a class="dropdown-item" href="#">Edit</a>
+                                                                            <a class="dropdown-item" href="#">Stop Service</a>
+                                                                            <a class="dropdown-item" href="#">Change Role</a>
                                                                         </div>
                                             </div>
                                             </td>
@@ -163,9 +139,7 @@ require_once("islogin.php");
                                         <?php } ?>
 
                                         </tbody>
-                                        <!-- <tfoot>
-                  <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
-                  </tfoot> -->
+                                       
                                         </table>
                                         </div>
                                     </div>
