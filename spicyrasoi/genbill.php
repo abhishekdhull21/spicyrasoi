@@ -289,18 +289,11 @@ function fetchSubCategory($cat_id)
                 <div class="col-12">
                   <div class="form-group">
                     <!-- <label>Food Type</label> -->
-                    <select id="selectCustomerBillName" class="js-example-basic-single form-control">
-                      <option value="0,Cash">Cash</option>
-                      <?php
-                      $swl = "SELECT * from customer where restaurant = $restaurant";
-                      $res = mysqli_query($con, $swl);
-                      while ($row = mysqli_fetch_assoc($res)) {
-                      ?>
-                        <option value="<?php echo $row['user_id']; ?>,<?php echo $row['user_name']; ?>"><?php echo $row['user_name']; ?></option>
-                      <?php } ?>
+                    <h3 id="selectCustomerBillName" class="form-control">
+
                       <!-- <option value="non-veg">Non-Veg</option> -->
                       <!-- <option value="28">28%</option> -->
-                    </select>
+                    </h3>
                   </div>
                   <!-- <input type="text" class="form-control" id="customer_name" placeholder="Customer Name"><br>
                 <input type="text" class="form-control" id="customer_mob_no" placeholder="Customer Mobile No."><br>
@@ -363,25 +356,29 @@ function fetchSubCategory($cat_id)
                         <option value="5,Other">Other</option>
                       </select></td>
                     <td><b>Recived</b></td>
-                    <td><input type="number" class="form-control" id="addSubCategoryInput"></td>
+                    <td><input type="number" class="form-control" id="cartRecived"></td>
                   </tr>
                   <tr>
                     <!-- <td></td> -->
                     <td><b>Discount</b></td>
-                    <td> <input type="number" class="form-control" id="addSubCategoryInput" value=0>
+                    <td> <input type="number" class="form-control" id="cartDiscount" value=0>
                     </td>
                     <td><b>Grand Total</b></td>
                     <td id="grandtotalprice">00</td>
                   </tr>
-                  <tr>
-                    <!-- <td></td> -->
-                    <td><input type="number" value=0 id="cartRecived"></td>
-                    <td><input type="number" value=0 id="cartDiscount"></td>
-                    <td><select name="" id="selectCustomerBillName">
-                        <option value="Cash">Cash</option>
+                  <!-- <tr>                   
+                    <td><input type="number" class="form-control" value=0 id="cartRecived"></td>
+                    <td><input type="number" class="form-control" value=0 id="cartDiscount"></td>
+                    <td><select id="selectCustomerBillName" class="js-example-basic-single form-control">
+                        <option value="0,Cash">Cash</option>
+                        <option value="1,Bank">Bank</option>
+                        <option value="2,Gpay">GPay</option>
+                        <option value="3,PhonePe">PhonePe</option>
+                        <option value="4,UPI">UPI</option>
+                        <option value="5,Other">Other</option>
                       </select></td>
                     <td>Paid:<span id="paid">00</span></td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
 
@@ -470,7 +467,7 @@ function fetchSubCategory($cat_id)
       type: type,
       admin_id: admin_id,
       restaurant: restaurant,
-      customerName: "",
+      customerName: "Cash",
       customerID: 0,
       customerType: $("#idCustomerType").val(),
       orderid: 0,
@@ -679,7 +676,7 @@ function fetchSubCategory($cat_id)
         success: function(result) {
           // console.log(result);
           if (result.success == true) {
-            clearTable();
+            // clearTable();
             products.orderid = result.data.orderid;
             // alert("redirected to print page")
             // localStorage.setItem("bill", JSON.stringify(products));
@@ -717,7 +714,7 @@ function fetchSubCategory($cat_id)
     // clear bill list
     $("#btnbillclear").on("click", () => {
       console.log("clicked");
-      if (products.data.length < 1) return;
+      // if (products.data.length < 1) return;
       clearTable(true);
     });
     // });

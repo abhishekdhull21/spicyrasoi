@@ -521,7 +521,7 @@ $(document).ready(function () {
 
     $(document).ajaxSend(() => {
       $("#btnAddShortCustomer").prop("disabled", true);
-      $("#btnAddShortCustomer").html("Logining...");
+      $("#btnAddShortCustomer").html("Processing...");
     });
     $.ajax({
       url: constant.url + "/customer/shortadd.php",
@@ -540,30 +540,34 @@ $(document).ready(function () {
             "Good Job",
             "You have successfully added new Customer",
             "success"
-          );
+          ).then(() => {
+            $("#modal").modal("toggle");
+          });
           // $(location).prop("href", "./login.php");
         } else
           swal({ title: "Error Occured", text: json.error, icon: "error" });
         console.info(json.success);
         // $("#btnAddCategory").attr("disabled");
-        $("#btnAddShortCustomer").html("Submit");
+        $("#btnAddShortCustomer").html("Add");
       },
     });
     $(document).ajaxError((res) => {
       console.error(res);
 
       $("#btnAddShortCustomer").attr("disabled", false);
-      $("#btnAddShortCustomer").html("Submit");
+      $("#btnAddShortCustomer").html("Add");
     });
     $(document).ajaxComplete((res) => {
       $("#btnAddShortCustomer").attr("disabled", false);
-      $("#btnAddShortCustomer").html("Submit");
+      $("#btnAddShortCustomer").html("Add");
     });
   });
 
   // add into product object
   $("#btnCustomerSelect").on("click", (e) => {
     e.preventDefault();
+    console.log(products);
+    $("#modal-default").modal("toggle");
   });
 
   // add customer on genbill mobile no change
@@ -584,6 +588,9 @@ $(document).ready(function () {
         const json = result;
         if (json.success) {
           $("#customer_name").val(json.data[0].user_name);
+          $("#selectCustomerBillName").html(json.data[0].user_name);
+          products.customerID = json.data[0].user_id;
+          products.customerName = json.data[0].user_name;
           $("#btnCustomerSelect").prop("disabled", false);
           $("#btnAddShortCustomer").prop("disabled", true);
         } else $("#btnAddShortCustomer").prop("disabled", false);
