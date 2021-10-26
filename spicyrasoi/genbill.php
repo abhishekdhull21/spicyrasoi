@@ -170,7 +170,7 @@ function fetchSubCategory($cat_id)
       <section class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-12">
               <div class="row">
                 <?php
                 if ($restaurant == "" || $admin_id == "") {
@@ -189,7 +189,7 @@ function fetchSubCategory($cat_id)
                     if ($i++ % 4 == 0) {
                       echo '</div><div class="row">';
                     } ?>
-                  <div class="col-md-4">
+                  <div class="col-md-4 ">
                     <div class="card card-primary collapsed-card">
                       <div class="card-header">
                         <h3 class="card-title"><?php echo ($row['cat_name']); ?></h3>
@@ -353,10 +353,19 @@ function fetchSubCategory($cat_id)
                   </tr> -->
                   <tr>
                     <!-- <td></td> -->
-                    <td></td>
-                    <td></td>
+                    <td>Recived</td>
+                    <td>Discount</td>
                     <td><b>Grand Total</b></td>
                     <td id="grandtotalprice">00</td>
+                  </tr>
+                  <tr>
+                    <!-- <td></td> -->
+                    <td><input type="number" value=0 id="cartRecived"></td>
+                    <td><input type="number" value=0 id="cartDiscount"></td>
+                    <td><select name="" id="selectCustomerBillName">
+                        <option value="Cash">Cash</option>
+                      </select></td>
+                    <td>Paid:<span id="paid">00</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -364,7 +373,7 @@ function fetchSubCategory($cat_id)
               <div class="row no-print">
                 <div class="col-12">
                   <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
-                  <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> KOT and Save</a>
+                  <a href="#" class="btn btn-default float-right" id="btnkotprint"><i class="fas fa-print"></i> KOT and Save</a>
                   <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
                   <a href="#" class="btn btn-danger float-right" id="btnbillclear"><i class="fas fa-broom"></i> Clear Table</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
@@ -433,6 +442,7 @@ function fetchSubCategory($cat_id)
   <script>
     var i = 0;
     var grandtotalPrice = 0;
+    // $(document).ready(function() {
     var table = $('#table').val() != '' ? $('#tableid').val() : 0;
     var type = $('#method').val() != '' ? $('#method').val() : "store_price";
     var admin_id = $('#admin_id').val() != '' ? $('#admin_id').val() : 0;
@@ -450,20 +460,39 @@ function fetchSubCategory($cat_id)
       customerType: $("#idCustomerType").val(),
       orderid: 0,
       billNo: 0,
-      totalPrice: 0
-    };
-    // on change idCostmerType
-    $("#selectCustomerBillName").on("change", () => {
-      customer = $("#selectCustomerBillName").val().split(",");
+      totalPrice: 0,
+      discount: 0,
+      recived: 0,
+      paid: 0,
+      balance: 0
 
-      products.customerName = customer[1];
-      products.customerID = customer[0];
-      products.customerType = customer[1];
+    };
+    fetchorderid();
+    // on change on add discount
+    $("#cartDiscount, #cartRecived").on("input", () => {
+      var cartDiscount = parseFloat($("#cartDiscount").val() != null ? $("#cartDiscount").val() : 0);
+      var cartRecived = parseFloat($("#cartRecived").val() != null ? $("#cartRecived").val() : 0);
+      products.discount = cartDiscount;
+      products.recived = cartRecived;
+      products.balance = products.totalPrice - cartRecived - cartDiscount;
+      products.paid = cartRecived + cartDiscount;
+      // if (products.totalPrice != (products.discount + products.recived + products.balance))
+      //   alert('something went wrong');
+      console.log(products);
     });
+
+    // on change idCostmerType
+    // $("#selectCustomerBillName").on("change", () => {
+    //   customer = $("#selectCustomerBillName").val().split(",");
+
+    //   products.customerName = customer[1];
+    //   products.customerID = customer[0];
+    //   products.customerType = customer[1];
+    // });
 
     // calculate final bill
     function calGrandTotal(update, price, type) {
-      // console.log($('#grandtotalprice'));
+      console.log(products);
       const grandtotal = $('#grandtotalprice')[0];
       if (products.table > 0)
         $.ajax({
@@ -482,6 +511,7 @@ function fetchSubCategory($cat_id)
           }
         });
       grandtotal.innerHTML = products.totalPrice;
+
     }
     // cal subtotal
     function calPrice(root, qty, t) {
@@ -559,97 +589,152 @@ function fetchSubCategory($cat_id)
           if (v.id == product) {
             // console.log(v.id);
             products.totalPrice -= v.subtotal;
+
             calGrandTotal();
             $("#cartItem" + product).remove();
+            products.data.splice(i, 1);
           }
         })
         // }
       }
     }
-    $(document).ready(function() {
-      // fetch table item
+
+    // fetch table item
+    // $.ajax({
+    //   method: "POST",
+    //   url: constant.url + "table/orderfetch.php",
+    //   data: JSON.stringify({
+    //     table: $('#tableid').val() != null ? $('#tableid').val() : 0,
+    //     restaurant: $('#restaurant').val() != null ? $('#restaurant').val() : 0,
+    //   }),
+    //   contentType: "application/json",
+    //   dataType: "json",
+    //   success: (res) => {
+    //     // console.log(res);
+    //     if (res.success) {
+    //       const arr = res.data;
+
+    //       arr.data.map((d) => {
+    //         if ($("#addProductCart_" + d.id) != null) {
+    //           $("#addProductCart_" + d.id).prop("checked", "true");
+    //           addToCart(document.getElementById("addProductCart_" + d.id), d, arr.totalPrice);
+    //           addToCart($("#addProductCart_" + d.id));
+    //         }
+    //       });
+    //     }
+    //   }
+    // });
+
+    // clear table
+    function clearTable(alert) {
       $.ajax({
+        url: constant.url + "table/update.php",
         method: "POST",
-        url: constant.url + "table/orderfetch.php",
         data: JSON.stringify({
-          table: $('#tableid').val() != null ? $('#tableid').val() : 0,
-          restaurant: $('#restaurant').val() != null ? $('#restaurant').val() : 0,
+          restaurant: restaurant,
+          table: products.table,
+          status: 0
         }),
         contentType: "application/json",
         dataType: "json",
-        success: (res) => {
-          // console.log(res);
-          if (res.success) {
-            const arr = res.data;
-
-            arr.data.map((d) => {
-              if ($("#addProductCart_" + d.id) != null) {
-                $("#addProductCart_" + d.id).prop("checked", "true");
-                addToCart(document.getElementById("addProductCart_" + d.id), d, arr.totalPrice);
-                addToCart($("#addProductCart_" + d.id));
-              }
-            });
+        success: function(result) {
+          // console.log(result);
+          if (result.success == true) {
+            if (alert === true)
+              swal("You done it", "Table successfully cleared", "success")
+              .then((res) => {
+                if (res)
+                  location.reload()
+              });
           }
-        }
+        },
       });
+    }
 
-      // clear table
-      function clearTable(alert) {
-        $.ajax({
-          url: constant.url + "table/update.php",
-          method: "POST",
-          data: JSON.stringify({
-            restaurant: restaurant,
-            table: products.table,
-            status: 0
-          }),
-          contentType: "application/json",
-          dataType: "json",
-          success: function(result) {
-            // console.log(result);
-            if (result.success == true) {
-              if (alert === true)
-                swal("You done it", "Table successfully cleared", "success")
-                .then((res) => {
-                  if (res)
-                    location.reload()
-                });
-            }
-          },
-        });
-      }
-
-      // print bill on click
-      $("#btnprintbill").on("click", () => {
-        // console.log("clicked");
-        if (products.data.length < 1) return;
-        $.ajax({
-          url: constant.url + "order/orders.php",
-          method: "POST",
-          data: JSON.stringify(products),
-          contentType: "application/json",
-          dataType: "json",
-          success: function(result) {
-            // console.log(result);
-            if (result.success == true) {
-              clearTable();
-              products.orderid = result.data.orderid;
-              // alert("redirected to print page")
-              localStorage.setItem("bill", JSON.stringify(products));
-              window.open("printbill.php", "_blank");
-              location.reload();
-            }
-          },
-        });
-      });
-
-      // clear bill list
-      $("#btnbillclear").on("click", () => {
-        console.log("clicked");
-        if (products.data.length < 1) return;
-        clearTable(true);
+    //kot print bill on click
+    $("#btnkotprint").on("click", () => {
+      // console.log("clicked");
+      if (products.data.length < 1) return;
+      $.ajax({
+        url: constant.url + "order/orders.php",
+        method: "POST",
+        data: JSON.stringify(products),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result);
+          if (result.success == true) {
+            clearTable();
+            products.orderid = result.data.orderid;
+            // alert("redirected to print page")
+            // localStorage.setItem("bill", JSON.stringify(products));
+            // window.open("printbill.php", "_blank");
+            // location.reload();
+          }
+        },
       });
     });
+
+    //final print bill on click
+    $("#btnprintbill").on("click", () => {
+      // console.log("clicked");
+      if (products.data.length < 1) return;
+      $.ajax({
+        url: constant.url + "order/orders.php",
+        method: "POST",
+        data: JSON.stringify(products),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result);
+          if (result.success == true) {
+            clearTable();
+            products.orderid = result.data.orderid;
+            // alert("redirected to print page")
+            localStorage.setItem("bill", JSON.stringify(products));
+            window.open("printbill.php?orderid=" + products.orderid, "_blank");
+            location.reload();
+          }
+        },
+      });
+    });
+
+    // clear bill list
+    $("#btnbillclear").on("click", () => {
+      console.log("clicked");
+      if (products.data.length < 1) return;
+      clearTable(true);
+    });
+    // });
+
+    //fetchorderid
+    function fetchorderid() {
+      $.ajax({
+        url: constant.url + "table/fetchstatus.php",
+        method: "POST",
+        data: JSON.stringify({
+          restaurant: restaurant,
+          table: products.table,
+          status: 0
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result);
+          if (result.success == true) {
+            console.log(result);
+            products.orderid = result.data.orderid;
+          } else {
+            if (alert === true)
+              swal("Error", "Something went wrong", "error")
+              .then((res) => {
+                if (res)
+                  location.reload()
+              });
+          }
+        },
+      });
+    }
   </script>
 
   <!-- select search -->

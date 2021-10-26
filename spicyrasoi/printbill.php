@@ -13,6 +13,13 @@
 //     $_SESSION['tables'][$activeTables] = $tableid;
 // }
 // print_r(file_get_contents('php://input'));
+$orderid = isset($_GET['orderid']) ? $_GET['orderid'] : null;
+$sql = "SELECT a.name as restaurant,a.city,a.state,a.country,a.district,a.mobile,
+b.name as name,b.bill_no,b.date,b.orderid,b.order_value as total
+from restaurant a, orders b where b.restaurant = a.restaurantid and b.orderid  = $orderid";
+$res = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($res);
+
 ?>
 
 <head>
@@ -42,7 +49,7 @@
             <div class="col-12">
               <h2 class="page-header">
                 <i class="fas fa-hotel"></i>Spicy Rasoi
-                <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
+                <small class="float-right">Date: <?php echo $row['date']; ?></small>
               </h2>
             </div>
             <!-- /.col -->
@@ -52,12 +59,12 @@
             <div class="col-sm-4 invoice-col">
               From
               <address>
-                <strong id="restaurant">null</strong><br>
+                <strong id="restaurant"><?php echo $row['restaurant']; ?></strong>><br>
                 <address id="address">
-                  <span id="city"></span> <span id="district"></span><br>
-                  <span id="state"></span>
-                  <span id="country"></span><br>
-                  Phone: <span id="phone">null</span><br>
+                  <span id="city"></span><?php echo $row['city']; ?> <span id="district"><?php echo $row['district']; ?></span><br>
+                  <span id="state"><?php echo $row['state']; ?></span>
+                  <span id="country"><?php echo $row['country']; ?></span><br>
+                  Phone: <span id="phone"><?php echo $row['mobile']; ?></span><br>
                 </address>
 
               </address>
@@ -66,7 +73,7 @@
             <div class="col-sm-4 invoice-col">
               To
               <address>
-                <strong><span id="customerName">null</strong><br>
+                <strong><span id="customerName"><?php echo $row['name']; ?></strong><br>
                 <!-- 795 Folsom Ave, Suite 600<br>
           San Francisco, CA 94107<br>
           Phone: (555) 539-1037<br>
@@ -75,8 +82,8 @@
             </div>
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
-              <b>Bill No. : <span id="bill">null</span></b><br>
-              <b>Order No. : <span id="orderid">00</span></b><br>
+              <b>Bill No. : <span id="bill"><?php echo $row['bill_no']; ?></span></b><br>
+              <b>Order No. : <span id="orderid"><?php echo $row['orderid']; ?></span></b><br>
               <br>
               <!-- <b>Order ID:</b> 4F3S8J<br>
         <b>Payment Due:</b> 2/22/2014<br>
@@ -110,13 +117,27 @@
                   </tr>
                 </thead>
                 <tbody id="cartItems">
+                  <?php
+                  $sql = "SELECT a.product_name as name, b.price,b.qty,b.subtotal, c.order_value from product a, orders_product b, orders c where a.product_id = b.product_id and b.orderid = c.orderid and b.orderid = $orderid";
+                  $rest = mysqli_query($con, $sql);
+                  $i = 1;
+                  while ($order = mysqli_fetch_assoc($rest)) {
+                  ?>
+                    <tr>
+                      <td><?php echo $i++; ?></td>
+                      <td><?php echo $order['name']; ?></td>
+                      <td><?php echo $order['price']; ?></td>
+                      <td><?php echo $order['qty']; ?></td>
+                      <td><?php echo $order['subtotal']; ?></td>
 
+                    </tr>
+                  <?php } ?>
                   <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td><b>Grand Total</b></td>
-                    <td id="grandtotalprice">00</td>
+                    <td id="grandtotalprice"><?php echo $row['total']; ?></td>
                   </tr>
                 </tbody>
               </table>
@@ -152,43 +173,43 @@
       // console.log(JSON.parse(localStorage.getItem("bill")));
       const products = JSON.parse(localStorage.getItem("bill"));
       console.log(products);
-      $.ajax({
-        url: constant.url + "restaurant/fetch.php",
-        method: "POST",
-        data: JSON.stringify(products),
-        contentType: "application/json",
-        dataType: "json",
-        success: function(result) {
-          console.log(result);
-          if (result.success == true) {
-            result = result.data[0];
-            $("#restaurant").html(result.name);
-            $("#city").html(result.city);
-            $("#district").html(result.district);
-            $("#state").html(result.state);
-            $("#country").html(result.country);
-            $("#phone").html(result.mobile);
-            $('#orderid').html(products.orderid);
-            $('#bill').html(products.billNo);
+      // $.ajax({
+      //   url: constant.url + "restaurant/fetch.php",
+      //   method: "POST",
+      //   data: JSON.stringify(products),
+      //   contentType: "application/json",
+      //   dataType: "json",
+      //   success: function(result) {
+      //     console.log(result);
+      //     if (result.success == true) {
+      //       result = result.data[0];
+      //       $("#restaurant").html(result.name);
+      //       $("#city").html(result.city);
+      //       $("#district").html(result.district);
+      //       $("#state").html(result.state);
+      //       $("#country").html(result.country);
+      //       $("#phone").html(result.mobile);
+      //       $('#orderid').html(products.orderid);
+      //       $('#bill').html(products.billNo);
 
-            $('#customerName').html(products.customerName);
-            products.data.map((d, index) => {
+      //       $('#customerName').html(products.customerName);
+      //       products.data.map((d, index) => {
 
 
-              var itemRow = '<tr id="cartItem' + d.id + '">';
-              itemRow += '<td>' + (products.data.length - index) + '</td>';
-              itemRow += '<td>' + d.name + '</td>';
-              itemRow += '<td>' + d.qty + '</td>';
-              itemRow += '<td id="price">' + d.price + '</td>';
-              itemRow += '<td id="subTotal">' + d.subtotal + '</td>';
-              itemRow += ' </tr>';
-              $("#cartItems").prepend(itemRow)
-            });
-            $("#grandtotalprice").html(products.totalPrice);
-            window.addEventListener("load", window.print());
-          }
-        },
-      });
+      //         var itemRow = '<tr id="cartItem' + d.id + '">';
+      //         itemRow += '<td>' + (products.data.length - index) + '</td>';
+      //         itemRow += '<td>' + d.name + '</td>';
+      //         itemRow += '<td>' + d.qty + '</td>';
+      //         itemRow += '<td id="price">' + d.price + '</td>';
+      //         itemRow += '<td id="subTotal">' + d.subtotal + '</td>';
+      //         itemRow += ' </tr>';
+      //         $("#cartItems").prepend(itemRow)
+      //       });
+      //       $("#grandtotalprice").html(products.totalPrice);
+      //       window.addEventListener("load", window.print());
+      //     }
+      //   },
+      // });
 
     });
   </script>
