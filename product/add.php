@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $hsn =  filter_var($data['hsn-code'], FILTER_SANITIZE_STRING);
         $product =  filter_var($data['product'], FILTER_SANITIZE_STRING);
         $unit =  filter_var($data['unit-name'], FILTER_SANITIZE_STRING);
-        if ($result = mysqli_query($con, "SELECT product_name FROM `product` where product_name = '$product'")) {
+        if ($result = mysqli_query($con, "SELECT product_name FROM `product` where restaurant = $restaurant and category = $category and product_name = '$product'")) {
             if (mysqli_num_rows($result) < 1) {
                 $sql = "INSERT INTO `product`( `category`,admin_id,restaurant,`sub_category`, `product_name`, `store_price`, `swiggy_price`, `zomato_price`, `local_price`,`gst_type`,`food_type`, `gst`, `discount`, `unit_name`, `hsn_code`) VALUES($category,$admin_id,$restaurant,$subcategory,'$product',$store_price,$swiggy_price,$zomato_price,$local_price,'$gst_type','$food_type','$gst',$discount,'$unit','$hsn')";
 

@@ -23,44 +23,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // if(strpos($content_type, "application/json") !== false){
     //{"admin_id":123460,"name":"Test Name","mobile":"123","phone":"147","email":"sdfk@agkjla.cld","gst":"12456","country":"INDIA","state":"Haryana","district":"Jind","city":"Ramrai"}
     if (isset($data['name']) && isset($data['admin_id']) && isset($data['restaurant']) && isset($data['mobile'])) {
-
         $admin_id = $data['admin_id'] != '' ? $data['admin_id'] : 0;
         $restaurant = $data['restaurant'] != '' ? $data['restaurant'] : 0;
         $name =  filter_var($data['name'], FILTER_SANITIZE_STRING);
-        // $phone =  filter_var($data['phone'], FILTER_SANITIZE_STRING);
         $mobile =  filter_var($data['mobile'], FILTER_SANITIZE_STRING);
-        // $sex =  filter_var($data['sex'], FILTER_SANITIZE_STRING);
-        // $email =  filter_var($data['email'], FILTER_SANITIZE_STRING);
-        // $gst =  filter_var($data['gst'], FILTER_SANITIZE_STRING);
-        // $country =  filter_var($data['country'], FILTER_SANITIZE_STRING);
-        // $state =  filter_var($data['state'], FILTER_SANITIZE_STRING);
-        // $district =  filter_var($data['district'], FILTER_SANITIZE_STRING);
-        // $city =  filter_var($data['city'], FILTER_SANITIZE_STRING);
-        // $pincode =  filter_var($data['pincode'], FILTER_SANITIZE_STRING);
-        // $id_proof =  filter_var($data['id_proof'], FILTER_SANITIZE_STRING);
-        // $wherefrom =  filter_var($data['wherefrom'], FILTER_SANITIZE_STRING);
-        // $whereto =  filter_var($data['whereto'], FILTER_SANITIZE_STRING);
-        // $checkin =  filter_var($data['checkin'], FILTER_SANITIZE_STRING);
-        // $checkout =  filter_var($data['checkout'], FILTER_SANITIZE_STRING);
-
-        // if ($result = mysqli_query($con, "SELECT restaurantid FROM `restaurant` WHERE name = '$name' and $mobile = '$mobile'")) {
-        // if (mysqli_num_rows($result) < 1) {
         $sql = "INSERT INTO `customer`( `restaurant`, `user_name`, `user_mobile`,  admin_id) VALUES ($restaurant,'$name', '$mobile', $admin_id)";
         if ($result =  mysqli_query($con, $sql)) {
-
-            $response = array(
-                "success" => true,
-                "error" => ""
-            );
+            $sdata = "SELECT user_id,user_name from customer where user_mobile  = '$mobile' order by user_id desc";
+            if ($res =  mysqli_query($con, $sdata)) {
+                $response = array(
+                    "success" => true,
+                    "data" => array("user_id" => $res['user_id'], "user_name" => $res['user_name']),
+                    "error" => ""
+                );
+            } else {
+                $err = mysqli_error($con);
+            }
         } else {
             $err = mysqli_error($con);
         }
-        // } else {
-        //     $err = "Restaurant already exists";
-        // }
-        // } else {
-        //     $err = mysqli_error($con);
-        // }
     } else {
         $err = 'set key as -> {
             "admin_id": ,

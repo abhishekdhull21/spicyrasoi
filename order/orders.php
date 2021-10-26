@@ -19,21 +19,38 @@ $error = "";
 $data = json_decode(file_get_contents('php://input'), true);
 if ($data != null) {
     $grandtotal = $data['totalPrice'];
+    $orderid = $data['orderid'] != null ? $data['orderid'] : 0;
+    $customerID = $data['customerID'] != null ? $data['customerID'] : 0;
+    $customerName = $data['customerName'] != null ? $data['customerName'] : "Cash";
+    // $qty = $data['qty'] != null ? $data['qty'] : 0;
     $table = $data['table'] != null ? $data['table'] : 0;
     $admin_id = $data['admin_id'] != null ? $data['admin_id'] : 0;
+    $pay_type = $data['customerType'] != null ? $data['customerType'] : "Cash";
     $restaurant = $data['restaurant'] != null ? $data['restaurant'] : 0;
     $type = $data['type'] != null ? $data['type'] : "store_price";
-    $orderid = date('Hisu') . $table;
-    $sql = "INSERT INTO `orders`(`orderid`, `order_value`, `order_type`,admin_id,restaurant)  values({$orderid},{$grandtotal},'$type',$admin_id,$restaurant)";
+    if ($orderid == 0) {
+        $orderid = date('Hisu') . $table;
+        $sql = "INSERT INTO `orders`(`orderid`, `order_value`, `order_type`,admin_id,restaurant,status,user_id,name)  values({$orderid},{$grandtotal},'$type',$admin_id,$restaurant,1,$customerID,'$customerName')";
+    } else
+        $sql = "UPDATE  `orders` SET  `order_value` = order_value + $grandtotal where orderid = $orderid and restaurant = $restaurant";
     if (mysqli_query($con, $sql)) {
         foreach ($data['data'] as $row => $value) {
             // print_r($value);
             $productid = $value["id"];
-            $sql = "INSERT INTO `orders_product`( `orderid`, `product_id`) values($orderid,$productid)";
+            $qty = $value['qty'] != null ? $value['qty'] : 0;
+            $price = $value['price'] != null ? $value['price'] : 0;
+            $subtotal = $value['subtotal'] != null ? $value['subtotal'] : 0;
+            $resf = mysqli_query($con, "SELECT * from `orders_product` where product_id = $productid and orderid = $orderid");
+            if (mysqli_num_rows($resf) < 1)
+                $sql = "INSERT INTO `orders_product`(`orderid`, `product_id`,`qty`,`price`,subtotal) values($orderid,$productid,$qty,$price,$subtotal)";
+            else
+                $sql = "UPDATE `orders_product` SET `qty`= qty + $qty,`subtotal`= subtotal + $subtotal,pay_type = '$pay_type'  where orderid= $orderid and product_id= $productid";
             if (mysqli_query($con, $sql)) {
+                setOrderIdTable($con, $orderid, $table, $restaurant);
                 $response = array(
                     "success" => true,
                     "data" => array("orderid" => $orderid),
+                    "more" => $sql,
                     "error" => ""
                 );
             } else
@@ -43,3 +60,15 @@ if ($data != null) {
 } else $error .= "Null Request";
 
 sendPostRes($response, $error);
+
+function setOrderIdTable($con, $orderid, $table, $restaurant)
+{
+    global $admin_id;
+    $sql = "SELECT * FROM `tables_session` where  table_id = $table and restaurant = $restaurant limit 1";
+    $res = mysqli_query($con, $sql);
+    if (mysqli_num_rows($res) > 0)
+        $sql = "UPDATE `tables_session` SET orderid = $orderid ,status =1 where restaurant = $restaurant and table = $table";
+    else
+        $sql = "INSERT INTO `tables_session`(`table_id`, `admin_id`, `restaurant`, `orderid`, `status`) values($table,$admin_id,$restaurant,$orderid,1) ";
+    $res = mysqli_query($con, $sql);
+}
