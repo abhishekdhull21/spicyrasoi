@@ -31,9 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result =  mysqli_query($con, $sql)) {
             $sdata = "SELECT user_id,user_name from customer where user_mobile  = '$mobile' order by user_id desc";
             if ($res =  mysqli_query($con, $sdata)) {
+                $user = mysqli_fetch_assoc($res);
                 $response = array(
                     "success" => true,
-                    "data" => array("user_id" => $res['user_id'], "user_name" => $res['user_name']),
+                    "data" => array("user_id" => $user['user_id'], "user_name" => $user['user_name']),
                     "error" => ""
                 );
             } else {
