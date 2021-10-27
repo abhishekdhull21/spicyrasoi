@@ -22,13 +22,13 @@
           <a href="genbill.php" class="nav-link"><i class="fas fa-receipt"> New Bill</i></a>
         </li>
         <li class="nav-item">
-          <a href="genbill.php" class="nav-link"><i class="fas fa-hamburger"> Swiggy</i></a>
+          <a href="genbill.php?method=swiggy" class="nav-link"><i class="fas fa-hamburger"> Swiggy</i></a>
         </li>
         <li class="nav-item">
-          <a href="genbill.php" class="nav-link"><i class="fas fa-hamburger"> Zamato</i></a>
+          <a href="genbill.php?method=zomato" class="nav-link"><i class="fas fa-hamburger"> Zamato</i></a>
         </li>
         <li class="nav-item">
-          <a href="genbill.php" class="nav-link"><i class="fas fa-receipt"> GST Bill</i></a>
+          <a href="genbill.php?method=gst" class="nav-link"><i class="fas fa-receipt"> GST Bill</i></a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link"><i class="fas fa-truck-pickup"> Dilvery</i></a>

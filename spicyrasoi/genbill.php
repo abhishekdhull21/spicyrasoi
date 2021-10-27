@@ -25,6 +25,8 @@ if (isset($_GET['method'])) {
     $method = "swiggy_price";
   else if ($_GET['method'] == "zomato")
     $method = "zomato_price";
+  else if ($_GET['method'] == "gst")
+    $method = "gst_price";
   // echo $method;
 }
 // print_r($_SESSION);
@@ -488,7 +490,7 @@ function fetchSubCategory($cat_id)
       // if (products.totalPrice != (products.discount + products.recived + products.balance))
       //   alert('something went wrong');
       console.log(products);
-      // $("#grandtotalprice").html(products.paid);
+      $("#grandtotalprice").html(products.totalPrice - products.discount);
     });
 
     function updateDiscount() {
