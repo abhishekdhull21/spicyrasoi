@@ -534,14 +534,17 @@ $(document).ready(function () {
 
         const json = result;
         if (json.success) {
-          products.customerName = json.data[0].user_name;
-          products.customerID = json.data[0].user_id;
+          products.customerName = json.data.user_name;
+          products.customerID = json.data.user_id;
+
+          $("#customer_name").val(json.data.user_name);
+          $("#selectCustomerBillName").html(json.data.user_name);
           swal(
             "Good Job",
             "You have successfully added new Customer",
             "success"
-          ).then(() => {
-            $("#modal").modal("toggle");
+          ).then((a) => {
+            $("#modal-default").modal("toggle");
           });
           // $(location).prop("href", "./login.php");
         } else
@@ -550,13 +553,15 @@ $(document).ready(function () {
         // $("#btnAddCategory").attr("disabled");
         $("#btnAddShortCustomer").html("Add");
       },
+      error: (res) => {
+        console.log(res);
+      },
     });
-    $(document).ajaxError((res) => {
-      console.error(res);
+    // $(document).ajaxError((res) => {
 
-      $("#btnAddShortCustomer").attr("disabled", false);
-      $("#btnAddShortCustomer").html("Add");
-    });
+    //   $("#btnAddShortCustomer").attr("disabled", false);
+    //   $("#btnAddShortCustomer").html("Add");
+    // });
     $(document).ajaxComplete((res) => {
       $("#btnAddShortCustomer").attr("disabled", false);
       $("#btnAddShortCustomer").html("Add");
@@ -587,12 +592,18 @@ $(document).ready(function () {
         // console.info(json.success);
         const json = result;
         if (json.success) {
-          $("#customer_name").val(json.data[0].user_name);
-          $("#selectCustomerBillName").html(json.data[0].user_name);
-          products.customerID = json.data[0].user_id;
-          products.customerName = json.data[0].user_name;
-          $("#btnCustomerSelect").prop("disabled", false);
-          $("#btnAddShortCustomer").prop("disabled", true);
+          if (json.data.length > 0) {
+            $("#customer_name").val(json.data[0].user_name);
+            $("#selectCustomerBillName").html(json.data[0].user_name);
+            products.customerID = json.data[0].user_id;
+            products.customerName = json.data[0].user_name;
+
+            $("#btnCustomerSelect").prop("disabled", false);
+            $("#btnAddShortCustomer").prop("disabled", true);
+          } else {
+            $("#btnCustomerSelect").prop("disabled", true);
+            $("#btnAddShortCustomer").prop("disabled", false);
+          }
         } else $("#btnAddShortCustomer").prop("disabled", false);
         // $("#btnAddCategory").attr("disabled");
       },

@@ -59,7 +59,7 @@ $row = mysqli_fetch_assoc($res);
             <div class="col-sm-4 invoice-col">
               From
               <address>
-                <strong id="restaurant"><?php echo $row['restaurant']; ?></strong>><br>
+                <strong id="restaurant"><?php echo $row['restaurant']; ?></strong><br>
                 <address id="address">
                   <span id="city"></span><?php echo $row['city']; ?> <span id="district"><?php echo $row['district']; ?></span><br>
                   <span id="state"><?php echo $row['state']; ?></span>

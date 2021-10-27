@@ -274,8 +274,9 @@ function fetchSubCategory($cat_id)
                     </div>
                     <!-- /.modal-dialog -->
                   </div>
+                  <!-- /popup -->
                   <a href="#" class="btn btn-default" id="#"><i class="fas fa-print"></i> Add Food</a>
-                  <a href="#" class="btn btn-default float-right" id="#"><i class="fas fa-print"></i> Billing</a>
+                  <a href="#" class="btn btn-default float-right" id="billingprint"><i class="fas fa-print"></i> Billing</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
                   <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
                   <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
@@ -347,21 +348,21 @@ function fetchSubCategory($cat_id)
                   <tr>
                     <!-- <td></td> -->
                     <td><b>Mode</b></td>
-                    <td><select id="selectCustomerBillName" class="js-example-basic-single form-control">
-                        <option value="0,Cash">Cash</option>
-                        <option value="1,Bank">Bank</option>
-                        <option value="2,Gpay">GPay</option>
-                        <option value="3,PhonePe">PhonePe</option>
-                        <option value="4,UPI">UPI</option>
-                        <option value="5,Other">Other</option>
+                    <td><select id="idCustomerType" class="js-example-basic-single form-control">
+                        <option selected value="Cash">Cash</option>
+                        <option value="Bank">Bank</option>
+                        <option value="Gpay">GPay</option>
+                        <option value="PhonePe">PhonePe</option>
+                        <option value="UPI">UPI</option>
+                        <option value="Other">Other</option>
                       </select></td>
                     <td><b>Recived</b></td>
-                    <td><input type="number" class="form-control" id="cartRecived"></td>
+                    <td><input type="number" min=0 class="form-control" id="cartRecived"></td>
                   </tr>
                   <tr>
                     <!-- <td></td> -->
                     <td><b>Discount</b></td>
-                    <td> <input type="number" class="form-control" id="cartDiscount" value=0>
+                    <td> <input type="number" min=0 class="form-control" id="cartDiscount" value=0>
                     </td>
                     <td><b>Grand Total</b></td>
                     <td id="grandtotalprice">00</td>
@@ -469,7 +470,7 @@ function fetchSubCategory($cat_id)
       restaurant: restaurant,
       customerName: "Cash",
       customerID: 0,
-      customerType: $("#idCustomerType").val(),
+      customerType: "Cash",
       orderid: 0,
       billNo: 0,
       totalPrice: 0,
@@ -480,19 +481,24 @@ function fetchSubCategory($cat_id)
 
     };
     fetchorderid();
+    updateDiscount();
     // on change on add discount
     $("#cartDiscount, #cartRecived").on("input", () => {
+      updateDiscount();
+      // if (products.totalPrice != (products.discount + products.recived + products.balance))
+      //   alert('something went wrong');
+      console.log(products);
+      // $("#grandtotalprice").html(products.paid);
+    });
+
+    function updateDiscount() {
       var cartDiscount = parseFloat($("#cartDiscount").val() != null ? $("#cartDiscount").val() : 0);
       var cartRecived = parseFloat($("#cartRecived").val() != null ? $("#cartRecived").val() : 0);
       products.discount = cartDiscount;
       products.recived = cartRecived;
       products.balance = products.totalPrice - cartRecived - cartDiscount;
       products.paid = cartRecived + cartDiscount;
-      // if (products.totalPrice != (products.discount + products.recived + products.balance))
-      //   alert('something went wrong');
-      console.log(products);
-    });
-
+    }
     // on change idCostmerType
     // $("#selectCustomerBillName").on("change", () => {
     //   customer = $("#selectCustomerBillName").val().split(",");
@@ -681,7 +687,7 @@ function fetchSubCategory($cat_id)
             // alert("redirected to print page")
             // localStorage.setItem("bill", JSON.stringify(products));
             // window.open("printbill.php", "_blank");
-            // location.reload();
+            location.reload();
           }
         },
       });
@@ -709,6 +715,12 @@ function fetchSubCategory($cat_id)
           }
         },
       });
+    });
+    //final print bill on click without saving to db
+    $("#billingprint").on("click", () => {
+      // console.log("clicked");
+      window.open("printbill.php?orderid=" + products.orderid, "_blank");
+      location.reload();
     });
 
     // clear bill list
@@ -747,6 +759,10 @@ function fetchSubCategory($cat_id)
         },
       });
     }
+    $("#idCustomerType").on("change", () => {
+      products.customerType = $("#idCustomerType").val();
+      console.log(products)
+    });
   </script>
 
   <!-- select search -->
