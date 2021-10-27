@@ -45,44 +45,14 @@ $row = mysqli_fetch_assoc($res);
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <h2 class="page-header">
-                <i class="fas fa-hotel"></i>Spicy Rasoi
-                <small class="float-right">Date: <?php echo $row['date']; ?></small>
-              </h2>
-            </div>
-            <!-- /.col -->
-          </div>
+         
           <!-- info row -->
           <div class="row invoice-info">
-            <div class="col-sm-4 invoice-col">
-              From
-              <address>
-                <strong id="restaurant"><?php echo $row['restaurant']; ?></strong><br>
-                <address id="address">
-                  <span id="city"></span><?php echo $row['city']; ?> <span id="district"><?php echo $row['district']; ?></span><br>
-                  <span id="state"><?php echo $row['state']; ?></span>
-                  <span id="country"><?php echo $row['country']; ?></span><br>
-                  Phone: <span id="phone"><?php echo $row['mobile']; ?></span><br>
-                </address>
-
-              </address>
-            </div>
+           
+         
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
-              To
-              <address>
-                <strong><span id="customerName"><?php echo $row['name']; ?></strong><br>
-                <!-- 795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (555) 539-1037<br>
-          Email: john.doe@example.com -->
-              </address>
-            </div>
-            <!-- /.col -->
-            <div class="col-sm-4 invoice-col">
-              <b>Bill No. : <span id="bill"><?php echo $row['bill_no']; ?></span></b><br>
+             
               <b>Order No. : <span id="orderid"><?php echo $row['orderid']; ?></span></b><br>
               <br>
               <!-- <b>Order ID:</b> 4F3S8J<br>
@@ -112,8 +82,7 @@ $row = mysqli_fetch_assoc($res);
                     <th>S.No.</th>
                     <th>Item</th>
                     <th>Qty</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
+                    
                   </tr>
                 </thead>
                 <tbody id="cartItems">
@@ -126,19 +95,13 @@ $row = mysqli_fetch_assoc($res);
                     <tr>
                       <td><?php echo $i++; ?></td>
                       <td><?php echo $order['name']; ?></td>
-                      <td><?php echo $order['price']; ?></td>
+                     
                       <td><?php echo $order['qty']; ?></td>
-                      <td><?php echo $order['subtotal']; ?></td>
+                    
 
                     </tr>
                   <?php } ?>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><b>Grand Total</b></td>
-                    <td id="grandtotalprice"><?php echo $row['total']; ?></td>
-                  </tr>
+                 
                 </tbody>
               </table>
             </div>
@@ -160,9 +123,9 @@ $row = mysqli_fetch_assoc($res);
 
   <!-- jQuery -->
 
-  <script>
+  <!-- <script>
     window.addEventListener("load", window.print());
-  </script>
+  </script> -->
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
@@ -173,43 +136,7 @@ $row = mysqli_fetch_assoc($res);
       // console.log(JSON.parse(localStorage.getItem("bill")));
       const products = JSON.parse(localStorage.getItem("bill"));
       console.log(products);
-      // $.ajax({
-      //   url: constant.url + "restaurant/fetch.php",
-      //   method: "POST",
-      //   data: JSON.stringify(products),
-      //   contentType: "application/json",
-      //   dataType: "json",
-      //   success: function(result) {
-      //     console.log(result);
-      //     if (result.success == true) {
-      //       result = result.data[0];
-      //       $("#restaurant").html(result.name);
-      //       $("#city").html(result.city);
-      //       $("#district").html(result.district);
-      //       $("#state").html(result.state);
-      //       $("#country").html(result.country);
-      //       $("#phone").html(result.mobile);
-      //       $('#orderid').html(products.orderid);
-      //       $('#bill').html(products.billNo);
-
-      //       $('#customerName').html(products.customerName);
-      //       products.data.map((d, index) => {
-
-
-      //         var itemRow = '<tr id="cartItem' + d.id + '">';
-      //         itemRow += '<td>' + (products.data.length - index) + '</td>';
-      //         itemRow += '<td>' + d.name + '</td>';
-      //         itemRow += '<td>' + d.qty + '</td>';
-      //         itemRow += '<td id="price">' + d.price + '</td>';
-      //         itemRow += '<td id="subTotal">' + d.subtotal + '</td>';
-      //         itemRow += ' </tr>';
-      //         $("#cartItems").prepend(itemRow)
-      //       });
-      //       $("#grandtotalprice").html(products.totalPrice);
-      //       window.addEventListener("load", window.print());
-      //     }
-      //   },
-      // });
+     
 
     });
   </script>

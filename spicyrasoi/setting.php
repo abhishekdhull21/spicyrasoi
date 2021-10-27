@@ -90,7 +90,7 @@
                             <!-- <span class="badge bg-success">300</span> -->
                             <i class="fas fa-plus-circle"></i> Add Customer
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
+                          <a href="all_customer.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-success">300</span> -->
                             <i class="fas fa-file"></i> All Customer
                           </a>
@@ -109,11 +109,11 @@
                     </div>
                     <div id="collapsesix" class="collapse" data-parent="#accordion">
                       <div class="card-body">
-                        <a href="add_customer.php" class="btn btn-app bg-success">
+                        <a href="structure.php" class="btn btn-app bg-success">
 
-                          <i class="fas fa-plus-circle"></i> Table
+                          <i class="fas fa-plus-circle"></i> Table Item
                         </a>
-                        <a href="add_customer.php" class="btn btn-app bg-success">
+                        <a href="#" class="btn btn-app bg-success">
 
                           <i class="fas fa-plus-circle"></i> AC Table
                         </a>
