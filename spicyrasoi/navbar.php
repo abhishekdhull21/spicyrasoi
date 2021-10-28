@@ -34,7 +34,7 @@
           <a href="#" class="nav-link"><i class="fas fa-truck-pickup"> Dilvery</i></a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link"><i class="fas fa-sync"> Process</i></a>
+          <a href="process.php" class="nav-link"><i class="fas fa-sync"> Process</i></a>
         </li>
         <li class="nav-item">
           <a href="setting.php" class="nav-link"><b><i class="fas fa-cog"> Settings</i></b></a>

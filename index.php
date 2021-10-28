@@ -430,7 +430,7 @@
                         <h5>Location</h5>
                         <div class="widget-text">
                             <i class="lnr lnr-map-marker"></i>
-                            <p>VPO: Ismailpur Teh Narwana <br />Distt. Jind Haryana 126116</p>
+                            <p>1st Floor Near Mela Mandi <br />Sunderpura Road Narwana <br/> Distt. Jind Haryana 126116</p>
                         </div>
                     </div>
                 </div>
