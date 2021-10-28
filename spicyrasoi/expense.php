@@ -110,8 +110,8 @@
 
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="addCategoryInput">Name of Category</label>
-                    <input type="text" class="form-control" id="addCategoryInput" placeholder="Enter Category">
+                    <label for="addExpenseCategoryInput">Name of Category</label>
+                    <input type="text" class="form-control" id="addExpenseCategoryInput" placeholder="Enter Category">
                   </div>
 
                 </div>
@@ -120,7 +120,7 @@
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" id="btnAddCategory">Add</button>
+                <button type="submit" class="btn btn-primary" id="btnAddExpenseCategory">Add</button>
               </div>
 
               <div class="row">
@@ -135,7 +135,7 @@
                     <!-- form start -->
                     <div class="card-body">
                       <div class="form-group">
-                        <select class="js-example-basic-single form-control" id="cat_id">
+                        <select class="js-example-basic-single form-control" id="addSubExpenseID">
                           <?php
                           $swl = "SELECT * from expense_cat where  restaurant = $restaurant";
                           $res = mysqli_query($con, $swl);
@@ -150,12 +150,12 @@
                         <input type="text" class="form-control" id="addSubCategoryInput" placeholder="Enter Title">
                       </div> -->
                       <div class="form-group">
-                        <label for="addSubCategoryInput">Amount</label>
-                        <input type="number" class="form-control" id="addSubCategoryInput" placeholder="Enter Amount">
+                        <label for="addSubExpenseAmount">Amount</label>
+                        <input type="number" class="form-control" id="addSubExpenseAmount" placeholder="Enter Amount">
                       </div>
                       <div class="form-group">
-                        <label for="addSubCategoryInput">Remark</label>
-                        <input type="text" class="form-control" id="addSubCategoryInput" placeholder="Enter Category">
+                        <label for="addSubExpenseRemarks">Remark</label>
+                        <input type="text" class="form-control" id="addSubExpenseRemarks" placeholder="Enter Category">
                       </div>
 
                     </div>
@@ -164,7 +164,7 @@
                   <!-- /.card-body -->
 
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" id="btnAddSubCategory">Add Expense</button>
+                    <button type="submit" class="btn btn-primary" id="btnAddSubExpense">Add Expense</button>
                   </div>
                 </div>
               </div>
@@ -192,7 +192,7 @@
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Category</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Amount</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Remark</th>
-                              
+
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Action</th>
 
                             </tr>
@@ -299,18 +299,19 @@
   <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
   <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
   <script src="plugins/jszip/jszip.min.js"></script>
-  <script src="plugins/pdfmake/pdfmake.min.js"></script>
   <script src="plugins/pdfmake/vfs_fonts.js"></script>
   <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
   <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+  <script type="module" src="scripts/constant.js"></script>
+  <script src="scripts/expense.js"></script>
   <!-- Page specific script -->
 
 
   <script>
-    $(function() {
+    $(() => {
       $("#example1").DataTable({
         "responsive": true,
         "lengthChange": false,

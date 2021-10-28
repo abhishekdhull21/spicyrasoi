@@ -135,57 +135,58 @@ require_once("islogin.php");
                                                         $res = $con->query($sql);
                                                         while ($row = $res->fetch_assoc()) {
                                                             //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
+                                                            $orderid =  $row['orderid'];
                                                         ?>
 
                                                             <tr class="odd">
                                                                 <td class="dtr-control"><?php echo $row['date']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $row['orderid'];; ?> </td>
+                                                                <td class="dtr-control"><?php echo $orderid ?> </td>
                                                                 <td class="sorting_1"><?php echo $row['name']; ?></td>
                                                                 <td><?php echo $row['order_value']; ?> </td>
                                                                 <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode
-                                                                                        ?> 
+                                                                                        ?>
                                                                 </td>
 
                                                                 <td>Table1</td>
                                                                 <td>
                                                                     <div class="btn-group">
-                                                                        <button type="button" class="btn btn-info">Action</button>
+                                                                        <button type="button" onclick="href.location='printbill.php?orderid=<?php echo $orderid; ?>'" class="btn btn-info">View</button>
                                                                         <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
                                                                             <span class="sr-only">Toggle Dropdown</span>
                                                                         </button>
-                                                                        <div class="dropdown-menu" role="menu" >
-                                                                            <a class="dropdown-item" href="#">Edit</a>
+                                                                        <div class="dropdown-menu" role="menu">
+                                                                            <a class="dropdown-item" target="_blank" href="printbill.php?orderid=<?php echo $orderid; ?>">View</a>
                                                                             <a class="dropdown-item" href="#">Edit</a>
                                                                         </div>
-                                            </div>
-                                            </td>
-                                            </tr>
-                                        <?php } ?>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        <?php } ?>
 
-                                        </tbody>
-                                        <!-- <tfoot>
+                                                    </tbody>
+                                                    <!-- <tfoot>
                   <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
                   </tfoot> -->
-                                        </table>
+                                                </table>
+                                            </div>
                                         </div>
-                                    </div>
 
+                                    </div>
                                 </div>
+                                <!-- /.card-body -->
                             </div>
-                            <!-- /.card-body -->
+                            <!-- /.card -->
                         </div>
-                        <!-- /.card -->
+                        <!-- /.col -->
                     </div>
-                    <!-- /.col -->
+                    <!-- /.row -->
                 </div>
-                <!-- /.row -->
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    <?php include("footer.php"); ?>
+        <!-- /.content-wrapper -->
+        <?php include("footer.php"); ?>
     </div>
     <!-- ./wrapper -->
 

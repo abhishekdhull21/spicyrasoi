@@ -4,7 +4,7 @@
 
     if (!isset($_SESSION['tables']))
         $_SESSION['tables'] = array();
-    $sql = "SELECT table_id FROM tables_session WHERE status =1";
+    $sql = "SELECT table_id FROM tables_session WHERE status =1 and restaurant = $restaurant";
     $res = mysqli_query($con, $sql);
     $arr = array();
     if (mysqli_num_rows($res) > 0);

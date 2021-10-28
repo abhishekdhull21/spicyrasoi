@@ -126,8 +126,8 @@ $row = mysqli_fetch_assoc($res);
                     <tr>
                       <td><?php echo $i++; ?></td>
                       <td><?php echo $order['name']; ?></td>
-                      <td><?php echo $order['price']; ?></td>
                       <td><?php echo $order['qty']; ?></td>
+                      <td><?php echo $order['price']; ?></td>
                       <td><?php echo $order['subtotal']; ?></td>
 
                     </tr>

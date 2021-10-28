@@ -54,104 +54,43 @@ require_once '../config.php';
       <div class="content">
         <div class="container">
           <div class="row">
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title m-0">Table</h5>
+            <div class="col-lg-12">
+              <?php
+              $sql = "SELECT * FROM dashboard where  restaurant  = $restaurant and status =  1";
+              $res = mysqli_query($con, $sql);
+              if (mysqli_num_rows($res) < 1)
+                echo "Nothing to see here";
+              else
+                while ($row = mysqli_fetch_assoc($res)) {
+              ?>
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title m-0"><?php echo $row['title']; ?></h5>
+                  </div>
+                  <div class="card-body">
+
+                    <?php for ($i = 1; $i <= $row['tables']; $i++) {
+                      // if (isset($_SESSION['tables']))
+                      if (in_array($row['id'] . $i, $_SESSION['tables'])) {
+                    ?>
+                        <a class="btn btn-app bg-primary" href="<?php echo "genbill.php?table=" .  $row['id'] . $i ?>">
+                          <h3 id="table<?php echo $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
+                        </a>
+                      <?php } else { ?>
+                        <a class="btn btn-app bg-secondary" href="<?php echo "genbill.php?table=" . $row['id'] . $i ?>">
+                          <h3 id="table<?php echo  $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
+                        </a>
+
+                    <?php }
+                    } ?>
+
+                  </div>
                 </div>
-                <div class="card-body">
+              <?php } ?>
 
-                  <?php for ($i = 1; $i <= 7; $i++) {
-                    // if (isset($_SESSION['tables']))
-                    if (in_array($i, $_SESSION['tables'])) {
-                  ?>
-                      <a class="btn btn-app bg-secondary" href="<?php echo "genbill.php?table=" . $i ?>">
-                        <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
-                      </a>
-                    <?php } else { ?>
-                      <a class="btn btn-app bg-secondary" href="<?php echo "genbill.php?table=" . $i ?>">
-                        <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
-                      </a>
-
-                  <?php }
-                  } ?>
-
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title m-0">AC Table</h5>
-                </div>
-                <div class="card-body">
-
-                  <?php for ($i = 1; $i <= 5; $i++) { ?>
-
-                    <a class="btn btn-app bg-secondary">
-                      <h5 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h5> <br>
-                    </a>
-
-                  <?php } ?>
-
-                </div>
-              </div>
               <!-- /.card -->
             </div>
-            <!-- /.col-md-6 -->
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title m-0">AC Room</h5>
-                </div>
-                <div class="card-body">
 
-                  <?php for ($i = 1; $i <= 4; $i++) { ?>
-
-                    <a class="btn btn-app bg-secondary">
-                      <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
-                    </a>
-
-                  <?php } ?>
-
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title m-0">Hall</h5>
-                </div>
-                <div class="card-body">
-
-                  <?php for ($i = 1; $i <= 3; $i++) { ?>
-
-                    <a class="btn btn-app bg-secondary">
-                      <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
-                    </a>
-
-                  <?php } ?>
-
-                </div>
-              </div>
-
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title m-0">AC Hall</h5>
-                </div>
-                <div class="card-body">
-
-                  <?php for ($i = 1; $i <= 2; $i++) { ?>
-
-                    <a class="btn btn-app bg-secondary">
-                      <h3 id="table<?php echo ($i) ?>"><?php echo ($i) ?></h3> <br>
-                    </a>
-
-                  <?php } ?>
-
-                </div>
-              </div>
-
-            </div>
-            <!-- /.col-md-6 -->
           </div>
           <!-- /.row -->
 
