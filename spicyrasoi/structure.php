@@ -111,11 +111,11 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="addCategoryInput">Title</label>
-                    <input type="text" class="form-control" id="addCategoryInput" placeholder="Enter Category">
+                    <input type="text" class="form-control" id="addTableCategoryTitle" placeholder="Enter Category">
                   </div>
                   <div class="form-group">
                     <label for="addCategoryInput">Number</label>
-                    <input type="number" class="form-control" id="addCategoryInput" placeholder="Enter Category">
+                    <input type="number" class="form-control" id="addTableCategoryNumber" placeholder="Enter Category">
                   </div>
 
                 </div>
@@ -124,10 +124,10 @@
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary" id="btnAddCategory">Add</button>
+                <button type="submit" class="btn btn-primary" id="btnAddTableCategory">Add</button>
               </div>
 
-            
+
             </div>
             <!-- /.card -->
 
@@ -137,7 +137,7 @@
               <div class="card card-primary">
                 <div class="card-header">
                   <h3 class="card-title">All Listed Category </h3>
-                  <a href="addcategory.php"> <i class="fas fa-sync float-right"> Refresh</i> </a>
+                  <a href=""> <i class="fas fa-sync float-right"> Refresh</i> </a>
                 </div>
                 <div class="card-body">
                   <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -152,7 +152,7 @@
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Title</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Number</th>
                               <!-- <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Remark</th> -->
-                              
+
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Action</th>
 
                             </tr>
@@ -165,16 +165,22 @@
 
                             //   $i++;
 
-                              //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
+                            //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
                             ?>
+                            <?php
+                            $sql = "SELECT * From dashboard where restaurant and status = 1";
+                            $res = mysqli_query($con, $sql);
+                            while ($row = mysqli_fetch_assoc($res)) {
 
+
+                            ?>
                               <tr class="odd">
                                 <td class="dtr-control"><?php echo (1); ?>
                                 </td>
-                                <td>25-10-2021</td>
-                                <td>Category</td>
-                                <td class="sorting_1"><?php echo ("1000"); ?></td>
-                               
+                                <td><?php echo $row['date']; ?></td>
+                                <td><?php echo $row['title']; ?></td>
+                                <td class="sorting_1"><?php echo $row['tables'];  ?></td>
+
                                 <td><a href=""> <i class="fas fa-trash-alt"> Remove</i></a> </td>
 
 
@@ -182,7 +188,7 @@
                    <td  >U</td>
                    <td  >U</td> -->
                               </tr>
-                            <?php //} ?>
+                            <?php } ?>
 
                           </tbody>
                           <!-- <tfoot>

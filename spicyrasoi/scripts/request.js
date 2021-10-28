@@ -1,8 +1,8 @@
 // fetch category
 const constant = {
   // url: "http://api.spicyrasoi.com/",
-   url: "http://localhost/apidevelopment/",
-  //url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
+  //  url: "http://localhost/apidevelopment/",
+  url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 $(document).ready(function () {
   //add new category
@@ -49,6 +49,54 @@ $(document).ready(function () {
     $(document).ajaxComplete((res) => {
       $("#btnAddCategory").attr("disabled", false);
       $("#btnAddCategory").html("Submit");
+    });
+  });
+  //add new table category
+  $("#btnAddTableCategory").click(function (e) {
+    e.preventDefault();
+    const title = $("#addTableCategoryTitle").val();
+    const number = $("#addTableCategoryNumber").val();
+    // console.log("cate: " + category);
+    if (title == null && number === "") {
+      console.log($("#addCategoryInput").val());
+      return;
+    }
+    var btntext = $("#btnAddTableCategory").html();
+    $(document).ajaxSend(() => {
+      $("#btnAddTableCategory").prop("disabled", true);
+      $("#btnAddTableCategory").html("Processing...");
+    });
+    $.ajax({
+      url: constant.url + "/dashboard/addcategory.php",
+      method: "POST",
+      data: JSON.stringify({
+        admin_id: admin_id,
+        restaurant: restaurant,
+        number: number,
+        title: title,
+      }),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        // console.log(result.success);
+
+        const json = result;
+        if (json.success) swal("Good Job", "New Category Created", "success");
+        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        console.info(json.success);
+        // $("#btnAddCategory").attr("disabled");
+        $("#btnAddTableCategory").html(btntext);
+      },
+    });
+    // $(document).ajaxError((res) => {
+    //   console.error(res);
+
+    //   $("#btnAddTableCategory").attr("disabled", false);
+    //   $("#btnAddTableCategory").html(btntext);
+    // });
+    $(document).ajaxComplete((res) => {
+      $("#btnAddTableCategory").attr("disabled", false);
+      $("#btnAddTableCategory").html(btntext);
     });
   });
   //add new Subcategory
