@@ -179,13 +179,13 @@ $user = unserialize($_SESSION['user']);
 
                                                 <div class="form-group">
                                                     <label>Pin Code</label>
-                                                    <input type="number" id="pincode" class="form-control" max="100" min="0" placeholder="Enter Pin Code">
+                                                    <input type="number" id="pincode" class="form-control" max="100" min="0" placeholder="Enter Pin Code" value=0>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label>GST No</label>
-                                                    <input type="number" id="gst_no" class="form-control" max="100" min="0" placeholder="Enter GST No.">
+                                                    <input type="number" id="gst_no" class="form-control" max="100" min="0" placeholder="Enter GST No." value=0>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,7 +211,7 @@ $user = unserialize($_SESSION['user']);
 
                                                 <div class="form-group">
                                                     <label>Aadhar Card No.</label>
-                                                    <input type="number" min="111111111111" max="999999999999" id="id_proof" class="form-control" placeholder="ID Proof">
+                                                    <input type="number" min="111111111111" max="999999999999" id="id_proof" class="form-control" placeholder="ID Proof" value=0>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">

@@ -57,7 +57,7 @@ require_once 'islogin.php';
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0"><?php echo $user->username; ?></h1>
+              <!-- <h1 class="m-0"><?php echo $user->username; ?></h1> -->
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -110,31 +110,19 @@ require_once 'islogin.php';
                         <div class="form-group row">
                           <label for="rname" class="col-sm-2 col-form-label">Name</label>
                           <div class="col-sm-10">
-<<<<<<< HEAD
-                            <input type="text" class="form-control" id="username" placeholder="Name">
-=======
                             <input type="text" class="form-control" id="rname" value="" placeholder="Restaurant Name" required>
->>>>>>> 7fbb1c62125df8f91edaba93805ade55598c15aa
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="rmobile" class="col-sm-2 col-form-label">Mob. No.</label>
                           <div class="col-sm-10">
-<<<<<<< HEAD
-                            <input type="number" class="form-control" id="mobile" placeholder="Mobile">
-=======
                             <input type="number" class="form-control" id="rmobile" placeholder="Mobile" required>
->>>>>>> 7fbb1c62125df8f91edaba93805ade55598c15aa
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="rphone" class="col-sm-2 col-form-label">Phone No.</label>
                           <div class="col-sm-10">
-<<<<<<< HEAD
-                            <input type="number" class="form-control" id="phone" placeholder="Phone No.">
-=======
                             <input type="number" class="form-control" id="rphone" placeholder="Phone">
->>>>>>> 7fbb1c62125df8f91edaba93805ade55598c15aa
                           </div>
                         </div>
                         <div class="form-group row">
