@@ -24,15 +24,19 @@ if ($data != null) {
     $customerName = $data['customerName'] != null ? $data['customerName'] : "Cash";
     // $qty = $data['qty'] != null ? $data['qty'] : 0;
     $table = $data['table'] != null ? $data['table'] : 0;
+    $balance = $data['balance'] != null ? $data['balance'] : 0;
+    $recived = $data['recived'] != null ? $data['recived'] : 0;
+    $paid = $data['paid'] != null ? $data['paid'] : 0;
+    $discount = $data['discount'] != null ? $data['discount'] : 0;
     $admin_id = $data['admin_id'] != null ? $data['admin_id'] : 0;
     $pay_type = $data['customerType'] != null ? $data['customerType'] : "Cash";
     $restaurant = $data['restaurant'] != null ? $data['restaurant'] : 0;
     $type = $data['type'] != null ? $data['type'] : "store_price";
     if ($orderid == 0) {
         $orderid = date('Hisu') . $table;
-        $sql = "INSERT INTO `orders`(`orderid`, `order_value`, `order_type`,admin_id,restaurant,status,user_id,name,pay_type)  values({$orderid},{$grandtotal},'$type',$admin_id,$restaurant,1,$customerID,'$customerName','$pay_type')";
+        $sql = "INSERT INTO `orders`(`orderid`, `order_value`, `order_type`,admin_id,restaurant,status,user_id,name)  values({$orderid},{$grandtotal},'$type',$admin_id,$restaurant,1,$customerID,'$customerName')";
     } else
-        $sql = "UPDATE  `orders` SET  `order_value` = order_value + $grandtotal,pay_type = '$pay_type'  where orderid = $orderid and restaurant = $restaurant";
+        $sql = "UPDATE  `orders` SET  `order_value` = order_value + $grandtotal  where orderid = $orderid and restaurant = $restaurant";
     if (mysqli_query($con, $sql)) {
         foreach ($data['data'] as $row => $value) {
             // print_r($value);
