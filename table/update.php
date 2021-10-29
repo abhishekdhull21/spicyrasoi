@@ -12,7 +12,7 @@ if (isset($data['table'])  && isset($data['status']) && isset($data['restaurant'
     $status = $data['status'] != null ? $data['status'] : 0;
     $restaurant = $data['restaurant'] != null ? $data['restaurant'] : 0;
     $table = $data['table'] != null ? $data['table'] : 0;
-    $sql = "UPDATE  tables_session SET `status` = $status , data = null where `table_id`= $table and restaurant = $restaurant";
+    $sql = "UPDATE  tables_session SET `status` = 0 , data = null,orderid=0 where `table_id`= $table and restaurant = $restaurant";
     if ($result =  mysqli_query($con, $sql)) {
         $response = array(
             "success" => true,
