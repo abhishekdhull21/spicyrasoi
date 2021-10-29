@@ -49,3 +49,20 @@ $(document).ready(function () {
     );
   });
 });
+
+//GST Calculation 
+$("#productStorePrice,#gst_type,#gstProduct").on('change',(e)=>{
+  // console.log(e.currentTarget.id);
+var stp = parseFloat($("#productStorePrice").val());
+var typ =  $("#gst_type").val();
+var gst =  parseInt($("#gstProduct").val());
+var temp =0;
+if(typ == "include" ){
+    temp = stp;
+}
+else{
+  temp = stp + (stp * (gst/100));
+}
+  $("#product_gst_price").val(temp);
+
+})

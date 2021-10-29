@@ -120,8 +120,8 @@ require_once("islogin.php");
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Location</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Grand Total</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Mode</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status</th>
+                              <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Mode</th> -->
+                              <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status</th> -->
                               <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >State</th> -->
                               <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Address</th> -->
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th>
@@ -132,7 +132,7 @@ require_once("islogin.php");
                           <tbody>
                             <?php
 
-                            $sql = "SELECT a.orderid,a.name,a.date,a.order_value,a.pay_type FROM orders a, tables_session b where a.orderid=b.orderid and b.status =1 and a.restaurant = $restaurant";
+                            $sql = "SELECT a.orderid,a.name,a.date,a.order_value,a.pay_type,b.table_id FROM orders a, tables_session b where a.orderid=b.orderid and b.status =1 and a.restaurant = $restaurant";
                             $res = $con->query($sql);
                             while ($row = $res->fetch_assoc()) {
                               //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
@@ -140,12 +140,12 @@ require_once("islogin.php");
 
                               <tr class="odd">
                                 <td class="dtr-control"><?php echo $row['orderid']; ?> </td>
-                                <td class="sorting_1"><?php echo $row['user_name']; ?></td>
-                                <td><?php echo $row['user_mobile']; ?> </td>
-                                <td><?php echo $row['user_email']; ?></td>
-                                <td><?php echo $row['user_sex']; ?></td>
-                                <td><?php echo $row['user_mobile']; ?></td>
-                                <td><?php echo $row['user_mobile']; ?></td>
+                                <td class="sorting_1"><?php echo $row['date']; ?></td>
+                                <td><?php echo $row['name']; ?> </td>
+                                <td><?php echo $row['table_id']; ?></td>
+                                <td><?php echo $row['order_value']; ?></td>
+                                <!-- <td><?php echo $row['pay_type']; ?></td> -->
+                                
 
                                 <td><a href="#"><i class="fas fa-print"> Print</i></a> | <a href="#"> <i class="fas fa-edit"> Add Item</i> </a></td>
 

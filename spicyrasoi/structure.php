@@ -168,7 +168,7 @@
                             //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
                             ?>
                             <?php
-                            $sql = "SELECT * From dashboard where restaurant and status = 1";
+                            $sql = "SELECT * From dashboard where restaurant=$restaurant and status = 1";
                             $res = mysqli_query($con, $sql);
                             $i = 1;
                             while ($row = mysqli_fetch_assoc($res)) {
