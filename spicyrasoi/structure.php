@@ -170,12 +170,13 @@
                             <?php
                             $sql = "SELECT * From dashboard where restaurant and status = 1";
                             $res = mysqli_query($con, $sql);
+                            $i = 1;
                             while ($row = mysqli_fetch_assoc($res)) {
 
 
                             ?>
                               <tr class="odd">
-                                <td class="dtr-control"><?php echo (1); ?>
+                                <td class="dtr-control"><?php echo ($i++); ?>
                                 </td>
                                 <td><?php echo $row['date']; ?></td>
                                 <td><?php echo $row['title']; ?></td>
