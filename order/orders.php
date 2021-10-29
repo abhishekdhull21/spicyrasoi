@@ -30,9 +30,9 @@ if ($data != null) {
     $type = $data['type'] != null ? $data['type'] : "store_price";
     if ($orderid == 0) {
         $orderid = date('Hisu') . $table;
-        $sql = "INSERT INTO `orders`(`orderid`, `order_value`, `order_type`,admin_id,restaurant,status,user_id,name)  values({$orderid},{$grandtotal},'$type',$admin_id,$restaurant,1,$customerID,'$customerName')";
+        $sql = "INSERT INTO `orders`(`orderid`, `order_value`, `order_type`,admin_id,restaurant,status,user_id,name,pay_type)  values({$orderid},{$grandtotal},'$type',$admin_id,$restaurant,1,$customerID,'$customerName','$pay_type')";
     } else
-        $sql = "UPDATE  `orders` SET  `order_value` = order_value + $grandtotal where orderid = $orderid and restaurant = $restaurant";
+        $sql = "UPDATE  `orders` SET  `order_value` = order_value + $grandtotal,pay_type = '$pay_type'  where orderid = $orderid and restaurant = $restaurant";
     if (mysqli_query($con, $sql)) {
         foreach ($data['data'] as $row => $value) {
             // print_r($value);
@@ -44,7 +44,7 @@ if ($data != null) {
             if (mysqli_num_rows($resf) < 1)
                 $sql = "INSERT INTO `orders_product`(`orderid`, `product_id`,`qty`,`price`,subtotal) values($orderid,$productid,$qty,$price,$subtotal)";
             else
-                $sql = "UPDATE `orders_product` SET `qty`= qty + $qty,`subtotal`= subtotal + $subtotal,pay_type = '$pay_type'  where orderid= $orderid and product_id= $productid";
+                $sql = "UPDATE `orders_product` SET `qty`= qty + $qty,`subtotal`= subtotal + $subtotal where orderid= $orderid and product_id= $productid";
             if (mysqli_query($con, $sql)) {
                 setOrderIdTable($con, $orderid, $table, $restaurant);
                 $response = array(
@@ -63,12 +63,14 @@ sendPostRes($response, $error);
 
 function setOrderIdTable($con, $orderid, $table, $restaurant)
 {
-    global $admin_id;
+    global $admin_id, $err;
     $sql = "SELECT * FROM `tables_session` where  table_id = $table and restaurant = $restaurant limit 1";
     $res = mysqli_query($con, $sql);
     if (mysqli_num_rows($res) > 0)
-        $sql = "UPDATE `tables_session` SET orderid = $orderid ,status =1 where restaurant = $restaurant and table = $table";
+        $sql = "UPDATE `tables_session` SET orderid = $orderid ,status =1 where restaurant = $restaurant and table_id = $table";
     else
         $sql = "INSERT INTO `tables_session`(`table_id`, `admin_id`, `restaurant`, `orderid`, `status`) values($table,$admin_id,$restaurant,$orderid,1) ";
-    $res = mysqli_query($con, $sql);
+    if (!mysqli_query($con, $sql)) {
+        echo mysqli_error($con);
+    }
 }
