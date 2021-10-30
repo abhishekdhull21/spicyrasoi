@@ -7,6 +7,9 @@ require_once "class/User.php";
 require_once "islogin.php";
 // print_r($user);
 $tableid = 0;
+$groupid = 0;
+$table = 0;
+
 // print_r($user);
 if (isset($_GET['table']) && isset($_GET['group']) && isset($_GET['name'])) {
   $table = $_GET['table'];
@@ -491,6 +494,7 @@ function fetchSubCategory($cat_id)
       balance: 0
 
     };
+    console.log(products)
     fetchorderid();
     updateDiscount();
     // on change on add discount
