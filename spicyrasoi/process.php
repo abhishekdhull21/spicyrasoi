@@ -132,14 +132,22 @@ require_once("islogin.php");
                           <tbody>
                             <?php
 
-                            $sql = "SELECT a.orderid,a.name,a.date,a.order_value,a.pay_type,b.table_id,c.title FROM orders a, `tables_session` b,`dashboard` c where a.orderid=b.orderid and c.id = b.table_cat and b.status =1 and a.restaurant = $restaurant";
+                            $sql = "SELECT a.orderid,a.name,a.date,a.order_value,a.pay_type,
+                            b.table_id,b.tablename,b.table_cat,
+                            c.title
+                             FROM orders a, `tables_session` b,`dashboard` c where a.orderid=b.orderid and c.id = b.table_cat and b.status =1 and a.restaurant = $restaurant";
                             $res = $con->query($sql);
                             while ($row = $res->fetch_assoc()) {
+                              $orderid =  $row['orderid'];
+                              $tableid =  $row['table_id'];
+                              $table_cat =  $row['table_cat'];
+                              $tablename =  $row['tablename'];
+
                               //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
                             ?>
 
                               <tr class="odd">
-                                <td class="dtr-control"><?php echo $row['orderid']; ?> </td>
+                                <td class="dtr-control"><?php echo $orderid; ?> </td>
                                 <td class="sorting_1"><?php echo $row['date']; ?></td>
                                 <td><?php echo $row['name']; ?> </td>
                                 <td>
@@ -152,7 +160,7 @@ require_once("islogin.php");
                                 <!-- <td><?php echo $row['pay_type']; ?></td> -->
 
 
-                                <td><a href="#"><i class="fas fa-print"> Print</i></a> | <a href="#"> <i class="fas fa-edit"> Add Item</i> </a></td>
+                                <td><a target="_blank" href="printbill.php?orderid=<?php echo $orderid; ?>"><i class="fas fa-print"> Print</i></a> | <a href="genbill.php?table=<?php echo  $tableid . '&group=' . $table_cat . '&name=' . $tablename; ?>"> <i class="fas fa-edit"> Add Item</i> </a></td>
 
                                 <!-- <td  >U</td>
                     <td  >U</td>
