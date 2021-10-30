@@ -48,4 +48,6 @@ $(document).ready(function () {
       gst + parseInt(price) - (price * discount) / 100
     );
   });
+  
 });
+

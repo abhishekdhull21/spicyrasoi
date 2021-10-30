@@ -1,8 +1,8 @@
 // fetch category
 const constant = {
-  // url: "http://api.spicyrasoi.com/",
-  //  url: "http://localhost/apidevelopment/",
-  url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
+   url: "http://api.spicyrasoi.com/",
+    //url: "http://localhost/apidevelopment/",
+ // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 $(document).ready(function () {
   //add new category
@@ -195,6 +195,7 @@ $(document).ready(function () {
     const swiggyPrice = $("#productSwiggyPrice").val(); //("#addCategoryInput").val();
     const zomatoPrice = $("#productZomatoPrice").val(); //("#addCategoryInput").val();
     const gstProduct = $("#gstProduct").val();
+    const product_gst_price = $("#product_gst_price").val();
     const hsnCode = $("#hsnCode").val();
     const discount = $("#productDiscount").val();
     const unitName = $("#productUnitName").val();
@@ -224,6 +225,7 @@ $(document).ready(function () {
         "zomato-price": zomatoPrice,
         "swiggy-price": swiggyPrice,
         "local-price": localPrice,
+        "gst_price" : product_gst_price,
       }),
       contentType: "application/json",
       dataType: "json",

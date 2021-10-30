@@ -114,6 +114,13 @@ require_once('islogin.php');
                           <input type="text" id="productName" class="form-control" placeholder="Enter Name">
                         </div>
                       </div>
+                      <div class="col-sm-6">
+
+                        <div class="form-group">
+                          <label>Unit Name</label>
+                          <input type="text" id="productUnitName" class="form-control" placeholder="Enter Unit Name" value="PCS">
+                        </div>
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-6">
@@ -205,8 +212,8 @@ require_once('islogin.php');
                       <div class="col-sm-6">
 
                         <div class="form-group">
-                          <label>Unit Name</label>
-                          <input type="text" id="productUnitName" class="form-control" placeholder="Enter Unit Name" value="PCS">
+                          <label>GST Price</label>
+                          <input type="text" id="product_gst_price" class="form-control" value=0 readonly>
                         </div>
                       </div>
                       <div class="col-sm-6">
@@ -288,6 +295,25 @@ require_once('islogin.php');
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
   <script src="scripts/productpage.js"></script>
+  <script>
+    $(document).ready(()=>{
+      $("#productStorePrice,#gst_type,#gstProduct").on('change',(e)=>{
+        // console.log(e.currentTarget.id);
+      var stp = parseFloat($("#productStorePrice").val());
+      var typ =  $("#gst_type").val();
+      var gst =  parseInt($("#gstProduct").val());
+      var temp =0;
+      if(typ == "include" ){
+          temp = stp;
+      }
+      else{
+        temp = stp + (stp * (gst/100));
+      }
+        $("#product_gst_price").val(temp);
+
+      })
+    })
+  </script>
 </body>
 
 </html>

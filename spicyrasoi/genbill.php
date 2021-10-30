@@ -65,9 +65,9 @@ function showProduct($cat_id, $subid)
             <?php
             if ($product['food_type'] == 'veg') {
             ?>
-              <img src="../img/icons/vegicon.png" style="width: 25px; height: 25px;" alt="veg">
+              <img src="../img/icons/vegicon.png" style="width: 15px; height: 15px;" alt="veg">
             <?php } else { ?>
-              <img src="../img/icons/nonvegicon.png" style="width: 25px; height: 25px;" alt="non-veg">
+              <img src="../img/icons/nonvegicon.png" style="width: 15px; height: 15px;" alt="non-veg">
             <?php } ?>
 
           </td>
