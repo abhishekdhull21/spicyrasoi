@@ -56,6 +56,10 @@ $(document).ready(function () {
     e.preventDefault();
     const title = $("#addTableCategoryTitle").val();
     const number = $("#addTableCategoryNumber").val();
+    const charge =
+      $("#addTableCategoryChargeAmount").val() != null
+        ? $("#addTableCategoryChargeAmount").val()
+        : 0;
     // console.log("cate: " + category);
     if (title == null && number === "") {
       console.log($("#addCategoryInput").val());
@@ -73,6 +77,7 @@ $(document).ready(function () {
         admin_id: admin_id,
         restaurant: restaurant,
         number: number,
+        charge: charge,
         title: title,
       }),
       contentType: "application/json",
@@ -621,7 +626,7 @@ $(document).ready(function () {
   // add into product object
   $("#btnCustomerSelect").on("click", (e) => {
     e.preventDefault();
-    console.log(products);
+    // console.log(products);
     $("#modal-default").modal("toggle");
   });
 

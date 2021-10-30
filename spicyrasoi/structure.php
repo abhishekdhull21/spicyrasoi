@@ -114,8 +114,12 @@
                     <input type="text" class="form-control" id="addTableCategoryTitle" placeholder="Enter Category">
                   </div>
                   <div class="form-group">
-                    <label for="addCategoryInput">Number</label>
+                    <label for="addTableCategoryNumber">Number</label>
                     <input type="number" class="form-control" id="addTableCategoryNumber" placeholder="Enter Category">
+                  </div>
+                  <div class="form-group">
+                    <label for="addTableCategoryChargeAmount">Charge Amount</label>
+                    <input type="number" class="form-control" id="addTableCategoryChargeAmount" placeholder="Enter Charge Amount">
                   </div>
 
                 </div>
@@ -254,8 +258,6 @@
   <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
   <!-- DataTables  & Plugins -->
@@ -282,7 +284,7 @@
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,
