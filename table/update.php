@@ -11,8 +11,12 @@ $data = json_decode(file_get_contents('php://input'), true);
 if (isset($data['table'])  && isset($data['status']) && isset($data['restaurant'])) {
     $status = $data['status'] != null ? $data['status'] : 0;
     $restaurant = $data['restaurant'] != null ? $data['restaurant'] : 0;
-    $table = $data['table'] != null ? $data['table'] : 0;
-    $sql = "UPDATE  tables_session SET `status` = 0 , data = null,orderid=0 where `table_id`= $table and restaurant = $restaurant";
+    // $table = $data['table'] != null ? $data['table'] : 0;
+    $table = $data['table'] != null ? $data['table'] : array();
+    $table_name = $table['tableid'];
+    $tableid = $table['table'];
+    $tablegroup = $table['tablegroup'];
+    $sql = "UPDATE  tables_session SET `status` = 0 , data = null,orderid=0 where `tablename`= $table_name and restaurant = $restaurant";
     if ($result =  mysqli_query($con, $sql)) {
         $response = array(
             "success" => true,

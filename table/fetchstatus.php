@@ -13,9 +13,10 @@ $data = json_decode(file_get_contents('php://input'), true);
 // $data = json_encode($data);
 if (isset($data['table'])  && isset($data['restaurant'])) {
     $table = $data['table'];
+    $tableid = $table['tableid'];
     // $admin_id = $data['admin_id'];
     $restaurant = $data['restaurant'];
-    if ($result = mysqli_query($con, "SELECT * FROM `tables_session` where table_id = $table and restaurant = $restaurant  and `status`=1")) {
+    if ($result = mysqli_query($con, "SELECT * FROM `tables_session` where tablename = $tableid and restaurant = $restaurant  and `status`=1")) {
         if (mysqli_num_rows($result) > 0) {
             $response = array(
                 "success" => true,

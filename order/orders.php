@@ -23,7 +23,10 @@ if ($data != null) {
     $customerID = $data['customerID'] != null ? $data['customerID'] : 0;
     $customerName = $data['customerName'] != null ? $data['customerName'] : "Cash";
     // $qty = $data['qty'] != null ? $data['qty'] : 0;
-    $table = $data['table'] != null ? $data['table'] : 0;
+    $table = $data['table'] != null ? $data['table'] : array();
+    $table_name = $table['tableid'];
+    $tableid = $table['table'];
+    $tablegroup = $table['tablegroup'];
     $balance = $data['balance'] != null ? $data['balance'] : 0;
     $recived = $data['recived'] != null ? $data['recived'] : 0;
     $paid = $data['paid'] != null ? $data['paid'] : 0;
@@ -33,8 +36,9 @@ if ($data != null) {
     $restaurant = $data['restaurant'] != null ? $data['restaurant'] : 0;
     $type = $data['type'] != null ? $data['type'] : "store_price";
     if ($orderid == 0) {
-        $orderid = date('Hisu') . $table;
-        $sql = "INSERT INTO `orders`(`orderid`, `order_value`, `order_type`,admin_id,restaurant,status,user_id,name)  values({$orderid},{$grandtotal},'$type',$admin_id,$restaurant,1,$customerID,'$customerName')";
+        $orderid = $restaurant . $admin_id . $table_name . date('zyHisu');
+        $bill_no = getbillno($con, $restaurant);
+        $sql = "INSERT INTO `orders`(`orderid`,`bill_no`, `order_value`, `order_type`,admin_id,restaurant,status,user_id,name)  values({$orderid},{$bill_no},{$grandtotal},'$type',$admin_id,$restaurant,1,$customerID,'$customerName')";
     } else
         $sql = "UPDATE  `orders` SET  `order_value` = order_value + $grandtotal  where orderid = $orderid and restaurant = $restaurant";
     if (mysqli_query($con, $sql)) {
@@ -45,9 +49,9 @@ if ($data != null) {
             $price = $value['price'] != null ? $value['price'] : 0;
             $subtotal = $value['subtotal'] != null ? $value['subtotal'] : 0;
             $resf = mysqli_query($con, "SELECT * from `orders_product` where product_id = $productid and orderid = $orderid");
-            if (mysqli_num_rows($resf) < 1)
+            if (mysqli_num_rows($resf) < 1) {
                 $sql = "INSERT INTO `orders_product`(`orderid`, `product_id`,`qty`,`price`,subtotal) values($orderid,$productid,$qty,$price,$subtotal)";
-            else
+            } else
                 $sql = "UPDATE `orders_product` SET `qty`= qty + $qty,`subtotal`= subtotal + $subtotal where orderid= $orderid and product_id= $productid";
             if (mysqli_query($con, $sql)) {
                 setOrderIdTable($con, $orderid, $table, $restaurant);
@@ -68,13 +72,25 @@ sendPostRes($response, $error);
 function setOrderIdTable($con, $orderid, $table, $restaurant)
 {
     global $admin_id, $err;
-    $sql = "SELECT * FROM `tables_session` where  table_id = $table and restaurant = $restaurant limit 1";
+    $table_name = $table['tableid'];
+    $tableid = $table['table'];
+    $tablegroup = $table['tablegroup'];
+    $sql = "SELECT * FROM `tables_session` where  tablename = $table_name  and restaurant = $restaurant limit 1";
     $res = mysqli_query($con, $sql);
     if (mysqli_num_rows($res) > 0)
-        $sql = "UPDATE `tables_session` SET orderid = $orderid ,status =1 where restaurant = $restaurant and table_id = $table";
+        $sql = "UPDATE `tables_session` SET orderid = $orderid ,status =1 where restaurant = $restaurant and tablename = $table_name";
     else
-        $sql = "INSERT INTO `tables_session`(`table_id`, `admin_id`, `restaurant`, `orderid`, `status`) values($table,$admin_id,$restaurant,$orderid,1) ";
+        $sql = "INSERT INTO `tables_session`(`tablename`,`table_id`,`table_cat`, `admin_id`, `restaurant`, `orderid`, `status`) values($table_name,$tableid,$tablegroup,$admin_id,$restaurant,$orderid,1) ";
     if (!mysqli_query($con, $sql)) {
         echo mysqli_error($con);
     }
+}
+function getbillno($con,  $restaurant)
+{
+    global $admin_id, $err;
+    $sql = "SELECT bill_no FROM `orders` where  restaurant = $restaurant order by id desc limit 1";
+    $res = mysqli_query($con, $sql);
+    if (mysqli_num_rows($res) > 0)
+        return mysqli_fetch_assoc($res)['bill_no'] + 1;
+    return 1;
 }
