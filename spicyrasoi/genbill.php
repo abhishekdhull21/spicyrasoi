@@ -8,8 +8,11 @@ require_once "islogin.php";
 // print_r($user);
 $tableid = 0;
 // print_r($user);
-if (isset($_GET['table'])) {
-  $tableid = $_GET['table'];
+if (isset($_GET['table']) && isset($_GET['group']) && isset($_GET['name'])) {
+  $table = $_GET['table'];
+  $groupid = $_GET['group'];
+  $name = $_GET['name'];
+  $tableid = $groupid . $table;
   if (!isset($_SESSION['tables']))
     $_SESSION['tables'] = array();
   $arr = $_SESSION['tables'];
@@ -326,6 +329,8 @@ function fetchSubCategory($cat_id)
                 <!-- /.col -->
               </div>
               <input type="text" hidden id="tableid" value="<?php echo $tableid; ?>">
+              <input type="text" hidden id="tablegroup" value="<?php echo $groupid; ?>">
+              <input type="text" hidden id="table" value="<?php echo $table; ?>">
               <input type="text" hidden id="method" value="<?php echo $method; ?>">
               <input type="text" hidden id="admin_id" value="<?php echo $admin_id; ?>">
               <input type="text" hidden id="restaurant" value="<?php echo $restaurant; ?>">
@@ -458,7 +463,11 @@ function fetchSubCategory($cat_id)
     var i = 0;
     var grandtotalPrice = 0;
     // $(document).ready(function() {
-    var table = $('#table').val() != '' ? $('#tableid').val() : 0;
+    const table = {
+      tableid: $('#tableid').val() != '' ? $('#tableid').val() : 0,
+      tablegroup: $('#tablegroup').val() != '' ? $('#tablegroup').val() : 0,
+      table: $('#table').val() != '' ? $('#table').val() : 0,
+    }
     var type = $('#method').val() != '' ? $('#method').val() : "store_price";
     var admin_id = $('#admin_id').val() != '' ? $('#admin_id').val() : 0;
     var restaurant = $('#restaurant').val() != '' ? $('#restaurant').val() : 0;
