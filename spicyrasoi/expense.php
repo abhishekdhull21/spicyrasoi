@@ -200,7 +200,8 @@
                           <tbody>
                             <?php
                             $i = 0;
-                            $res = mysqli_query($con, $swl);
+                            $sql = "SELECT * FROM expense_cat a, expense b WHERE a.cat_id = b.cat_id";
+                            $res = mysqli_query($con, $sql);
                             while ($row = $res->fetch_assoc()) {
 
                               $i++;
@@ -211,10 +212,10 @@
                               <tr class="odd">
                                 <td class="dtr-control"><?php echo ($i); ?>
                                 </td>
-                                <td>25-10-2021</td>
-                                <td>Category</td>
-                                <td class="sorting_1"><?php echo ("1000"); ?></td>
-                                <td>Remark</td>
+                                <td><?php echo $row["date"]; ?></td>
+                                <td><?php echo $row['cat_name']; ?></td>
+                                <td class="sorting_1"><?php echo $row['amount']; ?></td>
+                                <td><?php echo $row['remarks']; ?></td>
                                 <td><a href=""> <i class="fas fa-trash-alt"> Remove</i></a> </td>
 
 
