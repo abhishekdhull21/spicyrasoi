@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php require_once "../config.php";
+// session_start();
+// if (isset($_GET['table'])) {
+//   $tableid = $_GET['table'];
+//   if (!isset($_SESSION['tables']))
+//     $_SESSION['tables'] = array();
+//   $arr = $_SESSION['tables'];
+
+//   $activeTables = sizeof($arr);
+//   if (!in_array($tableid, $arr))
+//     $_SESSION['tables'][$activeTables] = $tableid;
+// }
+// print_r(file_get_contents('php://input'));
+$orderid = isset($_GET['orderid']) ? $_GET['orderid'] : null;
+$sql = "SELECT a.name as restaurant,a.city,a.state,a.country,a.district,a.mobile,
+b.name as name,b.bill_no,b.date,b.orderid,b.order_value as total
+from restaurant a, orders b where b.restaurant = a.restaurantid and b.orderid  = $orderid";
+$res = mysqli_query($con, $sql);
+$row = mysqli_fetch_assoc($res);
+
+?>
     <head>
         <meta charset="UTF-8">
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
@@ -15,7 +36,7 @@ td,
 th,
 tr,
 table {
-    border-top: 1px solid black;
+    border-top: 1px dotted black;
     border-collapse: collapse;
 }
 
@@ -66,14 +87,14 @@ img {
     <body>
         <div class="ticket">
             <!-- <img src="./logo.png" alt="Logo"> -->
-            <p class="centered"><b>Your Hotel</b>
-                <br>Address line 1
+            <p class="centered"><b><?php echo $row['restaurant']; ?></b>
+                <br><?php echo $row['city']; ?>
                 </p>
                 <hr>
-                Name : <b> ABC </b>
+                Name : <b> <?php echo $row['name']; ?> </b>
                 <hr>
-                Date: 29-10-2021 <br>
-                Bill No. 002
+                Date: <?php echo $row['date']; ?> <br>
+                Bill No. <?php echo $row['bill_no']; ?>
             <table>
                 <thead>
                     <tr>
@@ -85,32 +106,56 @@ img {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for($i=1;$i<=3;$i++) { ?>
+                <?php
+                   $sql = "SELECT a.product_name as name, b.price,b.qty,b.subtotal, c.order_value,c.recived, c.pay_type as mode, c.balance, c.paid as grand_total, c.discount   from product a, orders_product b, orders c where a.product_id = b.product_id and b.orderid = c.orderid and b.orderid = $orderid";
+                  $rest = mysqli_query($con, $sql);
+                  $i = 1;
+                  while ($order = mysqli_fetch_assoc($rest)) {
+                      $recived = $order['recived'];
+                      $grand_total = $order['grand_total'];
+                      $mode = $order['mode'];
+                      $balance = $order['balance'];
+                      $total = $order['order_value'];
+                      $discount = $order['discount'];
+                  ?>
                     <tr>
                         
-                        <td class="description">ARDUINO UNO R3</td>
-                        <td class="quantity centered">1</td>
-                        <td class="price">25</td>
+                        <td class="description"><?php echo $order['name']; ?></td>
+                        <td class="quantity centered"><?php echo $order['qty']; ?></td>
+                        <td class="price"><?php echo $order['price']; ?></td>
                         
                     </tr>
                 <?php } ?>
-                   <!--  <tr>
-                        
-                        <td class="description">JAVASCRIPT BOOK</td>
-                        <td class="quantity centered">2</td>
-                        <td class="price">10</td>
-                    </tr>
-                    <tr>
-                       
-                        <td class="description">STICKER PACK</td>
-                         <td class="quantity centered">1</td>
-                        <td class="price">10</td>
-                    </tr> -->
+                  
                     <tr>
                         
                         <td class="description"><b>TOTAL</b></td>
                         <!-- <td class="quantity"></td> -->
-                        <td colspan="2" class="price"><b>557865</b></td>
+                        <td colspan="2" class="price"><b><?php echo $total; ?></b></td>
+                    </tr>
+                    <tr>
+                        
+                        <td class="description">Discount</td>
+                        <!-- <td class="quantity"></td> -->
+                        <td colspan="2" class="price"><b><?php echo $discount; ?></b></td>
+                    </tr>
+                    <tr>
+                        
+                        <td class="description">Recived</td>
+                        <!-- <td class="quantity"></td> -->
+                        <td colspan="2" class="price"><b><?php echo $recived; ?></b></td>
+                    </tr>
+                    <tr>
+                        
+                        <td class="description"><b>Grand Total</b></td>
+                        <!-- <td class="quantity"></td> -->
+                        <td colspan="2" class="price"><b><?php echo $grand_total; ?></b></td>
+                    </tr>
+                    <tr>
+                        
+                        <td class="description">By</td>
+                        <td class="quantity"><?php echo $mode; ?></td>
+                       
                     </tr>
                 </tbody>
             </table>
@@ -124,6 +169,7 @@ img {
             const $btnPrint = document.querySelector("#btnPrint");
 $btnPrint.addEventListener("click", () => {
     window.print();
+   
 });
         </script>
     </body>

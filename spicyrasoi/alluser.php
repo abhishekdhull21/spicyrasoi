@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+require_once "../config.php";
+require_once "class/User.php";
+require_once "islogin.php";
+?>
 
 <head>
   <meta charset="utf-8">
@@ -42,10 +48,11 @@
 
     <!-- Navbar -->
     <?php include("navbar.php"); 
-         include("../config.php");
+        //  include("../config.php");
+
         
            //echo("Successfull");
-           $sql = "SELECT * FROM users ";
+           $sql = "SELECT * FROM users WHERE restaurant=$restaurant ";
            $res = $con->query($sql);
            if ($res->num_rows > 0) {
 		          //echo "Output fetched successfully";

@@ -44,22 +44,31 @@ $row = mysqli_fetch_assoc($res);
 
       <!-- Main content -->
       <section class="content">
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
             <div class="col-12">
-              <h2 class="page-header">
-                <i class="fas fa-hotel"></i>Spicy Rasoi
-                <small class="float-right">Date: <?php echo $row['date']; ?></small>
-              </h2>
+              <div class="row">
+                <div class="col-md-6">
+                <h2 class="page-header">
+                <i class="fas fa-hotel"></i><?php echo $row['restaurant']; ?></h2>
+                </div>
+                <div class="col-md-6">
+                <p class="float-right">Date: <?php echo $row['date']; ?></p>
+                </div>
+
+              </div>
+              
+               
+             
             </div>
             <!-- /.col -->
           </div>
           <!-- info row -->
           <div class="row invoice-info">
             <div class="col-sm-4 invoice-col">
-              From
+             
               <address>
-                <strong id="restaurant"><?php echo $row['restaurant']; ?></strong><br>
+                <strong id="restaurant">Address</strong><br>
                 <address id="address">
                   <span id="city"></span><?php echo $row['city']; ?> <span id="district"><?php echo $row['district']; ?></span><br>
                   <span id="state"><?php echo $row['state']; ?></span>
@@ -83,7 +92,9 @@ $row = mysqli_fetch_assoc($res);
             <!-- /.col -->
             <div class="col-sm-4 invoice-col">
               <b>Bill No. : <span id="bill"><?php echo $row['bill_no']; ?></span></b><br>
+
               <b>Order No. : <span id="orderid"><?php echo $row['orderid']; ?></span></b><br>
+              <!-- <b> <span id="orderid"><?php echo ("GST Included"); ?></span></b><br> -->
               <br>
               <!-- <b>Order ID:</b> 4F3S8J<br>
         <b>Payment Due:</b> 2/22/2014<br>
@@ -136,11 +147,39 @@ $row = mysqli_fetch_assoc($res);
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><b>Grand Total</b></td>
+                    <td><b>Total</b></td>
                     <td id="grandtotalprice"><?php echo $row['total']; ?></td>
+                  </tr>
+                  <tr>
+                    <!-- <td></td> -->
+                    <td><b>Mode</b></td>
+                    <td><select id="mode" class="js-example-basic-single form-control">
+                        <option selected value="Cash">Cash</option>
+                        <option value="Bank">Bank</option>
+                        <option value="Gpay">GPay</option>
+                        <option value="PhonePe">PhonePe</option>
+                        <option value="UPI">UPI</option>
+                        <option value="Other">Other</option>
+                      </select></td>
+                    <td><b>Recived</b></td>
+                    <td><input type="number" min=0 class="form-control" id="recived" value=<?php echo $row['total']; ?>></td>
+                  </tr>
+                  <tr>
+                    <!-- <td></td> -->
+                    <td><b>Discount</b></td>
+                    <td> <input type="number" min=0 class="form-control" id="discount" value=0>
+                    </td>
+                    <td><b>Grand Total</b></td>
+                    <td id="grand_total">00</td>
                   </tr>
                 </tbody>
               </table>
+              <div class="row no-print">
+                <div class="col-12">
+                  <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i>Print Out</a>
+                
+                </div>
+              </div>
             </div>
             <!-- /.col -->
 
@@ -160,9 +199,9 @@ $row = mysqli_fetch_assoc($res);
 
   <!-- jQuery -->
 
-  <script>
+  <!-- <script>
     window.addEventListener("load", window.print());
-  </script>
+  </script> -->
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
@@ -170,46 +209,62 @@ $row = mysqli_fetch_assoc($res);
   <script src="scripts/request.js"></script>
   <script>
     $(document).ready(function() {
+      let params = new URLSearchParams(location.search);
+     const  orderid = params.get("orderid");
+      const bill ={
+          total : 0,
+          discount: 0,
+          balance: 0,
+          recived : 0,
+          grand_total: 0,
+          orderid:orderid,
+          mode : "Cash",
+      }
       // console.log(JSON.parse(localStorage.getItem("bill")));
-      const products = JSON.parse(localStorage.getItem("bill"));
-      console.log(products);
-      // $.ajax({
-      //   url: constant.url + "restaurant/fetch.php",
-      //   method: "POST",
-      //   data: JSON.stringify(products),
-      //   contentType: "application/json",
-      //   dataType: "json",
-      //   success: function(result) {
-      //     console.log(result);
-      //     if (result.success == true) {
-      //       result = result.data[0];
-      //       $("#restaurant").html(result.name);
-      //       $("#city").html(result.city);
-      //       $("#district").html(result.district);
-      //       $("#state").html(result.state);
-      //       $("#country").html(result.country);
-      //       $("#phone").html(result.mobile);
-      //       $('#orderid').html(products.orderid);
-      //       $('#bill').html(products.billNo);
+      // const products = JSON.parse(localStorage.getItem("bill"));
+     
+     if(orderid==  null)return;
+      const info = {orderid:orderid};
+      $.ajax({
+        url: constant.url + "order/orderidfetch.php",
+        method: "POST",
+        data: JSON.stringify(info),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          console.log(result);
+          if (result.success == true) {
+            bill.total=result.data[0].order_value;
+            $('#grand_total').html(bill.total);
+          }
+        },
+      });
+      $('#mode').on('change',()=>{
+        bill.mode=$('#mode').val();
+      })
+      $('#discount,#recived').on('input',()=>{
+        bill.discount=$('#discount').val() != null?$('#discount').val():0;
+        bill.recived=$('#recived').val() != null?$('#recived').val():0;
+        bill.grand_total = bill.total-bill.discount;
+        bill.balance = bill.grand_total-bill.recived;
+        $('#grand_total').html(bill.grand_total);
+      })
+      $('#btnprintbill').on('click',()=>{
+        $.ajax({
+        url: constant.url + "order/orderidupdate.php",
+        method: "POST",
+        data: JSON.stringify(bill),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          console.log(result);
+          if (result.success == true) {
+           window.open('posprint.php?orderid='+bill.orderid);
+          }
+        },
+      });
+      })
 
-      //       $('#customerName').html(products.customerName);
-      //       products.data.map((d, index) => {
-
-
-      //         var itemRow = '<tr id="cartItem' + d.id + '">';
-      //         itemRow += '<td>' + (products.data.length - index) + '</td>';
-      //         itemRow += '<td>' + d.name + '</td>';
-      //         itemRow += '<td>' + d.qty + '</td>';
-      //         itemRow += '<td id="price">' + d.price + '</td>';
-      //         itemRow += '<td id="subTotal">' + d.subtotal + '</td>';
-      //         itemRow += ' </tr>';
-      //         $("#cartItems").prepend(itemRow)
-      //       });
-      //       $("#grandtotalprice").html(products.totalPrice);
-      //       window.addEventListener("load", window.print());
-      //     }
-      //   },
-      // });
 
     });
   </script>
