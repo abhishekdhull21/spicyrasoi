@@ -54,7 +54,7 @@
       echo ("Error");
     } else {
       //echo("Successfull");
-      $sql = "SELECT p.product_id,p.product_name, c.cat_name, p.store_price, p.swiggy_price, p.zomato_price, p.local_price FROM product p, category c WHERE c.cat_id=p.category";
+      $sql = "SELECT p.product_id,p.product_name, c.cat_name, p.store_price, p.swiggy_price, p.zomato_price, p.local_price, p.gst_price, p.gst_type FROM product p, category c WHERE c.cat_id=p.category";
       $res = $con->query($sql);
       if ($res->num_rows > 0) {
         //echo "Output fetched successfully";

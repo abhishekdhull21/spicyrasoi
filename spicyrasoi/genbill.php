@@ -223,6 +223,7 @@ function fetchSubCategory($cat_id)
 
                 ?>
               </div><!-- /.row -->
+             
             </div>
             <!-- /.col -->
             <div class="col-lg-4 table-responsive">

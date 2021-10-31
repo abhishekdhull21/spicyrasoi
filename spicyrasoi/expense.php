@@ -135,7 +135,7 @@
                     <!-- form start -->
                     <div class="card-body">
                       <div class="form-group">
-                        <select class="js-example-basic-single form-control" id="addSubExpenseID">
+                        <select class=" form-control" id="addSubExpenseID">
                           <?php
                           $swl = "SELECT * from expense_cat where  restaurant = $restaurant";
                           $res = mysqli_query($con, $swl);
@@ -177,7 +177,7 @@
               <div class="card card-primary">
                 <div class="card-header">
                   <h3 class="card-title">All Listed Category </h3>
-                  <a href="addcategory.php"> <i class="fas fa-sync float-right"> Refresh</i> </a>
+                  <a href=""> <i class="fas fa-sync float-right"> Refresh</i> </a>
                 </div>
                 <div class="card-body">
                   <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">

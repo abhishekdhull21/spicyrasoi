@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once "../config.php";
-// session_start();
-// if (isset($_GET['table'])) {
-//   $tableid = $_GET['table'];
-//   if (!isset($_SESSION['tables']))
-//     $_SESSION['tables'] = array();
-//   $arr = $_SESSION['tables'];
 
-//   $activeTables = sizeof($arr);
-//   if (!in_array($tableid, $arr))
-//     $_SESSION['tables'][$activeTables] = $tableid;
-// }
-// print_r(file_get_contents('php://input'));
 $orderid = isset($_GET['orderid']) ? $_GET['orderid'] : null;
 $sql = "SELECT a.name as restaurant,a.city,a.state,a.country,a.district,a.mobile,
 b.name as name,b.bill_no,b.date,b.orderid,b.order_value as total
