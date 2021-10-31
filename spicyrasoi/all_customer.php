@@ -42,17 +42,10 @@
 
     <!-- Navbar -->
     <?php include("navbar.php"); 
-         $host = "sql487.main-hosting.eu";
-         $username = "u709711065_spicyrasoi";
-         $password = "NewPassword@1234";
-         $db = "u709711065_spicyrasoi";
-         $con = mysqli_connect($host, $username, $password, $db);
-         
-         if (mysqli_connect_errno()){
-         echo("Error");
-         }
-         else
-         {
+     require_once("logininfo.php");
+     include("../config.php");
+
+        
            //echo("Successfull");
            $sql = "SELECT * FROM customer ";
            $res = $con->query($sql);
@@ -60,7 +53,7 @@
 		          //echo "Output fetched successfully";
  
               }
-         }
+         
              //die("error");
          date_default_timezone_set("Asia/Calcutta");
          
@@ -144,7 +137,7 @@
                     <td  ><?php echo $row['user_address']; ?></td>
                     <td  ><?php echo $row['user_name']; ?></td>
                     <td  ><?php echo $row['id_proof']; ?></td>
-                    <td  ><?php echo $row['balance']; ?></td>
+                    <td  ><?php echo ("00"); ?></td>
                     <td  ><a href="#"><i class="fas fa-trash-alt"> Remove</i></a> | <a href="#"> <i class="fas fa-edit"> Edit</i> </a></td>
                    
                     <!-- <td  >U</td>
