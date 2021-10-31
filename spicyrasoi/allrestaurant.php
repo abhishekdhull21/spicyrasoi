@@ -1,5 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+require_once "../config.php";
+require_once "class/User.php";
+require_once "islogin.php";
+if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
+  $user = unserialize($_SESSION['user']);
+
+  $user->restaurant = $_GET['restaurant'];
+  $_SESSION['user'] = serialize($user);
+
+  // $restaurant = $user->$_GET['restaurant'];
+  // $admin_id = $user->userid;
+
+}
+?>
 
 <head>
   <meta charset="utf-8">
@@ -41,32 +57,32 @@
     </div> -->
 
     <!-- Navbar -->
-    <?php include("navbar.php"); 
-        include("../config.php");
-         
-           //echo("Successfull");
-           $sql = "SELECT * FROM restaurant ";
-           $res = $con->query($sql);
-           if ($res->num_rows > 0) {
-		          //echo "Output fetched successfully";
- 
-              }
-         
-             //die("error");
-         date_default_timezone_set("Asia/Calcutta");
-         
-  //  $sql = "SELECT * FROM users ";
-	//  $result = $conn->query($sql);
+    <?php include("navbar.php");
 
-	// if ($result->num_rows > 0) {
-	// 	echo "Output fetched successfully";
- 
+
+    //echo("Successfull");
+    $sql = "SELECT * FROM restaurant ";
+    $res = $con->query($sql);
+    if ($res->num_rows > 0) {
+      //echo "Output fetched successfully";
+
+    }
+
+    //die("error");
+    date_default_timezone_set("Asia/Calcutta");
+
+    //  $sql = "SELECT * FROM users ";
+    //  $result = $conn->query($sql);
+
+    // if ($result->num_rows > 0) {
+    // 	echo "Output fetched successfully";
+
     //}
-    
+
     ?>
     <!-- /.navbar -->
 
- 
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -89,87 +105,91 @@
 
       <!-- Main content -->
       <section class="content">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-           
-            <!-- /.card -->
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
 
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">All Listed Customer </h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                   
-                    <div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
-                  <thead>
-                  <tr role="row">
-                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Reg. Date</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Restaurant ID</th>
-                      <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"  >Mob. No.</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending"  >Phone. No.</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"  >Email</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >GST. No.</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Country</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >State</th>
-                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >District</th>
-                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >City/Village</th>
-                     
-                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <?php
-                    while($row = $res->fetch_assoc()) {
-                      //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
-                      ?>
-                     
-                  <tr class="odd">
-                    <td  ><?php echo $row['add_on']; ?> </td>
-                    <td class="dtr-control"><?php echo $row['restaurantid']; ?> </td>
-                    <td class="sorting_1"><?php echo $row['name']; ?></td>
-                    <td  ><?php echo $row['mobile']; ?> </td>
-                    <td  ><?php echo $row['phone']; ?></td>
-                    <td  ><?php echo $row['email']; ?></td>
-                    <td  ><?php echo $row['gst']; ?></td>
-                    <td  ><?php echo $row['country']; ?></td>
-                    <td  ><?php echo $row['state']; ?></td>
-                    <td  ><?php echo $row['district']; ?></td>
-                    <td  ><?php echo $row['city']; ?></td>
-                    <td  ><a href="#"><i class="fas fa-trash-alt"> Remove</i></a> | <a href="#"> <i class="fas fa-edit"> Edit</i> </a></td>
-                   
-                    <!-- <td  >U</td>
+              <!-- /.card -->
+
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">All Listed Customer </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                          <thead>
+                            <tr role="row">
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Reg. Date</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Restaurant ID</th>
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Mob. No.</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Phone. No.</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Email</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">GST. No.</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Country</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">State</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">District</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">City/Village</th>
+
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            while ($row = $res->fetch_assoc()) {
+                              //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
+                            ?>
+
+                              <tr class="odd">
+                                <td><?php echo $row['add_on']; ?> </td>
+                                <td class="dtr-control"><?php echo $row['restaurantid']; ?> </td>
+                                <td class="sorting_1"><?php echo $row['name']; ?></td>
+                                <td><?php echo $row['mobile']; ?> </td>
+                                <td><?php echo $row['phone']; ?></td>
+                                <td><?php echo $row['email']; ?></td>
+                                <td><?php echo $row['gst']; ?></td>
+                                <td><?php echo $row['country']; ?></td>
+                                <td><?php echo $row['state']; ?></td>
+                                <td><?php echo $row['district']; ?></td>
+                                <td><?php echo $row['city']; ?></td>
+                                <td><a href="#"><i class="fas fa-trash-alt"> Remove</i></a> | <a href="#"> <i class="fas fa-edit"> Edit</i> </a>| <a href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>"> <i class="fas fa-edit"> Assign </a></td>
+
+                                <!-- <td  >U</td>
                     <td  >U</td>
                     <td  >U</td> -->
-                  </tr>
-                 
-                  <?php } ?>
-                  
-                </tbody>
-                  <!-- <tfoot>
+                              </tr>
+
+                            <?php } ?>
+
+                          </tbody>
+                          <!-- <tfoot>
                   <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
                   </tfoot> -->
-                </table></div></div>
-               
-            </div>
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!-- /.card-body -->
               </div>
-              <!-- /.card-body -->
+              <!-- /.card -->
             </div>
-            <!-- /.card -->
+            <!-- /.col -->
           </div>
-          <!-- /.col -->
+          <!-- /.row -->
         </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <?php include("footer.php"); ?>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <?php include("footer.php"); ?>
   </div>
   <!-- ./wrapper -->
 
@@ -182,36 +202,38 @@
     $.widget.bridge('uibutton', $.ui.button)
   </script>
   <!-- DataTables  & Plugins -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="plugins/jszip/jszip.min.js"></script>
-<script src="plugins/pdfmake/pdfmake.min.js"></script>
-<script src="plugins/pdfmake/vfs_fonts.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- Page specific script -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="plugins/jszip/jszip.min.js"></script>
+  <script src="plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <!-- Page specific script -->
+  <script>
+    $(function() {
+      $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
     });
-  });
-</script>
+  </script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- ChartJS -->

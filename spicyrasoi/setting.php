@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" class="" style="height: auto;">
+<?php
+session_start();
+require_once "../config.php";
+require_once "class/User.php";
+require_once "class/Admin.php";
+require_once "islogin.php";
+$user = unserialize($_SESSION['user']);
+$isSuperadmin = false;
+$admin = new Admin($con);
+$admintype = $admin->getAdminType($user->userid);
+if ($admintype == 2)
+  $isSuperadmin = true;
+// $sql = "SELECT admin_type from users where user_id = $user->admin_id";
+?>
 
 <head>
   <meta charset="utf-8">
@@ -87,8 +101,8 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                   <!-- we are adding the accordion ID so Bootstrap's collapse plugin detects it -->
-                
-                 
+
+
 
                   <div class="card card-success">
                     <div class="card-header">
@@ -150,64 +164,64 @@
                     </div>
                   </div>
                   <div class="card card-secondary">
-                      <div class="card-header">
-                        <h4 class="card-title w-100">
-                          <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false">
-                            Reports <i class="fas fa-caret-down float-right"></i>
-                          </a>
-                        </h4>
-                      </div>
-                      <div id="collapseFour" class="collapse" data-parent="#accordion">
-                        <div class="card-body">
-                          <a href="invoice.php" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Invoice
-                          </a>
-                         
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> GST Report
-                          </a>
-                          <a href="user_report" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> User Report
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Payment / Account
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Table Report
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Room Report
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Stock Report
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Purchase Report
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Salary Report
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Expense Report
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Visitor Report
-                          </a>
+                    <div class="card-header">
+                      <h4 class="card-title w-100">
+                        <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false">
+                          Reports <i class="fas fa-caret-down float-right"></i>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseFour" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        <a href="invoice.php" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> Invoice
+                        </a>
 
-                        </div>
+                        <a href="#" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> GST Report
+                        </a>
+                        <a href="user_report" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> User Report
+                        </a>
+                        <a href="#" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> Payment / Account
+                        </a>
+                        <a href="#" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> Table Report
+                        </a>
+                        <a href="#" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> Room Report
+                        </a>
+                        <a href="#" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> Stock Report
+                        </a>
+                        <a href="#" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> Purchase Report
+                        </a>
+                        <a href="#" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> Salary Report
+                        </a>
+                        <a href="#" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> Expense Report
+                        </a>
+                        <a href="#" class="btn btn-app bg-success">
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <i class="fas fa-users"></i> Visitor Report
+                        </a>
+
                       </div>
                     </div>
+                  </div>
 
 
                 </div>
@@ -219,76 +233,80 @@
 
 
             <!-- /.col -->
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Admin</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
+            <?php if ($isSuperadmin) {  ?>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Admin</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
 
-                  <!-- we are adding the accordion ID so Bootstrap's collapse plugin detects it -->
-                  <div id="accordion">
+                    <!-- we are adding the accordion ID so Bootstrap's collapse plugin detects it -->
+                    <div id="accordion">
 
 
-                    <div class="card card-success">
-                      <div class="card-header">
-                        <h4 class="card-title w-100">
-                          <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false">
-                            Resturant Admin Panel <i class="fas fa-caret-down float-right"></i>
-                          </a>
-                        </h4>
-                      </div>
-                      <div id="collapseThree" class="collapse" data-parent="#accordion">
-                        <div class="card-body">
-                          <a href="structure.php" class="btn btn-app bg-primary">
+                      <div class="card card-success">
+                        <div class="card-header">
+                          <h4 class="card-title w-100">
+                            <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false">
+                              Resturant Admin Panel <i class="fas fa-caret-down float-right"></i>
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseThree" class="collapse" data-parent="#accordion">
 
-                            <i class="fas fa-plus-circle"></i> Structure
-                          </a>
-                          <a href="addcategory.php" class="btn btn-app bg-danger">
-                            <!-- <span class="badge bg-success">300</span> -->
-                            <i class="fas fa-plus-circle"></i> Add Category
-                          </a>
-                         
-                          <a href="addproduct.php" class="btn btn-app bg-secondary">
+                          <div class="card-body">
+                            <a href="structure.php" class="btn btn-app bg-primary">
 
-                            <i class="fas fa-plus-circle"></i> Add Product
-                          </a>
-                          <a href="allproduct.php" class="btn btn-app bg-secondary">
+                              <i class="fas fa-plus-circle"></i> Structure
+                            </a>
+                            <a href="addcategory.php" class="btn btn-app bg-danger">
+                              <!-- <span class="badge bg-success">300</span> -->
+                              <i class="fas fa-plus-circle"></i> Add Category
+                            </a>
 
-                            <i class="fab fa-product-hunt"></i> All Product
-                          </a>
-                          <a href="./user/createuser.php" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Add Users
-                          </a>
-                          <a href="alluser.php" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> View Users
-                          </a>
-                          <a class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Permission
-                          </a>
+                            <a href="addproduct.php" class="btn btn-app bg-secondary">
+
+                              <i class="fas fa-plus-circle"></i> Add Product
+                            </a>
+                            <a href="allproduct.php" class="btn btn-app bg-secondary">
+
+                              <i class="fab fa-product-hunt"></i> All Product
+                            </a>
+                            <a href="./user/createuser.php" class="btn btn-app bg-success">
+                              <!-- <span class="badge bg-purple">891</span> -->
+                              <i class="fas fa-users"></i> Add Users
+                            </a>
+                            <a href="alluser.php" class="btn btn-app bg-success">
+                              <!-- <span class="badge bg-purple">891</span> -->
+                              <i class="fas fa-users"></i> View Users
+                            </a>
+                            <a class="btn btn-app bg-success">
+                              <!-- <span class="badge bg-purple">891</span> -->
+                              <i class="fas fa-users"></i> Permission
+                            </a>
+                          </div>
+
                         </div>
                       </div>
+
                     </div>
-                 
+                    <a href="addrestaurant.php" class="btn btn-app bg-primary">
+                      <!-- <span class="badge bg-purple">891</span> -->
+                      <i class="fas fa-hotel"></i> Add Restaurant
+                    </a>
+                    <a href="allrestaurant.php" class="btn btn-app bg-primary">
+                      <!-- <span class="badge bg-purple">891</span> -->
+                      <i class="fas fa-hotel"></i> View Restaurant
+                    </a>
                   </div>
-                  <a href="addrestaurant.php" class="btn btn-app bg-primary">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-hotel"></i> Add Restaurant
-                          </a>
-                          <a href="allrestaurant.php" class="btn btn-app bg-primary">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-hotel"></i> View Restaurant
-                          </a>
+                  <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
+                <!-- /.card -->
               </div>
-              <!-- /.card -->
-            </div>
-            <!-- /.col -->
+              <!-- /.col -->
+            <?php } ?>
           </div>
         </div><!-- /.container-fluid -->
       </div>
