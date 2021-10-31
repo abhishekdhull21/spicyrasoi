@@ -32,7 +32,10 @@ if ($admintype == 2)
   <div class="wrapper">
 
     <!-- Navbar -->
-    <?php include("navbar.php") ?>
+    <?php
+    include("navbar.php");
+    include("logininfo.php");
+    ?>
     <!-- /.navbar -->
 
     <!-- Content Wrapper. Contains page content -->
@@ -66,15 +69,15 @@ if ($admintype == 2)
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body ">
-                  <a href="invoice.php" class="btn btn-app bg-success">
-                    <span class="badge bg-purple">8910</span>
+                  <a href="#" class="btn btn-app bg-success">
+                    <span class="badge bg-purple" id="totalsell">8910</span>
                     <i class="fas fa-money-check-alt"></i> Income
                   </a>
                   <a href="#" class="btn btn-app bg-danger">
-                    <span class="badge bg-purple">2501</span>
+                    <span class="badge bg-purple" id="totalexpense">2501</span>
                     <i class="fas fa-money-check-alt"></i> Out
                   </a>
-                  <a href="#" class="btn btn-app bg-primary">
+                  <a href="invoice.php" class="btn btn-app bg-primary">
                     <!-- <span class="badge bg-purple">891</span> -->
                     <i class="fas fa-file-invoice"></i> Invoice
                   </a>
@@ -316,9 +319,9 @@ if ($admintype == 2)
       <!-- /.content -->
     </div>
   </div>
-    <!-- /.content-wrapper -->
-    <!-- Main Footer -->
-    <?php include("footer.php"); ?>
+  <!-- /.content-wrapper -->
+  <!-- Main Footer -->
+  <?php include("footer.php"); ?>
   </div>
   <!-- ./wrapper -->
 
@@ -332,7 +335,39 @@ if ($admintype == 2)
   <script src="dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
+  <script>
+    $(document).ready(function() {
 
+      $.ajax({
+        url: constant.url + "expense/totalsell.php",
+        method: "POST",
+        data: JSON.stringify({
+          restaurant: restaurant
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          if (result.success === true)
+            $('#totalsell').html(parseInt(result.data[0].sum));
+        }
+      });
+      $.ajax({
+        url: constant.url + "expense/totalexpense.php",
+        method: "POST",
+        data: JSON.stringify({
+          restaurant: restaurant
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result);
+          if (result.success === true) {
+            $('#totalexpense').html(parseInt(result.data[0].sum));
+          }
+        }
+      });
+    });
+  </script>
 
 </body>
 

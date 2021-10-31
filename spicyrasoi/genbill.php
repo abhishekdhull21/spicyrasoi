@@ -355,7 +355,7 @@ function fetchSubCategory($cat_id)
                     <td>49</td>
                     <td>98</td>
                   </tr> -->
-                 
+
                   <tr>
                     <!-- <td></td> -->
                     <td></td>
@@ -482,24 +482,24 @@ function fetchSubCategory($cat_id)
     };
     console.log(products)
     fetchorderid();
-    updateDiscount();
+    // updateDiscount();
     // on change on add discount
-    $("#cartDiscount, #cartRecived").on("input", () => {
-      updateDiscount();
-      // if (products.totalPrice != (products.discount + products.recived + products.balance))
-      //   alert('something went wrong');
-      console.log(products);
-      $("#grandtotalprice").html(products.totalPrice - products.discount);
-    });
+    // $("#cartDiscount, #cartRecived").on("input", () => {
+    //   updateDiscount();
+    //   // if (products.totalPrice != (products.discount + products.recived + products.balance))
+    //   //   alert('something went wrong');
+    //   console.log(products);
+    //   $("#grandtotalprice").html(products.totalPrice - products.discount);
+    // });
 
-    function updateDiscount() {
-      var cartDiscount = parseFloat($("#cartDiscount").val() != null ? $("#cartDiscount").val() : 0);
-      var cartRecived = parseFloat($("#cartRecived").val() != null ? $("#cartRecived").val() : 0);
-      products.discount = cartDiscount;
-      products.recived = cartRecived;
-      products.balance = products.totalPrice - cartRecived - cartDiscount;
-      products.paid = cartRecived + cartDiscount;
-    }
+    // function updateDiscount() {
+    //   var cartDiscount = parseFloat($("#cartDiscount").val() != null ? $("#cartDiscount").val() : 0);
+    //   var cartRecived = parseFloat($("#cartRecived").val() != null ? $("#cartRecived").val() : 0);
+    //   products.discount = cartDiscount;
+    //   products.recived = cartRecived;
+    //   products.balance = products.totalPrice - cartRecived - cartDiscount;
+    //   products.paid = cartRecived + cartDiscount;
+    // }
     // on change idCostmerType
     // $("#selectCustomerBillName").on("change", () => {
     //   customer = $("#selectCustomerBillName").val().split(",");
@@ -529,7 +529,7 @@ function fetchSubCategory($cat_id)
             swal("Error Occurred", "Something going wrong", "error");
           }
         });
-      grandtotal.innerHTML = products.totalPrice;
+      grandtotal.innerHTML = parseInt(products.totalPrice);
 
     }
     // cal subtotal
@@ -541,12 +541,12 @@ function fetchSubCategory($cat_id)
       // var subTotalPrice = subTotal.innerHTML;
       // var finalPrice = (qty * price.innerHTML);
       products.data[t].qty = parseFloat(qty);
-      products.totalPrice -= parseFloat(products.data[t].subtotal);
+      products.totalPrice -= parseInt(products.data[t].subtotal);
       // console.log(); // = tprice;
       var totalPrice = qty * products.data[t].price;
       products.data[t].subtotal = totalPrice;
       subTotal.innerHTML = totalPrice;
-      products.totalPrice += totalPrice;
+      products.totalPrice += parseInt(totalPrice);
       // console.log(products);
 
       // grandtotalPrice = grandtotalPrice - parseInt(price.innerHTML) + finalPrice;

@@ -155,7 +155,7 @@ require_once("islogin.php");
                                                                             <span class="sr-only">Toggle Dropdown</span>
                                                                         </button>
                                                                         <div class="dropdown-menu" role="menu">
-                                                                            <a class="dropdown-item" target="_blank" href="printbill.php?orderid=<?php echo $orderid; ?>">View</a>
+                                                                            <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>">View</a>
                                                                             <a class="dropdown-item" href="#">Edit</a>
                                                                         </div>
                                                                     </div>

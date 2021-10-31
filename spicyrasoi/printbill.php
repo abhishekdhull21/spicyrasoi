@@ -49,24 +49,25 @@ $row = mysqli_fetch_assoc($res);
             <div class="col-12">
               <div class="row">
                 <div class="col-md-6">
-                <h2 class="page-header">
-                <i class="fas fa-hotel"></i><?php echo $row['restaurant']; ?></h2>
+                  <h2 class="page-header">
+                    <i class="fas fa-hotel"></i><?php echo $row['restaurant']; ?>
+                  </h2>
                 </div>
                 <div class="col-md-6">
-                <p class="float-right">Date: <?php echo $row['date']; ?></p>
+                  <p class="float-right">Date: <?php echo $row['date']; ?></p>
                 </div>
 
               </div>
-              
-               
-             
+
+
+
             </div>
             <!-- /.col -->
           </div>
           <!-- info row -->
           <div class="row invoice-info">
             <div class="col-sm-4 invoice-col">
-             
+
               <address>
                 <strong id="restaurant">Address</strong><br>
                 <address id="address">
@@ -177,7 +178,7 @@ $row = mysqli_fetch_assoc($res);
               <div class="row no-print">
                 <div class="col-12">
                   <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i>Print Out</a>
-                
+
                 </div>
               </div>
             </div>
@@ -210,21 +211,23 @@ $row = mysqli_fetch_assoc($res);
   <script>
     $(document).ready(function() {
       let params = new URLSearchParams(location.search);
-     const  orderid = params.get("orderid");
-      const bill ={
-          total : 0,
-          discount: 0,
-          balance: 0,
-          recived : 0,
-          grand_total: 0,
-          orderid:orderid,
-          mode : "Cash",
+      const orderid = params.get("orderid");
+      const bill = {
+        total: 0,
+        discount: 0,
+        balance: 0,
+        recived: 0,
+        grand_total: 0,
+        orderid: orderid,
+        mode: "Cash",
       }
       // console.log(JSON.parse(localStorage.getItem("bill")));
       // const products = JSON.parse(localStorage.getItem("bill"));
-     
-     if(orderid==  null)return;
-      const info = {orderid:orderid};
+
+      if (orderid == null) return;
+      const info = {
+        orderid: orderid
+      };
       $.ajax({
         url: constant.url + "order/orderidfetch.php",
         method: "POST",
@@ -234,35 +237,35 @@ $row = mysqli_fetch_assoc($res);
         success: function(result) {
           console.log(result);
           if (result.success == true) {
-            bill.total=result.data[0].order_value;
+            bill.total = result.data[0].order_value;
             $('#grand_total').html(bill.total);
           }
         },
       });
-      $('#mode').on('change',()=>{
-        bill.mode=$('#mode').val();
+      $('#mode').on('change', () => {
+        bill.mode = $('#mode').val();
       })
-      $('#discount,#recived').on('input',()=>{
-        bill.discount=$('#discount').val() != null?$('#discount').val():0;
-        bill.recived=$('#recived').val() != null?$('#recived').val():0;
-        bill.grand_total = bill.total-bill.discount;
-        bill.balance = bill.grand_total-bill.recived;
+      $('#discount,#recived').on('input', () => {
+        bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
+        bill.recived = $('#recived').val() != null ? $('#recived').val() : 0;
+        bill.grand_total = bill.total - bill.discount;
+        bill.balance = bill.grand_total - bill.recived;
         $('#grand_total').html(bill.grand_total);
       })
-      $('#btnprintbill').on('click',()=>{
+      $('#btnprintbill').on('click', () => {
         $.ajax({
-        url: constant.url + "order/orderidupdate.php",
-        method: "POST",
-        data: JSON.stringify(bill),
-        contentType: "application/json",
-        dataType: "json",
-        success: function(result) {
-          console.log(result);
-          if (result.success == true) {
-           window.open('posprint.php?orderid='+bill.orderid);
-          }
-        },
-      });
+          url: constant.url + "order/orderidupdate.php",
+          method: "POST",
+          data: JSON.stringify(bill),
+          contentType: "application/json",
+          dataType: "json",
+          success: function(result) {
+            console.log(result);
+            if (result.success == true) {
+              window.location.replace('posprint.php?orderid=' + bill.orderid);
+            }
+          },
+        });
       })
 
 
