@@ -24,11 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($data['title']) && isset($data['number']) && isset($data['admin_id']) && isset($data['restaurant'])) {
         $admin = $data['admin_id'];
         $restaurant = $data['restaurant'];
+        $charge = $data['charge'] != null ? $data['charge'] : 0;
         $number = $data['number'] != null ? $data['number'] : 0;
         $title =  filter_var($data['title'], FILTER_SANITIZE_STRING);
         if ($result = mysqli_query($con, "SELECT id FROM `dashboard` where title = '$title' and restaurant = $restaurant")) {
             if (mysqli_num_rows($result) < 1) {
-                $sql = "INSERT INTO dashboard (admin_id,restaurant,title,tables) VALUES($admin,$restaurant,'$title',$number)";
+                $sql = "INSERT INTO dashboard (admin_id,restaurant,title,tables,charge) VALUES($admin,$restaurant,'$title',$number,$charge)";
 
 
                 if ($result =  mysqli_query($con, $sql)) {
