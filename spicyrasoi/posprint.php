@@ -16,7 +16,7 @@
 $orderid = isset($_GET['orderid']) ? $_GET['orderid'] : null;
 $sql = "SELECT a.name as restaurant,a.city,a.state,a.country,a.district,a.mobile,
 b.name as name,b.bill_no,b.date,b.orderid,b.order_value as total
-from restaurant a, orders b where b.restaurant = a.restaurantid and b.orderid  = $orderid";
+from restaurant a, orders b where b.restaurant = a.restaurantid and b.orderid  = '$orderid'";
 $res = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($res);
 

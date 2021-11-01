@@ -132,7 +132,7 @@ require_once("islogin.php");
                           <tbody>
                             <?php
 
-                            echo $sql = "SELECT a.orderid,a.name,a.date,a.order_value,a.pay_type,
+                            $sql = "SELECT a.orderid,a.name,a.date,a.order_value,a.pay_type,
                             b.table_id,b.tablename,b.table_cat,
                             c.title
                              FROM orders a, `tables_session` b,`dashboard` c where a.orderid=b.orderid and c.id = b.table_cat and b.status =1 and a.restaurant = $restaurant";
@@ -161,27 +161,9 @@ require_once("islogin.php");
 
 
                                 <td><a target="_blank" href="printbill.php?orderid=<?php echo $orderid; ?>"><i class="fas fa-print"> Print</i></a> | <a href="genbill.php?table=<?php echo  $tableid . '&group=' . $table_cat . '&name=' . $tablename; ?>"> <i class="fas fa-edit"> Add Item</i> </a></td>
-
-                                <!-- <td  >U</td>
-                    <td  >U</td>
-                    <td  >U</td> -->
                               </tr>
-                              <!-- <tr class="even">
-                    <td class="dtr-control" tabindex="0">1</td>
-                    <td class="sorting_1">AOL browser (AOL desktop)</td>
-                    <td  >Win XP</td>
-                    <td  >6</td>
-                    <td  >A</td>
-                    <td  >Win XP</td>
-                    <td  >Win XP</td>
-                    <td  >6</td>
-                  </tr> -->
                             <?php } ?>
-
                           </tbody>
-                          <!-- <tfoot>
-                  <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
-                  </tfoot> -->
                         </table>
                       </div>
                     </div>
