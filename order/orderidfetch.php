@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($data['orderid'])) {
         $orderid = $data['orderid'];
         //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
-        if ($result = mysqli_query($con, "SELECT * FROM `orders` where orderid=$orderid")) {
+        if ($result = mysqli_query($con, "SELECT * FROM `orders` where orderid='$orderid'")) {
             if (mysqli_num_rows($result) > 0) {
 
                 $response = array(

@@ -14,7 +14,7 @@ define('ROOTPATH', dirname(__FILE__));
 // $content_type = (getallheaders());
 $file = fopen("../logs/" . date("d-m-y") . ".txt", "a");
 
-fwrite($file, (date('H:i:s',) . ROOTPATH . "  order/feorderidupdate.php," . file_get_contents('php://input') . "\n"));
+fwrite($file, (date('H:i:s',) . ROOTPATH . "  restaurant/fetch.php," . file_get_contents('php://input') . "\n"));
 
 $response = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,32 +24,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // print_r($data);
     // condition to check request in json 
     // if(strpos($content_type, "application/json") !== false){
-
-    if (isset($data['orderid']) && isset($data['mode']) && isset($data['recived']) && isset($data['grand_total']) && isset($data['discount']) && isset($data['balance'])) {
-        $orderid = $data['orderid'];
-        $mode = $data['mode'];
-        $discount = $data['discount'];
-        $recived = $data['recived'];
-        $grand_total = $data['grand_total'];
-        $balance = $data['balance'];
+    if (isset($data['restaurant']) && isset($data['user_id'])) {
+        $restaurant = $data['restaurant'];
+        $userid = $data['user_id'];
         //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
+        if ($result = mysqli_query($con, "SELECT user_id,user_name FROM `customer` where restaurant = $restaurant and user_id = $userid limit 1")) {
+            if (mysqli_num_rows($result) > 0) {
 
-
-        if ($result = mysqli_query($con, "UPDATE `orders` SET pay_type='$mode',discount=$discount,recived=$recived,balance=$balance,paid=$grand_total where orderid='$orderid'")) {
-            if ($result = mysqli_query($con, "UPDATE `tables_session` SET status=0 where orderid='$orderid'")) {
                 $response = array(
                     "success" => true,
-
+                    "data" => mysqli_fetch_assoc($result),
                     "error" => ""
                 );
             } else {
-                $err = mysqli_error($con);
+                $err = "No Customer found";
             }
         } else {
             $err = mysqli_error($con);
         }
     } else
-        $err = "set key as -> orderid ";
+        $err = "set key as -> restaurant,user_id ";
 } else {
     $err = "Header should be POST";
 }

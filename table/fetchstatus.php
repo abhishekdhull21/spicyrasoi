@@ -16,7 +16,7 @@ if (isset($data['table'])  && isset($data['restaurant'])) {
     $tableid = $table['tableid'];
     // $admin_id = $data['admin_id'];
     $restaurant = $data['restaurant'];
-    if ($result = mysqli_query($con, "SELECT * FROM `tables_session` where tablename = $tableid and restaurant = $restaurant  and `status`=1")) {
+    if ($result = mysqli_query($con, "SELECT a.orderid,b.id as kot,c.bill_no,c.user_id FROM tables_session a, order_kot b,orders c where a.orderid = b.orderid and a.orderid = c.orderid and a.tablename = $tableid and a.restaurant = $restaurant and a.status = 1 limit 1")) {
         if (mysqli_num_rows($result) > 0) {
             $response = array(
                 "success" => true,
