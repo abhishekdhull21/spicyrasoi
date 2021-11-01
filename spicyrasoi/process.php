@@ -132,7 +132,7 @@ require_once("islogin.php");
                           <tbody>
                             <?php
 
-                            $sql = "SELECT a.orderid,a.name,a.date,a.order_value,a.pay_type,
+                            echo $sql = "SELECT a.orderid,a.name,a.date,a.order_value,a.pay_type,
                             b.table_id,b.tablename,b.table_cat,
                             c.title
                              FROM orders a, `tables_session` b,`dashboard` c where a.orderid=b.orderid and c.id = b.table_cat and b.status =1 and a.restaurant = $restaurant";

@@ -321,34 +321,34 @@ function fetchSubCategory($cat_id)
                 </div>
                 <!-- /.col -->
               </div>
-
-              <div class="row">
-                <div class="col-12">
-                  <h4>
-                    Product Cart
-                    <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
-                  </h4>
+              <div id="print">
+                <div class="row">
+                  <div class="col-12">
+                    <h4>
+                      Product Cart
+                      <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
+                    </h4>
+                  </div>
+                  <!-- /.col -->
                 </div>
-                <!-- /.col -->
-              </div>
-              <input type="text" hidden id="tableid" value="<?php echo $tableid; ?>">
-              <input type="text" hidden id="tablegroup" value="<?php echo $groupid; ?>">
-              <input type="text" hidden id="table" value="<?php echo $table; ?>">
-              <input type="text" hidden id="method" value="<?php echo $method; ?>">
-              <input type="text" hidden id="admin_id" value="<?php echo $admin_id; ?>">
-              <input type="text" hidden id="restaurant" value="<?php echo $restaurant; ?>">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <!-- <th>S.No.</th> -->
-                    <th>Item</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
-                  </tr>
-                </thead>
-                <tbody id="cartItems">
-                  <!-- <tr>
+                <input type="text" hidden id="tableid" value="<?php echo $tableid; ?>">
+                <input type="text" hidden id="tablegroup" value="<?php echo $groupid; ?>">
+                <input type="text" hidden id="table" value="<?php echo $table; ?>">
+                <input type="text" hidden id="method" value="<?php echo $method; ?>">
+                <input type="text" hidden id="admin_id" value="<?php echo $admin_id; ?>">
+                <input type="text" hidden id="restaurant" value="<?php echo $restaurant; ?>">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <!-- <th>S.No.</th> -->
+                      <th>Item</th>
+                      <th>Qty</th>
+                      <th>Price</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cartItems">
+                    <!-- <tr>
                     <td></td>
                     <td>Burger</td>
                     <td>2</td>
@@ -356,14 +356,14 @@ function fetchSubCategory($cat_id)
                     <td>98</td>
                   </tr> -->
 
-                  <tr>
-                    <!-- <td></td> -->
-                    <td></td>
-                    <td> </td>
-                    <td><b>Grand Total</b></td>
-                    <td id="grandtotalprice">00</td>
-                  </tr>
-                  <!-- <tr>                   
+                    <tr>
+                      <!-- <td></td> -->
+                      <td></td>
+                      <td> </td>
+                      <td><b>Grand Total</b></td>
+                      <td id="grandtotalprice">00</td>
+                    </tr>
+                    <!-- <tr>                   
                     <td><input type="number" class="form-control" value=0 id="cartRecived"></td>
                     <td><input type="number" class="form-control" value=0 id="cartDiscount"></td>
                     <td><select id="selectCustomerBillName" class="js-example-basic-single form-control">
@@ -376,9 +376,9 @@ function fetchSubCategory($cat_id)
                       </select></td>
                     <td>Paid:<span id="paid">00</span></td>
                   </tr> -->
-                </tbody>
-              </table>
-
+                  </tbody>
+                </table>
+              </div>
               <div class="row no-print">
                 <div class="col-12">
                   <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
@@ -686,9 +686,12 @@ function fetchSubCategory($cat_id)
             // clearTable();
             products.orderid = result.data.orderid;
             // alert("redirected to print page")
-            // localStorage.setItem("bill", JSON.stringify(products));
-            // window.open("printbill.php", "_blank");
-            location.reload();
+            localStorage.setItem("kotbill", JSON.stringify(products));
+            var print = window.open("poskotprint.php", 'PRINT', "height=400,width=800");
+            print.document.close();
+            print.print();
+            // printDiv("print");
+            // location.reload();
           }
         },
       });
@@ -764,6 +767,7 @@ function fetchSubCategory($cat_id)
       products.customerType = $("#idCustomerType").val();
       console.log(products)
     });
+    // print function
   </script>
 
   <!-- select search -->
@@ -793,7 +797,7 @@ function fetchSubCategory($cat_id)
 
 
       }
-
+    
     });
   </script> -->
   <!-- <script src="scripts/request.js"></script> -->
