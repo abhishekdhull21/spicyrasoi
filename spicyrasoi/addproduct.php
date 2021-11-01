@@ -193,8 +193,8 @@ require_once('islogin.php');
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
-                          <label>Discount (In %)</label>
-                          <input type="number" id="productDiscount" class="form-control" max="100" min="0" placeholder="Enter Discount (In %)">
+                          <!-- <label>Discount (In %)</label> -->
+                          <input type="number" id="productDiscount" class="form-control" max="100" min="0" placeholder="Enter Discount (In %)" hidden value=0>
                         </div>
                       </div>
                     </div>

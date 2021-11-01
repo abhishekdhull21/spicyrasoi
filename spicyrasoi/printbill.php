@@ -227,6 +227,7 @@ $row = mysqli_fetch_assoc($res);
           console.log(result);
           if (result.success == true) {
             bill.total = result.data[0].order_value;
+            bill.grand_total = result.data[0].order_value;
             $('#grand_total').html(bill.total);
           }
         },
@@ -234,14 +235,27 @@ $row = mysqli_fetch_assoc($res);
       $('#mode').on('change', () => {
         bill.mode = $('#mode').val();
       })
-      $('#discount,#recived').on('input', () => {
+      $('#discount,#recived').on('input', (e) => {
         bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
-        bill.recived = $('#recived').val() != null ? $('#recived').val() : 0;
         bill.grand_total = bill.total - bill.discount;
-        bill.balance = bill.grand_total - bill.recived;
         $('#grand_total').html(bill.grand_total);
+        if(e.currentTarget.id=="discount")
+        $('#recived').val(bill.grand_total);
+        bill.recived = $('#recived').val() != null ? $('#recived').val() : 0;
+        bill.balance = bill.grand_total - bill.recived;
+        console.log(bill)
       })
+      // $('#discount').on('input', () => {
+      //   bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
+      //   $('#recived').val(bill.total - bill.discount);
+      //   bill.recived = bill.total - bill.discount;
+       
+      //   $('#grand_total').html(bill.grand_total);
+      //   console.log(bill)
+      // })
       $('#btnprintbill').on('click', () => {
+        bill.recived=$('#recived').val() != null ? $('#recived').val() : 0;
+        // bill.grand_total=bill.total;
         $.ajax({
           url: constant.url + "order/orderidupdate.php",
           method: "POST",

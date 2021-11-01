@@ -82,7 +82,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1>We hope you’ll enjoy <br />here.</h1>
+                            <h1>Hotel/Resturant Biling & Account's Managment</h1>
                         </div>
                     </div>
                     <div class="row">
@@ -141,28 +141,7 @@
                                         <h2>49 </h2>
                                     </div>
                                 </div>
-                                <div class="room-features">
-                                    <div class="room-info">
-                                        <i class="flaticon-019-television"></i>
-                                        <span>Smart TV</span>
-                                    </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-029-wifi"></i>
-                                        <span>High Wi-fii</span>
-                                    </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-003-air-conditioner"></i>
-                                        <span>AC</span>
-                                    </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-036-parking"></i>
-                                        <span>Parking</span>
-                                    </div>
-                                    <div class="room-info last">
-                                        <i class="flaticon-007-swimming-pool"></i>
-                                        <span>Pool</span>
-                                    </div>
-                                </div>
+                              
                             </div>
                         </div>
                     </div>
@@ -187,34 +166,13 @@
                                         <h2>49</h2>
                                     </div>
                                 </div>
-                                <div class="room-features">
-                                    <div class="room-info">
-                                        <i class="flaticon-019-television"></i>
-                                        <span>Smart TV</span>
-                                    </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-029-wifi"></i>
-                                        <span>High Wi-fii</span>
-                                    </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-003-air-conditioner"></i>
-                                        <span>AC</span>
-                                    </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-036-parking"></i>
-                                        <span>Parking</span>
-                                    </div>
-                                    <div class="room-info last">
-                                        <i class="flaticon-007-swimming-pool"></i>
-                                        <span>Pool</span>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="about-room">
+            <!-- <div class="about-room">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
                         <h2>“Customers may forget what you said  but they will never forget how you made themfeel”.</h2>
@@ -236,7 +194,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
     <!-- Room Availability Section End -->
@@ -434,7 +392,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <!-- <div class="col-lg-3 col-sm-6">
                     <div class="single-footer-widget">
                         <h5>Reception</h5>
                         <div class="widget-text">
@@ -442,22 +400,16 @@
                             <p>+91-7015393229</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
+               
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-footer-widget">
-                        <h5>Shuttle Service</h5>
+                        <h5>Help Line No.</h5>
                         <div class="widget-text">
                             <i class="lnr lnr-phone-handset"></i>
                             <p>+91-9813761709</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Restaurant</h5>
-                        <div class="widget-text">
                             <i class="lnr lnr-phone-handset"></i>
-                            <p>+91-9813761709</p>
+                            <p>+91-9996015637</p>
                         </div>
                     </div>
                 </div>

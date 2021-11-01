@@ -70,11 +70,11 @@ if ($admintype == 2)
                 <!-- /.card-header -->
                 <div class="card-body ">
                   <a href="#" class="btn btn-app bg-success">
-                    <span class="badge bg-purple" id="totalsell">8910</span>
+                    <span class="badge bg-purple" id="totalsell">0</span>
                     <i class="fas fa-money-check-alt"></i> Income
                   </a>
                   <a href="#" class="btn btn-app bg-danger">
-                    <span class="badge bg-purple" id="totalexpense">2501</span>
+                    <span class="badge bg-purple" id="totalexpense">0</span>
                     <i class="fas fa-money-check-alt"></i> Out
                   </a>
                   <a href="invoice.php" class="btn btn-app bg-primary">
@@ -119,7 +119,7 @@ if ($admintype == 2)
                         <div class="card-body">
                           <a href="add_customer.php" class="btn btn-app bg-success">
 
-                            <i class="fas fa-plus-circle"></i> Create*
+                            <i class="fas fa-plus-circle"></i> Create
                           </a>
                           <a href="add_customer.php" class="btn btn-app bg-success">
 

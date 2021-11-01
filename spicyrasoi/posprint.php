@@ -30,7 +30,7 @@ $row = mysqli_fetch_assoc($res);
     <style type="text/css">
         * {
             font-size: 12px;
-            font-family: 'Times New Roman';
+            font-family: 'Arial Black';
         }
 
         td,
@@ -87,11 +87,12 @@ $row = mysqli_fetch_assoc($res);
     <title>Receipt</title>
 </head>
 
-<body>
+<body onload="window.print();">
     <div class="ticket">
         <!-- <img src="./logo.png" alt="Logo"> -->
-        <p class="centered"><b><?php echo $row['restaurant']; ?></b>
+        <p class="centered"><b style="font-size: 16px;"><?php echo $row['restaurant']; ?></b>
             <br><?php echo $row['city']; ?>
+            <br>M.No. <?php echo $row['mobile']; ?>
         </p>
         <hr>
         Name : <b> <?php echo $row['name']; ?> </b>
@@ -136,45 +137,62 @@ $row = mysqli_fetch_assoc($res);
                     <!-- <td class="quantity"></td> -->
                     <td colspan="2" class="price"><b><?php echo $total; ?></b></td>
                 </tr>
-                <tr>
+                <?php if ($discount > 0) { ?>
+                    <tr>
 
-                    <td class="description">Discount</td>
-                    <!-- <td class="quantity"></td> -->
-                    <td colspan="2" class="price"><b><?php echo $discount; ?></b></td>
-                </tr>
-                <tr>
+                        <td class="description">Discount</td>
+                        <!-- <td class="quantity"></td> -->
+                        <td colspan="2" class="price"><b><?php echo $discount; ?></b></td>
+                    </tr>
+                <?php } ?>
+                <?php if ($recived != $grand_total) { ?>
+                    <tr>
 
-                    <td class="description">Recived</td>
-                    <!-- <td class="quantity"></td> -->
-                    <td colspan="2" class="price"><b><?php echo $recived; ?></b></td>
-                </tr>
-                <tr>
+                        <td class="description">Recived</td>
+                        <!-- <td class="quantity"></td> -->
+                        <td colspan="2" class="price"><b><?php echo $recived; ?></b></td>
+                    </tr>
+                <?php } ?>
+                <?php if ($balance > 0) { ?>
+                    <tr>
 
-                    <td class="description"><b>Grand Total</b></td>
-                    <!-- <td class="quantity"></td> -->
-                    <td colspan="2" class="price"><b><?php echo $grand_total; ?></b></td>
-                </tr>
+                        <td class="description"><b>Balance</b></td>
+                        <!-- <td class="quantity"></td> -->
+                        <td colspan="2" class="price"><b><?php echo $balance; ?></b></td>
+                    </tr>
+                <?php } ?>
+                <?php if (($total - $grand_total) != 0) { ?>
+                    <tr>
+
+                        <td class="description"><b>Grand Total</b></td>
+                        <!-- <td class="quantity"></td> -->
+                        <td colspan="2" class="price"><b><?php echo $grand_total; ?></b></td>
+                    </tr>
+                <?php } ?>
                 <tr>
 
                     <td class="description">By</td>
-                    <td class="quantity"><?php echo $mode; ?></td>
+                    <td colspan="2" class="price"><b><?php echo $mode; ?></b></td>
+
 
                 </tr>
             </tbody>
         </table>
         <p class="centered">Thanks for your purchase!
+            <br>
             <br>spicyrasoi.com
         </p>
         <br>
+        <br>
+        <hr>
     </div>
-    <button id="btnPrint" class="hidden-print">Print</button>
+    <!-- <button id="btnPrint" class="hidden-print">Print</button> -->
     <!-- <script src="script.js"></script> -->
     <script type="text/javascript">
-        const $btnPrint = document.querySelector("#btnPrint");
-        $btnPrint.addEventListener("click", () => {
-            window.print();
 
-        });
+
+
+
     </script>
 </body>
 
