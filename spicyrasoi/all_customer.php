@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+include("../config.php");
+include("class/User.php");
+// include("navbar.php");
+require_once("islogin.php");
 
+?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,11 +50,11 @@
     <!-- Navbar -->
     <?php include("navbar.php"); 
      require_once("logininfo.php");
-     include("../config.php");
+     
 
         
            //echo("Successfull");
-           $sql = "SELECT * FROM customer ";
+           $sql = "SELECT * FROM customer WHERE restaurant=$restaurant";
            $res = $con->query($sql);
            if ($res->num_rows > 0) {
 		          //echo "Output fetched successfully";
@@ -137,7 +144,7 @@
                     <td  ><?php echo $row['user_address']; ?></td>
                     <td  ><?php echo $row['user_name']; ?></td>
                     <td  ><?php echo $row['id_proof']; ?></td>
-                    <td  ><?php echo ("00"); ?></td>
+                    <td  ><?php echo $row['balance']; ?></td>
                     <td  ><a href="#"><i class="fas fa-trash-alt"> Remove</i></a> | <a href="#"> <i class="fas fa-edit"> Edit</i> </a></td>
                    
                     <!-- <td  >U</td>
