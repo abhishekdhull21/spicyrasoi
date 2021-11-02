@@ -50,9 +50,9 @@ function showProduct($cat_id, $subid)
     </thead>
     <tbody>
       <?php
-      $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id and `sub_category` = $subid  and restaurant = $restaurant";
+      $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id and `sub_category` = $subid  and restaurant = $restaurant and status = 1";
       if ($subid == false)
-        $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id  and restaurant = $restaurant";
+        $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id  and restaurant = $restaurant and status = 1";
 
       $resproduct = mysqli_query($con, $sql);
 
@@ -779,11 +779,11 @@ function fetchSubCategory($cat_id)
             // alert("redirected to print page")
             localStorage.setItem("kotbill", JSON.stringify(products));
             var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=400,width=800");
-            // print.document.close();
+            print.document.close();
             print.print();
             // print.close();
             // printDiv("print");
-            // location.reload();
+            location.reload();
           }
         },
       });

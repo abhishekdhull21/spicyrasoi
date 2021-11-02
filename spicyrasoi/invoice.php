@@ -131,7 +131,7 @@ require_once("islogin.php");
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = "SELECT * FROM orders where restaurant  = $restaurant order by date";
+                                                        $sql = "SELECT a.orderid,a.name,a.bill_no,a.order_value,a.order_type,a.tableid,a.date,b.title FROM orders a, dashboard b where a.restaurant = b.restaurant and b.id = a.tablegroup and a.restaurant = $restaurant order by a.date desc";
                                                         $res = $con->query($sql);
                                                         while ($row = $res->fetch_assoc()) {
                                                             //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
@@ -147,7 +147,12 @@ require_once("islogin.php");
                                                                                         ?>
                                                                 </td>
 
-                                                                <td>Table1</td>
+                                                                <td>
+                                                                    <ul>
+                                                                        <li><?php echo $row['title']; ?></li>
+                                                                        <li>Table:<?php echo $row['tableid']; ?></li>
+                                                                    </ul>
+                                                                </td>
                                                                 <td>
                                                                     <div class="btn-group">
                                                                         <button type="button" onclick="href.location='printbill.php?orderid=<?php echo $orderid; ?>'" class="btn btn-info">View</button>

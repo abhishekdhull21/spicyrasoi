@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+include("../config.php");
+include("class/User.php");
+// include("navbar.php");
+require_once("islogin.php");
+
+?>
 
 <head>
   <meta charset="utf-8">
@@ -42,7 +50,6 @@
 
     <!-- Navbar -->
     <?php
-    include("../config.php");
     include("navbar.php");
     //  $host = "sql487.main-hosting.eu";
     //  $username = "u709711065_spicyrasoi";
@@ -54,7 +61,7 @@
       echo ("Error");
     } else {
       //echo("Successfull");
-      $sql = "SELECT p.product_id,p.product_name, c.cat_name, p.store_price, p.swiggy_price, p.zomato_price, p.local_price, p.gst_price, p.gst_type FROM product p, category c WHERE c.cat_id=p.category";
+      $sql = "SELECT p.product_id,p.product_name, c.cat_name, p.store_price, p.swiggy_price, p.zomato_price, p.local_price, p.gst_price, p.gst_type FROM product p, category c WHERE c.cat_id=p.category and c.restaurant = $restaurant and p.status=1";
       $res = $con->query($sql);
       if ($res->num_rows > 0) {
         //echo "Output fetched successfully";
@@ -117,7 +124,7 @@
                         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                           <thead>
                             <tr role="row">
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">S.No.</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">P.ID.</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Category</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Store Price</th>
@@ -141,7 +148,7 @@
                             ?>
 
                               <tr class="odd">
-                                <td class="dtr-control"><?php echo ($i); ?>
+                                <td class="dtr-control"><?php echo $row['product_id']; ?>
                                 </td>
                                 <td class="sorting_1"><?php echo $row['product_name']; ?></td>
                                 <td><?php echo $row['cat_name']; ?> </td>
