@@ -69,14 +69,33 @@ if ($admintype == 2)
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body ">
-                  <a href="#" class="btn btn-app bg-success">
+                <div class="row ">
+                <div class="col-12 col-sm-6">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                    
+                      <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT INCOME</h3>
+                      <h4 class="info-box-number text-center text-muted mb-0" id="totalsell">2300</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="info-box bg-light">
+                    <div class="info-box-content">
+                      <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT SPENT</h3>
+                      <h4 class="info-box-number text-center text-muted mb-0" id="totalexpense">2000</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                  <!-- <a href="#" class="btn btn-app bg-success">
                     <span class="badge bg-purple" id="totalsell">0</span>
                     <i class="fas fa-money-check-alt"></i> Income
                   </a>
                   <a href="#" class="btn btn-app bg-danger">
                     <span class="badge bg-purple" id="totalexpense">0</span>
                     <i class="fas fa-money-check-alt"></i> Out
-                  </a>
+                  </a> -->
                   <a href="invoice.php" class="btn btn-app bg-primary">
                     <!-- <span class="badge bg-purple">891</span> -->
                     <i class="fas fa-file-invoice"></i> Invoice
@@ -89,6 +108,7 @@ if ($admintype == 2)
                     <!-- <span class="badge bg-purple">891</span> -->
                     <i class="fas fa-users"></i> All Customer
                   </a>
+                  
 
 
                 </div>
@@ -246,7 +266,19 @@ if ($admintype == 2)
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body">
-
+                  <div class="form-group">
+                  <label>Select Resturant</label>
+                  <select class="form-control " style="width: 100%;"  aria-hidden="true">
+                    <option selected="selected" data-select2-id="3">Alabama</option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                  <!-- <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-ui0b-container"><span class="select2-selection__rendered" id="select2-ui0b-container" role="textbox" aria-readonly="true" title="Alabama">Alabama</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span> -->
+                </div>
                     <div id="accordion">
 
 

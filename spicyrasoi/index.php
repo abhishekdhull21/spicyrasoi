@@ -75,11 +75,11 @@ require_once '../config.php';
                       $cat_name = $cat_id . $i;
                       if (in_array($cat_name, $_SESSION['tables'])) {
                     ?>
-                        <a class="btn btn-app bg-primary" href="<?php echo "genbill.php?table=" .  $i . "&group=" . $cat_id . "&name=" . $cat_name; ?>">
+                        <a class="btn btn-app bg-success" href="<?php echo "genbill.php?table=" .  $i . "&group=" . $cat_id . "&name=" . $cat_name; ?>">
                           <h3 id="table<?php echo $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
                         </a>
                       <?php } else { ?>
-                        <a class="btn btn-app bg-secondary" href="<?php echo "genbill.php?table=" . $i . "&group=" . $cat_id . "&name=" . $cat_name; ?>">
+                        <a class="btn btn-app bg-skin-red-light" href="<?php echo "genbill.php?table=" . $i . "&group=" . $cat_id . "&name=" . $cat_name; ?>">
                           <h3 id="table<?php echo  $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
                         </a>
 
