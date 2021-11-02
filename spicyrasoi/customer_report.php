@@ -99,7 +99,7 @@
         <div class="container-fluid">
           <div class="row">
             <!-- left column -->
-            <div class="col-md-3">
+            <div class="col-md-4">
              
 
               <div class="row">
@@ -108,12 +108,12 @@
                   <!-- general form elements -->
                   <div class="card card-success">
                     <div class="card-header">
-                      <h3 class="card-title">Add Expense </h3>
+                      <h3 class="card-title">Customer Name </h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
                     <div class="card-body">
-                    <label for="customer_name">Customer Name</label>
+                    <!-- <label for="customer_name">Customer Name</label>
                       <div class="form-group">
                         <select class=" form-control" id="addSubExpenseID">
                           <?php
@@ -124,7 +124,7 @@
                             <option value="<?php echo $row['cat_id']; ?>"><?php echo ("Customer Name"); ?></option>
                           <?php } ?>
                         </select>
-                      </div>
+                      </div> -->
                       <!-- <div class="form-group">
                         <label for="addSubCategoryInput">Title</label>
                         <input type="text" class="form-control" id="addSubCategoryInput" placeholder="Enter Title">
@@ -154,12 +154,13 @@
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary" id="btnAddSubExpense">Add Amount</button>
                   </div>
+                
                 </div>
               </div>
             </div>
             <!-- /.card -->
 
-            <div class="col-md-9">
+            <div class="col-md-8">
               <!-- general form elements -->
               <div class="row ">
                 <div class="col-12 col-sm-6">

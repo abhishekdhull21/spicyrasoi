@@ -83,7 +83,7 @@ $row = mysqli_fetch_assoc($res);
             <div class="col-sm-4 invoice-col">
               <b>Bill No. : <span id="bill"><?php echo $row['bill_no']; ?></span></b><br>
 
-              <b>Order No. : <span id="orderid"><?php echo $row['orderid']; ?></span></b><br>
+              <!-- <b>Order No. : <span id="orderid"><?php echo $row['orderid']; ?></span></b><br> -->
               <!-- <b> <span id="orderid"><?php echo ("GST Included"); ?></span></b><br> -->
               <br>
               <!-- <b>Order ID:</b> 4F3S8J<br>
@@ -138,7 +138,7 @@ $row = mysqli_fetch_assoc($res);
                     <td></td>
                     <td></td>
                     <td><b>Total</b></td>
-                    <td id="grandtotalprice"><?php echo $row['total']; ?></td>
+                    <td id="grandtotalprice"><?php echo floor($row['total']); ?></td>
                   </tr>
                   <tr>
                     <!-- <td></td> -->
@@ -151,14 +151,14 @@ $row = mysqli_fetch_assoc($res);
                         <option value="UPI">UPI</option>
                         <option value="Other">Other</option>
                       </select></td>
-                    <td><b>Recived</b></td>
-                    <td><input type="number" min=0 class="form-control" id="recived" value=<?php echo $row['total']; ?>></td>
-                  </tr>
-                  <tr>
-                    <!-- <td></td> -->
-                    <td><b>Discount</b></td>
-                    <td> <input type="number" min=0 class="form-control" id="discount" value=0>
+                      <td><b>Discount</b></td>
+                      <td> <input type="number" min=0 class="form-control" id="discount" value=0>
                     </td>
+                    </tr>
+                    <tr>
+                      <!-- <td></td> -->
+                    <td><b>Recived</b></td>
+                    <td><input type="number" min=0 class="form-control" id="recived" value=<?php echo floor($row['total']); ?>></td>
                     <td><b>Grand Total</b></td>
                     <td id="grand_total">00</td>
                   </tr>
@@ -226,8 +226,8 @@ $row = mysqli_fetch_assoc($res);
         success: function(result) {
           console.log(result);
           if (result.success == true) {
-            bill.total = result.data[0].order_value;
-            bill.grand_total = result.data[0].order_value;
+            bill.total = parseInt(result.data[0].order_value);
+            bill.grand_total = parseInt(result.data[0].order_value);
             $('#grand_total').html(bill.total);
           }
         },

@@ -116,10 +116,10 @@ $row = mysqli_fetch_assoc($res);
                 $i = 1;
                 while ($order = mysqli_fetch_assoc($rest)) {
                     $recived = $order['recived'];
-                    $grand_total = $order['grand_total'];
+                    $grand_total = floor($order['grand_total']);
                     $mode = $order['mode'];
-                    $balance = $order['balance'];
-                    $total = $order['order_value'];
+                    $balance = floor($order['balance']);
+                    $total = floor($order['order_value']);
                     $discount = $order['discount'];
                 ?>
                     <tr>
@@ -178,7 +178,7 @@ $row = mysqli_fetch_assoc($res);
                 </tr>
             </tbody>
         </table>
-        <p class="centered">Thanks for your purchase!
+        <p class="centered">Thanks for your visit!
             <br>
             <br>spicyrasoi.com
         </p>
