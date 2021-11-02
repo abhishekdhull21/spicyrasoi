@@ -1,120 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once "../config.php";
-
-$orderid = isset($_GET['orderid']) ? $_GET['orderid'] : null;
-$sql = "SELECT a.name as restaurant,a.city,a.state,a.country,a.district,a.mobile,
-b.name as name,b.bill_no,b.date,b.orderid,b.order_value as total
-from restaurant a, orders b where b.restaurant = a.restaurantid and b.orderid  = $orderid";
-$res = mysqli_query($con, $sql);
-$row = mysqli_fetch_assoc($res);
-
+<?php
+require_once('../config.php');
+if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
+    $tablegroup = $_GET['tablegroup'];
+    $tableid = $_GET['table'];
+    $sql = "SELECT `title` FROM `dashboard` WHERE `id` = $tablegroup limit 1";
+    $res = mysqli_query($con, $sql);
+    if (mysqli_num_rows($res) < 1) {
+        echo 'something went wrong, close this window and try again...' . mysqli_error($con);
+    } else {
+        $title = mysqli_fetch_assoc($res)['title'];
 ?>
-    <head>
-        <meta charset="UTF-8">
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- <link rel="stylesheet" href="style.css"> -->
-        <style type="text/css">
-            * {
-    font-size: 12px;
-    font-family: 'Times New Roman';
-}
 
-td,
-th,
-tr,
-table {
-    border-top: 1px solid black;
-    border-collapse: collapse;
-}
+        <head>
+            <meta charset="UTF-8">
+            <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <!-- <link rel="stylesheet" href="style.css"> -->
+            <style type="text/css">
+                * {
+                    font-size: 12px;
+                    font-family: 'Times New Roman';
+                }
 
-td.description,
-th.description {
-    width: 150px;
-    max-width: 275px;
-}
+                td,
+                th,
+                tr,
+                table {
+                    border-top: 1px solid black;
+                    border-collapse: collapse;
+                }
 
-td.quantity,
-th.quantity {
-    width: 70px;
-    max-width: 70px;
-    word-break: break-all;
-}
+                td.description,
+                th.description {
+                    width: 150px;
+                    max-width: 275px;
+                }
 
-td.price,
-th.price {
-    width: 100px;
-    max-width: 100px;
-    word-break: break-all;
-}
+                td.quantity,
+                th.quantity {
+                    width: 70px;
+                    max-width: 70px;
+                    word-break: break-all;
+                }
 
-.centered {
-    text-align: center;
-    align-content: center;
-}
+                td.price,
+                th.price {
+                    width: 100px;
+                    max-width: 100px;
+                    word-break: break-all;
+                }
 
-.ticket {
-    width: 155px;
-    max-width: 155px;
-}
+                .centered {
+                    text-align: center;
+                    align-content: center;
+                }
 
-img {
-    max-width: inherit;
-    width: inherit;
-}
+                .ticket {
+                    width: 155px;
+                    max-width: 155px;
+                }
 
-@media print {
-    .hidden-print,
-    .hidden-print * {
-        display: none !important;
-    }
-}
-        </style>
-        <title>Receipt</title>
-    </head>
-    <body>
-        <div class="ticket">
+                img {
+                    max-width: inherit;
+                    width: inherit;
+                }
+
+                @media print {
+
+                    .hidden-print,
+                    .hidden-print * {
+                        display: none !important;
+                    }
+                }
+            </style>
+            <title>Receipt</title>
+        </head>
+
+        <body>
+            <div class="ticket">
                 <hr>
-                Place : <b> ABC </b>
+                Place : <b> <?php echo $title; ?> - <?php echo $tableid; ?> </b>
                 <hr>
-                Date: 29-10-2021 <br>
-                Bill No. 002
-            <table>
-                <thead>
-                    <tr>
-                        
-                        <th class="description">Item</th>
-                        <th class="quantity centered">Q.</th>
-                        <th class="price">Price</th>
-                         
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for($i=1;$i<=3;$i++) { ?>
-                    <tr>
-                        
-                        <td class="description">ARDUINO UNO R3</td>
-                        <td class="quantity centered">1</td>
-                        <td class="price">25</td>
-                        
-                    </tr>
-                <?php } ?>
-                   
-                  
-                </tbody>
-            </table>
-           
-        </div>
-        <button id="btnPrint" class="hidden-print">Print</button>
-        <!-- <script src="script.js"></script> -->
-        <script type="text/javascript">
-            const $btnPrint = document.querySelector("#btnPrint");
-$btnPrint.addEventListener("click", () => {
-    window.print();
-   
-});
-        </script>
-    </body>
+                Date: <?php echo date('Y-m-d'); ?><br>
+                Bill No. <span id="billno">::bill_no::</span>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="description">Item</th>
+                            <th class="quantity centered">Q.</th>
+                            <th class="price">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartItems">
+
+                    <tbody>
+                </table>
+
+            </div>
+            <!-- <button id="btnPrint" class="hidden-print">Print</button> -->
+            <!-- <script src="script.js"></script> -->
+            <script src="plugins/jquery/jquery.min.js"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    console.log(JSON.parse(localStorage.getItem("kotbill")));
+                    const products = JSON.parse(localStorage.getItem("kotbill"));
+                    $('#orderid').html(products.orderid);
+                    $('#customerType').html(products.customerType);
+                    $('#billno').html(products.billNo);
+                    products.data.map((d, index) => {
+
+
+                        var itemRow = '<tr id="cartItem' + d.id + '">';
+                        // itemRow += '<td>' + (products.data.length - index) + '</td>';
+                        itemRow += '<td>' + d.name + '</td>';
+                        itemRow += '<td>' + d.qty + '</td>';
+                        itemRow += '<td id="price">' + d.price + '</td>';
+                        // itemRow += '<td id="subTotal">' + d.subtotal + '</td>';
+                        itemRow += ' </tr>';
+                        $("#cartItems").prepend(itemRow)
+                    });
+                    // $("#grandtotalprice").html(products.totalPrice);
+                    // window.addEventListener("load", window.print());
+                });
+            </script>
+        </body>
+<?php }
+} else echo 'something went wrong, close this window and try again...'; ?>
 
 </html>

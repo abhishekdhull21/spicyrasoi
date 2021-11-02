@@ -330,26 +330,24 @@ function fetchSubCategory($cat_id)
                     <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
                   </h4>
                 </div>
-                <!-- /.col -->
-              </div>
-              <input type="text" hidden id="tableid" value="<?php echo $tableid; ?>">
-              <input type="text" hidden id="tablegroup" value="<?php echo $groupid; ?>">
-              <input type="text" hidden id="table" value="<?php echo $table; ?>">
-              <input type="text" hidden id="method" value="<?php echo $method; ?>">
-              <input type="text" hidden id="admin_id" value="<?php echo $admin_id; ?>">
-              <input type="text" hidden id="restaurant" value="<?php echo $restaurant; ?>">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <!-- <th>S.No.</th> -->
-                    <th>Item</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
-                  </tr>
-                </thead>
-                <tbody id="cartItems">
-                  <!-- <tr>
+                <input type="text" hidden id="tableid" value="<?php echo $tableid; ?>">
+                <input type="text" hidden id="tablegroup" value="<?php echo $groupid; ?>">
+                <input type="text" hidden id="table" value="<?php echo $table; ?>">
+                <input type="text" hidden id="method" value="<?php echo $method; ?>">
+                <input type="text" hidden id="admin_id" value="<?php echo $admin_id; ?>">
+                <input type="text" hidden id="restaurant" value="<?php echo $restaurant; ?>">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <!-- <th>S.No.</th> -->
+                      <th>Item</th>
+                      <th>Qty</th>
+                      <th>Price</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cartItems">
+                    <!-- <tr>
                     <td></td>
                     <td>Burger</td>
                     <td>2</td>
@@ -357,14 +355,14 @@ function fetchSubCategory($cat_id)
                     <td>98</td>
                   </tr> -->
 
-                  <tr>
-                    <!-- <td></td> -->
-                    <td></td>
-                    <td> </td>
-                    <td><b>Grand Total</b></td>
-                    <td id="grandtotalprice">00</td>
-                  </tr>
-                  <!-- <tr>                   
+                    <tr>
+                      <!-- <td></td> -->
+                      <td></td>
+                      <td> </td>
+                      <td><b>Grand Total</b></td>
+                      <td id="grandtotalprice">00</td>
+                    </tr>
+                    <!-- <tr>                   
                     <td><input type="number" class="form-control" value=0 id="cartRecived"></td>
                     <td><input type="number" class="form-control" value=0 id="cartDiscount"></td>
                     <td><select id="selectCustomerBillName" class="js-example-basic-single form-control">
@@ -377,9 +375,9 @@ function fetchSubCategory($cat_id)
                       </select></td>
                     <td>Paid:<span id="paid">00</span></td>
                   </tr> -->
-                </tbody>
-              </table>
-
+                  </tbody>
+                </table>
+              </div>
               <div class="row no-print">
                 <div class="col-12">
                   <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
@@ -565,6 +563,7 @@ function fetchSubCategory($cat_id)
       customerName: "Cash",
       customerID: 0,
       customerType: "Cash",
+      kot: 0,
       orderid: 0,
       billNo: 0,
       totalPrice: 0,
@@ -712,32 +711,29 @@ function fetchSubCategory($cat_id)
       }
     }
 
-    // fetch table item
-    // $.ajax({
-    //   method: "POST",
-    //   url: constant.url + "table/orderfetch.php",
-    //   data: JSON.stringify({
-    //     table: $('#tableid').val() != null ? $('#tableid').val() : 0,
-    //     restaurant: $('#restaurant').val() != null ? $('#restaurant').val() : 0,
-    //   }),
-    //   contentType: "application/json",
-    //   dataType: "json",
-    //   success: (res) => {
-    //     // console.log(res);
-    //     if (res.success) {
-    //       const arr = res.data;
-
-    //       arr.data.map((d) => {
-    //         if ($("#addProductCart_" + d.id) != null) {
-    //           $("#addProductCart_" + d.id).prop("checked", "true");
-    //           addToCart(document.getElementById("addProductCart_" + d.id), d, arr.totalPrice);
-    //           addToCart($("#addProductCart_" + d.id));
-    //         }
-    //       });
-    //     }
-    //   }
-    // });
-
+    // fetch customer name
+    function fetchCustomerName(id) {
+      console.log("pr " + products)
+      $.ajax({
+        method: "POST",
+        url: constant.url + "customer/fetchbyid.php",
+        data: JSON.stringify({
+          user_id: id != null ? id : 0,
+          restaurant: $('#restaurant').val() != null ? $('#restaurant').val() : 0,
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: (res) => {
+          // console.log(res);
+          if (res.success) {
+            const arr = res.data;
+            products.customerID = arr.user_id;
+            products.customerName = arr.user_name;
+            $('#selectCustomerBillName').html(products.customerName);
+          }
+        }
+      });
+    }
     // clear table
     function clearTable(alert) {
       $.ajax({
@@ -779,10 +775,15 @@ function fetchSubCategory($cat_id)
           if (result.success == true) {
             // clearTable();
             products.orderid = result.data.orderid;
+
             // alert("redirected to print page")
-            // localStorage.setItem("bill", JSON.stringify(products));
-            // window.open("printbill.php", "_blank");
-            location.reload();
+            localStorage.setItem("kotbill", JSON.stringify(products));
+            var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=400,width=800");
+            // print.document.close();
+            print.print();
+            // print.close();
+            // printDiv("print");
+            // location.reload();
           }
         },
       });
@@ -843,6 +844,10 @@ function fetchSubCategory($cat_id)
           if (result.success == true) {
             console.log(result);
             products.orderid = result.data.orderid;
+            products.billNo = result.data.bill_no;
+            products.kot = result.data.kot;
+            console.log(products);
+            fetchCustomerName(result.data.user_id);
           } else {
             if (alert === true)
               swal("Error", "Something went wrong", "error")
@@ -858,6 +863,7 @@ function fetchSubCategory($cat_id)
       products.customerType = $("#idCustomerType").val();
       console.log(products)
     });
+    // print function
   </script>
 
   <!-- select search -->
@@ -887,7 +893,7 @@ function fetchSubCategory($cat_id)
 
 
       }
-
+    
     });
   </script> -->
   <!-- <script src="scripts/request.js"></script> -->

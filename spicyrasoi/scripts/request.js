@@ -1,8 +1,13 @@
 // fetch category
 const constant = {
   //  url: "http://api.spicyrasoi.com/",
+<<<<<<< HEAD
   url: "http://localhost/apidevelopment/",
   // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
+=======
+  // url: "http://localhost/apidevelopment/",
+  url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
+>>>>>>> 836f7c7e23c5579b20fdc8f2a7b57136b7a9b62f
 };
 $(document).ready(function () {
   //add new category

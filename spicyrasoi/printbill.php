@@ -1,22 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once "../config.php";
-// session_start();
-// if (isset($_GET['table'])) {
-//   $tableid = $_GET['table'];
-//   if (!isset($_SESSION['tables']))
-//     $_SESSION['tables'] = array();
-//   $arr = $_SESSION['tables'];
 
-//   $activeTables = sizeof($arr);
-//   if (!in_array($tableid, $arr))
-//     $_SESSION['tables'][$activeTables] = $tableid;
-// }
-// print_r(file_get_contents('php://input'));
 $orderid = isset($_GET['orderid']) ? $_GET['orderid'] : null;
 $sql = "SELECT a.name as restaurant,a.city,a.state,a.country,a.district,a.mobile,
 b.name as name,b.bill_no,b.date,b.orderid,b.order_value as total
-from restaurant a, orders b where b.restaurant = a.restaurantid and b.orderid  = $orderid";
+from restaurant a, orders b where b.restaurant = a.restaurantid and b.orderid  = '$orderid'";
 $res = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($res);
 
@@ -130,7 +119,7 @@ $row = mysqli_fetch_assoc($res);
                 </thead>
                 <tbody id="cartItems">
                   <?php
-                  $sql = "SELECT a.product_name as name, b.price,b.qty,b.subtotal, c.order_value from product a, orders_product b, orders c where a.product_id = b.product_id and b.orderid = c.orderid and b.orderid = $orderid";
+                  $sql = "SELECT a.product_name as name, b.price,b.qty,b.subtotal, c.order_value from product a, orders_product b, orders c where a.product_id = b.product_id and b.orderid = c.orderid and b.orderid = '$orderid'";
                   $rest = mysqli_query($con, $sql);
                   $i = 1;
                   while ($order = mysqli_fetch_assoc($rest)) {
