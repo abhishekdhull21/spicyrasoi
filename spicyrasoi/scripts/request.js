@@ -1,6 +1,6 @@
 // fetch category
 const constant = {
-  //  url: "http://api.spicyrasoi.com/",
+  //  url: "https://spicyrasoi.com/api/",
   url: "http://localhost/apidevelopment/",
   // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };

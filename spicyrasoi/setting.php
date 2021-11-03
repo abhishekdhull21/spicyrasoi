@@ -75,7 +75,7 @@ if ($admintype == 2)
                     <div class="info-box-content">
                     
                       <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT INCOME</h3>
-                      <h4 class="info-box-number text-center text-muted mb-0" id="totalsell">2300</h4>
+                      <h4 class="info-box-number text-center text-muted mb-0" id="totalsell">00</h4>
                     </div>
                   </div>
                 </div>
@@ -83,7 +83,7 @@ if ($admintype == 2)
                   <div class="info-box bg-light">
                     <div class="info-box-content">
                       <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT SPENT</h3>
-                      <h4 class="info-box-number text-center text-muted mb-0" id="totalexpense">2000</h4>
+                      <h4 class="info-box-number text-center text-muted mb-0" id="totalexpense">00</h4>
                     </div>
                   </div>
                 </div>
@@ -137,15 +137,7 @@ if ($admintype == 2)
                       </div>
                       <div id="collapseseven" class="collapse" data-parent="#accordion">
                         <div class="card-body">
-                          <a href="add_customer.php" class="btn btn-app bg-success">
-
-                            <i class="fas fa-plus-circle"></i> Create
-                          </a>
-                          <a href="add_customer.php" class="btn btn-app bg-success">
-
-                            <i class="fas fa-plus-circle"></i> View
-                          </a>
-
+                        
                           <a href="#" class="btn btn-app bg-success">
 
                             <i class="fas fa-file"></i> Day Book
@@ -154,34 +146,16 @@ if ($admintype == 2)
 
                             <i class="fas fa-file"></i> Transaction
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
+                          <a href="customer_report.php" class="btn btn-app bg-success">
 
-                            <i class="fas fa-file"></i> Pay Amount
+                            <i class="fas fa-file"></i> Customer Report
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
-
-                            <i class="fas fa-file"></i> Recive Amount
-                          </a>
+                        
                           <a href="expense.php" class="btn btn-app bg-success">
 
                             <i class="fas fa-file"></i> Expense
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
-
-                            <i class="fas fa-file"></i> Cash
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-
-                            <i class="fas fa-file"></i> Bank
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-
-                            <i class="fas fa-file"></i> Profit
-                          </a>
-                          <a href="#" class="btn btn-app bg-success">
-
-                            <i class="fas fa-file"></i> Salary
-                          </a>
+                          
 
                         </div>
                       </div>
@@ -221,26 +195,20 @@ if ($admintype == 2)
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-users"></i> Room Report
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
+                          <a href="stock.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Stock Report
+                            <i class="fas fa-users"></i> Stock Managment
                           </a>
                           <a href="#" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-users"></i> Purchase Report
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Salary Report
-                          </a>
+                        
                           <a href="#" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-users"></i> Expense Report
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Visitor Report
-                          </a>
+                        
 
                         </div>
                       </div>
