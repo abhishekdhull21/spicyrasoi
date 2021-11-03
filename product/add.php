@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $admin_id = $data['admin_id'] != '' ? $data['admin_id'] : 0;
         $restaurant = $data['restaurant'] != '' ? $data['restaurant'] : 0;
         $gst = $data['gst'] != '' ? $data['gst'] : 0;
-         $gst_price = $data['gst_price'] != '' ? $data['gst_price'] : 0;
+        $gst_price = $data['gst_price'] != '' ? $data['gst_price'] : 0;
         // $hsn = $data['hsn-ceod'] != '' ? $data['hsn-code'] : 0;
         $gst_type =  filter_var($data['gst_type'], FILTER_SANITIZE_STRING);
         $food_type =  filter_var($data['food_type'], FILTER_SANITIZE_STRING);

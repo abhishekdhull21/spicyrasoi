@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($data['restaurant'])) {
         $restaurant = $data['restaurant'];
         //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
-        if ($result = mysqli_query($con, "SELECT sum(order_value) as sum FROM `orders` where restaurant = $restaurant limit 1")) {
+        if ($result = mysqli_query($con, "SELECT sum(paid) as sum FROM `orders` where restaurant = $restaurant limit 1")) {
             if (mysqli_num_rows($result) > 0) {
 
                 $response = array(
