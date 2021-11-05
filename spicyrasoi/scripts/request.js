@@ -630,6 +630,53 @@ $(document).ready(function () {
     $("#modal-default").modal("toggle");
   });
 
+  //add Stock 
+  $('#btnAddStock').on("click", (e)=>{
+    e.preventDefault();
+    //alert();
+    const product_id = $("#product_id").val();
+    const in_out = $("#in_out").val();
+    const qty = $("#qty").val();
+    // console.log(+product_name);
+    // console.log(+in_out);
+    // console.log(+qty);
+    //if(product_name = null && product_name === "") return;
+
+    $(document).ajaxSend(()=>{
+      $("#btnAddStock").attr("disabled",true);
+      $("#btnAddStock").html("Processing");
+    });
+     $.ajax({
+       url: constant.url+ "stock/add.php",
+       method: "POST",
+       data: JSON.stringify({
+         product_id: product_id,
+         admin_id: admin_id,
+         restaurant: restaurant,
+         in_out: in_out,
+         qty: qty,
+       }),
+       contentType: "application/json",
+       dataType: "json",
+       success: function(result){
+         const json = result;
+         if(json.success) swal("Good Job", "Stock Added Sccessfully","success");
+         else swal({title:"Error Occured", text:json.error, icon: "error"});
+         console.info(json.success);
+         $("#btnAddStock").html("Submit")
+       },
+     });
+     $(document).ajaxComplete((res) => {
+      $("#btnAddStock").attr("disabled", false);
+      $("#btnAddStock").html("Add Stock");
+    });
+    //  $(document).ajaxError((res)=>{
+    //    console.error(res);
+    //    $("#btnAddStock").attr("disabled", false);
+    //    $("#btnAddStock").html("Submit");
+    //  });
+  });
+
   // add customer on genbill mobile no change
   $("#customer_mob_no").on("change", (e) => {
     console.log("changed");

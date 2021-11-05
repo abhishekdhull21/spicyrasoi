@@ -81,11 +81,12 @@ require_once '../config.php';
                       if (in_array($cat_name, $_SESSION['tables'])) {
                     ?>
                         <a class="btn btn-app bg-success" href="<?php echo "genbill.php?table=" .  $i . "&group=" . $cat_id . "&name=" . $cat_name; ?>">
-                          <h3 id="table<?php echo $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
+                        <span class="badge bg-purple">Name</span> 
+                        <h3 id="table<?php echo $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
                         </a>
                       <?php } else { ?>
                         <a class="btn btn-app bg-skin-red-light" href="<?php echo "genbill.php?table=" . $i . "&group=" . $cat_id . "&name=" . $cat_name; ?>">
-                          <h3 id="table<?php echo  $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
+                        <h3 id="table<?php echo  $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
                         </a>
 
                     <?php }

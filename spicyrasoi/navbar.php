@@ -55,11 +55,6 @@
     <!-- Right navbar links -->
     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#" role="button">
-          <i class="fas fa-cart-plus"> Cart</i>
-        </a>
-      </li>
-      <li class="nav-item">
         <div class="btn-group">
           <button type="button" class="btn btn-success">Profile</button>
           <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
@@ -73,6 +68,11 @@
             <a class="dropdown-item" href="user/logout.php">Log Out</a>
           </div>
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
       </li>
 
     </ul>
