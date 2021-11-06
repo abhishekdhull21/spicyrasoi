@@ -180,7 +180,7 @@ $row = mysqli_fetch_assoc($res);
         </table>
         <p class="centered">Thanks for your visit!
             <br>
-            <br>spicyrasoi.com
+            <br>Powered By: <b>spicyrasoi.com</b>
         </p>
         <br>
         <br>
@@ -189,7 +189,7 @@ $row = mysqli_fetch_assoc($res);
     <!-- <button id="btnPrint" class="hidden-print">Print</button> -->
     <!-- <script src="script.js"></script> -->
     <script type="text/javascript">
-
+  window.addEventListener("load", window.print());
 
 
 

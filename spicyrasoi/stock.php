@@ -183,12 +183,12 @@
                                                 <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                                                     <thead>
                                                         <tr role="row">
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">SNo.</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Stock ID</th>
                                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Product Name</th>
-                                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Type</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Total Amount</th>
+                                                            <!-- <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Type</th> -->
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Qty</th>
                                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Balance</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Invoice Details</th>
+                                                            <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Invoice Details</th> -->
                                                             <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th> -->
                                                             <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >HSN Code</th> -->
@@ -196,19 +196,19 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = "SELECT a.orderid,a.name,a.bill_no,a.order_value,a.order_type,a.tableid,a.date,b.title FROM orders a, dashboard b where a.restaurant = b.restaurant and b.id = a.tablegroup and a.restaurant = $restaurant order by a.date desc";
+                                                        $sql = "SELECT * FROM stock where restaurant = $restaurant order by a.date desc";
                                                         $res = $con->query($sql);
                                                         while ($row = $res->fetch_assoc()) {
                                                             //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
-                                                            $orderid =  $row['orderid'];
+                                                            // $orderid =  $row['orderid'];
                                                         ?>
 
                                                             <tr class="odd">
-                                                                <td class="dtr-control"><?php echo $row['date']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $orderid ?> </td>
-                                                                <td class="sorting_1"><?php echo ("Debit/Credit"); ?></td>
-                                                                <td><?php echo $row['order_value']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode
+                                                                <td class="dtr-control"><?php echo $row['stock_id']; ?> </td>
+                                                                <td class="dtr-control"><?php echo ""; ?> </td>
+                                                                <!-- <td class="sorting_1"><?php echo ("Debit/Credit"); ?></td> -->
+                                                                <td><?php echo $row['qty']; ?> </td>
+                                                                <!-- <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode -->
                                                                                         ?>
                                                                 </td>
 

@@ -108,8 +108,14 @@ if ($admintype == 2)
                     <!-- <span class="badge bg-purple">891</span> -->
                     <i class="fas fa-users"></i> All Customer
                   </a>
-                  
+                  <a href="invoiceday.php" class="btn btn-app bg-success">
 
+                            <i class="fas fa-file"></i> Day Book
+                          </a>
+                 <a href="expense.php" class="btn btn-app bg-success">
+
+                    <i class="fas fa-file"></i> Expense
+                 </a>
 
                 </div>
               </div>
@@ -138,7 +144,7 @@ if ($admintype == 2)
                       <div id="collapseseven" class="collapse" data-parent="#accordion">
                         <div class="card-body">
                         
-                          <a href="#" class="btn btn-app bg-success">
+                          <a href="invoiceday.php" class="btn btn-app bg-success">
 
                             <i class="fas fa-file"></i> Day Book
                           </a>

@@ -200,7 +200,7 @@
                           <tbody>
                             <?php
                             $i = 0;
-                            $sql = "SELECT * FROM expense_cat a, expense b WHERE a.cat_id = b.cat_id";
+                            $sql = "SELECT * FROM expense_cat a, expense b WHERE a.cat_id = b.cat_id and a.restaurant= $restaurant";
                             $res = mysqli_query($con, $sql);
                             while ($row = $res->fetch_assoc()) {
 
