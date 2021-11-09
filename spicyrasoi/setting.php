@@ -116,6 +116,10 @@ if ($admintype == 2)
 
                     <i class="fas fa-file"></i> Expense
                  </a>
+                 <a href="day_expense.php" class="btn btn-app bg-success">
+
+                  <i class="fas fa-file"></i> Today Expense
+                  </a>
 
                 </div>
               </div>
