@@ -31,5 +31,11 @@ if (!isset($_SESSION['user'])) {
     }
 }
 
-if (!$isLogined)
-    header('location:user/login.php');
+if (!$isLogined || $restaurant == null || $admin_id == null) {
+?>
+    <script>
+        confirm('Clear your browser cache', '')
+        // window.location = 'user/login.php';
+    </script>
+
+<?php } ?>

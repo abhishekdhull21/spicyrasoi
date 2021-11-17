@@ -5,6 +5,7 @@ require_once '../config.php';
 ?>
 <!DOCTYPE html>
 <?php require_once('islogin.php');
+require_once('logininfo.php');
 ?>
 <html lang="en" class="" style="height: auto;">
 
@@ -82,7 +83,7 @@ require_once '../config.php';
                     ?>
                         <a class="btn btn-app bg-success" href="<?php echo "genbill.php?table=" .  $i . "&group=" . $cat_id . "&name=" . $cat_name; ?>">
                           <?php
-                          echo  $nsql = "SELECT a.user_name FROM customer a,`orders` b,tables_session c WHERE a.user_id = b.user_id and b.orderid = c.orderid and c.table_id = $i and c.table_cat = $cat_id";
+                          $nsql = "SELECT a.user_name FROM customer a,`orders` b,tables_session c WHERE a.user_id = b.user_id and b.orderid = c.orderid and c.table_id = $i and c.table_cat = $cat_id";
                           $nres = mysqli_query($con, $nsql);
                           $customer_name = "";
                           if (mysqli_num_rows($nres) > 0)
