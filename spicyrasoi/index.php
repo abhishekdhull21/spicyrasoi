@@ -37,8 +37,8 @@ require_once '../config.php';
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <?php 
-              $sql ="SELECT name FROM `restaurant` WHERE restaurantid = $restaurant";
+              <?php
+              $sql = "SELECT name FROM `restaurant` WHERE restaurantid = $restaurant";
               $res = mysqli_query($con, $sql);
 
               ?>
@@ -81,12 +81,19 @@ require_once '../config.php';
                       if (in_array($cat_name, $_SESSION['tables'])) {
                     ?>
                         <a class="btn btn-app bg-success" href="<?php echo "genbill.php?table=" .  $i . "&group=" . $cat_id . "&name=" . $cat_name; ?>">
-                        <span class="badge bg-purple">Name</span> 
-                        <h3 id="table<?php echo $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
+                          <?php
+                          echo  $nsql = "SELECT a.user_name FROM customer a,`orders` b,tables_session c WHERE a.user_id = b.user_id and b.orderid = c.orderid and c.table_id = $i and c.table_cat = $cat_id";
+                          $nres = mysqli_query($con, $nsql);
+                          $customer_name = "";
+                          if (mysqli_num_rows($nres) > 0)
+                            $customer_name = mysqli_fetch_assoc($nres)['user_name'];
+                          ?>
+                          <span class="badge bg-purple"><?php echo $customer_name; ?></span>
+                          <h3 id="table<?php echo $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
                         </a>
                       <?php } else { ?>
                         <a class="btn btn-app bg-skin-red-light" href="<?php echo "genbill.php?table=" . $i . "&group=" . $cat_id . "&name=" . $cat_name; ?>">
-                        <h3 id="table<?php echo  $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
+                          <h3 id="table<?php echo  $row['id'] . ($i) ?>"><?php echo ($i) ?></h3> <br>
                         </a>
 
                     <?php }

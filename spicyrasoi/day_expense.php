@@ -96,87 +96,18 @@
 
       <!-- Main content -->
       <section class="content">
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
             <!-- left column -->
-            <div class="col-md-3">
-              <!-- general form elements -->
-              <div class="card card-success">
-                <div class="card-header">
-                  <h3 class="card-title">Add Category of Expense</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="addExpenseCategoryInput">Name of Category</label>
-                    <input type="text" class="form-control" id="addExpenseCategoryInput" placeholder="Enter Category">
-                  </div>
-
-                </div>
-
-              </div>
-              <!-- /.card-body -->
-
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary" id="btnAddExpenseCategory">Add</button>
-              </div>
-
-              <div class="row">
-                <!-- left column -->
-                <div class="col-md-12">
-                  <!-- general form elements -->
-                  <div class="card card-success">
-                    <div class="card-header">
-                      <h3 class="card-title">Add Expense </h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <div class="card-body">
-                      <div class="form-group">
-                        <select class=" form-control" id="addSubExpenseID">
-                          <?php
-                          $swl = "SELECT * from expense_cat where  restaurant = $restaurant";
-                          $res = mysqli_query($con, $swl);
-                          while ($row = mysqli_fetch_assoc($res)) {
-                          ?>
-                            <option value="<?php echo $row['cat_id']; ?>"><?php echo $row['cat_name']; ?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                      <!-- <div class="form-group">
-                        <label for="addSubCategoryInput">Title</label>
-                        <input type="text" class="form-control" id="addSubCategoryInput" placeholder="Enter Title">
-                      </div> -->
-                      <div class="form-group">
-                        <label for="addSubExpenseAmount">Amount</label>
-                        <input type="number" class="form-control" id="addSubExpenseAmount" placeholder="Enter Amount">
-                      </div>
-                      <div class="form-group">
-                        <label for="addSubExpenseRemarks">Remark</label>
-                        <input type="text" class="form-control" id="addSubExpenseRemarks" placeholder="Enter Category">
-                      </div>
-
-                    </div>
-
-                  </div>
-                  <!-- /.card-body -->
-
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" id="btnAddSubExpense">Add Expense</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+   
             <!-- /.card -->
 
-            <div class="col-md-9">
+            <div class="col-md-12">
               <!-- general form elements -->
 
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">All Listed Category </h3>
+                  <h3 class="card-title"> <?php echo date('l jS  F Y '); ?> </h3>
                   <a href=""> <i class="fas fa-sync float-right"> Refresh</i> </a>
                 </div>
                 <div class="card-body">
@@ -200,7 +131,7 @@
                           <tbody>
                             <?php
                             $i = 0;
-                            $sql = "SELECT * FROM expense_cat a, expense b WHERE a.cat_id = b.cat_id and a.restaurant= $restaurant";
+                            $sql = "SELECT * FROM expense_cat a, expense b WHERE a.cat_id = b.cat_id and a.restaurant= $restaurant and DATE(b.date) = DATE(NOW())";
                             $res = mysqli_query($con, $sql);
                             while ($row = $res->fetch_assoc()) {
 

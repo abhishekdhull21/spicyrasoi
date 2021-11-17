@@ -136,7 +136,7 @@ require_once("islogin.php");
                      
                   <tr class="odd">
                     <td class="dtr-control"><?php echo $row['user_id']; ?> </td>
-                    <td class="sorting_1"><?php echo $row['user_name']; ?></td>
+                    <td class="sorting_1"><a href="customer_report.php?customerid=<?php echo $row['user_id']; ?>"><?php echo $row['user_name']; ?></a></td> 
                     <td  ><?php echo $row['user_mobile']; ?> </td>
                     <td  ><?php echo $row['user_email']; ?></td>
                     <td  ><?php echo $row['user_sex']; ?></td>

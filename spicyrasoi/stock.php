@@ -183,12 +183,12 @@
                                                 <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                                                     <thead>
                                                         <tr role="row">
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">SNo.</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Stock ID</th>
                                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Product Name</th>
-                                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Type</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Total Amount</th>
+                                                            <!-- <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Type</th> -->
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Qty</th>
                                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Balance</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Invoice Details</th>
+                                                            <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Invoice Details</th> -->
                                                             <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th> -->
                                                             <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >HSN Code</th> -->
@@ -196,19 +196,19 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = "SELECT a.orderid,a.name,a.bill_no,a.order_value,a.order_type,a.tableid,a.date,b.title FROM orders a, dashboard b where a.restaurant = b.restaurant and b.id = a.tablegroup and a.restaurant = $restaurant order by a.date desc";
+                                                        $sql = "SELECT * FROM stock where restaurant = $restaurant order by a.date desc";
                                                         $res = $con->query($sql);
                                                         while ($row = $res->fetch_assoc()) {
                                                             //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
-                                                            $orderid =  $row['orderid'];
+                                                            // $orderid =  $row['orderid'];
                                                         ?>
 
                                                             <tr class="odd">
-                                                                <td class="dtr-control"><?php echo $row['date']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $orderid ?> </td>
-                                                                <td class="sorting_1"><?php echo ("Debit/Credit"); ?></td>
-                                                                <td><?php echo $row['order_value']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode
+                                                                <td class="dtr-control"><?php echo $row['stock_id']; ?> </td>
+                                                                <td class="dtr-control"><?php echo ""; ?> </td>
+                                                                <!-- <td class="sorting_1"><?php echo ("Debit/Credit"); ?></td> -->
+                                                                <td><?php echo $row['qty']; ?> </td>
+                                                                <!-- <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode -->
                                                                                         ?>
                                                                 </td>
 
@@ -302,6 +302,53 @@
   <script src="scripts/expense.js"></script>
   <!-- Select2 -->
 <script src="plugins/select2/js/select2.full.min.js"></script>
+<script> 
+ $('#btnAddStock').on("click", (e)=>{
+    e.preventDefault();
+    alert();
+    const product_id = $("#product_id").val();
+    const in_out = $("#in_out").val();
+    const qty = $("#qty").val();
+    // console.log(+product_name);
+    // console.log(+in_out);
+    // console.log(+qty);
+    //if(product_name = null && product_name === "") return;
+
+    $(document).ajaxSend(()=>{
+      $("#btnAddStock").attr("disabled",true);
+      $("#btnAddStock").html("Processing");
+    });
+     $.ajax({
+       url: constant.url+ "stock/add.php",
+       method: "POST",
+       data: JSON.stringify({
+         product_id: product_id,
+         admin_id: admin_id,
+         restaurant: restaurant,
+         in_out: in_out,
+         qty: qty,
+       }),
+       contentType: "application/json",
+       dataType: "json",
+       success: function(result){
+         const json = result;
+         if(json.success) swal("Good Job", "Stock Added Sccessfully","success");
+         else swal({title:"Error Occured", text:json.error, icon: "error"});
+         console.info(json.success);
+         $("#btnAddStock").html("Submit");
+       },
+     });
+     $(document).ajaxComplete((res) => {
+      $("#btnAddStock").attr("disabled", false);
+      $("#btnAddStock").html("Add Stock");
+    });
+    //  $(document).ajaxError((res)=>{
+    //    console.error(res);
+    //    $("#btnAddStock").attr("disabled", false);
+    //    $("#btnAddStock").html("Submit");
+    //  });
+  });
+</script>
 <script>
   // $(function () {
   //   //Initialize Select2 Elements

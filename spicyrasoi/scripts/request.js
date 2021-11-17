@@ -630,10 +630,10 @@ $(document).ready(function () {
     $("#modal-default").modal("toggle");
   });
 
-  //add Stock 
-  $('#btnAddStock').on("click", (e)=>{
+  //add Stock
+  $("#btnAddStock").on("click", (e) => {
     e.preventDefault();
-    //alert();
+    alert();
     const product_id = $("#product_id").val();
     const in_out = $("#in_out").val();
     const qty = $("#qty").val();
@@ -642,31 +642,32 @@ $(document).ready(function () {
     // console.log(+qty);
     //if(product_name = null && product_name === "") return;
 
-    $(document).ajaxSend(()=>{
-      $("#btnAddStock").attr("disabled",true);
+    $(document).ajaxSend(() => {
+      $("#btnAddStock").attr("disabled", true);
       $("#btnAddStock").html("Processing");
     });
-     $.ajax({
-       url: constant.url+ "stock/add.php",
-       method: "POST",
-       data: JSON.stringify({
-         product_id: product_id,
-         admin_id: admin_id,
-         restaurant: restaurant,
-         in_out: in_out,
-         qty: qty,
-       }),
-       contentType: "application/json",
-       dataType: "json",
-       success: function(result){
-         const json = result;
-         if(json.success) swal("Good Job", "Stock Added Sccessfully","success");
-         else swal({title:"Error Occured", text:json.error, icon: "error"});
-         console.info(json.success);
-         $("#btnAddStock").html("Submit")
-       },
-     });
-     $(document).ajaxComplete((res) => {
+    $.ajax({
+      url: constant.url + "stock/add.php",
+      method: "POST",
+      data: JSON.stringify({
+        product_id: product_id,
+        admin_id: admin_id,
+        restaurant: restaurant,
+        in_out: in_out,
+        qty: qty,
+      }),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        const json = result;
+        if (json.success)
+          swal("Good Job", "Stock Added Sccessfully", "success");
+        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        console.info(json.success);
+        $("#btnAddStock").html("Submit");
+      },
+    });
+    $(document).ajaxComplete((res) => {
       $("#btnAddStock").attr("disabled", false);
       $("#btnAddStock").html("Add Stock");
     });
@@ -675,6 +676,48 @@ $(document).ready(function () {
     //    $("#btnAddStock").attr("disabled", false);
     //    $("#btnAddStock").html("Submit");
     //  });
+  });
+
+  // Add Customer Amount
+  $("#btnAddAmt").on("click", (e) => {
+    e.preventDefault();
+    const type = $("#type").val();
+    const amt = $("#amt").val();
+    const remark = $("#remark").val();
+    console.log(type);
+    console.log(amt);
+    console.log(remark);
+    $(document).ajaxSend(() => {
+      $("#btnAddAmt").attr("disabled", true);
+      $("#btnAddAmt").html("Processing");
+    });
+
+    $.ajax({
+      url: constant.url + "customer/add_amt.php",
+      method: "POST",
+      data: JSON.stringify({
+        admin_id: admin_id,
+        restaurant: restaurant,
+        cust_id: 0,
+        type: type,
+        amt: amt,
+        remark: remark,
+      }),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        const json = result;
+        if (json.success)
+          swal("Good Job", "Amount Added Sccessfully", "success");
+        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        console.info(json.success);
+        $("#btnAddAmt").html("Submit");
+      },
+    });
+    $(document).ajaxComplete((res) => {
+      $("#btnAddStock").attr("disabled", false);
+      $("#btnAddStock").html("Add Stock");
+    });
   });
 
   // add customer on genbill mobile no change

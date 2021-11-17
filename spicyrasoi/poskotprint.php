@@ -5,7 +5,7 @@ require_once('../config.php');
 if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
     $tablegroup = $_GET['tablegroup'];
     $tableid = $_GET['table'];
-    $sql = "SELECT `title` FROM `dashboard` WHERE `id` = $tablegroup limit 1";
+     $sql = "SELECT `title` FROM `dashboard` WHERE `id` = $tablegroup limit 1";
     $res = mysqli_query($con, $sql);
     if (mysqli_num_rows($res) < 1) {
         echo 'something went wrong, close this window and try again...' . mysqli_error($con);
@@ -21,7 +21,7 @@ if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
             <style type="text/css">
                 * {
                     font-size: 12px;
-                    font-family: 'Times New Roman';
+                    font-family: 'Arial Black';
                 }
 
                 td,
@@ -89,8 +89,8 @@ if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
                     <thead>
                         <tr>
                             <th class="description">Item</th>
-                            <th class="quantity centered">Q.</th>
-                            <th class="price">Price</th>
+                            <th class="quantity">Qty.</th>
+                            <!-- <th class="price">Price</th> -->
                         </tr>
                     </thead>
                     <tbody id="cartItems">
@@ -116,14 +116,14 @@ if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
                         var itemRow = '<tr id="cartItem' + d.id + '">';
                         // itemRow += '<td>' + (products.data.length - index) + '</td>';
                         itemRow += '<td>' + d.name + '</td>';
-                        itemRow += '<td>' + d.qty + '</td>';
-                        itemRow += '<td id="price">' + d.price + '</td>';
+                        itemRow += '<td class="centered">' + d.qty + '</td>';
+                        // itemRow += '<td id="price">' + d.price + '</td>';
                         // itemRow += '<td id="subTotal">' + d.subtotal + '</td>';
                         itemRow += ' </tr>';
                         $("#cartItems").prepend(itemRow)
                     });
                     // $("#grandtotalprice").html(products.totalPrice);
-                    // window.addEventListener("load", window.print());
+                     window.addEventListener("load", window.print());
                 });
             </script>
         </body>

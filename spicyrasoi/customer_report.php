@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+session_start();
+include("../config.php");
+include("class/User.php");
 
+require_once("islogin.php");
+?>
 <head>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Spicy Rasoi</title>
@@ -32,7 +39,9 @@
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
+<?php 
 
+?>
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
   <div class="wrapper">
 
@@ -45,17 +54,21 @@
 
     <!-- Navbar -->
     <?php
-    session_start();
-    include("../config.php");
-    include("class/User.php");
     include("navbar.php");
-    require_once("islogin.php");
+    // session_start();
+    // include("../config.php");
+    // include("class/User.php");
+    // include("navbar.php");
+    // require_once("islogin.php");
     // $host = "sql487.main-hosting.eu";
     // $username = "u709711065_spicyrasoi";
     // $password = "NewPassword@1234";
     // $db = "u709711065_spicyrasoi";
     // $con = mysqli_connect($host, $username, $password, $db);
 
+    if(isset($_GET['customerid'])){
+      $customerid = $_GET['customerid'];
+    }
     if (mysqli_connect_errno()) {
       echo ("Error");
     } else {
@@ -100,7 +113,13 @@
           <div class="row">
             <!-- left column -->
             <div class="col-md-4">
-             
+            <?php
+                          $swl = "SELECT user_name from customer where  user_id = $customerid";
+                          $res = mysqli_query($con, $swl);
+                          while ($row = mysqli_fetch_assoc($res)) {
+                          ?>
+                            
+                          
 
               <div class="row">
                 <!-- left column -->
@@ -108,21 +127,16 @@
                   <!-- general form elements -->
                   <div class="card card-success">
                     <div class="card-header">
-                      <h3 class="card-title">Customer Name </h3>
+                      <h3 class="card-title"><?php echo $row['user_name']; ?> </h3>
                     </div>
+                    <?php } ?>
                     <!-- /.card-header -->
                     <!-- form start -->
                     <div class="card-body">
                     <!-- <label for="customer_name">Customer Name</label>
                       <div class="form-group">
                         <select class=" form-control" id="addSubExpenseID">
-                          <?php
-                          $swl = "SELECT * from expense_cat where  restaurant = $restaurant";
-                          $res = mysqli_query($con, $swl);
-                          while ($row = mysqli_fetch_assoc($res)) {
-                          ?>
-                            <option value="<?php echo $row['cat_id']; ?>"><?php echo ("Customer Name"); ?></option>
-                          <?php } ?>
+                         
                         </select>
                       </div> -->
                       <!-- <div class="form-group">
@@ -130,20 +144,20 @@
                         <input type="text" class="form-control" id="addSubCategoryInput" placeholder="Enter Title">
                       </div> -->
                       <div class="form-group">
-                      <label for="select">Select</label>
-                        <select class=" form-control" id="addSubExpenseID">
+                      <label for="type">Type</label>
+                        <select class=" form-control" id="type">
                          
-                            <option value="credit">Credit</option>
-                            <option value="debit">Debit</option>
+                            <option value="credit" selected>Credit</option>
+                            <!-- <option value="debit">Debit</option> -->
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="addSubExpenseAmount">Amount</label>
-                        <input type="number" class="form-control" id="addSubExpenseAmount" placeholder="Enter Amount" value=0>
+                        <label for="amt">Amount</label>
+                        <input type="number" class="form-control" id="amt" value=0>
                       </div>
                       <div class="form-group">
-                        <label for="addSubExpenseRemarks">Remark</label>
-                        <input type="text" class="form-control" id="addSubExpenseRemarks" placeholder="Enter Category">
+                        <label for="remark">Remark</label>
+                        <input type="text" class="form-control" id="remark" placeholder="Remartk">
                       </div>
 
                     </div>
@@ -152,7 +166,7 @@
                   <!-- /.card-body -->
 
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" id="btnAddSubExpense">Add Amount</button>
+                    <button type="submit" class="btn btn-primary" id="btnAddAmt">Add Amount</button>
                   </div>
                 
                 </div>
@@ -168,15 +182,15 @@
                     <div class="info-box-content">
                     
                       <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT INCOME</h3>
-                      <h4 class="info-box-number text-center text-muted mb-0" id="totalsell">2300</h4>
+                      <h4 class="info-box-number text-center text-muted mb-0" id="totalsell">00</h4>
                     </div>
                   </div>
                 </div>
                 <div class="col-12 col-sm-6">
                   <div class="info-box bg-light">
                     <div class="info-box-content">
-                      <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT SPENT</h3>
-                      <h4 class="info-box-number text-center text-muted mb-0" id="totalexpense">2000</h4>
+                      <h3 class="info-box-text text-center text-muted">TOTAL BALANCE</h3>
+                      <h4 class="info-box-number text-center text-muted mb-0" id="totalexpense">00</h4>
                     </div>
                   </div>
                 </div>
@@ -209,7 +223,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = "SELECT a.orderid,a.name,a.bill_no,a.order_value,a.order_type,a.tableid,a.date,b.title FROM orders a, dashboard b where a.restaurant = b.restaurant and b.id = a.tablegroup and a.restaurant = $restaurant order by a.date desc";
+                                                        $sql = "SELECT a.orderid,a.name,a.bill_no,a.order_value,a.order_type,a.tableid,a.date,b.title FROM orders a, dashboard b where a.restaurant = b.restaurant and b.id = a.tablegroup and a.restaurant = $restaurant and a.user_id=$customerid order by a.date desc";
                                                         $res = $con->query($sql);
                                                         while ($row = $res->fetch_assoc()) {
                                                             //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
@@ -275,7 +289,7 @@
   <!-- ./wrapper -->
 
   <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
   <!-- jQuery UI 1.11.4 -->
   <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -287,12 +301,12 @@
   <!-- ChartJS -->
   <script src="plugins/chart.js/Chart.min.js"></script>
   <!-- Sparkline -->
-  <script src="plugins/sparklines/sparkline.js"></script>
+  <!-- <script src="plugins/sparklines/sparkline.js"></script> -->
   <!-- JQVMap -->
-  <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <!-- <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script> -->
   <!-- jQuery Knob Chart -->
-  <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+  <!-- <script src="plugins/jquery-knob/jquery.knob.min.js"></script> -->
   <!-- daterangepicker -->
   <script src="plugins/moment/moment.min.js"></script>
   <script src="plugins/daterangepicker/daterangepicker.js"></script>
@@ -305,9 +319,9 @@
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
+  <!-- <script src="dist/js/demo.js"></script> -->
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="dist/js/pages/dashboard.js"></script>
+  <!-- <script src="dist/js/pages/dashboard.js"></script> -->
   <!-- DataTables  & Plugins -->
   <script src="plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
