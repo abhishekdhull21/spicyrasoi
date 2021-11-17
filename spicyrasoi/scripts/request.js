@@ -350,11 +350,11 @@ $(document).ready(function () {
       console.error(res);
 
       $("#btnLogin").attr("disabled", false);
-      $("#btnLogin").html("Submit");
+      $("#btnLogin").html("Login");
     });
     $(document).ajaxComplete((res) => {
       $("#btnLogin").attr("disabled", false);
-      $("#btnLogin").html("Submit");
+      $("#btnLogin").html("Login");
     });
   });
 

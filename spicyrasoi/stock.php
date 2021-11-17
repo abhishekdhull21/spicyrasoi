@@ -158,7 +158,7 @@
                   <!-- /.card-body -->
 
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" id="btnAddStock">Add Stock</button>
+                    <button type="submit" class="btn btn-primary" id="btnAddStock" onlclick="stockAdd();">Add Stock</button>
                   </div>
                 
                 </div>
@@ -196,31 +196,26 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = "SELECT * FROM stock where restaurant = $restaurant order by a.date desc";
+                                                        $sql = "SELECT b.product_name, a.qty, a.product_id, a.stock_id FROM `stock` a , product b where a.product_id = b.product_id and a.restaurant = $restaurant ";
                                                         $res = $con->query($sql);
                                                         while ($row = $res->fetch_assoc()) {
-                                                            //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
+                                                            // echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
                                                             // $orderid =  $row['orderid'];
                                                         ?>
 
                                                             <tr class="odd">
                                                                 <td class="dtr-control"><?php echo $row['stock_id']; ?> </td>
-                                                                <td class="dtr-control"><?php echo ""; ?> </td>
-                                                                <!-- <td class="sorting_1"><?php echo ("Debit/Credit"); ?></td> -->
+                                                                <td class="dtr-control"><?php echo $row['product_name']; ?> </td>
+                                                                <td class="sorting_1"><?php echo ("Stock In"); ?></td>
                                                                 <td><?php echo $row['qty']; ?> </td>
-                                                                <!-- <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode -->
-                                                                                        ?>
-                                                                </td>
-
-                                                                <td><?php echo ("View"); ?></td>
+                                                                
+                                                                <!-- <td><?php echo ("View"); ?></td> -->
                                                                
                                                             </tr>
-                                                        <?php } ?>
+                                                        <?php  } ?>
 
                                                     </tbody>
-                                                    <!-- <tfoot>
-                  <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
-                  </tfoot> -->
+                                                    
                                                 </table>
                                             </div>
                                         </div>
@@ -303,6 +298,7 @@
   <!-- Select2 -->
 <script src="plugins/select2/js/select2.full.min.js"></script>
 <script> 
+function addStock(){alert();};
  $('#btnAddStock').on("click", (e)=>{
     e.preventDefault();
     alert();

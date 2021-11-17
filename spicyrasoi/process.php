@@ -132,7 +132,7 @@ require_once("islogin.php");
                           <tbody>
                             <?php
 
-                            $sql = "SELECT a.orderid,a.name,a.date,a.order_value,a.pay_type,
+                            $sql = "SELECT a.orderid,a.bill_no,a.name,a.date,a.order_value,a.pay_type,
                             b.table_id,b.tablename,b.table_cat,
                             c.title
                              FROM orders a, `tables_session` b,`dashboard` c where a.orderid=b.orderid and c.id = b.table_cat and b.status =1 and a.restaurant = $restaurant";
@@ -147,7 +147,7 @@ require_once("islogin.php");
                             ?>
 
                               <tr class="odd">
-                                <td class="dtr-control"><?php echo $orderid; ?> </td>
+                                <td class="dtr-control"><?php echo $row['bill_no']; ?></td>
                                 <td class="sorting_1"><?php echo $row['date']; ?></td>
                                 <td><?php echo $row['name']; ?> </td>
                                 <td>
