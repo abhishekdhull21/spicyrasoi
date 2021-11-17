@@ -1,7 +1,7 @@
 // fetch category
 const constant = {
-   url: "https://spicyrasoi.com/api/",
-  // url: "http://localhost/apidevelopment/",
+  //  url: "https://spicyrasoi.com/api/",
+  url: "http://localhost/apidevelopment/",
   // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 $(document).ready(function () {
@@ -350,11 +350,11 @@ $(document).ready(function () {
       console.error(res);
 
       $("#btnLogin").attr("disabled", false);
-      $("#btnLogin").html("Submit");
+      $("#btnLogin").html("Login");
     });
     $(document).ajaxComplete((res) => {
       $("#btnLogin").attr("disabled", false);
-      $("#btnLogin").html("Submit");
+      $("#btnLogin").html("Login");
     });
   });
 

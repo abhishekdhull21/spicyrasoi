@@ -690,7 +690,7 @@ function fetchSubCategory($cat_id)
             localStorage.setItem("kotbill", JSON.stringify(products));
             var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=400,width=800");
             print.document.close();
-            print.print();
+            //print.print();
             // print.close();
             // printDiv("print");
             location.reload();
