@@ -32,10 +32,12 @@ if (!isset($_SESSION['user'])) {
 }
 
 if (!$isLogined || $restaurant == null || $admin_id == null) {
+    session_unset();
+    session_destroy();
 ?>
     <script>
-        confirm('Clear your browser cache', '')
-        // window.location = 'user/login.php';
+        confirm('Please login again');
+        window.location = 'user/login.php';
     </script>
 
 <?php } ?>
