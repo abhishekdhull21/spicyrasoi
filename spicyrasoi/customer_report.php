@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+<?php
 session_start();
 include("../config.php");
 include("class/User.php");
 
 require_once("islogin.php");
 ?>
+
 <head>
 
   <meta charset="utf-8">
@@ -39,9 +40,10 @@ require_once("islogin.php");
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
-<?php 
+<?php
 
 ?>
+
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
   <div class="wrapper">
 
@@ -66,7 +68,7 @@ require_once("islogin.php");
     // $db = "u709711065_spicyrasoi";
     // $con = mysqli_connect($host, $username, $password, $db);
 
-    if(isset($_GET['customerid'])){
+    if (isset($_GET['customerid'])) {
       $customerid = $_GET['customerid'];
     }
     if (mysqli_connect_errno()) {
@@ -113,27 +115,24 @@ require_once("islogin.php");
           <div class="row">
             <!-- left column -->
             <div class="col-md-4">
-            <?php
-                          $swl = "SELECT user_name from customer where  user_id = $customerid";
-                          $res = mysqli_query($con, $swl);
-                          while ($row = mysqli_fetch_assoc($res)) {
-                          ?>
-                            
-                          
-
-              <div class="row">
-                <!-- left column -->
-                <div class="col-md-12">
-                  <!-- general form elements -->
-                  <div class="card card-success">
-                    <div class="card-header">
-                      <h3 class="card-title"><?php echo $row['user_name']; ?> </h3>
-                    </div>
+              <?php
+              $swl = "SELECT user_name from customer where  user_id = $customerid";
+              $res = mysqli_query($con, $swl);
+              while ($row = mysqli_fetch_assoc($res)) {
+              ?>
+                <div class="row">
+                  <!-- left column -->
+                  <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-success">
+                      <div class="card-header">
+                        <h3 class="card-title"><?php echo $row['user_name']; ?> </h3>
+                      </div>
                     <?php } ?>
                     <!-- /.card-header -->
                     <!-- form start -->
                     <div class="card-body">
-                    <!-- <label for="customer_name">Customer Name</label>
+                      <!-- <label for="customer_name">Customer Name</label>
                       <div class="form-group">
                         <select class=" form-control" id="addSubExpenseID">
                          
@@ -144,11 +143,11 @@ require_once("islogin.php");
                         <input type="text" class="form-control" id="addSubCategoryInput" placeholder="Enter Title">
                       </div> -->
                       <div class="form-group">
-                      <label for="type">Type</label>
+                        <label for="type">Type</label>
                         <select class=" form-control" id="type">
-                         
-                            <option value="credit" selected>Credit</option>
-                            <!-- <option value="debit">Debit</option> -->
+
+                          <option value="credit" selected>Credit</option>
+                          <!-- <option value="debit">Debit</option> -->
                         </select>
                       </div>
                       <div class="form-group">
@@ -162,15 +161,15 @@ require_once("islogin.php");
 
                     </div>
 
-                  </div>
-                  <!-- /.card-body -->
+                    </div>
+                    <!-- /.card-body -->
 
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" id="btnAddAmt">Add Amount</button>
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-primary" id="btnAddAmt">Add Amount</button>
+                    </div>
+
                   </div>
-                
                 </div>
-              </div>
             </div>
             <!-- /.card -->
 
@@ -180,7 +179,7 @@ require_once("islogin.php");
                 <div class="col-12 col-sm-6">
                   <div class="info-box bg-light">
                     <div class="info-box-content">
-                    
+
                       <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT INCOME</h3>
                       <h4 class="info-box-number text-center text-muted mb-0" id="totalsell">00</h4>
                     </div>
@@ -190,14 +189,14 @@ require_once("islogin.php");
                   <div class="info-box bg-light">
                     <div class="info-box-content">
                       <h3 class="info-box-text text-center text-muted">TOTAL BALANCE</h3>
-                      <h4 class="info-box-number text-center text-muted mb-0" id="totalexpense">00</h4>
+                      <h4 class="info-box-number text-center text-muted mb-0" id="totalbalance">00</h4>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="card card-primary">
-                  
+
                 <div class="card-header">
                   <h3 class="card-title">All Invoice </h3>
                   <a href=""> <i class="fas fa-sync float-right"> Refresh</i> </a>
@@ -205,63 +204,63 @@ require_once("islogin.php");
                 <div class="card-body">
                   <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
-                  <div class="row">
-                                            <div class="col-sm-12">
-                                                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
-                                                    <thead>
-                                                        <tr role="row">
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Date</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Invoice No.</th>
-                                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Type</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Total Amount</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Mode</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Invoice Details</th>
-                                                            <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th> -->
-                                                            <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                          <thead>
+                            <tr role="row">
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Date</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Invoice No.</th>
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Type</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Total Amount</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Mode</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Invoice Details</th>
+                              <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th> -->
+                              <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >HSN Code</th> -->
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                                                        $sql = "SELECT a.orderid,a.name,a.bill_no,a.order_value,a.order_type,a.tableid,a.date,b.title FROM orders a, dashboard b where a.restaurant = b.restaurant and b.id = a.tablegroup and a.restaurant = $restaurant and a.user_id=$customerid order by a.date desc";
-                                                        $res = $con->query($sql);
-                                                        while ($row = $res->fetch_assoc()) {
-                                                            //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
-                                                            $orderid =  $row['orderid'];
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $sql = "SELECT a.orderid,a.name,a.bill_no,a.order_value,a.order_type,a.tableid,a.date,b.title FROM orders a, dashboard b where a.restaurant = b.restaurant and b.id = a.tablegroup and a.restaurant = $restaurant and a.user_id=$customerid order by a.date desc";
+                            $res = $con->query($sql);
+                            while ($row = $res->fetch_assoc()) {
+                              //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
+                              $orderid =  $row['orderid'];
+                            ?>
+
+                              <tr class="odd">
+                                <td class="dtr-control"><?php echo $row['date']; ?> </td>
+                                <td class="dtr-control"><?php echo $orderid ?> </td>
+                                <td class="sorting_1"><?php echo ("Debit/Credit"); ?></td>
+                                <td><?php echo $row['order_value']; ?> </td>
+                                <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode
                                                         ?>
+                                </td>
 
-                                                            <tr class="odd">
-                                                                <td class="dtr-control"><?php echo $row['date']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $orderid ?> </td>
-                                                                <td class="sorting_1"><?php echo ("Debit/Credit"); ?></td>
-                                                                <td><?php echo $row['order_value']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode
-                                                                                        ?>
-                                                                </td>
+                                <td><?php echo ("View"); ?></td>
+                                <!-- <td>
+                                    <div class="btn-group">
+                                        <button type="button" onclick="href.location='printbill.php?orderid=<?php echo $orderid; ?>'" class="btn btn-info">View</button>
+                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>">View</a>
+                                            <a class="dropdown-item" href="#">Edit</a>
+                                        </div>
+                                    </div>
+                                </td> -->
+                              </tr>
+                            <?php } ?>
 
-                                                                <td><?php echo ("View"); ?></td>
-                                                                <!-- <td>
-                                                                    <div class="btn-group">
-                                                                        <button type="button" onclick="href.location='printbill.php?orderid=<?php echo $orderid; ?>'" class="btn btn-info">View</button>
-                                                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
-                                                                            <span class="sr-only">Toggle Dropdown</span>
-                                                                        </button>
-                                                                        <div class="dropdown-menu" role="menu">
-                                                                            <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>">View</a>
-                                                                            <a class="dropdown-item" href="#">Edit</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </td> -->
-                                                            </tr>
-                                                        <?php } ?>
-
-                                                    </tbody>
-                                                    <!-- <tfoot>
+                          </tbody>
+                          <!-- <tfoot>
                   <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
                   </tfoot> -->
-                                                </table>
-                                            </div>
-                                        </div>
+                        </table>
+                      </div>
+                    </div>
 
                   </div>
                 </div>
@@ -364,6 +363,30 @@ require_once("islogin.php");
   <script>
     $('.js-example-basic-single').select2({
       placeholder: 'Select an option'
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const user_id = urlParams.get('customerid')
+
+      $.ajax({
+        url: constant.url + "customer/acc_info.php",
+        method: 'POST',
+        data: JSON.stringify({
+          user_id: user_id,
+          restaurant: restaurant,
+        }),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(res) {
+          // console.log(res);
+          if (res.success === true) {
+            $("#totalbalance").html(res.data.balance);
+            $("#totalsell").html(res.data.total_purchase);
+          }
+        }
+      });
     });
   </script>
 </body>
