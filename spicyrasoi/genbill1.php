@@ -93,8 +93,13 @@
                                 <td><?php echo "date"; ?></td>
                                 <td><?php echo "date"; ?></td>
                                 <td><?php echo 'cat_name'; ?></td>
-                                <td class="sorting_1"><?php echo 'amount'; ?></td>
-                                <td><?php echo 'remarks'; ?></td>
+                                <td><?php echo 'amount'; ?></td>
+                                <td><div class="form-group">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox">
+                        </div>
+                        </div>
+                    </td>
                                
 
 
