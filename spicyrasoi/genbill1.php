@@ -60,73 +60,238 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row" style="margin-top: 10px;">
                         <!-- left column -->
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <div class="card" style="margin-top: 10px;">
                                 <div class="card-header">
-                                    <h3 class="card-title">All Category</h3>
-                                </div>
-                                <div class="card-body">
-                                    <?php for ($i = 1; $i <= 20; $i++) { ?>
-                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#category<?php echo $i; ?>" style="margin-bottom: 10px;">
-                                            Category <?php echo $i; ?>
-                                        </button>
-                                        <div class="modal fade" id="category<?php echo $i; ?>">
-                                            <div class="modal-dialog modal-xl">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">All Product</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="card">
-                                                           
-                                                            <div class="card-body">
-                                                               
-                                                                <a class="btn btn-app">
-                                                                     Edit
-                                                                </a>
-                                                                <a class="btn btn-app">
-                                                                     Play
-                                                                </a>
-                                                               
-                                                            </div>
-                                                            <!-- /.card-body -->
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer justify-content-between">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                </div>
-                                                <!-- /.modal-content -->
-                                            </div>
-                                            <!-- /.modal-dialog -->
-                                        </div>
-                                        <!-- /.modal -->
-                                    <?php } ?>
-                                    <!-- <a class="btn btn-app">
-                  <i class="fas fa-play"></i> Play
-                </a>
-                <a class="btn btn-app">
-                  <i class="fas fa-pause"></i> Pause
-                </a> -->
+                  <h3 class="card-title">All Product </h3>
+                  <a href=""> <i class="fas fa-sync float-right"> Refresh</i> </a>
+                </div>
+                <div class="card-body">
+                  <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                          <thead>
+                            <tr role="row">
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">S.No.</th>
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Category</th>
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">SubCategory</th>
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Price</th>
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Add</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                           
 
-                        </div>
+                              <tr class="odd">
+                                <td class="dtr-control"><?php echo ("1"); ?>
+                                </td>
+                                <td><?php echo "date"; ?></td>
+                                <td><?php echo "date"; ?></td>
+                                <td><?php echo 'cat_name'; ?></td>
+                                <td class="sorting_1"><?php echo 'amount'; ?></td>
+                                <td><?php echo 'remarks'; ?></td>
+                               
+
+
+                                <!-- <td  >U</td>
+                   <td  >U</td>
+                   <td  >U</td> -->
+                              </tr>
+                           
+
+                          </tbody>
+                          <!-- <tfoot>
+                 <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
+                 </tfoot> -->
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <!-- /.card-body -->
+
+
+            </div>
                         <!-- /.card -->
+                           
+                        <div class="col-lg-4 table-responsive">
+                        
+              <div class="row no-print">
+                <div class="col-12">
+                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                    Book
+                  </button>
+                  <!-- Pop Window Body -->
+                  <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Customer</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="card card-success">
+                            <div class="card-header">
+                              <h3 class="card-title">Add Customer</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form>
+                              <div class="card-body">
+                                <div class="form-group">
+                                  <label for="customer_mob_no">Mobile No.</label>
+                                  <input type="number" class="form-control" id="customer_mob_no" placeholder="Enter Mobile No."><br>
 
-                        <div class="col-md-3">
+                                </div>
+                                <div class="form-group">
+                                  <label for="customer_name">Customer Name</label>
+                                  <input type="text" class="form-control" id="customer_name" placeholder="Enter Customer Name">
+                                </div>
 
-                            hello 3
+                              </div>
+
+                          </div>
+                          <!-- /.card-body -->
+
+                          <div class="card-footer">
+                            <button type="submit" class="btn btn-primary" disabled id="btnAddShortCustomer">Add</button>
+                            <button type="submit" disabled="true" class="btn btn-primary" id="btnCustomerSelect">Select</button>
+                          </div>
+                          </form>
+
 
                         </div>
+                        <div class="modal-footer justify-content-between">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
+                  <!-- /popup -->
+                  <a href="#" class="btn btn-default" id="#"><i class="fas fa-print"></i> Add Food</a>
+                  <a href="#" class="btn btn-default float-right" id="billingprint"><i class="fas fa-print"></i> Billing</a>
+                  <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
+                  <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
+                  <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
+                    <i class="fas fa-print"></i> Final Print
+                  </button> -->
+                </div>
+              </div><br>
+              <!-- Custormer Details  -->
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <!-- <label>Food Type</label> -->
+                    <h3 id="selectCustomerBillName" class="form-control">
+
+                      <!-- <option value="non-veg">Non-Veg</option> -->
+                      <!-- <option value="28">28%</option> -->
+                    </h3>
+                  </div>
+                  <!-- <input type="text" class="form-control" id="customer_name" placeholder="Customer Name"><br>
+                <input type="text" class="form-control" id="customer_mob_no" placeholder="Customer Mobile No."><br>
+                <button type="submit" class="btn btn-primary" id="btnAddCustomer">Add Customer</button> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <!-- <input type="text" class="form-control" id="customer_mob_no" placeholder="Customer Mobile No."> -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <!-- <button type="submit" class="btn btn-primary" id="btnAddCustomer">Add Customer</button> -->
+                </div>
+                <!-- /.col -->
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    Food Cart
+                    <small class="float-right">Date: <?php echo date("d-m-Y"); ?></small>
+                  </h4>
+                </div>
+                <input type="text" hidden id="tableid" value="<?php echo $tableid; ?>">
+                <input type="text" hidden id="tablegroup" value="<?php echo $groupid; ?>">
+                <input type="text" hidden id="table" value="<?php echo $table; ?>">
+                <input type="text" hidden id="method" value="<?php echo $method; ?>">
+                <input type="text" hidden id="admin_id" value="<?php echo $admin_id; ?>">
+                <input type="text" hidden id="restaurant" value="<?php echo $restaurant; ?>">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <!-- <th>S.No.</th> -->
+                      <th>Item</th>
+                      <th>Qty</th>
+                      <th>Price</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cartItems">
+                    <!-- <tr>
+                    <td></td>
+                    <td>Burger</td>
+                    <td>2</td>
+                    <td>49</td>
+                    <td>98</td>
+                  </tr> -->
+
+                    <tr>
+                      <!-- <td></td> -->
+                      <td></td>
+                      <td> </td>
+                      <td><b>Grand Total</b></td>
+                      <td id="grandtotalprice">00</td>
+                    </tr>
+                    <!-- <tr>                   
+                    <td><input type="number" class="form-control" value=0 id="cartRecived"></td>
+                    <td><input type="number" class="form-control" value=0 id="cartDiscount"></td>
+                    <td><select id="selectCustomerBillName" class="js-example-basic-single form-control">
+                        <option value="0,Cash">Cash</option>
+                        <option value="1,Bank">Bank</option>
+                        <option value="2,Gpay">GPay</option>
+                        <option value="3,PhonePe">PhonePe</option>
+                        <option value="4,UPI">UPI</option>
+                        <option value="5,Other">Other</option>
+                      </select></td>
+                    <td>Paid:<span id="paid">00</span></td>
+                  </tr> -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="row no-print">
+                <div class="col-12">
+                  <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
+                  <a href="#" class="btn btn-default float-right" id="btnkotprint"><i class="fas fa-print"></i> KOT and Save</a>
+                  <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
+                  <a href="#" class="btn btn-danger float-right" id="btnbillclear"><i class="fas fa-broom"></i> Clear Table</a>
+                  <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
+                  <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
+                  <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
+                    <i class="fas fa-print"></i> Final Print
+                  </button> -->
+                </div>
+              </div>
+
+
+
+            </div><!-- /.col -->
 
                     </div>
                     <!--/.col (left) -->
