@@ -633,7 +633,7 @@ $(document).ready(function () {
   //add Stock
   $("#btnAddStock").on("click", (e) => {
     e.preventDefault();
-    alert();
+    // alert();
     const product_id = $("#product_id").val();
     const in_out = $("#in_out").val();
     const qty = $("#qty").val();
