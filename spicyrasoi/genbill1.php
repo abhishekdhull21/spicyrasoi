@@ -1,70 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+require_once "../config.php";
+require_once "class/User.php";
+require_once "islogin.php";
+// print_r($user);
+$tableid = 0;
+$groupid = 0;
+$table = 0;
+
+// print_r($user);
+if (isset($_GET['table']) && isset($_GET['group']) && isset($_GET['name'])) {
+  $table = $_GET['table'];
+  $groupid = $_GET['group'];
+  $name = $_GET['name'];
+  $tableid = $groupid . $table;
+  if (!isset($_SESSION['tables']))
+    $_SESSION['tables'] = array();
+  $arr = $_SESSION['tables'];
+
+  $activeTables = sizeof($arr);
+  if (!in_array($tableid, $arr))
+    $_SESSION['tables'][$activeTables] = $tableid;
+}
+$method = "store_price";
+if (isset($_GET['method'])) {
+
+  if ($_GET['method'] == "swiggy")
+    $method = "swiggy_price";
+  else if ($_GET['method'] == "zomato")
+    $method = "zomato_price";
+  else if ($_GET['method'] == "gst")
+    $method = "gst_price";
+  // echo $method;
+}
+?>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Spicy Rasoi</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spicy Rasoi</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <!-- Select2 -->
-    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-    <!-- dropzonejs -->
-    <link rel="stylesheet" href="plugins/dropzone/min/dropzone.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <!-- Select2 -->
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- dropzonejs -->
+  <link rel="stylesheet" href="plugins/dropzone/min/dropzone.min.css">
 
 
 </head>
 
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
-    <div class="wrapper">
-
-
-
-        <!-- Preloader -->
-        <!-- <div class="preloader flex-column justify-content-center align-items-center">
+  <div class="wrapper">
+    <!-- Preloader -->
+    <!-- <div class="preloader flex-column justify-content-center align-items-center">
       <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
     </div> -->
 
 
-        <!-- /.navbar -->
-        <?php require_once('navbar.php'); ?>
+    <!-- /.navbar -->
+    <?php require_once('navbar.php'); ?>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row" style="margin-top: 10px;">
-                        <!-- left column -->
-                        <div class="col-md-8">
-                            <div class="card" style="margin-top: 10px;">
-                                <div class="card-header">
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row" style="margin-top: 10px;">
+            <!-- left column -->
+            <div class="col-md-8">
+              <div class="card" style="margin-top: 10px;">
+                <div class="card-header">
                   <h3 class="card-title">All Product </h3>
                   <a href=""> <i class="fas fa-sync float-right"> Refresh</i> </a>
                 </div>
@@ -85,29 +118,39 @@
                             </tr>
                           </thead>
                           <tbody>
-                           
+                            <?php
+                            echo  $sql =  "SELECT * FROM `product` a , subcategory b,category c WHERE b.cat_id = a.category and a.category = c.cat_id  and a.restaurant = $restaurant and a.status = 1";
+                            // if ($subid == false)
+                            //   $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id  and restaurant = $restaurant and status = 1";
+
+                            $resproduct = mysqli_query($con, $sql);
+
+                            while ($product = mysqli_fetch_assoc($resproduct)) {
+                            ?>
 
                               <tr class="odd">
-                                <td class="dtr-control"><?php echo ("1"); ?>
+                                <td class="dtr-control">
                                 </td>
-                                <td><?php echo "date"; ?></td>
-                                <td><?php echo "date"; ?></td>
-                                <td><?php echo 'cat_name'; ?></td>
-                                <td><?php echo 'amount'; ?></td>
-                                <td><div class="form-group">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox">
-                        </div>
-                        </div>
-                    </td>
-                               
+                                <td><?php echo $product['product_name']; ?></td>
+                                <td><?php echo $product['cat_name']; ?></td>
+                                <td><?php echo $product['name']; ?></td>
+                                <td><?php echo $product['store_price']; ?></td>
+                                <td>
+                                  <div class="form-group">
+                                    <div class="custom-control custom-switch">
+                                      <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product[$method]; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
+                                      <label class="custom-control-label" for="addProductCart_<?php echo $product['product_id']; ?>"></label>
+                                    </div>
+                                  </div>
+                                </td>
+
 
 
                                 <!-- <td  >U</td>
-                   <td  >U</td>
-                   <td  >U</td> -->
+                              <td  >U</td>
+                              <td  >U</td> -->
                               </tr>
-                           
+                            <?php } ?>
 
                           </tbody>
                           <!-- <tfoot>
@@ -125,10 +168,10 @@
 
 
             </div>
-                        <!-- /.card -->
-                           
-                        <div class="col-lg-4 table-responsive">
-                        
+            <!-- /.card -->
+
+            <div class="col-lg-4 table-responsive">
+
               <div class="row no-print">
                 <div class="col-12">
                   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
@@ -298,154 +341,154 @@
 
             </div><!-- /.col -->
 
-                    </div>
-                    <!--/.col (left) -->
+          </div>
+          <!--/.col (left) -->
 
-                </div>
-                <!-- /.row -->
-        </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    <?php include("footer.php"); ?>
-
-
-    </div>
-    <!-- ./wrapper -->
-
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <!-- <script src="plugins/chart.js/Chart.min.js"></script> -->
-    <!-- Sparkline -->
-    <!-- <script src="plugins/sparklines/sparkline.js"></script> -->
-    <!-- JQVMap -->
-    <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="plugins/moment/moment.min.js"></script>
-    <script src="plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Summernote -->
-    <script src="plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <!-- <script src="dist/js/adminlte.js"></script> -->
-    <!-- AdminLTE for demo purposes -->
-    <!-- <script src="dist/js/demo.js"></script> -->
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <!-- <script src="dist/js/pages/dashboard.js"></script> -->
-    <!-- DataTables  & Plugins -->
-    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="plugins/jszip/jszip.min.js"></script>
-    <script src="plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    <script type="module" src="scripts/constant.js"></script>
-    <script src="scripts/expense.js"></script>
-    <!-- Select2 -->
-    <script src="plugins/select2/js/select2.full.min.js"></script>
-    <script>
-        $('#btnAddStock').on("click", (e) => {
-            e.preventDefault();
-            alert();
-            const product_id = $("#product_id").val();
-            const in_out = $("#in_out").val();
-            const qty = $("#qty").val();
-            // console.log(+product_name);
-            // console.log(+in_out);
-            // console.log(+qty);
-            //if(product_name = null && product_name === "") return;
-
-            $(document).ajaxSend(() => {
-                $("#btnAddStock").attr("disabled", true);
-                $("#btnAddStock").html("Processing");
-            });
-            $.ajax({
-                url: constant.url + "stock/add.php",
-                method: "POST",
-                data: JSON.stringify({
-                    product_id: product_id,
-                    admin_id: admin_id,
-                    restaurant: restaurant,
-                    in_out: in_out,
-                    qty: qty,
-                }),
-                contentType: "application/json",
-                dataType: "json",
-                success: function(result) {
-                    const json = result;
-                    if (json.success) swal("Good Job", "Stock Added Sccessfully", "success");
-                    else swal({
-                        title: "Error Occured",
-                        text: json.error,
-                        icon: "error"
-                    });
-                    console.info(json.success);
-                    $("#btnAddStock").html("Submit");
-                },
-            });
-            $(document).ajaxComplete((res) => {
-                $("#btnAddStock").attr("disabled", false);
-                $("#btnAddStock").html("Add Stock");
-            });
-            //  $(document).ajaxError((res)=>{
-            //    console.error(res);
-            //    $("#btnAddStock").attr("disabled", false);
-            //    $("#btnAddStock").html("Submit");
-            //  });
-        });
-    </script>
-
-    <!-- Page specific script -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <?php include("footer.php"); ?>
 
 
-    <script>
-        $(() => {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
-    <!-- select search -->
-    <script>
-        $('.js-example-basic-single').select2({
-            placeholder: 'Select an option'
-        });
-    </script>
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- ChartJS -->
+  <!-- <script src="plugins/chart.js/Chart.min.js"></script> -->
+  <!-- Sparkline -->
+  <!-- <script src="plugins/sparklines/sparkline.js"></script> -->
+  <!-- JQVMap -->
+  <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+  <!-- daterangepicker -->
+  <script src="plugins/moment/moment.min.js"></script>
+  <script src="plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- Summernote -->
+  <script src="plugins/summernote/summernote-bs4.min.js"></script>
+  <!-- overlayScrollbars -->
+  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- AdminLTE App -->
+  <!-- <script src="dist/js/adminlte.js"></script> -->
+  <!-- AdminLTE for demo purposes -->
+  <!-- <script src="dist/js/demo.js"></script> -->
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <!-- <script src="dist/js/pages/dashboard.js"></script> -->
+  <!-- DataTables  & Plugins -->
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="plugins/jszip/jszip.min.js"></script>
+  <script src="plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <script type="module" src="scripts/constant.js"></script>
+  <script src="scripts/expense.js"></script>
+  <!-- Select2 -->
+  <script src="plugins/select2/js/select2.full.min.js"></script>
+  <script>
+    $('#btnAddStock').on("click", (e) => {
+      e.preventDefault();
+      alert();
+      const product_id = $("#product_id").val();
+      const in_out = $("#in_out").val();
+      const qty = $("#qty").val();
+      // console.log(+product_name);
+      // console.log(+in_out);
+      // console.log(+qty);
+      //if(product_name = null && product_name === "") return;
+
+      $(document).ajaxSend(() => {
+        $("#btnAddStock").attr("disabled", true);
+        $("#btnAddStock").html("Processing");
+      });
+      $.ajax({
+        url: constant.url + "stock/add.php",
+        method: "POST",
+        data: JSON.stringify({
+          product_id: product_id,
+          admin_id: admin_id,
+          restaurant: restaurant,
+          in_out: in_out,
+          qty: qty,
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          const json = result;
+          if (json.success) swal("Good Job", "Stock Added Sccessfully", "success");
+          else swal({
+            title: "Error Occured",
+            text: json.error,
+            icon: "error"
+          });
+          console.info(json.success);
+          $("#btnAddStock").html("Submit");
+        },
+      });
+      $(document).ajaxComplete((res) => {
+        $("#btnAddStock").attr("disabled", false);
+        $("#btnAddStock").html("Add Stock");
+      });
+      //  $(document).ajaxError((res)=>{
+      //    console.error(res);
+      //    $("#btnAddStock").attr("disabled", false);
+      //    $("#btnAddStock").html("Submit");
+      //  });
+    });
+  </script>
+
+  <!-- Page specific script -->
+
+
+  <script>
+    $(() => {
+      $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+  <!-- select search -->
+  <script>
+    $('.js-example-basic-single').select2({
+      placeholder: 'Select an option'
+    });
+  </script>
 </body>
 
 </html>
