@@ -297,11 +297,11 @@
   <script src="scripts/expense.js"></script>
   <!-- Select2 -->
 <script src="plugins/select2/js/select2.full.min.js"></script>
-<script> 
-function addStock(){alert();};
+<!-- <script> 
+// function addStock(){alert();};
  $('#btnAddStock').on("click", (e)=>{
     e.preventDefault();
-    alert();
+    // alert();
     const product_id = $("#product_id").val();
     const in_out = $("#in_out").val();
     const qty = $("#qty").val();
@@ -344,7 +344,7 @@ function addStock(){alert();};
     //    $("#btnAddStock").html("Submit");
     //  });
   });
-</script>
+</script> -->
 <script>
   // $(function () {
   //   //Initialize Select2 Elements
