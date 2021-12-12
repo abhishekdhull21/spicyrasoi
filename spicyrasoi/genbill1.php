@@ -35,8 +35,14 @@ if (isset($_GET['method'])) {
     $method = "gst_price";
   // echo $method;
 }
+<<<<<<< HEAD
 ?>
 
+=======
+
+
+?>
+>>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,6 +84,12 @@ if (isset($_GET['method'])) {
 
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
   <div class="wrapper">
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
     <!-- Preloader -->
     <!-- <div class="preloader flex-column justify-content-center align-items-center">
       <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
@@ -85,7 +97,27 @@ if (isset($_GET['method'])) {
 
 
     <!-- /.navbar -->
+<<<<<<< HEAD
     <?php require_once('navbar.php'); ?>
+=======
+    <?php require_once('navbar.php'); 
+    
+    if (mysqli_connect_errno()) {
+      echo ("Error");
+    } else {
+      //echo("Successfull");
+      $sql = "SELECT p.product_id,p.product_name, c.cat_name, p.store_price, p.swiggy_price, p.zomato_price, p.local_price, p.gst_price, p.gst_type FROM product p, category c WHERE c.cat_id=p.category and c.restaurant = $restaurant and p.status=1";
+      $res = $con->query($sql);
+      if ($res->num_rows > 0) {
+        //echo "Output fetched successfully";
+
+      }
+    }
+    //die("error");
+    date_default_timezone_set("Asia/Calcutta");
+
+    ?>
+>>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -96,11 +128,15 @@ if (isset($_GET['method'])) {
           <div class="row" style="margin-top: 10px;">
             <!-- left column -->
             <div class="col-md-8">
+<<<<<<< HEAD
               <div class="card" style="margin-top: 10px;">
+=======
+            <div class="card">
+>>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
                 <div class="card-header">
                   <h3 class="card-title">All Product </h3>
-                  <a href=""> <i class="fas fa-sync float-right"> Refresh</i> </a>
                 </div>
+                <!-- /.card-header -->
                 <div class="card-body">
                   <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
@@ -109,16 +145,22 @@ if (isset($_GET['method'])) {
                         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                           <thead>
                             <tr role="row">
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">S.No.</th>
+                              <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">P.ID.</th> -->
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
-                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Category</th>
-                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">SubCategory</th>
-                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Price</th>
-                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Add</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Category</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending"> Price</th>
+                              <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Swiggy Price</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Zamoto Price</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Local Price</th> -->
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                              <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Discount</th>
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
+                      <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >HSN Code</th> -->
                             </tr>
                           </thead>
                           <tbody>
                             <?php
+<<<<<<< HEAD
                             echo  $sql =  "SELECT * FROM `product` a , subcategory b,category c WHERE b.cat_id = a.category and a.category = c.cat_id  and a.restaurant = $restaurant and a.status = 1";
                             // if ($subid == false)
                             //   $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id  and restaurant = $restaurant and status = 1";
@@ -144,25 +186,51 @@ if (isset($_GET['method'])) {
                                   </div>
                                 </td>
 
+=======
+                            $i = 0;
+                            while ($row = $res->fetch_assoc()) {
 
+                              $i++;
+>>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
 
+                              //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
+                            ?>
+
+<<<<<<< HEAD
                                 <!-- <td  >U</td>
                               <td  >U</td>
                               <td  >U</td> -->
+=======
+                              <tr class="odd">
+                                <!-- <td class="dtr-control"><?php echo $row['product_id']; ?>
+                                </td> -->
+                                <td class="sorting_1"><?php echo $row['product_name']; ?></td>
+                                <td><?php echo $row['cat_name']; ?> </td>
+                                <td><?php echo $row['store_price']; ?></td>
+                                <!-- <td><?php echo $row['swiggy_price']; ?></td>
+                                <td><?php echo $row['zomato_price']; ?></td>
+                                <td><?php echo $row['local_price']; ?></td> -->
+                                <td>
+                                  <!-- <a href="#"> <i class="fas fa-plus"> Add</i> </a> -->
+                                  <input type="checkbox"  data-productid="<?php echo $row['product_id']; ?>" data-productname="<?php echo $row['product_name']; ?>" data-productprice="<?php echo $row[$method]; ?>" id="addProductCart_<?php echo $row['product_id']; ?>" onchange="addToCart(this);">
+                                </td>
+                                <!--<td  >U</td>
+                    <td  >U</td> -->
+>>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
                               </tr>
                             <?php } ?>
 
                           </tbody>
                           <!-- <tfoot>
-                 <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
-                 </tfoot> -->
+                  <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
+                  </tfoot> -->
                         </table>
                       </div>
                     </div>
 
                   </div>
                 </div>
-
+                <!-- /.card-body -->
               </div>
               <!-- /.card-body -->
 
@@ -244,8 +312,8 @@ if (isset($_GET['method'])) {
                 <div class="col-12">
                   <div class="form-group">
                     <!-- <label>Food Type</label> -->
-                    <h3 id="selectCustomerBillName" class="form-control">
-
+                    <h3 id="selectCustomerBillName" class="form-control" >
+                        Cash
                       <!-- <option value="non-veg">Non-Veg</option> -->
                       <!-- <option value="28">28%</option> -->
                     </h3>
@@ -410,6 +478,7 @@ if (isset($_GET['method'])) {
   <!-- Select2 -->
   <script src="plugins/select2/js/select2.full.min.js"></script>
   <script>
+<<<<<<< HEAD
     $('#btnAddStock').on("click", (e) => {
       e.preventDefault();
       alert();
@@ -434,10 +503,215 @@ if (isset($_GET['method'])) {
           restaurant: restaurant,
           in_out: in_out,
           qty: qty,
+=======
+    var i = 0;
+    var grandtotalPrice = 0;
+    // $(document).ready(function() {
+    const table = {
+      tableid: $('#tableid').val() != '' ? $('#tableid').val() : 0,
+      tablegroup: $('#tablegroup').val() != '' ? $('#tablegroup').val() : 0,
+      table: $('#table').val() != '' ? $('#table').val() : 0,
+    }
+    var type = $('#method').val() != '' ? $('#method').val() : "store_price";
+    var admin_id = $('#admin_id').val() != '' ? $('#admin_id').val() : 0;
+    var restaurant = $('#restaurant').val() != '' ? $('#restaurant').val() : 0;
+    // product object acc to bill list
+    var customer = $("#selectCustomerBillName").val().split(",");
+    const products = {
+      data: [],
+      table: table,
+      type: type,
+      admin_id: admin_id,
+      restaurant: restaurant,
+      customerName: "Cash",
+      customerID: 0,
+      customerType: "Cash",
+      kot: 0,
+      orderid: 0,
+      billNo: 0,
+      totalPrice: 0,
+      discount: 0,
+      recived: 0,
+      paid: 0,
+      balance: 0
+
+    };
+    console.log(products)
+    fetchorderid();
+    // updateDiscount();
+    // on change on add discount
+    // $("#cartDiscount, #cartRecived").on("input", () => {
+    //   updateDiscount();
+    //   // if (products.totalPrice != (products.discount + products.recived + products.balance))
+    //   //   alert('something went wrong');
+    //   console.log(products);
+    //   $("#grandtotalprice").html(products.totalPrice - products.discount);
+    // });
+
+    // function updateDiscount() {
+    //   var cartDiscount = parseFloat($("#cartDiscount").val() != null ? $("#cartDiscount").val() : 0);
+    //   var cartRecived = parseFloat($("#cartRecived").val() != null ? $("#cartRecived").val() : 0);
+    //   products.discount = cartDiscount;
+    //   products.recived = cartRecived;
+    //   products.balance = products.totalPrice - cartRecived - cartDiscount;
+    //   products.paid = cartRecived + cartDiscount;
+    // }
+    // on change idCostmerType
+    // $("#selectCustomerBillName").on("change", () => {
+    //   customer = $("#selectCustomerBillName").val().split(",");
+
+    //   products.customerName = customer[1];
+    //   products.customerID = customer[0];
+    //   products.customerType = customer[1];
+    // });
+
+    // calculate final bill
+    function calGrandTotal(update, price, type) {
+      console.log(products);
+      const grandtotal = $('#grandtotalprice')[0];
+      if (products.table > 0)
+        $.ajax({
+          url: constant.url + "table/order.php",
+          method: "POST",
+          data: JSON.stringify({
+            data: products,
+            admin_id: products.admin_id,
+            restaurant: products.restaurant,
+            table: products.table
+          }),
+          contentType: 'application/json',
+          error: (data) => {
+            // console.log(data);
+            swal("Error Occurred", "Something going wrong", "error");
+          }
+        });
+      grandtotal.innerHTML = parseInt(products.totalPrice);
+
+    }
+    // cal subtotal
+    function calPrice(root, qty, t) {
+      // console.log(root.parentNode.querySelectorAll("#subTotal"));
+      var tr = root.parentNode;
+      var subTotal = tr.querySelectorAll("#subTotal")[0];
+      var price = tr.querySelectorAll("#price")[0];
+      // var subTotalPrice = subTotal.innerHTML;
+      // var finalPrice = (qty * price.innerHTML);
+      products.data[t].qty = parseFloat(qty);
+      products.totalPrice -= parseInt(products.data[t].subtotal);
+      // console.log(); // = tprice;
+      var totalPrice = qty * products.data[t].price;
+      products.data[t].subtotal = totalPrice;
+      subTotal.innerHTML = totalPrice;
+      products.totalPrice += parseInt(totalPrice);
+      // console.log(products);
+
+      // grandtotalPrice = grandtotalPrice - parseInt(price.innerHTML) + finalPrice;
+      calGrandTotal(true);
+    }
+    // fun to add item into bill list
+    function addToCart(e, savedProduct) {
+      var price = 0;
+      var qty = 1;
+      var id, name;
+      // console.log(e)
+      $(e).attr("data-productid", (i, d) => id = d);
+      $(e).attr("data-productname", (i, d) => name = d);
+      $(e).attr("data-productprice", (i, d) => price = d);
+
+      var subtotal = price;
+      // if item added
+      if (e.checked === true) {
+        // alert("added");
+        if (savedProduct != null) {
+          products.data.push(savedProduct);
+          price = savedProduct.price;
+          subtotal = savedProduct.subtotal; //price;
+          qty = savedProduct.qty;
+          products.totalPrice += parseFloat(subtotal);
+        } else {
+          products.data[i] = {
+            id: id,
+            name: name,
+            price: parseFloat(price),
+            qty: 1,
+            subtotal: price,
+
+          }
+          products.totalPrice += products.data[i].price;
+        }
+        // console.log(products);
+        calGrandTotal(false, price, true);
+
+        var itemRow = '<tr id="cartItem' + id + '">';
+        // itemRow += '<td>' + (i + 1) + '</td>';
+        itemRow += '<td>' + name + '</td>';
+        itemRow += '<td><input min="1" style="width:42px" onchange="calPrice(this.parentNode,this.value,' + i + ' );" type="number" value=' + qty + ' / ></td>';
+        itemRow += '<td id="price">' + price + '</td>';
+        itemRow += '<td id="subTotal">' + subtotal + '</td>';
+        itemRow += ' </tr>';
+        $("#cartItems").prepend(itemRow)
+        // console.log($("#cartItems"));
+        i++;
+      }
+      // if item removed
+      if (e.checked === false) {
+        i--;
+        // alert("removed");
+        var product = id;
+        // console.log($("#cartItem" + id));
+        // if (products.data[i].id == id) {
+        products.data.map((v, i) => {
+          if (v.id == product) {
+            // console.log(v.id);
+            products.totalPrice -= v.subtotal;
+
+            calGrandTotal();
+            $("#cartItem" + product).remove();
+            products.data.splice(i, 1);
+          }
+        })
+        // }
+      }
+    }
+
+    // fetch customer name
+    function fetchCustomerName(id) {
+      console.log("pr " + products)
+      $.ajax({
+        method: "POST",
+        url: constant.url + "customer/fetchbyid.php",
+        data: JSON.stringify({
+          user_id: id != null ? id : 0,
+          restaurant: $('#restaurant').val() != null ? $('#restaurant').val() : 0,
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: (res) => {
+          // console.log(res);
+          if (res.success) {
+            const arr = res.data;
+            products.customerID = arr.user_id;
+            products.customerName = arr.user_name;
+            $('#selectCustomerBillName').html(products.customerName);
+          }
+        }
+      });
+    }
+    // clear table
+    function clearTable(alert) {
+      $.ajax({
+        url: constant.url + "table/update.php",
+        method: "POST",
+        data: JSON.stringify({
+          restaurant: restaurant,
+          table: products.table,
+          status: 0
+>>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
         }),
         contentType: "application/json",
         dataType: "json",
         success: function(result) {
+<<<<<<< HEAD
           const json = result;
           if (json.success) swal("Good Job", "Stock Added Sccessfully", "success");
           else swal({
@@ -459,6 +733,125 @@ if (isset($_GET['method'])) {
       //    $("#btnAddStock").html("Submit");
       //  });
     });
+=======
+          // console.log(result);
+          if (result.success == true) {
+            if (alert === true)
+              swal("You done it", "Table successfully cleared", "success")
+              .then((res) => {
+                if (res)
+                  location.reload()
+              });
+          }
+        },
+      });
+    }
+
+    //kot print bill on click
+    $("#btnkotprint").on("click", () => {
+      // console.log("clicked");
+      if (products.data.length < 1) return;
+      $.ajax({
+        url: constant.url + "order/orders.php",
+        method: "POST",
+        data: JSON.stringify(products),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result);
+          if (result.success == true) {
+            // clearTable();
+            products.orderid = result.data.orderid;
+
+            // alert("redirected to print page")
+            localStorage.setItem("kotbill", JSON.stringify(products));
+            var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=400,width=800");
+            print.document.close();
+            //print.print();
+            // print.close();
+            // printDiv("print");
+            location.reload();
+          }
+        },
+      });
+    });
+
+    //final print bill on click
+    $("#btnprintbill").on("click", () => {
+      // console.log("clicked");
+      if (products.data.length < 1) return;
+      $.ajax({
+        url: constant.url + "order/orders.php",
+        method: "POST",
+        data: JSON.stringify(products),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result);
+          if (result.success == true) {
+            clearTable();
+            products.orderid = result.data.orderid;
+            // alert("redirected to print page")
+            localStorage.setItem("bill", JSON.stringify(products));
+            window.open("printbill.php?orderid=" + products.orderid, "_blank");
+            location.reload();
+          }
+        },
+      });
+    });
+    //final print bill on click without saving to db
+    $("#billingprint").on("click", () => {
+      // console.log("clicked");
+      window.open("printbill.php?orderid=" + products.orderid, "_blank");
+      location.reload();
+    });
+
+    // clear bill list
+    $("#btnbillclear").on("click", () => {
+      console.log("clicked");
+      // if (products.data.length < 1) return;
+      clearTable(true);
+    });
+    // });
+
+    //fetchorderid
+    function fetchorderid() {
+      $.ajax({
+        url: constant.url + "table/fetchstatus.php",
+        method: "POST",
+        data: JSON.stringify({
+          restaurant: restaurant,
+          table: products.table,
+          status: 0
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result);
+          if (result.success == true) {
+            console.log(result);
+            products.orderid = result.data.orderid;
+            products.billNo = result.data.bill_no;
+            products.kot = result.data.kot;
+            console.log(products);
+            fetchCustomerName(result.data.user_id);
+          } else {
+            if (alert === true)
+              swal("Error", "Something went wrong", "error")
+              .then((res) => {
+                if (res)
+                  location.reload()
+              });
+          }
+        },
+      });
+    }
+    $("#idCustomerType").on("change", () => {
+      products.customerType = $("#idCustomerType").val();
+      console.log(products)
+    });
+    // print function
+>>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
   </script>
 
   <!-- Page specific script -->
@@ -470,7 +863,11 @@ if (isset($_GET['method'])) {
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
+<<<<<<< HEAD
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+=======
+        "buttons": ["pdf", "print"]
+>>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,

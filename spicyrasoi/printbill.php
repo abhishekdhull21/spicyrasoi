@@ -141,6 +141,7 @@ $row = mysqli_fetch_assoc($res);
                     <td id="grandtotalprice"><?php echo floor($row['total']); ?></td>
                   </tr>
                   <tr>
+                    
                     <!-- <td></td> -->
                     <td><b>Mode</b></td>
                     <td><select id="mode" class="js-example-basic-single form-control">
@@ -156,6 +157,19 @@ $row = mysqli_fetch_assoc($res);
                     </td>
                     </tr>
                     <tr>
+                      <!-- <td></td> -->
+                    <td><b>GST</b></td>
+                    <td><select id="gst" class="js-example-basic-single form-control">
+                        <option selected value=0>00</option>
+                        <option value=5>5%</option>
+                        <option value=8>8%</option>
+                        <option value=12>12%</option>
+                        <option value=18>18%</option>
+                      </select></td>
+                    <td><b>GST Amount</b></td>
+                    <td id="gst_amount">00</td>
+                  </tr>
+                  <tr>
                       <!-- <td></td> -->
                     <td><b>Recived</b></td>
                     <td><input type="number" min=0 class="form-control" id="recived" value=<?php echo floor($row['total']); ?>></td>
@@ -207,6 +221,8 @@ $row = mysqli_fetch_assoc($res);
         balance: 0,
         recived: 0,
         grand_total: 0,
+        gst:0,
+        gst_amount: 0,
         orderid: orderid,
         mode: "Cash",
       }
@@ -237,13 +253,13 @@ $row = mysqli_fetch_assoc($res);
       })
       $('#discount,#recived').on('input', (e) => {
         bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
-        bill.grand_total = bill.total - bill.discount;
+        bill.grand_total = bill.total - bill.discount + bill.gst_amount;
         $('#grand_total').html(bill.grand_total);
         if(e.currentTarget.id=="discount")
         $('#recived').val(bill.grand_total);
         bill.recived = $('#recived').val() != null ? $('#recived').val() : 0;
         bill.balance = bill.grand_total - bill.recived;
-        console.log(bill)
+        // console.log(bill)
       })
       // $('#discount').on('input', () => {
       //   bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
@@ -253,6 +269,17 @@ $row = mysqli_fetch_assoc($res);
       //   $('#grand_total').html(bill.grand_total);
       //   console.log(bill)
       // })
+      $('#gst').on('change', () => {
+        bill.gst = $('#gst').val();
+        bill.gst_amount = bill.total * bill.gst/100;
+        $('#gst_amount').html(bill.gst_amount);
+        bill.grand_total = Math.round( bill.total + bill.gst_amount );
+
+        $('#grand_total').html(bill.grand_total);
+        // console.log(bill);
+      })
+
+
       $('#btnprintbill').on('click', () => {
         bill.recived=$('#recived').val() != null ? $('#recived').val() : 0;
         // bill.grand_total=bill.total;
