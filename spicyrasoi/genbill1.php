@@ -35,14 +35,10 @@ if (isset($_GET['method'])) {
     $method = "gst_price";
   // echo $method;
 }
-<<<<<<< HEAD
-?>
-
-=======
 
 
 ?>
->>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,12 +80,9 @@ if (isset($_GET['method'])) {
 
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
   <div class="wrapper">
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
     <!-- Preloader -->
     <!-- <div class="preloader flex-column justify-content-center align-items-center">
       <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
@@ -97,11 +90,8 @@ if (isset($_GET['method'])) {
 
 
     <!-- /.navbar -->
-<<<<<<< HEAD
-    <?php require_once('navbar.php'); ?>
-=======
-    <?php require_once('navbar.php'); 
-    
+    <?php require_once('navbar.php');
+
     if (mysqli_connect_errno()) {
       echo ("Error");
     } else {
@@ -117,7 +107,6 @@ if (isset($_GET['method'])) {
     date_default_timezone_set("Asia/Calcutta");
 
     ?>
->>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -128,11 +117,7 @@ if (isset($_GET['method'])) {
           <div class="row" style="margin-top: 10px;">
             <!-- left column -->
             <div class="col-md-8">
-<<<<<<< HEAD
-              <div class="card" style="margin-top: 10px;">
-=======
-            <div class="card">
->>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
+              <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">All Product </h3>
                 </div>
@@ -160,47 +145,14 @@ if (isset($_GET['method'])) {
                           </thead>
                           <tbody>
                             <?php
-<<<<<<< HEAD
-                            echo  $sql =  "SELECT * FROM `product` a , subcategory b,category c WHERE b.cat_id = a.category and a.category = c.cat_id  and a.restaurant = $restaurant and a.status = 1";
-                            // if ($subid == false)
-                            //   $sql =  "SELECT * FROM `product` WHERE `category` = $cat_id  and restaurant = $restaurant and status = 1";
-
-                            $resproduct = mysqli_query($con, $sql);
-
-                            while ($product = mysqli_fetch_assoc($resproduct)) {
-                            ?>
-
-                              <tr class="odd">
-                                <td class="dtr-control">
-                                </td>
-                                <td><?php echo $product['product_name']; ?></td>
-                                <td><?php echo $product['cat_name']; ?></td>
-                                <td><?php echo $product['name']; ?></td>
-                                <td><?php echo $product['store_price']; ?></td>
-                                <td>
-                                  <div class="form-group">
-                                    <div class="custom-control custom-switch">
-                                      <input type="checkbox" class="custom-control-input" data-productid="<?php echo $product['product_id']; ?>" data-productname="<?php echo $product['product_name']; ?>" data-productprice="<?php echo $product[$method]; ?>" id="addProductCart_<?php echo $product['product_id']; ?>" onchange="addToCart(this);">
-                                      <label class="custom-control-label" for="addProductCart_<?php echo $product['product_id']; ?>"></label>
-                                    </div>
-                                  </div>
-                                </td>
-
-=======
                             $i = 0;
                             while ($row = $res->fetch_assoc()) {
 
                               $i++;
->>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
 
                               //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
                             ?>
 
-<<<<<<< HEAD
-                                <!-- <td  >U</td>
-                              <td  >U</td>
-                              <td  >U</td> -->
-=======
                               <tr class="odd">
                                 <!-- <td class="dtr-control"><?php echo $row['product_id']; ?>
                                 </td> -->
@@ -212,11 +164,10 @@ if (isset($_GET['method'])) {
                                 <td><?php echo $row['local_price']; ?></td> -->
                                 <td>
                                   <!-- <a href="#"> <i class="fas fa-plus"> Add</i> </a> -->
-                                  <input type="checkbox"  data-productid="<?php echo $row['product_id']; ?>" data-productname="<?php echo $row['product_name']; ?>" data-productprice="<?php echo $row[$method]; ?>" id="addProductCart_<?php echo $row['product_id']; ?>" onchange="addToCart(this);">
+                                  <input type="checkbox" data-productid="<?php echo $row['product_id']; ?>" data-productname="<?php echo $row['product_name']; ?>" data-productprice="<?php echo $row[$method]; ?>" id="addProductCart_<?php echo $row['product_id']; ?>" onchange="addToCart(this);">
                                 </td>
                                 <!--<td  >U</td>
                     <td  >U</td> -->
->>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
                               </tr>
                             <?php } ?>
 
@@ -312,8 +263,8 @@ if (isset($_GET['method'])) {
                 <div class="col-12">
                   <div class="form-group">
                     <!-- <label>Food Type</label> -->
-                    <h3 id="selectCustomerBillName" class="form-control" >
-                        Cash
+                    <h3 id="selectCustomerBillName" class="form-control">
+                      Cash
                       <!-- <option value="non-veg">Non-Veg</option> -->
                       <!-- <option value="28">28%</option> -->
                     </h3>
@@ -478,32 +429,6 @@ if (isset($_GET['method'])) {
   <!-- Select2 -->
   <script src="plugins/select2/js/select2.full.min.js"></script>
   <script>
-<<<<<<< HEAD
-    $('#btnAddStock').on("click", (e) => {
-      e.preventDefault();
-      alert();
-      const product_id = $("#product_id").val();
-      const in_out = $("#in_out").val();
-      const qty = $("#qty").val();
-      // console.log(+product_name);
-      // console.log(+in_out);
-      // console.log(+qty);
-      //if(product_name = null && product_name === "") return;
-
-      $(document).ajaxSend(() => {
-        $("#btnAddStock").attr("disabled", true);
-        $("#btnAddStock").html("Processing");
-      });
-      $.ajax({
-        url: constant.url + "stock/add.php",
-        method: "POST",
-        data: JSON.stringify({
-          product_id: product_id,
-          admin_id: admin_id,
-          restaurant: restaurant,
-          in_out: in_out,
-          qty: qty,
-=======
     var i = 0;
     var grandtotalPrice = 0;
     // $(document).ready(function() {
@@ -706,34 +631,10 @@ if (isset($_GET['method'])) {
           restaurant: restaurant,
           table: products.table,
           status: 0
->>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
         }),
         contentType: "application/json",
         dataType: "json",
         success: function(result) {
-<<<<<<< HEAD
-          const json = result;
-          if (json.success) swal("Good Job", "Stock Added Sccessfully", "success");
-          else swal({
-            title: "Error Occured",
-            text: json.error,
-            icon: "error"
-          });
-          console.info(json.success);
-          $("#btnAddStock").html("Submit");
-        },
-      });
-      $(document).ajaxComplete((res) => {
-        $("#btnAddStock").attr("disabled", false);
-        $("#btnAddStock").html("Add Stock");
-      });
-      //  $(document).ajaxError((res)=>{
-      //    console.error(res);
-      //    $("#btnAddStock").attr("disabled", false);
-      //    $("#btnAddStock").html("Submit");
-      //  });
-    });
-=======
           // console.log(result);
           if (result.success == true) {
             if (alert === true)
@@ -851,7 +752,6 @@ if (isset($_GET['method'])) {
       console.log(products)
     });
     // print function
->>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
   </script>
 
   <!-- Page specific script -->
@@ -863,11 +763,7 @@ if (isset($_GET['method'])) {
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-<<<<<<< HEAD
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-=======
         "buttons": ["pdf", "print"]
->>>>>>> c6ee78733870261321a852b7f47e64a1c1de8bcb
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,

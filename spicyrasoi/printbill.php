@@ -141,7 +141,7 @@ $row = mysqli_fetch_assoc($res);
                     <td id="grandtotalprice"><?php echo floor($row['total']); ?></td>
                   </tr>
                   <tr>
-                    
+
                     <!-- <td></td> -->
                     <td><b>Mode</b></td>
                     <td><select id="mode" class="js-example-basic-single form-control">
@@ -152,12 +152,12 @@ $row = mysqli_fetch_assoc($res);
                         <option value="UPI">UPI</option>
                         <option value="Other">Other</option>
                       </select></td>
-                      <td><b>Discount</b></td>
-                      <td> <input type="number" min=0 class="form-control" id="discount" value=0>
+                    <td><b>Discount</b></td>
+                    <td> <input type="number" min=0 class="form-control" id="discount" value=0>
                     </td>
-                    </tr>
-                    <tr>
-                      <!-- <td></td> -->
+                  </tr>
+                  <tr>
+                    <!-- <td></td> -->
                     <td><b>GST</b></td>
                     <td><select id="gst" class="js-example-basic-single form-control">
                         <option selected value=0>00</option>
@@ -170,7 +170,7 @@ $row = mysqli_fetch_assoc($res);
                     <td id="gst_amount">00</td>
                   </tr>
                   <tr>
-                      <!-- <td></td> -->
+                    <!-- <td></td> -->
                     <td><b>Recived</b></td>
                     <td><input type="number" min=0 class="form-control" id="recived" value=<?php echo floor($row['total']); ?>></td>
                     <td><b>Grand Total</b></td>
@@ -221,7 +221,7 @@ $row = mysqli_fetch_assoc($res);
         balance: 0,
         recived: 0,
         grand_total: 0,
-        gst:0,
+        gst: 0,
         gst_amount: 0,
         orderid: orderid,
         mode: "Cash",
@@ -254,10 +254,9 @@ $row = mysqli_fetch_assoc($res);
       $('#discount,#recived').on('input', (e) => {
         bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
         bill.grand_total = bill.total - bill.discount + bill.gst_amount;
-        $('#grand_total').html(bill.grand_total);
-        if(e.currentTarget.id=="discount")
-        $('#recived').val(bill.grand_total);
-        bill.recived = $('#recived').val() != null ? $('#recived').val() : 0;
+        updateui()
+        if (e.currentTarget.id == "discount")
+          bill.recived = $('#recived').val() != null ? $('#recived').val() : 0;
         bill.balance = bill.grand_total - bill.recived;
         // console.log(bill)
       })
@@ -265,23 +264,29 @@ $row = mysqli_fetch_assoc($res);
       //   bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
       //   $('#recived').val(bill.total - bill.discount);
       //   bill.recived = bill.total - bill.discount;
-       
+
       //   $('#grand_total').html(bill.grand_total);
       //   console.log(bill)
       // })
       $('#gst').on('change', () => {
         bill.gst = $('#gst').val();
-        bill.gst_amount = bill.total * bill.gst/100;
-        $('#gst_amount').html(bill.gst_amount);
-        bill.grand_total = Math.round( bill.total + bill.gst_amount );
-
-        $('#grand_total').html(bill.grand_total);
+        bill.gst_amount = bill.total * bill.gst / 100;
+        bill.grand_total = Math.round(bill.total + bill.gst_amount);
+        updateui();
         // console.log(bill);
       })
 
+      function updateui() {
+        $('#gst_amount').html(bill.gst_amount);
+        $('#recived').val(bill.grand_total);
+        $('#grand_total').html(bill.grand_total);
+
+        // $('#grand_total').html(bill.grand_total);
+
+      }
 
       $('#btnprintbill').on('click', () => {
-        bill.recived=$('#recived').val() != null ? $('#recived').val() : 0;
+        bill.recived = $('#recived').val() != null ? $('#recived').val() : 0;
         // bill.grand_total=bill.total;
         $.ajax({
           url: constant.url + "order/orderidupdate.php",
