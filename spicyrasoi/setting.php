@@ -13,11 +13,11 @@ $admintype = $admin->getAdminType($user->userid);
 if ($admintype == 2)
   $isSuperadmin = true;
 // $sql = "SELECT admin_type from users where user_id = $user->admin_id";
-echo $sql = "SELECT * FROM admin_permission a, permissions b where a.permission_id = b.id and a.admin_id=$admin_id";
+ $sql = "SELECT * FROM admin_permission a, permissions b where a.permission_id = b.id and a.admin_id=$admin_id";
 $res = mysqli_query($con,$sql);
-print_r($res);
+// print_r($res);
 $permissions = mysqli_fetch_array($res);
-echo "HELL".mysqli_error($con);
+// echo "HELL".mysqli_error($con);
 print_r($permissions);
 ?>
 

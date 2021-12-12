@@ -2,10 +2,40 @@
 <html lang="en">
 <?php
 session_start();
-include("../config.php");
-include("class/User.php");
-// include("navbar.php");
-require_once("islogin.php");
+require_once "../config.php";
+require_once "class/User.php";
+require_once "islogin.php";
+// print_r($user);
+$tableid = 0;
+$groupid = 0;
+$table = 0;
+
+// print_r($user);
+if (isset($_GET['table']) && isset($_GET['group']) && isset($_GET['name'])) {
+  $table = $_GET['table'];
+  $groupid = $_GET['group'];
+  $name = $_GET['name'];
+  $tableid = $groupid . $table;
+  if (!isset($_SESSION['tables']))
+    $_SESSION['tables'] = array();
+  $arr = $_SESSION['tables'];
+
+  $activeTables = sizeof($arr);
+  if (!in_array($tableid, $arr))
+    $_SESSION['tables'][$activeTables] = $tableid;
+}
+$method = "store_price";
+if (isset($_GET['method'])) {
+
+  if ($_GET['method'] == "swiggy")
+    $method = "swiggy_price";
+  else if ($_GET['method'] == "zomato")
+    $method = "zomato_price";
+  else if ($_GET['method'] == "gst")
+    $method = "gst_price";
+  // echo $method;
+}
+
 
 ?>
 <head>
@@ -131,7 +161,10 @@ require_once("islogin.php");
                                 <!-- <td><?php echo $row['swiggy_price']; ?></td>
                                 <td><?php echo $row['zomato_price']; ?></td>
                                 <td><?php echo $row['local_price']; ?></td> -->
-                                <td><a href="#"> <i class="fas fa-plus"> Add</i> </a></td>
+                                <td>
+                                  <!-- <a href="#"> <i class="fas fa-plus"> Add</i> </a> -->
+                                  <input type="checkbox"  data-productid="<?php echo $row['product_id']; ?>" data-productname="<?php echo $row['product_name']; ?>" data-productprice="<?php echo $row[$method]; ?>" id="addProductCart_<?php echo $row['product_id']; ?>" onchange="addToCart(this);">
+                                </td>
                                 <!--<td  >U</td>
                     <td  >U</td> -->
                               </tr>
@@ -229,8 +262,8 @@ require_once("islogin.php");
                 <div class="col-12">
                   <div class="form-group">
                     <!-- <label>Food Type</label> -->
-                    <h3 id="selectCustomerBillName" class="form-control">
-
+                    <h3 id="selectCustomerBillName" class="form-control" >
+                        Cash
                       <!-- <option value="non-veg">Non-Veg</option> -->
                       <!-- <option value="28">28%</option> -->
                     </h3>
@@ -395,55 +428,329 @@ require_once("islogin.php");
   <!-- Select2 -->
   <script src="plugins/select2/js/select2.full.min.js"></script>
   <script>
-    $('#btnAddStock').on("click", (e) => {
-      e.preventDefault();
-      alert();
-      const product_id = $("#product_id").val();
-      const in_out = $("#in_out").val();
-      const qty = $("#qty").val();
-      // console.log(+product_name);
-      // console.log(+in_out);
-      // console.log(+qty);
-      //if(product_name = null && product_name === "") return;
+    var i = 0;
+    var grandtotalPrice = 0;
+    // $(document).ready(function() {
+    const table = {
+      tableid: $('#tableid').val() != '' ? $('#tableid').val() : 0,
+      tablegroup: $('#tablegroup').val() != '' ? $('#tablegroup').val() : 0,
+      table: $('#table').val() != '' ? $('#table').val() : 0,
+    }
+    var type = $('#method').val() != '' ? $('#method').val() : "store_price";
+    var admin_id = $('#admin_id').val() != '' ? $('#admin_id').val() : 0;
+    var restaurant = $('#restaurant').val() != '' ? $('#restaurant').val() : 0;
+    // product object acc to bill list
+    var customer = $("#selectCustomerBillName").val().split(",");
+    const products = {
+      data: [],
+      table: table,
+      type: type,
+      admin_id: admin_id,
+      restaurant: restaurant,
+      customerName: "Cash",
+      customerID: 0,
+      customerType: "Cash",
+      kot: 0,
+      orderid: 0,
+      billNo: 0,
+      totalPrice: 0,
+      discount: 0,
+      recived: 0,
+      paid: 0,
+      balance: 0
 
-      $(document).ajaxSend(() => {
-        $("#btnAddStock").attr("disabled", true);
-        $("#btnAddStock").html("Processing");
-      });
+    };
+    console.log(products)
+    fetchorderid();
+    // updateDiscount();
+    // on change on add discount
+    // $("#cartDiscount, #cartRecived").on("input", () => {
+    //   updateDiscount();
+    //   // if (products.totalPrice != (products.discount + products.recived + products.balance))
+    //   //   alert('something went wrong');
+    //   console.log(products);
+    //   $("#grandtotalprice").html(products.totalPrice - products.discount);
+    // });
+
+    // function updateDiscount() {
+    //   var cartDiscount = parseFloat($("#cartDiscount").val() != null ? $("#cartDiscount").val() : 0);
+    //   var cartRecived = parseFloat($("#cartRecived").val() != null ? $("#cartRecived").val() : 0);
+    //   products.discount = cartDiscount;
+    //   products.recived = cartRecived;
+    //   products.balance = products.totalPrice - cartRecived - cartDiscount;
+    //   products.paid = cartRecived + cartDiscount;
+    // }
+    // on change idCostmerType
+    // $("#selectCustomerBillName").on("change", () => {
+    //   customer = $("#selectCustomerBillName").val().split(",");
+
+    //   products.customerName = customer[1];
+    //   products.customerID = customer[0];
+    //   products.customerType = customer[1];
+    // });
+
+    // calculate final bill
+    function calGrandTotal(update, price, type) {
+      console.log(products);
+      const grandtotal = $('#grandtotalprice')[0];
+      if (products.table > 0)
+        $.ajax({
+          url: constant.url + "table/order.php",
+          method: "POST",
+          data: JSON.stringify({
+            data: products,
+            admin_id: products.admin_id,
+            restaurant: products.restaurant,
+            table: products.table
+          }),
+          contentType: 'application/json',
+          error: (data) => {
+            // console.log(data);
+            swal("Error Occurred", "Something going wrong", "error");
+          }
+        });
+      grandtotal.innerHTML = parseInt(products.totalPrice);
+
+    }
+    // cal subtotal
+    function calPrice(root, qty, t) {
+      // console.log(root.parentNode.querySelectorAll("#subTotal"));
+      var tr = root.parentNode;
+      var subTotal = tr.querySelectorAll("#subTotal")[0];
+      var price = tr.querySelectorAll("#price")[0];
+      // var subTotalPrice = subTotal.innerHTML;
+      // var finalPrice = (qty * price.innerHTML);
+      products.data[t].qty = parseFloat(qty);
+      products.totalPrice -= parseInt(products.data[t].subtotal);
+      // console.log(); // = tprice;
+      var totalPrice = qty * products.data[t].price;
+      products.data[t].subtotal = totalPrice;
+      subTotal.innerHTML = totalPrice;
+      products.totalPrice += parseInt(totalPrice);
+      // console.log(products);
+
+      // grandtotalPrice = grandtotalPrice - parseInt(price.innerHTML) + finalPrice;
+      calGrandTotal(true);
+    }
+    // fun to add item into bill list
+    function addToCart(e, savedProduct) {
+      var price = 0;
+      var qty = 1;
+      var id, name;
+      // console.log(e)
+      $(e).attr("data-productid", (i, d) => id = d);
+      $(e).attr("data-productname", (i, d) => name = d);
+      $(e).attr("data-productprice", (i, d) => price = d);
+
+      var subtotal = price;
+      // if item added
+      if (e.checked === true) {
+        // alert("added");
+        if (savedProduct != null) {
+          products.data.push(savedProduct);
+          price = savedProduct.price;
+          subtotal = savedProduct.subtotal; //price;
+          qty = savedProduct.qty;
+          products.totalPrice += parseFloat(subtotal);
+        } else {
+          products.data[i] = {
+            id: id,
+            name: name,
+            price: parseFloat(price),
+            qty: 1,
+            subtotal: price,
+
+          }
+          products.totalPrice += products.data[i].price;
+        }
+        // console.log(products);
+        calGrandTotal(false, price, true);
+
+        var itemRow = '<tr id="cartItem' + id + '">';
+        // itemRow += '<td>' + (i + 1) + '</td>';
+        itemRow += '<td>' + name + '</td>';
+        itemRow += '<td><input min="1" style="width:42px" onchange="calPrice(this.parentNode,this.value,' + i + ' );" type="number" value=' + qty + ' / ></td>';
+        itemRow += '<td id="price">' + price + '</td>';
+        itemRow += '<td id="subTotal">' + subtotal + '</td>';
+        itemRow += ' </tr>';
+        $("#cartItems").prepend(itemRow)
+        // console.log($("#cartItems"));
+        i++;
+      }
+      // if item removed
+      if (e.checked === false) {
+        i--;
+        // alert("removed");
+        var product = id;
+        // console.log($("#cartItem" + id));
+        // if (products.data[i].id == id) {
+        products.data.map((v, i) => {
+          if (v.id == product) {
+            // console.log(v.id);
+            products.totalPrice -= v.subtotal;
+
+            calGrandTotal();
+            $("#cartItem" + product).remove();
+            products.data.splice(i, 1);
+          }
+        })
+        // }
+      }
+    }
+
+    // fetch customer name
+    function fetchCustomerName(id) {
+      console.log("pr " + products)
       $.ajax({
-        url: constant.url + "stock/add.php",
+        method: "POST",
+        url: constant.url + "customer/fetchbyid.php",
+        data: JSON.stringify({
+          user_id: id != null ? id : 0,
+          restaurant: $('#restaurant').val() != null ? $('#restaurant').val() : 0,
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: (res) => {
+          // console.log(res);
+          if (res.success) {
+            const arr = res.data;
+            products.customerID = arr.user_id;
+            products.customerName = arr.user_name;
+            $('#selectCustomerBillName').html(products.customerName);
+          }
+        }
+      });
+    }
+    // clear table
+    function clearTable(alert) {
+      $.ajax({
+        url: constant.url + "table/update.php",
         method: "POST",
         data: JSON.stringify({
-          product_id: product_id,
-          admin_id: admin_id,
           restaurant: restaurant,
-          in_out: in_out,
-          qty: qty,
+          table: products.table,
+          status: 0
         }),
         contentType: "application/json",
         dataType: "json",
         success: function(result) {
-          const json = result;
-          if (json.success) swal("Good Job", "Stock Added Sccessfully", "success");
-          else swal({
-            title: "Error Occured",
-            text: json.error,
-            icon: "error"
-          });
-          console.info(json.success);
-          $("#btnAddStock").html("Submit");
+          // console.log(result);
+          if (result.success == true) {
+            if (alert === true)
+              swal("You done it", "Table successfully cleared", "success")
+              .then((res) => {
+                if (res)
+                  location.reload()
+              });
+          }
         },
       });
-      $(document).ajaxComplete((res) => {
-        $("#btnAddStock").attr("disabled", false);
-        $("#btnAddStock").html("Add Stock");
+    }
+
+    //kot print bill on click
+    $("#btnkotprint").on("click", () => {
+      // console.log("clicked");
+      if (products.data.length < 1) return;
+      $.ajax({
+        url: constant.url + "order/orders.php",
+        method: "POST",
+        data: JSON.stringify(products),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result);
+          if (result.success == true) {
+            // clearTable();
+            products.orderid = result.data.orderid;
+
+            // alert("redirected to print page")
+            localStorage.setItem("kotbill", JSON.stringify(products));
+            var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=400,width=800");
+            print.document.close();
+            //print.print();
+            // print.close();
+            // printDiv("print");
+            location.reload();
+          }
+        },
       });
-      //  $(document).ajaxError((res)=>{
-      //    console.error(res);
-      //    $("#btnAddStock").attr("disabled", false);
-      //    $("#btnAddStock").html("Submit");
-      //  });
     });
+
+    //final print bill on click
+    $("#btnprintbill").on("click", () => {
+      // console.log("clicked");
+      if (products.data.length < 1) return;
+      $.ajax({
+        url: constant.url + "order/orders.php",
+        method: "POST",
+        data: JSON.stringify(products),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result);
+          if (result.success == true) {
+            clearTable();
+            products.orderid = result.data.orderid;
+            // alert("redirected to print page")
+            localStorage.setItem("bill", JSON.stringify(products));
+            window.open("printbill.php?orderid=" + products.orderid, "_blank");
+            location.reload();
+          }
+        },
+      });
+    });
+    //final print bill on click without saving to db
+    $("#billingprint").on("click", () => {
+      // console.log("clicked");
+      window.open("printbill.php?orderid=" + products.orderid, "_blank");
+      location.reload();
+    });
+
+    // clear bill list
+    $("#btnbillclear").on("click", () => {
+      console.log("clicked");
+      // if (products.data.length < 1) return;
+      clearTable(true);
+    });
+    // });
+
+    //fetchorderid
+    function fetchorderid() {
+      $.ajax({
+        url: constant.url + "table/fetchstatus.php",
+        method: "POST",
+        data: JSON.stringify({
+          restaurant: restaurant,
+          table: products.table,
+          status: 0
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result);
+          if (result.success == true) {
+            console.log(result);
+            products.orderid = result.data.orderid;
+            products.billNo = result.data.bill_no;
+            products.kot = result.data.kot;
+            console.log(products);
+            fetchCustomerName(result.data.user_id);
+          } else {
+            if (alert === true)
+              swal("Error", "Something went wrong", "error")
+              .then((res) => {
+                if (res)
+                  location.reload()
+              });
+          }
+        },
+      });
+    }
+    $("#idCustomerType").on("change", () => {
+      products.customerType = $("#idCustomerType").val();
+      console.log(products)
+    });
+    // print function
   </script>
 
   <!-- Page specific script -->

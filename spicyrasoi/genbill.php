@@ -300,7 +300,7 @@ function fetchSubCategory($cat_id)
                   <div class="form-group">
                     <!-- <label>Food Type</label> -->
                     <h3 id="selectCustomerBillName" class="form-control">
-
+                      Cash
                       <!-- <option value="non-veg">Non-Veg</option> -->
                       <!-- <option value="28">28%</option> -->
                     </h3>
