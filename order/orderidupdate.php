@@ -32,10 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $recived = $data['recived'];
         $grand_total = $data['grand_total'];
         $balance = $data['balance'];
+        $gst = $data['gst'] != null ? $data['gst'] : 0;
+        $gst_amount = $data['gst_amount'] != null ? $data['gst_amount'] : 0;
         //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
 
 
-        if ($result = mysqli_query($con, "UPDATE `orders` SET pay_type='$mode',discount=$discount,recived=$recived,balance=$balance,paid=$grand_total where orderid='$orderid'")) {
+        if ($result = mysqli_query($con, "UPDATE `orders` SET pay_type='$mode',discount=$discount, gst ='$gst', gst_amount ='$gst_amount',  recived=$recived,balance=$balance,paid=$grand_total where orderid='$orderid'")) {
             if ($result = mysqli_query($con, "UPDATE `tables_session` SET status=0 where orderid='$orderid'")) {
                 $response = array(
                     "success" => true,
