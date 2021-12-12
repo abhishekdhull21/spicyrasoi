@@ -16,10 +16,10 @@
           <a href="index.php" class="nav-link"><i class="fas fa-home"> Home</i></a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link"><i class="fas fa-file-invoice"> Event's</i></a>
+          <a href="genbill1.php" class="nav-link"><i class="fas fa-file-invoice"> Fast Bill</i></a>
         </li>
         <li class="nav-item">
-          <a href="genbill.php?table=1&group=<?php echo ($restaurant); ?>101&name=<?php echo ($restaurant);?>1011" class="nav-link"><i class="fas fa-receipt"> New Bill</i></a>
+          <a href="genbill.php?table=1&group=<?php echo ($restaurant); ?>101&name=<?php echo ($restaurant);?>1011" class="nav-link"><i class="fas fa-receipt"> Create Bill</i></a>
         </li>
         <li class="nav-item">
           <a href="genbill.php?method=swiggy&table=1&group=<?php echo ($restaurant); ?>102&name=<?php echo ($restaurant);?>1021" class="nav-link"><i class="fas fa-hamburger"> Swiggy</i></a>
@@ -27,12 +27,12 @@
         <li class="nav-item">
           <a href="genbill.php?method=zomato&table=1&group=<?php echo ($restaurant); ?>103&name=<?php echo ($restaurant);?>1031" class="nav-link"><i class="fas fa-hamburger"> Zamato</i></a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="genbill.php?method=gst&table=1&group=<?php echo ($restaurant); ?>104&name=<?php echo ($restaurant);?>1041" class="nav-link"><i class="fas fa-receipt"> GST Bill</i></a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link"><i class="fas fa-truck-pickup"> Dilvery</i></a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a href="process.php" class="nav-link"><i class="fas fa-sync"> Process</i></a>
         </li>
