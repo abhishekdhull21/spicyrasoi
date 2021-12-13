@@ -111,7 +111,7 @@ $row = mysqli_fetch_assoc($res);
             </thead>
             <tbody>
                 <?php
-                $sql = "SELECT a.product_name as name, b.price,b.qty,b.subtotal, c.order_value,c.recived, c.pay_type as mode, c.balance, c.paid as grand_total, c.discount   from product a, orders_product b, orders c where a.product_id = b.product_id and b.orderid = c.orderid and b.orderid = '$orderid'";
+                $sql = "SELECT a.product_name as name, b.price,b.qty,b.subtotal, c.order_value,c.recived, c.pay_type as mode, c.balance, c.gst, c.gst_amount c.paid as grand_total, c.discount   from product a, orders_product b, orders c where a.product_id = b.product_id and b.orderid = c.orderid and b.orderid = '$orderid'";
                 $rest = mysqli_query($con, $sql);
                 $i = 1;
                 while ($order = mysqli_fetch_assoc($rest)) {
@@ -121,6 +121,8 @@ $row = mysqli_fetch_assoc($res);
                     $balance = floor($order['balance']);
                     $total = floor($order['order_value']);
                     $discount = $order['discount'];
+                    $gst = $order['gst'];
+                    $gst_amount = $order['gst_amount'];
                 ?>
                     <tr>
 
@@ -161,6 +163,14 @@ $row = mysqli_fetch_assoc($res);
                         <td colspan="2" class="price"><b><?php echo $balance; ?></b></td>
                     </tr>
                 <?php } ?>
+                <?php if ($gst_amount > 0) { ?>
+                    <tr>
+
+                        <td class="description"><b>GST</b></td>
+                        <!-- <td class="quantity"></td> -->
+                        <td colspan="2" class="price"><b><?php echo $gst; ?></b></td>
+                    </tr>
+                <?php } ?>
                 <?php if (($total - $grand_total) != 0) { ?>
                     <tr>
 
@@ -180,7 +190,7 @@ $row = mysqli_fetch_assoc($res);
         </table>
         <p class="centered">Thanks for your visit!
             <br>
-            <br>Powered By: <b>spicyrasoi.com</b>
+            <br>Powered By: spicyrasoi.com
         </p>
         <br>
         <br>

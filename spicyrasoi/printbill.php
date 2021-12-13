@@ -180,7 +180,7 @@ $row = mysqli_fetch_assoc($res);
               </table>
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i>Print Out</a>
+                  <a href="posprint.php" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i>Print Out</a>
 
                 </div>
               </div>
