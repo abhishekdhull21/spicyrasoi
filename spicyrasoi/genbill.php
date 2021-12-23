@@ -380,15 +380,23 @@ function fetchSubCategory($cat_id)
               </div>
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="#" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
-                  <a href="#" class="btn btn-default float-right" id="btnkotprint"><i class="fas fa-print"></i> KOT and Save</a>
-                  <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
-                  <a href="#" class="btn btn-danger float-right" id="btnbillclear"><i class="fas fa-broom"></i> Clear Table</a>
-                  <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
-                  <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
-                  <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
+                  <div class="row">
+                    <div class="col-4">
+                      <a href="#" class="btn btn-default" id="btnprintbill" disabled><i class="fas fa-print"></i> Final Print</a>
+                    </div>
+                    <div class="col-4">
+                      <a href="#" class="btn btn-default float-right" id="btnkotprint" disabled><i class="fas fa-print"></i> KOT and Save</a>
+                    </div>
+                    <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
+                    <div class="col-4">
+                      <a href="#" class="btn btn-danger float-right" id="btnbillclear"><i class="fas fa-broom"></i> Clear Table</a>
+                    </div>
+                    <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
+                    <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
+                    <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
                     <i class="fas fa-print"></i> Final Print
                   </button> -->
+                  </div>
                 </div>
               </div>
 
@@ -483,7 +491,7 @@ function fetchSubCategory($cat_id)
       balance: 0
 
     };
-    console.log(products)
+    // console.log(products)
     fetchorderid();
     // updateDiscount();
     // on change on add discount
@@ -514,7 +522,7 @@ function fetchSubCategory($cat_id)
 
     // calculate final bill
     function calGrandTotal(update, price, type) {
-      console.log(products);
+      // console.log(products);
       const grandtotal = $('#grandtotalprice')[0];
       if (products.table > 0)
         $.ajax({
@@ -555,8 +563,23 @@ function fetchSubCategory($cat_id)
       // grandtotalPrice = grandtotalPrice - parseInt(price.innerHTML) + finalPrice;
       calGrandTotal(true);
     }
+    // enable function to print and kotprint btn 
+    function enbalePrintBtn(check) {
+      if (check === true) {
+        $("#btnprintbill").disabled = true;
+        $("#btnkotprint").disabled = true;
+      } else {
+
+        $("#btnprintbill").disabled = false;
+        $("#btnkotprint").disabled = false;
+      }
+
+    }
     // fun to add item into bill list
     function addToCart(e, savedProduct) {
+      if (products.data.length > 0) enbalePrintBtn(true);
+      else enbalePrintBtn(false)
+
       var price = 0;
       var qty = 1;
       var id, name;
@@ -623,7 +646,7 @@ function fetchSubCategory($cat_id)
 
     // fetch customer name
     function fetchCustomerName(id) {
-      console.log("pr " + products)
+      // console.log("pr " + products)
       $.ajax({
         method: "POST",
         url: constant.url + "customer/fetchbyid.php",
@@ -689,8 +712,8 @@ function fetchSubCategory($cat_id)
             // alert("redirected to print page")
             localStorage.setItem("kotbill", JSON.stringify(products));
             var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=400,width=800");
-            print.document.close();
-            //print.print();
+            // print.document.close();
+            print.print();
             // print.close();
             // printDiv("print");
             location.reload();
@@ -731,7 +754,7 @@ function fetchSubCategory($cat_id)
 
     // clear bill list
     $("#btnbillclear").on("click", () => {
-      console.log("clicked");
+      // console.log("clicked");
       // if (products.data.length < 1) return;
       clearTable(true);
     });
@@ -752,11 +775,11 @@ function fetchSubCategory($cat_id)
         success: function(result) {
           // console.log(result);
           if (result.success == true) {
-            console.log(result);
+            // console.log(result);
             products.orderid = result.data.orderid;
             products.billNo = result.data.bill_no;
             products.kot = result.data.kot;
-            console.log(products);
+            // console.log(products);
             fetchCustomerName(result.data.user_id);
           } else {
             if (alert === true)
@@ -771,7 +794,7 @@ function fetchSubCategory($cat_id)
     }
     $("#idCustomerType").on("change", () => {
       products.customerType = $("#idCustomerType").val();
-      console.log(products)
+      // console.log(products)
     });
     // print function
   </script>

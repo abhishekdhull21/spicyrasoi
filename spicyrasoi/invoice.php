@@ -136,6 +136,15 @@ require_once("islogin.php");
                                                         while ($row = $res->fetch_assoc()) {
                                                             //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
                                                             $orderid =  $row['orderid'];
+                                                            $type = $row['order_type'];
+                                                            if ($type == 'store_price')
+                                                                $mode = "Store";
+                                                            else if ($type == 'zomato_price')
+                                                                $mode = "Zomato";
+                                                            else if ($type == 'swiggy_price')
+                                                                $mode = "Swiggy";
+                                                            else if ($type == 'gst_price')
+                                                                $mode = "GST Store";
                                                         ?>
 
                                                             <tr class="odd">
@@ -143,7 +152,7 @@ require_once("islogin.php");
                                                                 <td class="dtr-control"><?php echo  $row['bill_no']; ?> </td>
                                                                 <td class="sorting_1"><?php echo $row['name']; ?></td>
                                                                 <td><?php echo $row['order_value']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode
+                                                                <td class="dtr-control"><?php echo $mode; // TODO: change this paymode
                                                                                         ?>
                                                                 </td>
 
@@ -169,7 +178,7 @@ require_once("islogin.php");
                                                         <?php } ?>
 
                                                     </tbody>
-                                                   
+
                                                 </table>
                                             </div>
                                         </div>

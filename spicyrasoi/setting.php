@@ -13,12 +13,14 @@ $admintype = $admin->getAdminType($user->userid);
 if ($admintype == 2)
   $isSuperadmin = true;
 // $sql = "SELECT admin_type from users where user_id = $user->admin_id";
- $sql = "SELECT * FROM admin_permission a, permissions b where a.permission_id = b.id and a.admin_id=$admin_id";
-$res = mysqli_query($con,$sql);
+$sql = "SELECT a.permission_id,a.admin,b.permission FROM admin_permission a, permissions b where a.permission_id = b.id and a.admin=$admin_id";
+$res = mysqli_query($con, $sql);
 // print_r($res);
-$permissions = mysqli_fetch_array($res);
-// echo "HELL".mysqli_error($con);
-print_r($permissions);
+$permissions = array();
+while ($permission = mysqli_fetch_assoc($res))
+  array_push($permissions, $permission['permission']);
+
+// print_r($permissions);
 ?>
 
 <head>
@@ -75,25 +77,25 @@ print_r($permissions);
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body ">
-                <div class="row ">
-                <div class="col-12 col-sm-6">
-                  <div class="info-box bg-light">
-                    <div class="info-box-content">
-                    
-                      <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT INCOME</h3>
-                      <h4 class="info-box-number text-center text-muted mb-0" id="totalsell">00</h4>
+                  <div class="row ">
+                    <div class="col-12 col-sm-6">
+                      <div class="info-box bg-light">
+                        <div class="info-box-content">
+
+                          <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT INCOME</h3>
+                          <h4 class="info-box-number text-center text-muted mb-0" id="totalsell">00</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <div class="info-box bg-light">
+                        <div class="info-box-content">
+                          <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT SPENT</h3>
+                          <h4 class="info-box-number text-center text-muted mb-0" id="totalexpense">00</h4>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-12 col-sm-6">
-                  <div class="info-box bg-light">
-                    <div class="info-box-content">
-                      <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT SPENT</h3>
-                      <h4 class="info-box-number text-center text-muted mb-0" id="totalexpense">00</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
                   <!-- <a href="#" class="btn btn-app bg-success">
                     <span class="badge bg-purple" id="totalsell">0</span>
                     <i class="fas fa-money-check-alt"></i> Income
@@ -104,12 +106,12 @@ print_r($permissions);
                   </a> -->
                   <a href="addproduct.php" class="btn btn-app bg-secondary">
 
-                              <i class="fas fa-plus-circle"></i> Add Product
-                            </a>
-                            <a href="allproduct.php" class="btn btn-app bg-secondary">
+                    <i class="fas fa-plus-circle"></i> Add Product
+                  </a>
+                  <a href="allproduct.php" class="btn btn-app bg-secondary">
 
-                              <i class="fab fa-product-hunt"></i> All Product
-                            </a>
+                    <i class="fab fa-product-hunt"></i> All Product
+                  </a>
                   <a href="invoice.php" class="btn btn-app bg-primary">
                     <!-- <span class="badge bg-purple">891</span> -->
                     <i class="fas fa-file-invoice"></i> Invoice
@@ -124,15 +126,15 @@ print_r($permissions);
                   </a>
                   <a href="invoiceday.php" class="btn btn-app bg-success">
 
-                            <i class="fas fa-file"></i> Day Book
-                          </a>
-                 <a href="expense.php" class="btn btn-app bg-success">
+                    <i class="fas fa-file"></i> Day Book
+                  </a>
+                  <a href="expense.php" class="btn btn-app bg-success">
 
                     <i class="fas fa-file"></i> Expense
-                 </a>
-                 <a href="day_expense.php" class="btn btn-app bg-success">
+                  </a>
+                  <a href="day_expense.php" class="btn btn-app bg-success">
 
-                  <i class="fas fa-file"></i> Today Expense
+                    <i class="fas fa-file"></i> Today Expense
                   </a>
 
                 </div>
@@ -161,7 +163,7 @@ print_r($permissions);
                       </div>
                       <div id="collapseseven" class="collapse" data-parent="#accordion">
                         <div class="card-body">
-                        
+
                           <a href="invoiceday.php" class="btn btn-app bg-success">
 
                             <i class="fas fa-file"></i> Day Book
@@ -174,12 +176,12 @@ print_r($permissions);
 
                             <i class="fas fa-file"></i> Customer Report
                           </a>
-                        
+
                           <a href="expense.php" class="btn btn-app bg-success">
 
                             <i class="fas fa-file"></i> Expense
                           </a>
-                          
+
 
                         </div>
                       </div>
@@ -227,12 +229,12 @@ print_r($permissions);
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-users"></i> Purchase Report
                           </a>
-                        
+
                           <a href="#" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-users"></i> Expense Report
                           </a>
-                        
+
 
                         </div>
                       </div>
@@ -250,7 +252,7 @@ print_r($permissions);
             <!-- /.col -->
 
             <div class="col-md-6">
-              <?php if ($isSuperadmin) {  ?>
+              <?php if (in_array('super_admin', $permissions)) {  ?>
 
                 <div class="card">
                   <div class="card-header">
