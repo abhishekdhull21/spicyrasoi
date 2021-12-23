@@ -99,6 +99,8 @@ function fetchSubCategory($cat_id)
       $subid = $sub['id'];
 
 ?>
+
+
       <div class="row">
         <div class="col-md-12">
           <div class="card card-primary collapsed-card">
@@ -177,6 +179,12 @@ function fetchSubCategory($cat_id)
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
+        <div class="row" style="margin-bottom: 10px;">
+        <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                      <label class="custom-control-label" for="customSwitch1">Table View</label>
+                    </div> 
+        </div>
           <div class="row">
             <div class="col-lg-8 col-md-12">
               <div class="row">
