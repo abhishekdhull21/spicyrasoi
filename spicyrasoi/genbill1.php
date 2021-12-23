@@ -345,7 +345,7 @@ if (isset($_GET['method'])) {
               <div class="row no-print">
                 <div class="col-12">
                   <a href="printbill.php" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
-                  <a href="poskotprint.php" class="btn btn-default float-right" id="btnkotprint"><i class="fas fa-print"></i> KOT and Save</a>
+                  <a href="#" class="btn btn-default float-right" id="btnkotprint"><i class="fas fa-print"></i> KOT and Save</a>
                   <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
                   <a href="#" class="btn btn-danger float-right" id="btnbillclear"><i class="fas fa-broom"></i> Clear Table</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
@@ -667,7 +667,7 @@ if (isset($_GET['method'])) {
             // alert("redirected to print page")
             localStorage.setItem("kotbill", JSON.stringify(products));
             var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=400,width=800");
-            print.document.close();
+            // print.document.close();
             //print.print();
             // print.close();
             // printDiv("print");

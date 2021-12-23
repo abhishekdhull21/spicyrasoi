@@ -179,12 +179,13 @@ function fetchSubCategory($cat_id)
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-        <div class="row" style="margin-bottom: 10px;">
-        <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                      <label class="custom-control-label" for="customSwitch1">Table View</label>
-                    </div> 
-        </div>
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="custom-control custom-switch">
+              <!-- <label class="custom-control-label" for="">Category View</label> -->
+              <input type="checkbox" class="custom-control-input" onchange="changetToTableView(this);" id="customSwitch">
+              <label class="custom-control-label" for="customSwitch">Table View</label>
+            </div>
+          </div>
           <div class="row">
             <div class="col-lg-8 col-md-12">
               <div class="row">
@@ -527,6 +528,12 @@ function fetchSubCategory($cat_id)
     //   products.customerID = customer[0];
     //   products.customerType = customer[1];
     // });
+    // change to table view
+    function changetToTableView(e) {
+      if (e.checked === true)
+        location.replace("genbill1.php?" + window.location.search.substr(1).split("?")[0])
+    }
+
 
     // calculate final bill
     function calGrandTotal(update, price, type) {
