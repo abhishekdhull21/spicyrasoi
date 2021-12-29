@@ -25,7 +25,7 @@
           <a href="genbill.php?method=swiggy&table=1&group=<?php echo ($restaurant); ?>102&name=<?php echo ($restaurant);?>1021" class="nav-link"><i class="fas fa-hamburger"> Swiggy</i></a>
         </li>
         <li class="nav-item">
-          <a href="genbill.php?method=zomato&table=1&group=<?php echo ($restaurant); ?>103&name=<?php echo ($restaurant);?>1031" class="nav-link"><i class="fas fa-hamburger"> Zamato</i></a>
+          <a href="genbill.php?method=zomato&table=1&group=<?php echo ($restaurant); ?>103&name=<?php echo ($restaurant);?>1031" class="nav-link"><i class="fas fa-hamburger"> Zomato</i></a>
         </li>
         <!-- <li class="nav-item">
           <a href="genbill.php?method=gst&table=1&group=<?php echo ($restaurant); ?>104&name=<?php echo ($restaurant);?>1041" class="nav-link"><i class="fas fa-receipt"> GST Bill</i></a>

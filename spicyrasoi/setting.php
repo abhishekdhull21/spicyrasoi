@@ -17,6 +17,8 @@ $sql = "SELECT a.permission_id,a.admin,b.permission FROM admin_permission a, per
 $res = mysqli_query($con, $sql);
 // print_r($res);
 $permissions = array();
+if(mysqli_num_rows($res)>0)
+
 while ($permission = mysqli_fetch_assoc($res))
   array_push($permissions, $permission['permission']);
 
