@@ -110,13 +110,22 @@ if (isset($_GET['method'])) {
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
+      <br>
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="custom-control custom-switch">
+              <!-- <label class="custom-control-label" for="">Category View</label> -->
+              <input type="checkbox" class="custom-control-input" onchange="changetToTableView(this);" id="customSwitch" checked> 
+              <label class="custom-control-label" for="customSwitch">Table View</label>
+            </div>
+          </div>
           <div class="row" style="margin-top: 10px;">
+          
             <!-- left column -->
             <div class="col-md-8">
+           
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">All Product </h3>
@@ -344,8 +353,8 @@ if (isset($_GET['method'])) {
               </div>
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="printbill.php" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a>
-                  <a href="#" class="btn btn-default float-right" id="btnkotprint"><i class="fas fa-print"></i> KOT and Save</a>
+                  <!-- <a href="printbill.php" class="btn btn-default" id="btnprintbill"><i class="fas fa-print"></i> Final Print</a> -->
+                  <a href="#" class="btn btn-default float-left" id="btnkotprint"><i class="fas fa-print"></i> KOT and Save</a>
                   <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
                   <a href="#" class="btn btn-danger float-right" id="btnbillclear"><i class="fas fa-broom"></i> Clear Table</a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
@@ -752,7 +761,15 @@ if (isset($_GET['method'])) {
       console.log(products)
     });
     // print function
+
+     // change to table view
+     function changetToTableView(e) {
+      if (e.checked === false)
+        location.replace("genbill.php?" + window.location.search.substr(1).split("?")[0])
+    }
   </script>
+
+  
 
   <!-- Page specific script -->
 

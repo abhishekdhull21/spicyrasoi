@@ -15,9 +15,9 @@
         <li class="nav-item">
           <a href="index.php" class="nav-link"><i class="fas fa-home"> Home</i></a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="genbill1.php?table=1&group=<?php echo ($restaurant); ?>106&name=<?php echo ($restaurant);?>1041" class="nav-link"><i class="fas fa-file-invoice"> Fast Bill</i></a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a href="genbill.php?table=1&group=<?php echo ($restaurant); ?>101&name=<?php echo ($restaurant);?>1011" class="nav-link"><i class="fas fa-receipt"> Create Bill</i></a>
         </li>

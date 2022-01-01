@@ -390,14 +390,14 @@ function fetchSubCategory($cat_id)
               <div class="row no-print">
                 <div class="col-12">
                   <div class="row">
-                    <div class="col-4">
+                    <!-- <div class="col-4">
                       <a href="#" class="btn btn-default" id="btnprintbill" disabled><i class="fas fa-print"></i> Final Print</a>
-                    </div>
-                    <div class="col-4">
-                      <a href="#" class="btn btn-default float-right" id="btnkotprint" disabled><i class="fas fa-print"></i> KOT and Save</a>
+                    </div> -->
+                    <div class="col-6">
+                      <a href="#" class="btn btn-default float-left" id="btnkotprint" disabled><i class="fas fa-print"></i> KOT and Save</a>
                     </div>
                     <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
-                    <div class="col-4">
+                    <div class="col-6">
                       <a href="#" class="btn btn-danger float-right" id="btnbillclear"><i class="fas fa-broom"></i> Clear Table</a>
                     </div>
                     <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
