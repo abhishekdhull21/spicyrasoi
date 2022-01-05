@@ -390,9 +390,9 @@ function fetchSubCategory($cat_id)
               <div class="row no-print">
                 <div class="col-12">
                   <div class="row">
-                    <!-- <div class="col-4">
+                    <div class="col-4">
                       <a href="#" class="btn btn-default" id="btnprintbill" disabled><i class="fas fa-print"></i> Final Print</a>
-                    </div> -->
+                    </div>
                     <div class="col-6">
                       <a href="#" class="btn btn-default float-left" id="btnkotprint" disabled><i class="fas fa-print"></i> KOT and Save</a>
                     </div>

@@ -22,6 +22,7 @@ require_once('logininfo.php');
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
 </head>
 
 <body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
@@ -37,20 +38,23 @@ require_once('logininfo.php');
       <div class="content-header">
         <div class="container">
           <div class="row mb-2">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
               <?php
               $sql = "SELECT name FROM `restaurant` WHERE restaurantid = $restaurant";
               $res = mysqli_query($con, $sql);
 
               ?>
-              <h1 class="m-0"> <?php echo mysqli_fetch_assoc($res)['name']; ?> </h1>
+              <marquee behavior="alternate"; direction="right"; class="font-effect-fire">
+              <h1 class="m-0" style="color: green; font-family: cursive;" ><?php echo mysqli_fetch_assoc($res)['name']; ?> </h1>
+              </marquee>
             </div><!-- /.col -->
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
               </ol>
-            </div><!-- /.col -->
+            </div> -->
+            <!-- /.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
