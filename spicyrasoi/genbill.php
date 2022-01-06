@@ -393,11 +393,11 @@ function fetchSubCategory($cat_id)
                     <div class="col-4">
                       <a href="#" class="btn btn-default" id="btnprintbill" disabled><i class="fas fa-print"></i> Final Print</a>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                       <a href="#" class="btn btn-default float-left" id="btnkotprint" disabled><i class="fas fa-print"></i> KOT and Save</a>
                     </div>
                     <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
-                    <div class="col-6">
+                    <div class="col-4">
                       <a href="#" class="btn btn-danger float-right" id="btnbillclear"><i class="fas fa-broom"></i> Clear Table</a>
                     </div>
                     <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
@@ -788,7 +788,7 @@ function fetchSubCategory($cat_id)
         contentType: "application/json",
         dataType: "json",
         success: function(result) {
-          // console.log(result);
+          console.log(result);
           if (result.success == true) {
             // console.log(result);
             products.orderid = result.data.orderid;
@@ -797,6 +797,10 @@ function fetchSubCategory($cat_id)
             // console.log(products);
             fetchCustomerName(result.data.user_id);
           } else {
+            if (result.data == null)
+              $("#billingprint").hide();
+            else if (result.data.kot == null)
+              $("#billingprint").hide();
             if (alert === true)
               swal("Error", "Something went wrong", "error")
               .then((res) => {
@@ -807,6 +811,8 @@ function fetchSubCategory($cat_id)
         },
       });
     }
+
+
     $("#idCustomerType").on("change", () => {
       products.customerType = $("#idCustomerType").val();
       // console.log(products)
