@@ -51,6 +51,7 @@ $(document).ready(function () {
       $("#btnAddCategory").html("Submit");
     });
   });
+
   //add new table category
   $("#btnAddTableCategory").click(function (e) {
     e.preventDefault();

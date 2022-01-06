@@ -60,7 +60,7 @@
       echo ("Error");
     } else {
       //echo("Successfull");
-      $sql = "SELECT cat_name FROM category where admin_id = $admin_id and restaurant = $restaurant";
+      $sql = "SELECT cat_name FROM category where admin_id = $admin_id and restaurant = $restaurant and status = 1";
       $res = $con->query($sql);
       if ($res->num_rows > 0) {
         //echo "Output fetched successfully";
@@ -115,13 +115,13 @@
                   </div>
 
                 </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary form-control" id="btnAddCategory">Create New Category</button>
+                </div>
 
               </div>
               <!-- /.card-body -->
 
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary" id="btnAddCategory">Add</button>
-              </div>
 
               <div class="row">
                 <!-- left column -->
@@ -137,7 +137,7 @@
                       <div class="form-group">
                         <select class="js-example-basic-single form-control" id="cat_id">
                           <?php
-                          $swl = "SELECT * from category where  restaurant = $restaurant";
+                          $swl = "SELECT * from category where  restaurant = $restaurant and status = 1";
                           $res = mysqli_query($con, $swl);
                           while ($row = mysqli_fetch_assoc($res)) {
                           ?>
@@ -151,13 +151,13 @@
                       </div>
 
                     </div>
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-primary" id="btnAddSubCategory">Add</button>
+                    </div>
 
                   </div>
                   <!-- /.card-body -->
 
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" id="btnAddSubCategory">Add</button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -169,7 +169,7 @@
               <div class="card card-primary">
                 <div class="card-header">
                   <h3 class="card-title">All Listed Category </h3>
-                  <a href="addcategory.php"> <i class="fas fa-sync float-right"> Refresh</i> </a>
+                  <a href=""> <i class="fas fa-sync float-right"> Refresh</i> </a>
                 </div>
                 <div class="card-body">
                   <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -193,26 +193,22 @@
 
                               $i++;
 
-                              //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
+
                             ?>
 
                               <tr class="odd">
                                 <td class="dtr-control"><?php echo ($i); ?>
                                 </td>
                                 <td class="sorting_1"><?php echo $row['cat_name']; ?></td>
-                                <td><a href=""> <i class="fas fa-trash-alt"> Remove</i></a> </td>
+                                <td><a href="#"> <i class="fas fa-trash-alt" data-catid="<?php echo $row['cat_id']; ?>" onclick="deleteCategory(this);"> Remove</i></a> </td>
 
 
-                                <!-- <td  >U</td>
-                   <td  >U</td>
-                   <td  >U</td> -->
+
                               </tr>
                             <?php } ?>
 
                           </tbody>
-                          <!-- <tfoot>
-                 <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1"  >Platform(s)</th><th rowspan="1" colspan="1"  >Engine version</th><th rowspan="1" colspan="1"  >CSS grade</th></tr>
-                 </tfoot> -->
+
                         </table>
                       </div>
                     </div>
@@ -273,9 +269,9 @@
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
+  <!-- <script src="dist/js/demo.js"></script> -->
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="dist/js/pages/dashboard.js"></script>
+  <!-- <script src="dist/js/pages/dashboard.js"></script> -->
   <!-- DataTables  & Plugins -->
   <script src="plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -291,8 +287,59 @@
   <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+  <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
   <!-- Page specific script -->
 
+  <script>
+    //delete category
+    function deleteCategory(e) {
+      ele = $(e)
+      // e.preventDefault();
+      const processing = "Deleting...";
+      const text = e.innerHTML;
+
+      const category = ele.attr("data-catid");
+      $(document).ajaxSend(() => {
+        $(e).prop("disabled", true);
+        $(e).html(processing);
+      });
+      $.ajax({
+        url: constant.url + "/category/remove.php",
+        method: "POST",
+        data: JSON.stringify({
+          admin_id: admin_id,
+          restaurant: restaurant,
+          category: category,
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+          // console.log(result.success);
+
+          const json = result;
+          if (json.success) swal("Good Job", " Category Removed", "success");
+          else swal({
+            title: "Error Occured",
+            text: json.error,
+            icon: "error"
+          });
+          console.info(json.success);
+          // $("#btnAddCategory").attr("disabled");
+          $(e).html(text);
+        },
+      });
+      $(document).ajaxError((res) => {
+        console.error(res);
+
+        $(e).attr("disabled", false);
+        $(e).html(text);
+      });
+      $(document).ajaxComplete((res) => {
+        $(e).attr("disabled", false);
+        $(e).html(text);
+      });
+    }
+  </script>
 
   <script>
     $(function() {
