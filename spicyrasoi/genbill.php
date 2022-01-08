@@ -208,10 +208,10 @@ function fetchSubCategory($cat_id)
                     } ?>
                   <div class="col-md-4 ">
                     <div class="card card-primary collapsed-card">
-                      <div class="card-header">
-                        <h3 class="card-title"><?php echo ($row['cat_name']); ?></h3>
+                      <div class="card-header" data-card-widget="collapse">
+                        <h3 class="card-title" ><?php echo ($row['cat_name']); ?></h3>
                         <div class="card-tools">
-                          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
                           </button>
                         </div>
                         <!-- /.card-tools -->
@@ -387,9 +387,9 @@ function fetchSubCategory($cat_id)
                   </tbody>
                 </table>
               </div>
-              <div class="row no-print" >
-                <div class="col-12" >
-                  <div class="row" >
+              <div class="row no-print">
+                <div class="col-12">
+                  <div class="row">
                     <div class="col-4">
                       <a href="#" class="btn btn-default" id="btnprintbill" disabled><i class="fas fa-print"></i> Final Print</a>
                     </div>
