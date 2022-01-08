@@ -58,7 +58,7 @@
                                     </li>
                                     
                                     <li><a href="./contact.php">Contact</a></li>
-                                    <li><a href="spicyrasoi/user/createuser.php">Register</a></li>
+                                    <!-- <li><a href="spicyrasoi/user/createuser.php">Register</a></li> -->
                                     <li><a href="spicyrasoi/user/login.php">Login</a></li>
                                 </ul>
                             </nav>

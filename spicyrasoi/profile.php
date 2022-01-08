@@ -83,11 +83,11 @@ $user = unserialize($_SESSION['user']);
               <!-- Profile Image -->
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
-                  <div class="text-center">
+                  <!-- <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle" src="dist/img/user4-128x128.jpg" alt="User profile picture">
-                  </div>
+                  </div> -->
 
-                  <h3 class="profile-username text-center"><?php echo $row['name']; ?></h3>
+                  <h1 class="profile-username text-center"><?php echo $row['name']; ?></h1>
 
                   <p class="text-muted text-center"><?php echo $row['city']; ?></p>
 

@@ -143,7 +143,7 @@ require_once("islogin.php");
 
                                                             <tr class="odd">
                                                                 <td class="dtr-control"><?php echo $row['date']; ?> </td>
-                                                                <td class="dtr-control"><?php echo $orderid ?> </td>
+                                                                <td class="dtr-control"><?php echo $row['bill_no']; ?> </td>
                                                                 <td class="sorting_1"><?php echo $row['name']; ?></td>
                                                                 <td><?php echo $row['order_value']; ?> </td>
                                                                 <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode
@@ -226,7 +226,7 @@ require_once("islogin.php");
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "buttons": ["pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,

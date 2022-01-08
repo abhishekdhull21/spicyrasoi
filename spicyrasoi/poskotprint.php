@@ -5,7 +5,7 @@ require_once('../config.php');
 if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
     $tablegroup = $_GET['tablegroup'];
     $tableid = $_GET['table'];
-    echo $sql = "SELECT `title` FROM `dashboard` WHERE `id` = $tablegroup limit 1";
+    $sql = "SELECT `title` FROM `dashboard` WHERE `id` = $tablegroup limit 1";
     $res = mysqli_query($con, $sql);
     if (mysqli_num_rows($res) < 1) {
         echo 'something went wrong, close this window and try again...' . mysqli_error($con);

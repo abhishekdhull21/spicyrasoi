@@ -17,10 +17,10 @@ $sql = "SELECT a.permission_id,a.admin,b.permission FROM admin_permission a, per
 $res = mysqli_query($con, $sql);
 // print_r($res);
 $permissions = array();
-if(mysqli_num_rows($res)>0)
+if (mysqli_num_rows($res) > 0)
 
-while ($permission = mysqli_fetch_assoc($res))
-  array_push($permissions, $permission['permission']);
+  while ($permission = mysqli_fetch_assoc($res))
+    array_push($permissions, $permission['permission']);
 
 // print_r($permissions);
 ?>
@@ -84,7 +84,7 @@ while ($permission = mysqli_fetch_assoc($res))
                       <div class="info-box bg-light">
                         <div class="info-box-content">
 
-                          <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT INCOME</h3>
+                          <h3 class="info-box-text text-center text-muted">TOTAL INCOME</h3>
                           <h4 class="info-box-number text-center text-muted mb-0" id="totalsell">00</h4>
                         </div>
                       </div>
@@ -92,7 +92,7 @@ while ($permission = mysqli_fetch_assoc($res))
                     <div class="col-12 col-sm-6">
                       <div class="info-box bg-light">
                         <div class="info-box-content">
-                          <h3 class="info-box-text text-center text-muted">TOTAL AMOUNT SPENT</h3>
+                          <h3 class="info-box-text text-center text-muted">TOTAL SPENT</h3>
                           <h4 class="info-box-number text-center text-muted mb-0" id="totalexpense">00</h4>
                         </div>
                       </div>
@@ -106,6 +106,10 @@ while ($permission = mysqli_fetch_assoc($res))
                     <span class="badge bg-purple" id="totalexpense">0</span>
                     <i class="fas fa-money-check-alt"></i> Out
                   </a> -->
+                  <a href="addcategory.php" class="btn btn-app bg-danger">
+                    <!-- <span class="badge bg-success">300</span> -->
+                    <i class="fas fa-plus-circle"></i> Add Category
+                  </a>
                   <a href="addproduct.php" class="btn btn-app bg-secondary">
 
                     <i class="fas fa-plus-circle"></i> Add Product

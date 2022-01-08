@@ -164,13 +164,13 @@ require_once("islogin.php");
                                                                 </td>
                                                                 <td>
                                                                     <div class="btn-group">
-                                                                        <button type="button" onclick="href.location='printbill.php?orderid=<?php echo $orderid; ?>'" class="btn btn-info">View</button>
+                                                                        <button type="button" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>" class="btn btn-info">Action</button>
                                                                         <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
                                                                             <span class="sr-only">Toggle Dropdown</span>
                                                                         </button>
                                                                         <div class="dropdown-menu" role="menu">
                                                                             <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>">View</a>
-                                                                            <a class="dropdown-item" href="#">Edit</a>
+                                                                            <!-- <a class="dropdown-item" href="#">Edit</a> -->
                                                                         </div>
                                                                     </div>
                                                                 </td>

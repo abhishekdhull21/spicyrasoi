@@ -156,7 +156,8 @@ require_once("islogin.php");
                                 <td><?php echo $row['swiggy_price']; ?></td>
                                 <td><?php echo $row['zomato_price']; ?></td>
                                 <td><?php echo $row['local_price']; ?></td>
-                                <td><a data-productId="<?php echo $row['product_id']; ?>" onclick="removeProduct(this);"><i class="fas fa-trash-alt"> Remove</i></a> | <a href="#"> <i class="fas fa-edit"> Edit</i> </a></td>
+                                <td><a data-productId="<?php echo $row['product_id']; ?>" onclick="removeProduct(this);"> <i class="fas fa-trash-alt"> Remove </i> </a> 
+                              </td>
                                 <!--<td  >U</td>
                     <td  >U</td> -->
                               </tr>
@@ -217,7 +218,7 @@ require_once("islogin.php");
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "buttons": ["pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,

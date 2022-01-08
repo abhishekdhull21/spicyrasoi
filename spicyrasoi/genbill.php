@@ -45,7 +45,7 @@ function showProduct($cat_id, $subid)
         <th>Product</th>
         <th>Price</th>
         <th>Add</th>
-        <th>Type</th>
+        <!-- <th>Type</th> -->
       </tr>
     </thead>
     <tbody>
@@ -67,7 +67,7 @@ function showProduct($cat_id, $subid)
               <label class="custom-control-label" for="addProductCart_<?php echo $product['product_id']; ?>"></label>
             </div>
           </td>
-          <td class="align-middle">
+          <!-- <td class="align-middle">
             <?php
             if ($product['food_type'] == 'veg') {
             ?>
@@ -76,7 +76,7 @@ function showProduct($cat_id, $subid)
               <img src="../img/icons/nonvegicon.png" style="width: 15px; height: 15px;" alt="non-veg">
             <?php } ?>
 
-          </td>
+          </td> -->
         </tr>
       <?php } ?>
     </tbody>
@@ -387,14 +387,14 @@ function fetchSubCategory($cat_id)
                   </tbody>
                 </table>
               </div>
-              <div class="row no-print">
-                <div class="col-12">
-                  <div class="row">
+              <div class="row no-print" >
+                <div class="col-12" >
+                  <div class="row" >
                     <div class="col-4">
                       <a href="#" class="btn btn-default" id="btnprintbill" disabled><i class="fas fa-print"></i> Final Print</a>
                     </div>
                     <div class="col-4">
-                      <a href="#" class="btn btn-default float-left" id="btnkotprint" disabled><i class="fas fa-print"></i> KOT and Save</a>
+                      <a href="#" class="btn btn-default float-left" id="btnkotprint" disabled><i class="fas fa-print"></i> KOT</a>
                     </div>
                     <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
                     <div class="col-4">

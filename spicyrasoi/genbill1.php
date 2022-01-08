@@ -358,7 +358,7 @@ if (isset($_GET['method'])) {
                       <a href="#" class="btn btn-default" id="btnprintbill" disabled><i class="fas fa-print"></i> Final Print</a>
                     </div>
                     <div class="col-4">
-                      <a href="#" class="btn btn-default float-left" id="btnkotprint" disabled><i class="fas fa-print"></i> KOT and Save</a>
+                      <a href="#" class="btn btn-default float-left" id="btnkotprint" disabled><i class="fas fa-print"></i> KOT</a>
                     </div>
                     <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
                     <div class="col-4">
@@ -689,7 +689,7 @@ if (isset($_GET['method'])) {
             //print.print();
             // print.close();
             // printDiv("print");
-            // location.reload();
+            location.reload();
           }
         },
       });

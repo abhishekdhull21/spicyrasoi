@@ -63,9 +63,9 @@
           <a href="forgot.php" class="btn btn-block btn-primary">
             I forgot my password
           </a>
-          <a href="createuser.php" class="btn btn-block btn-danger">
+          <!-- <a href="createuser.php" class="btn btn-block btn-danger">
             Register a new membership
-          </a>
+          </a> -->
         </div>
         <!-- /.social-auth-links -->
 
