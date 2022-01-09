@@ -162,7 +162,7 @@ if (isset($_GET['method'])) {
                               //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
                             ?>
 
-                              <tr class="odd">
+                              <tr class="odd" onclick="checkToCart('addProductCart_<?php echo $row['product_id']; ?>')">
                                 <!-- <td class="dtr-control"><?php echo $row['product_id']; ?>
                                 </td> -->
                                 <td class="sorting_1"><?php echo $row['product_name']; ?></td>
@@ -173,7 +173,8 @@ if (isset($_GET['method'])) {
                                 <td><?php echo $row['local_price']; ?></td> -->
                                 <td>
                                   <!-- <a href="#"> <i class="fas fa-plus"> Add</i> </a> -->
-                                  <input type="checkbox" data-productid="<?php echo $row['product_id']; ?>" data-productname="<?php echo $row['product_name']; ?>" data-productprice="<?php echo $row[$method]; ?>" id="addProductCart_<?php echo $row['product_id']; ?>" onchange="addToCart(this);">
+                                  <input type="checkbox" data-productid="<?php echo $row['product_id']; ?>" data-productname="<?php echo $row['product_name']; ?>" data-productprice="<?php echo $row[$method]; ?>" id="addProductCart_<?php echo $row['product_id']; ?>">
+                                  <!-- onchange="addToCart(this);"> -->
                                 </td>
                                 <!--<td  >U</td>
                     <td  >U</td> -->
@@ -782,7 +783,18 @@ if (isset($_GET['method'])) {
     }
   </script>
 
+  <script>
+    function checkToCart(id) {
+      // alert(id)
 
+      if ($("#" + id).prop('checked') === true) {
+        $("#" + id).prop('checked', false)
+      } else {
+        $("#" + id).prop('checked', true)
+      }
+      addToCart(document.getElementById(id));
+    }
+  </script>
 
   <!-- Page specific script -->
 
