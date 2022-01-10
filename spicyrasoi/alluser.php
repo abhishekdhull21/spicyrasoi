@@ -121,7 +121,7 @@ require_once "islogin.php";
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >GST No.</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >State</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Address</th>
-                       <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Action</th> -->
+                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Permission</th>
                      <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >HSN Code</th> -->
                     </tr>
@@ -141,7 +141,10 @@ require_once "islogin.php";
                     <td  ><?php echo $row['user_mobile']; ?></td>
                     <td  ><?php echo $row['user_address']; ?></td>
                     <td  ><?php echo $row['user_name']; ?></td>
-                    <!-- <td  ><a href="#"><i class="fas fa-trash-alt"> Remove</i></a> | <a href="#"> <i class="fas fa-edit"> Edit</i> </a></td> -->
+                    <td  >
+                      <!-- <a href="#"><i class="fas fa-trash-alt"> Remove</i></a> |  -->
+                      <a href="permission.php"> <i class="fas fa-edit"> Edit</i> </a>
+                    </td>
                    
                     <!-- <td  >U</td>
                     <td  >U</td>
@@ -210,7 +213,7 @@ require_once "islogin.php";
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "buttons": ["print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,

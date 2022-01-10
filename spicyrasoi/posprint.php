@@ -189,11 +189,9 @@ $row = mysqli_fetch_assoc($res);
                 </tr>
             </tbody>
         </table>
-        <p class="centered">Thanks for your visit!
-            <br>
+        <p class="centered" style="font-size: 8px;">Thanks for your visit!
             <br>Powered By: spicyrasoi.com
         </p>
-        <br>
         <br>
         <hr>
     </div>
