@@ -34,45 +34,7 @@
     </div>
 
     <!-- Header Section Begin -->
-    <header class="header-section other-page">
-        <div class="container-fluid">
-            <div class="inner-header">
-                <div class="logo">
-                    <a href="./index.php"><img src="img/logo1.png" alt=""></a>
-                </div>
-                <div class="top-widget">
-                    <div class="top-info address">
-                        <img src="img/placeholder.png" alt="">
-                        <span>1525 Boring Lane, Los <br />Angeles, CA</span>
-                    </div>
-                    <div class="top-info phone-num">
-                        <img src="img/phone.png" alt="">
-                        <span>+1 (603)535-4592</span>
-                    </div>
-                </div>
-                <div class="container">
-                    <nav class="main-menu mobile-menu">
-                        <ul>
-                            <li><a href="./index.php">Home</a></li>
-                            <li><a href="./about-us.php">About</a></li>
-                            <li><a href="./rooms.php">Rooms</a></li>
-                            <li><a href="#">Facilities</a>
-                                <ul class="drop-menu">
-                                    <li><a href="#">Junior Suit</a></li>
-                                    <li><a href="#">Double Room</a></li>
-                                    <li><a href="#">Senior Suit</a></li>
-                                    <li><a href="#">Single Room</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./news.php">News</a></li>
-                            <li><a href="./contact.php">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div id="mobile-menu-wrap"></div>
-            </div>
-        </div>
-    </header>
+ <?php include("header.php"); ?>
     <!-- Header End -->
 
     <!-- Hero Section Begin -->
@@ -84,9 +46,9 @@
                         <h1>Contact</h1>
                     </div>
                 </div>
-                <div class="page-nav">
+                <!-- <div class="page-nav">
                     <a href="./news.php" class="left-nav"><i class="lnr lnr-arrow-left"></i> News</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -101,10 +63,9 @@
                         <div class="contact-information">
                             <h2>Contact Information</h2>
                             <ul>
-                                <li><img src="img/placeholder-copy.png" alt=""> <span>1525 Boring Lane, Los Angeles,
-                                        CA</span></li>
-                                <li><img src="img/phone-copy.png" alt=""> <span>+1 (603)535-4592</span></li>
-                                <li><img src="img/envelop.png" alt=""> <span>hello@youremail.com</span></li>
+                                <li><img src="img/placeholder-copy.png" alt=""> <span>1st Floor Near Mela Mandi <br />Sunderpura Road Narwana <br/> Distt. Jind Haryana 126116</span></li>
+                                <li><img src="img/phone-copy.png" alt=""> <span>+91-9813761709, +91-9996015637</span></li>
+                                <li><img src="img/envelop.png" alt=""> <span>ajaysheokand.as@gmail.com</span></li>
                                 <li><img src="img/clock-copy.png" alt=""> <span>Everyday: 06:00 -22:00</span></li>
                             </ul>
                         </div>
@@ -166,73 +127,12 @@
 
     <!-- Map Section Begin -->
     <div class="map">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423283.4355676389!2d-118.69193052429003!3d34.02073049434915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1568665689853!5m2!1sen!2sbd"
-            height="560" style="border:0;" allowfullscreen=""></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7680.903866863273!2d76.09383955132282!3d29.58766062995163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3911f29168ef86cf%3A0x4c5ad298bb70a1c3!2sNarwana%2C%20Haryana%20126116!5e1!3m2!1sen!2sin!4v1642223768276!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
     <!-- Map Section End -->
 
     <!-- Footer Section Begin -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer-logo">
-                        <a href="#"><img src="img/logo1.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row pb-50">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Location</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-map-marker"></i>
-                            <p>1525 Boring Lane, <br />Los Angeles, CA</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Reception</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+1 (603)535-4592</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Shuttle Service</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+1 (603)535-4592</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Restaurant</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+1 (603)535-4592</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-area">
-            <div class="container">
-                <div class="copyright-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-                <div class="privacy-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Photo Requests</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php include("footer.php"); ?>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->

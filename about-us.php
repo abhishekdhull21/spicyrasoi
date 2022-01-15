@@ -7,7 +7,7 @@
     <meta name="keywords" content="Hotel, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hotel | Template</title>
+    <title>Spicy Rasoi</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Taviraj:300,400,500,600,700,800,900&display=swap"
@@ -34,45 +34,7 @@
     </div>
 
     <!-- Header Section Begin -->
-    <header class="header-section other-page">
-        <div class="container-fluid">
-            <div class="inner-header">
-                <div class="logo">
-                    <a href="./index.php"><img src="img/logo1.png" alt=""></a>
-                </div>
-                <div class="top-widget">
-                    <div class="top-info address">
-                        <img src="img/placeholder.png" alt="">
-                        <span>1525 Boring Lane, Los <br />Angeles, CA</span>
-                    </div>
-                    <div class="top-info phone-num">
-                        <img src="img/phone.png" alt="">
-                        <span>+1 (603)535-4592</span>
-                    </div>
-                </div>
-                <div class="container">
-                    <nav class="main-menu mobile-menu">
-                        <ul>
-                            <li><a href="./index.php">Home</a></li>
-                            <li><a href="./about-us.php">About</a></li>
-                            <li><a href="./rooms.php">Rooms</a></li>
-                            <li><a href="#">Facilities</a>
-                                <ul class="drop-menu">
-                                    <li><a href="#">Junior Suit</a></li>
-                                    <li><a href="#">Double Room</a></li>
-                                    <li><a href="#">Senior Suit</a></li>
-                                    <li><a href="#">Single Room</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./news.php">News</a></li>
-                            <li><a href="./contact.php">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div id="mobile-menu-wrap"></div>
-            </div>
-        </div>
-    </header>
+  <?php include("header.php"); ?>
     <!-- Header End -->
 
     <!-- Hero Section Begin -->
@@ -84,10 +46,10 @@
                         <h1>About</h1>
                     </div>
                 </div>
-                <div class="page-nav">
+                <!-- <div class="page-nav">
                     <a href="./index.php" class="left-nav"><i class="lnr lnr-arrow-left"></i> Home</a>
                     <a href="./services.php" class="right-nav">Services <i class="lnr lnr-arrow-right"></i></a>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -128,7 +90,7 @@
             <div class="video-text">
                 <div class="row">
                     <div class="col-lg-5">
-                        <h2>Video Hotel Tour</h2>
+                        <h2>Video Tour</h2>
                     </div>
                 </div>
                 <div class="video-play-btn">
@@ -145,7 +107,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="gallery-text">
-                        <h2>Hotel Gallery</h2>
+                        <h2>Spicy Rasoi Gallery</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero mauris, bibendum eget
                             sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum ornare. Morbi vel
                             ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae orci.</p>
@@ -156,22 +118,22 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-3 col-sm-6">
                             <div class="gallery-img">
-                                <img src="img/gallery/gallery-1.jpg" alt="">
+                                <img src="img/room-footer-pic/1.png" alt="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-3 col-sm-6">
                             <div class="gallery-img">
-                                <img src="img/gallery/gallery-2.jpg" alt="">
+                                <img src="img/room-footer-pic/21.jpg" alt="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-3 col-sm-6">
                             <div class="gallery-img">
-                                <img src="img/gallery/gallery-3.jpg" alt="">
+                                <img src="img/room-footer-pic/3.jpg" alt="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-3 col-sm-6">
                             <div class="gallery-img">
-                                <img src="img/gallery/gallery-4.jpg" alt="">
+                                <img src="img/room-footer-pic/1.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -195,11 +157,11 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-staff-item">
                         <div class="staff-img">
-                            <img src="img/staff/staff-1.jpg" alt="">
+                            <img src="img/staff/staff-3.jpg" alt="">
                         </div>
                         <div class="staff-text">
-                            <h5>Sarah Doe</h5>
-                            <span>Hotel Manager</span>
+                            <h5>Mr. Sudhir</h5>
+                            <span>Marketing Head</span>
                             <a href="#"><i class="lnr lnr-arrow-right"></i></a>
                         </div>
                     </div>
@@ -222,8 +184,8 @@
                             <img src="img/staff/staff-3.jpg" alt="">
                         </div>
                         <div class="staff-text">
-                            <h5>Jessica Doe</h5>
-                            <span>It</span>
+                            <h5>AJAY SHEOKAND</h5>
+                            <span>It </span>
                             <a href="#"><i class="lnr lnr-arrow-right"></i></a>
                         </div>
                     </div>
@@ -234,66 +196,7 @@
     <!-- Staff Section End -->
 
     <!-- Footer Section Begin -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer-logo">
-                        <a href="#"><img src="img/logo1.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row pb-50">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Location</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-map-marker"></i>
-                            <p>1525 Boring Lane, <br />Los Angeles, CA</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Reception</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+1 (603)535-4592</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Shuttle Service</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+1 (603)535-4592</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Restaurant</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+1 (603)535-4592</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-area">
-            <div class="container">
-                <div class="copyright-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-                <div class="privacy-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Photo Requests</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <?php include("footer.php"); ?>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->

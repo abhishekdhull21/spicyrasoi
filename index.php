@@ -34,45 +34,7 @@
     </div>
 
     <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container-fluid">
-            <div class="inner-header">
-                <div class="logo">
-                    <a href="./index.php"><img src="img/logo1.png" alt=""></a>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <nav class="main-menu mobile-menu">
-                                <ul>
-                                    <li><a href="./index.php">Home</a></li>
-                                    <li><a href="./about-us.php">About</a></li>
-                                    <!-- <li><a href="./rooms.php">Rooms</a></li> -->
-                                    <li><a href="#">Facilities</a>
-                                        <ul class="drop-menu">
-                                            <li><a href="#">Junior Suit</a></li>
-                                            <li><a href="#">Double Room</a></li>
-                                            <li><a href="#">Senior Suit</a></li>
-                                            <li><a href="#">Single Room</a></li>
-                                        </ul>
-                                    </li>
-                                    
-                                    <li><a href="./contact.php">Contact</a></li>
-                                    <!-- <li><a href="spicyrasoi/user/createuser.php">Register</a></li> -->
-                                    <li><a href="spicyrasoi/user/login.php">Login</a></li>
-                                </ul>
-                            </nav>
-                            <div class="top-info">
-                                <img src="img/placeholder.png" alt="">
-                                <span>Narwana Distt Jind Haryana 126116</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="mobile-menu-wrap"></div>
-            </div>
-        </div>
-    </header>
+    <?php include("header.php"); ?>
     <!-- Header End -->
 
     <!-- Hero Slider Begin -->
@@ -85,7 +47,7 @@
                             <h1>Hotel/Resturant Biling & Account's Managment</h1>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-lg-12">
                             <div class="slider-nav">
                                 <a href="#" class="single-slider-nav">
@@ -108,7 +70,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -120,11 +82,11 @@
         <div class="container">
             <div class="room-check">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <!-- <div class="col-lg-6">
                         <div class="room-item">
                             <div class="room-pic-slider room-pic-item owl-carousel">
                                 <div class="room-pic">
-                                    <img src="img/room-slider/room-1.jpg" alt="">
+                                    <img src="img/room-footer-pic/2.jpg" alt="">
                                 </div>
                                 <div class="room-pic">
                                     <img src="img/room-slider/room-2.jpg" alt="">
@@ -144,21 +106,21 @@
                               
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
+                    </div> -->
+                    <div class="col-lg-12" >
                     <div class="room-item">
-                            <div class="room-pic-slider room-pic-item owl-carousel">
+                            <div class="room-pic-slider room-pic-item owl-carousel" >
                                 <div class="room-pic">
-                                    <img src="img/room-slider/room-3.jpg" alt="">
+                                    <img src="img/room-footer-pic/21.jpg" alt="">
                                 </div>
                                 <div class="room-pic">
-                                    <img src="img/room-slider/room-1.jpg" alt="">
+                                    <img src="img/spicy_rasoi_pic/login.png" alt="">
                                 </div>
                                 <div class="room-pic">
                                     <img src="img/room-slider/room-2.jpg" alt="">
                                 </div>
                             </div>
-                            <div class="room-text">
+                            <!-- <div class="room-text">
                                 <div class="room-title">
                                     <h2>Pizza</h2>
                                     <div class="room-price">
@@ -167,7 +129,7 @@
                                     </div>
                                 </div>
                                
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -210,12 +172,12 @@
                         </div>
                     </div>
                     <div class="col-lg-6 p-0">
-                        <div class="facilities-img set-bg" data-setbg="img/facilities-1.jpg"></div>
+                        <div class="facilities-img set-bg" data-setbg="img/room-footer-pic/1.png"></div>
                     </div>
                     <div class="col-lg-6 p-0 ">
                         <div class="facilities-text-warp">
                             <div class="facilities-text">
-                                <h2>Best Food</h2>
+                                <h2>Best Service</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipis-cing elit. Mauris tincidunt consectetur
                                     turpis, eget consequat.</p>
                                 <a href="#" class="primary-btn fac-btn">Visit Center <i class="lnr lnr-arrow-right"></i></a>
@@ -225,7 +187,7 @@
                     <div class="col-lg-6 p-0 order-lg-1 order-2">
                         <div class="facilities-text-warp">
                             <div class="facilities-text">
-                                <h2>Best Food</h2>
+                                <h2>Easy & Fast</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipis-cing elit. Mauris tincidunt consectetur
                                     turpis, eget consequat.</p>
                                 <a href="#" class="primary-btn fac-btn">Visit Center <i class="lnr lnr-arrow-right"></i></a>
@@ -233,14 +195,14 @@
                         </div>
                     </div>
                     <div class="col-lg-6 p-0 order-lg-2 order-1">
-                        <div class="facilities-img set-bg" data-setbg="img/facilities-1.jpg"></div>
+                        <div class="facilities-img set-bg" data-setbg="img/room-footer-pic/3.jpg"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Facilities Section End -->
-
+<!-- 
     <div class="testimonial-section spad">
         <div class="container">
             <div class="row">
@@ -345,7 +307,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Follow Instagram Section Begin -->
     <section class="follow-instagram">
@@ -363,71 +325,16 @@
     <div class="footer-room-pic">
         <div class="container-fluid">
             <div class="row">
-                <img src="img/room-footer-pic/room-1.jpg" alt="">
-                <img src="img/room-footer-pic/room-2.jpg" alt="">
-                <img src="img/room-footer-pic/room-3.jpg" alt="">
-                <img src="img/room-footer-pic/room-4.jpg" alt="">
+                <img src="img/room-footer-pic/21.jpg" alt="">
+                <img src="img/room-footer-pic/3.jpg" alt="">
+                <img src="img/room-footer-pic/4.jpg" alt="">
+                <img src="img/room-footer-pic/6.jpg" alt="">
             </div>
         </div>
     </div>
     <!-- Footer Room Pic Section End -->
 
-    <!-- Footer Section Begin -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer-logo">
-                        <a href="#"><img src="img/logo1.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row pb-50">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Location</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-map-marker"></i>
-                            <p>1st Floor Near Mela Mandi <br />Sunderpura Road Narwana <br/> Distt. Jind Haryana 126116</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Reception</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+91-7015393229</p>
-                        </div>
-                    </div>
-                </div> -->
-               
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Help Line No.</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+91-9813761709</p>
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+91-9996015637</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-area">
-            <div class="container">
-                <div class="copyright-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved @ </i> by <a href="#" target="_blank">spicyrasoi.com</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-                <div class="privacy-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Photo Requests</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+    <?php include("footer.php"); ?>
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
