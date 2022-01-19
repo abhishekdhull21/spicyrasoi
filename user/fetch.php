@@ -36,30 +36,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } while ($res["success"]);
 
         //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
-        $sql = "SELECT `user_id` as userid,
+        $sql = "SELECT `user_id` as userid FROM `users` where `user_mobile` ='$mobile'";
+        $res = mysqli_query($con, $sql);
+        if (mysqli_num_rows($res) > 0) {
+            $sql = "SELECT `user_id` as userid,
         `user_name` as username,
         `user_mobile`as mobile,
         `user_email` as email,
         `user_sex` as sex,
         `user_dob` as dob,
         `user_address` as address, `join_on`, `email_verified`, `mobile_verified`, `user_verified`, `user_status` FROM `users` where `user_mobile` ='$mobile' and `password`='$password'";
-        if ($result = mysqli_query($con, $sql)) {
-            if (mysqli_num_rows($result) > 0) {
-                $arr = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                // print_r($arr);
-                $res_token = add_new_token($con, $token, $arr[0]['userid'], $device, $platform);
-                if ($res_token === true)
-                    $response = array(
-                        "success" => true,
-                        "token" => $token,
-                        "error" => ""
-                    );
-                else $err = $res_token;
+            if ($result = mysqli_query($con, $sql)) {
+                if (mysqli_num_rows($result) > 0) {
+                    $arr = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                    // print_r($arr);
+                    $res_token = add_new_token($con, $token, $arr[0]['userid'], $device, $platform);
+                    if ($res_token === true)
+                        $response = array(
+                            "success" => true,
+                            "token" => $token,
+                            "error" => ""
+                        );
+                    else $err = $res_token;
+                } else {
+                    $err = "Please enter correct Password";
+                }
             } else {
-                $err = "No User found";
+                $err = mysqli_error($con);
             }
         } else {
-            $err = mysqli_error($con);
+            $err = "No User found";
         }
     } else {
         $err = "set key as -> `mobile` and `password` ";
