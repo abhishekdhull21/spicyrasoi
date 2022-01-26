@@ -5,7 +5,12 @@ session_start();
 require_once('../config.php');
 require_once('class/User.php');
 require_once('islogin.php');
-
+$productid = "";
+$editmode = False;
+if (isset($_GET['edit']) && $_GET['edit'] == 'true' && isset($_GET['productid'])) {
+  $editmode = True;
+  $productid = $_GET['productid'];
+}
 ?>
 
 <head>
@@ -76,9 +81,19 @@ require_once('islogin.php');
 
             <!-- right column -->
             <div class="col-md-10">
+              <?php
+              if ($editmode == True && $productid != "") {
+                $sql = "SELECT * FROM `product` WHERE `product_id` = $productid";
+                $res = mysqli_query($con, $sql);
+                if (mysqli_num_rows($res) < 1) {
+                  $editmode = False;
+                } else
+                  echo '<input type="hidden" id="productid" value="' . $productid . '" >';
 
+                $product = mysqli_fetch_assoc($res);
+              }
 
-
+              ?>
               <!-- general form elements disabled -->
               <div class="card card-primary">
                 <div class="card-header">
@@ -91,7 +106,7 @@ require_once('islogin.php');
                       <div class="col-sm-6">
                         <!-- select -->
                         <div class="form-group">
-                          <label>Select Category</label>
+                          <label>Select Category </label>
                           <select class="form-control" id="dropdownCategory">
                             <option value=1>Select Category</option>
                           </select>
@@ -111,14 +126,14 @@ require_once('islogin.php');
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Product Name</label>
-                          <input type="text" id="productName" class="form-control" placeholder="Enter Name">
+                          <input type="text" id="productName" class="form-control" placeholder="Enter Name" value="<?php if ($editmode == true) echo $product['product_name']; ?>">
                         </div>
                       </div>
                       <div class="col-sm-6">
 
                         <div class="form-group">
                           <label>Unit Name</label>
-                          <input type="text" id="productUnitName" class="form-control" placeholder="Enter Unit Name" value="PCS">
+                          <input type="text" id="productUnitName" class="form-control" placeholder="Enter Unit Name" value="<?php echo ($editmode == true ? $product['unit_name'] : "PCS"); ?>">
                         </div>
                       </div>
                     </div>
@@ -127,13 +142,13 @@ require_once('islogin.php');
 
                         <div class="form-group">
                           <label>Store Price</label>
-                          <input type="number" min="0" id="productStorePrice" class="form-control" placeholder="Enter Store Price">
+                          <input type="number" min="0" id="productStorePrice" class="form-control" placeholder="Enter Store Price" value="<?php if ($editmode == true) echo $product['store_price']; ?>">
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Swiggy Price</label>
-                          <input type="number" min="0" id="productSwiggyPrice" class="form-control" placeholder="Enter Swiggy Price">
+                          <input type="number" min="0" id="productSwiggyPrice" class="form-control" placeholder="Enter Swiggy Price" value="<?php if ($editmode == true) echo $product['swiggy_price']; ?>">
                         </div>
                       </div>
                     </div>
@@ -143,13 +158,13 @@ require_once('islogin.php');
 
                         <div class="form-group">
                           <label>Zomato Price</label>
-                          <input type="number" min="0" id="productZomatoPrice" class="form-control" placeholder="Enter Zomato Price">
+                          <input type="number" min="0" id="productZomatoPrice" class="form-control" placeholder="Enter Zomato Price" value="<?php if ($editmode == true) echo $product['zomato_price']; ?>">
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>Local Price</label>
-                          <input type="number" min="0" id="localPrice" class="form-control" placeholder="Enter Local Price">
+                          <input type="number" min="0" id="localPrice" class="form-control" placeholder="Enter Local Price" value="<?php if ($editmode == true) echo $product['local_price']; ?>">
                         </div>
                       </div>
                     </div>
@@ -170,9 +185,9 @@ require_once('islogin.php');
                         <div class="form-group">
                           <label>Food Type</label>
                           <select id="food_type" class="form-control">
-                            <option value="not_defined">Not Defined</option>
-                            <option value="veg">Veg</option>
-                            <option value="non-veg">Non-Veg</option>
+                            <option value="not_defined" <?php if ($editmode == true) echo ($product['food_type'] == 'not_defined' ?  "selected" : ""); ?>>Not Defined</option>
+                            <option value="veg" <?php if ($editmode == true) echo ($product['food_type'] == 'veg' ?  "selected" : ""); ?>>Veg</option>
+                            <option value="non-veg" <?php if ($editmode == true) echo ($product['food_type'] == 'veg' ?  "selected" : ""); ?>>Non-Veg</option>
                             <!-- <option value="28">28%</option> -->
                           </select>
                         </div>
@@ -194,7 +209,7 @@ require_once('islogin.php');
                       <div class="col-sm-6">
                         <div class="form-group">
                           <!-- <label>Discount (In %)</label> -->
-                          <input type="number" id="productDiscount" class="form-control" max="100" min="0" placeholder="Enter Discount (In %)" hidden value=0>
+                          <input type="number" id="productDiscount" class="form-control" max="100" min="0" placeholder="Enter Discount (In %)" hidden value=0 value="<?php if ($editmode == true) echo $product['discount']; ?>">
                         </div>
                       </div>
                     </div>
@@ -213,13 +228,13 @@ require_once('islogin.php');
 
                         <div class="form-group">
                           <label>GST Price</label>
-                          <input type="text" id="product_gst_price" class="form-control" value=0 readonly>
+                          <input type="text" id="product_gst_price" class="form-control" value=0 value="<?php if ($editmode == true) echo $product['gst_price']; ?>" readonly>
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label>HSN Code</label>
-                          <input type="text" id="hsnCode" class="form-control" placeholder="Enter HSN Code">
+                          <input type="text" id="hsnCode" class="form-control" placeholder="Enter HSN Code" value="<?php if ($editmode == true) echo $product['hsn_code']; ?>">
                         </div>
                       </div>
                     </div>
@@ -227,7 +242,7 @@ require_once('islogin.php');
                     <div class="row">
                       <div class="col-sm-12">
                         <div class="card-footer">
-                          <button type="submit" id="addProductSubmit" class="btn btn-primary">Submit</button>
+                          <button type="submit" id="<?php echo ($editmode == true ?  "editProductSubmit" : "addProductSubmit"); ?>" class="btn btn-primary">Submit</button>
                         </div>
                         <!-- <div class="card-footer">
                   <button type="Reset" class="btn btn-primary">Reset</button>
@@ -271,9 +286,9 @@ require_once('islogin.php');
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
+  <!-- <script src="plugins/chart.js/Chart.min.js"></script> -->
   <!-- Sparkline -->
-  <script src="plugins/sparklines/sparkline.js"></script>
+  <!-- <script src="plugins/sparklines/sparkline.js"></script> -->
   <!-- JQVMap -->
   <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
   <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
@@ -281,9 +296,9 @@ require_once('islogin.php');
   <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
   <!-- daterangepicker -->
   <script src="plugins/moment/moment.min.js"></script>
-  <script src="plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- <script src="plugins/daterangepicker/daterangepicker.js"></script> -->
   <!-- Tempusdominus Bootstrap 4 -->
-  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script> -->
   <!-- Summernote -->
   <script src="plugins/summernote/summernote-bs4.min.js"></script>
   <!-- overlayScrollbars -->
@@ -291,24 +306,23 @@ require_once('islogin.php');
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.js"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
+  <!-- <script src="dist/js/demo.js"></script> -->
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
   <script src="scripts/productpage.js"></script>
   <script>
-    $(document).ready(()=>{
-      $("#productStorePrice,#gst_type,#gstProduct").on('change',(e)=>{
+    $(document).ready(() => {
+      $("#productStorePrice,#gst_type,#gstProduct").on('change', (e) => {
         // console.log(e.currentTarget.id);
-      var stp = parseFloat($("#productStorePrice").val());
-      var typ =  $("#gst_type").val();
-      var gst =  parseInt($("#gstProduct").val());
-      var temp =0;
-      if(typ == "include" ){
+        var stp = parseFloat($("#productStorePrice").val());
+        var typ = $("#gst_type").val();
+        var gst = parseInt($("#gstProduct").val());
+        var temp = 0;
+        if (typ == "include") {
           temp = stp;
-      }
-      else{
-        temp = stp + (stp * (gst/100));
-      }
+        } else {
+          temp = stp + (stp * (gst / 100));
+        }
         $("#product_gst_price").val(temp);
 
       })

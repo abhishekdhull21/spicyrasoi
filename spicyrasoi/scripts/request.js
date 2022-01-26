@@ -2,7 +2,7 @@
 const constant = {
   // url: "https://spicyrasoi.com/api/",
   url: "http://localhost/apidevelopment/",
-  // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
+  url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 $(document).ready(function () {
   //add new category
@@ -232,6 +232,76 @@ $(document).ready(function () {
         "swiggy-price": swiggyPrice,
         "local-price": localPrice,
         gst_price: product_gst_price,
+      }),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        // console.log(result.success);
+
+        const json = result;
+        if (json.success) swal("Good Job", "New Product added", "success");
+        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        console.info(json.success);
+        // $("#btnAddCategory").attr("disabled");
+        $("#addProductSubmit").html("Submit");
+      },
+    });
+    $(document).ajaxError((res) => {
+      console.error(res);
+
+      $("#addProductSubmit").attr("disabled", false);
+      $("#addProductSubmit").html("Submit");
+    });
+    $(document).ajaxComplete((res) => {
+      $("#addProductSubmit").attr("disabled", false);
+      $("#addProductSubmit").html("Submit");
+    });
+  });
+  // Edit product
+  $("#editProductSubmit").click(function (e) {
+    e.preventDefault();
+    // alert();
+    const product = $("#productName").val();
+    const productid = $("#productid").val();
+    // const category = $("#dropdownCategory").val();
+    // const subcategory = $("#dropdownSubCategory").val();
+    const storePrice = $("#productStorePrice").val(); //("#addCategoryInput").val();
+    const localPrice = $("#localPrice").val(); //("#addCategoryInput").val();
+    // const gst_type = $("#gst_type").val();
+    const food_type = $("#food_type").val();
+    const swiggyPrice = $("#productSwiggyPrice").val(); //("#addCategoryInput").val();
+    const zomatoPrice = $("#productZomatoPrice").val(); //("#addCategoryInput").val();
+    const gstProduct = $("#gstProduct").val();
+    // const product_gst_price = $("#product_gst_price").val();
+    const hsnCode = $("#hsnCode").val();
+    const discount = $("#productDiscount").val();
+    const unitName = $("#productUnitName").val();
+
+    $(document).ajaxSend(() => {
+      $("#addProductSubmit").attr("disabled", true);
+      $("#addProductSubmit").html("Processing...");
+    });
+    $.ajax({
+      url: constant.url + "/product/update.php",
+      method: "POST",
+      data: JSON.stringify({
+        product: product,
+        productid: productid,
+        admin_id: admin_id,
+        restaurant: restaurant,
+        // category: category,
+        // subcategory: subcategory,
+        discount: discount,
+        // gst: gstProduct,
+        gst_type: gst_type,
+        food_type: food_type,
+        "unit-name": unitName,
+        "hsn-code": hsnCode,
+        "store-price": storePrice,
+        "zomato-price": zomatoPrice,
+        "swiggy-price": swiggyPrice,
+        "local-price": localPrice,
+        // gst_price: product_gst_price,
       }),
       contentType: "application/json",
       dataType: "json",
@@ -661,7 +731,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (result) {
         const json = result;
-        if (json.success)
+        if (json.success == true)
           swal("Good Job", "Stock Added Sccessfully", "success");
         else swal({ title: "Error Occured", text: json.error, icon: "error" });
         console.info(json.success);

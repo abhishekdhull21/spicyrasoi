@@ -156,8 +156,10 @@ require_once("islogin.php");
                                 <td><?php echo $row['swiggy_price']; ?></td>
                                 <td><?php echo $row['zomato_price']; ?></td>
                                 <td><?php echo $row['local_price']; ?></td>
-                                <td><a data-productId="<?php echo $row['product_id']; ?>" onclick="removeProduct(this);"> <i class="fas fa-trash-alt"> Remove </i> </a> 
-                              </td>
+                                <td><a data-productId="<?php echo $row['product_id']; ?>" onclick="removeProduct(this);"> <i class="fas fa-trash-alt"> Remove </i> </a>
+                                </td>
+                                <td><a href="addproduct.php?productid=<?php echo $row['product_id']; ?>&edit=true"> <i class="fas fa-pencil"> Edit </i> </a>
+                                </td>
                                 <!--<td  >U</td>
                     <td  >U</td> -->
                               </tr>

@@ -106,10 +106,12 @@ if (mysqli_num_rows($res) > 0)
                     <span class="badge bg-purple" id="totalexpense">0</span>
                     <i class="fas fa-money-check-alt"></i> Out
                   </a> -->
-                  <a href="addcategory.php" class="btn btn-app bg-danger">
-                    <!-- <span class="badge bg-success">300</span> -->
-                    <i class="fas fa-plus-circle"></i> Add Category
-                  </a>
+                  <?php if (in_array('add_category', $permissions) || $isSuperadmin) { ?>
+                    <a href="addcategory.php" class="btn btn-app bg-danger">
+                      <!-- <span class="badge bg-success">300</span> -->
+                      <i class="fas fa-plus-circle"></i> Add Category
+                    </a>
+                  <?php } ?>
                   <a href="addproduct.php" class="btn btn-app bg-secondary">
 
                     <i class="fas fa-plus-circle"></i> Add Product
@@ -306,7 +308,7 @@ if (mysqli_num_rows($res) > 0)
                               <!-- <span class="badge bg-purple">891</span> -->
                               <i class="fas fa-users"></i> View Users
                             </a>
-                            <a class="btn btn-app bg-success">
+                            <a class="btn btn-app bg-success" href="permissions.php">
                               <!-- <span class="badge bg-purple">891</span> -->
                               <i class="fas fa-users"></i> Permission
                             </a>
