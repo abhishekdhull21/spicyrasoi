@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } while ($res["success"]);
 
         //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
-        $sql = "SELECT `user_id` as userid FROM `users` where `user_mobile` ='$mobile'";
+        $sql = "SELECT `user_id` as userid FROM `users` where `user_mobile` ='$mobile' and user_status = 1";
         $res = mysqli_query($con, $sql);
         if (mysqli_num_rows($res) > 0) {
             $sql = "SELECT `user_id` as userid,
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         `user_email` as email,
         `user_sex` as sex,
         `user_dob` as dob,
-        `user_address` as address, `join_on`, `email_verified`, `mobile_verified`, `user_verified`, `user_status` FROM `users` where `user_mobile` ='$mobile' and `password`='$password'";
+        `user_address` as address, `join_on`, `email_verified`, `mobile_verified`, `user_verified`, `user_status` FROM `users` where `user_mobile` ='$mobile' and `password`='$password' and user_status=1";
             if ($result = mysqli_query($con, $sql)) {
                 if (mysqli_num_rows($result) > 0) {
                     $arr = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $err = mysqli_error($con);
             }
         } else {
-            $err = "No User found";
+            $err = "No User found Contact to Administrator";
         }
     } else {
         $err = "set key as -> `mobile` and `password` ";
