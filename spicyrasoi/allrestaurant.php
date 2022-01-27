@@ -124,7 +124,7 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
                         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                           <thead>
                             <tr role="row">
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Reg. Date</th>
+                              <th class="sorting" tabindex="0" id="abc" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Reg. Date</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Restaurant ID</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Mob. No.</th>
@@ -157,7 +157,12 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
                                 <td><?php echo $row['state']; ?></td>
                                 <td><?php echo $row['district']; ?></td>
                                 <td><?php echo $row['city']; ?></td>
-                                <td><a href="#"><i class="fas fa-trash-alt"> Remove</i></a> | <a href="#"> <i class="fas fa-edit"> Edit</i> </a>| <a href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>"> <i class="fas fa-edit"> Assign </a></td>
+                                <td> 
+                                <div class="form-check">
+                          <input class="form-check-input" id="r_status_<?php echo $row['restaurantid']; ?>" type="checkbox" hidden onclick="res_status(this,<?php echo $row['restaurantid']; ?>);">
+                          <label class="form-check-label" id="rest_status_text_<?php echo $row['restaurantid']; ?>" for="r_status_<?php echo $row['restaurantid']; ?>" >Deactivate</label>
+                        </div>  
+                                | <a href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>"> <i class="fas fa-edit"> Assign </a></td>
 
                                 <!-- <td  >U</td>
                     <td  >U</td>
@@ -192,6 +197,46 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
     <?php include("footer.php"); ?>
   </div>
   <!-- ./wrapper -->
+
+  <script>
+ function res_status(check_box,rest_id){
+   const id_rest_text = "rest_status_text_"+rest_id;
+   document.getElementById(id_rest_text).innerText="Changed";
+   // check_box.innerHTML="Changed";
+   $("#"+id_rest_text).html("Nothing");
+   $("#abc").html("Activate");
+   var check_box_status = !check_box.checked;
+  //  alert(check_box_status);
+  var status = check_box_status == true ? 0 : 1;
+  $.ajax({
+  url: constant.url+"restaurant/rest_status.php",
+  method: "POST",
+  data: JSON.stringify({rest_id:rest_id,status:status}),
+  contentType: "application/json",
+      dataType: "json",
+      success: function (result) {
+        // console.log(result.success);
+
+        const json = result;
+        if (json.success) {
+          $("#rest_status_text_"+rest_id).html("Activate");
+          console.log("#rest_status_text_"+rest_id);
+          // swal({ title: "Success", text: json.error, icon: "success" })
+            if(check_box_status!= true) 
+          $("#rest_status_text_"+rest_id).html("Activate");
+          else $("#rest_status_text_"+rest_id).html("Deactivate");
+        }
+        else swal({ title: "Error Occured", text: json.error, icon: "error" });
+        console.info(json.success);
+        // $("#btnAddCategory").attr("disabled");
+        $("#btnAddCategory").html("Submit");
+
+      }
+          })
+ }
+
+
+  </script>
 
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
