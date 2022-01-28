@@ -124,19 +124,20 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
                         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                           <thead>
                             <tr role="row">
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th>
                               <th class="sorting" tabindex="0" id="abc" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Reg. Date</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Restaurant ID</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Mob. No.</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Phone. No.</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Email</th>
+                              <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Phone. No.</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Email</th> -->
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">GST. No.</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Country</th>
+                              <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Country</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">State</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">District</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">District</th> -->
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">City/Village</th>
 
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                              
                             </tr>
                           </thead>
                           <tbody>
@@ -146,23 +147,24 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
                             ?>
 
                               <tr class="odd">
-                                <td><?php echo $row['add_on']; ?> </td>
-                                <td class="dtr-control"><?php echo $row['restaurantid']; ?> </td>
-                                <td class="sorting_1"><?php echo $row['name']; ?></td>
-                                <td><?php echo $row['mobile']; ?> </td>
-                                <td><?php echo $row['phone']; ?></td>
-                                <td><?php echo $row['email']; ?></td>
-                                <td><?php echo $row['gst']; ?></td>
-                                <td><?php echo $row['country']; ?></td>
-                                <td><?php echo $row['state']; ?></td>
-                                <td><?php echo $row['district']; ?></td>
-                                <td><?php echo $row['city']; ?></td>
-                                <td> 
+                              <td> 
                                 <div class="form-check">
                           <input class="form-check-input" id="r_status_<?php echo $row['restaurantid']; ?>" type="checkbox" hidden onclick="res_status(this,<?php echo $row['restaurantid']; ?>);">
                           <label class="form-check-label" id="rest_status_text_<?php echo $row['restaurantid']; ?>" for="r_status_<?php echo $row['restaurantid']; ?>" >Deactivate</label>
                         </div>  
                                 | <a href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>"> <i class="fas fa-edit"> Assign </a></td>
+                                <td><?php echo $row['add_on']; ?> </td>
+                                <td class="dtr-control"><?php echo $row['restaurantid']; ?> </td>
+                                <td class="sorting_1"><?php echo $row['name']; ?></td>
+                                <td><?php echo $row['mobile']; ?> </td>
+                                <!-- <td><?php echo $row['phone']; ?></td> -->
+                                <!-- <td><?php echo $row['email']; ?></td> -->
+                                <td><?php echo $row['gst']; ?></td>
+                                <!-- <td><?php echo $row['country']; ?></td> -->
+                                <!-- <td><?php echo $row['state']; ?></td> -->
+                                <!-- <td><?php echo $row['district']; ?></td> -->
+                                <td><?php echo $row['city']; ?></td>
+                               
 
                                 <!-- <td  >U</td>
                     <td  >U</td>
@@ -201,13 +203,13 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
   <script>
  function res_status(check_box,rest_id){
    const id_rest_text = "rest_status_text_"+rest_id;
-   document.getElementById(id_rest_text).innerText="Changed";
+  //  document.getElementById(id_rest_text).innerText="Changed";
    // check_box.innerHTML="Changed";
-   $("#"+id_rest_text).html("Nothing");
-   $("#abc").html("Activate");
+  //  $("#"+id_rest_text).html("Nothing");
+  //  $("#abc").html("Activate");
    var check_box_status = !check_box.checked;
   //  alert(check_box_status);
-  var status = check_box_status == true ? 0 : 1;
+  var status = check_box_status == true ? 1 : 0;
   $.ajax({
   url: constant.url+"restaurant/rest_status.php",
   method: "POST",
@@ -219,7 +221,7 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
 
         const json = result;
         if (json.success) {
-          $("#rest_status_text_"+rest_id).html("Activate");
+          // $("#rest_status_text_"+rest_id).html("Activate");
           console.log("#rest_status_text_"+rest_id);
           // swal({ title: "Success", text: json.error, icon: "success" })
             if(check_box_status!= true) 
@@ -229,7 +231,7 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
         else swal({ title: "Error Occured", text: json.error, icon: "error" });
         console.info(json.success);
         // $("#btnAddCategory").attr("disabled");
-        $("#btnAddCategory").html("Submit");
+        // $("#btnAddCategory").html("Submit");
 
       }
           })

@@ -14,7 +14,7 @@
 // }
 // print_r(file_get_contents('php://input'));
 $orderid = isset($_GET['orderid']) ? $_GET['orderid'] : null;
-$sql = "SELECT a.name as restaurant,a.city,a.state,a.country,a.district,a.mobile,
+$sql = "SELECT a.name as restaurant,a.city,a.gst,a.state,a.country,a.district,a.mobile,
 b.name as name,b.bill_no,b.date,b.orderid,b.order_value as total
 from restaurant a, orders b where b.restaurant = a.restaurantid and b.orderid  = '$orderid'";
 $res = mysqli_query($con, $sql);
@@ -94,6 +94,8 @@ $row = mysqli_fetch_assoc($res);
             <br><?php echo $row['city']; ?>
             <br>M.No. <?php echo $row['mobile']; ?>
         </p>
+        <hr>
+        GST No: <b> <?php echo $row['gst']; ?> </b>
         <hr>
         Name : <b> <?php echo $row['name']; ?> </b>
         <hr>

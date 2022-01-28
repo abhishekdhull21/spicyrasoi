@@ -124,6 +124,7 @@ require_once("islogin.php");
                         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                           <thead>
                             <tr role="row">
+                            
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">P.ID.</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Category</th>
@@ -148,18 +149,19 @@ require_once("islogin.php");
                             ?>
 
                               <tr class="odd">
+                             
                                 <td class="dtr-control"><?php echo $row['product_id']; ?>
                                 </td>
+                                
                                 <td class="sorting_1"><?php echo $row['product_name']; ?></td>
                                 <td><?php echo $row['cat_name']; ?> </td>
                                 <td><?php echo $row['store_price']; ?></td>
                                 <td><?php echo $row['swiggy_price']; ?></td>
                                 <td><?php echo $row['zomato_price']; ?></td>
                                 <td><?php echo $row['local_price']; ?></td>
-                                <td><a data-productId="<?php echo $row['product_id']; ?>" onclick="removeProduct(this);"> <i class="fas fa-trash-alt"> Remove </i> </a>
+                                <td><a data-productId="<?php echo $row['product_id']; ?>" onclick="removeProduct(this);"> <i class="fas fa-trash-alt"> Remove </i> </a> | <a href="addproduct.php?productid=<?php echo $row['product_id']; ?>&edit=true"> <i class="fas fa-pencil-alt"> Edit </i> </a>
                                 </td>
-                                <td><a href="addproduct.php?productid=<?php echo $row['product_id']; ?>&edit=true"> <i class="fas fa-pencil"> Edit </i> </a>
-                                </td>
+                                
                                 <!--<td  >U</td>
                     <td  >U</td> -->
                               </tr>

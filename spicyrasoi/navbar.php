@@ -1,3 +1,6 @@
+<!-- Sweetalert2 -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
   <div class="container-fluid">
     <a href="index.php" class="navbar-brand">

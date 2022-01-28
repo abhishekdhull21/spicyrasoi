@@ -57,21 +57,7 @@ if (isset($_GET['edit']) && $_GET['edit'] == 'true' && isset($_GET['productid'])
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0">Add Product</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
+     <br>
       <!-- /.content-header -->
 
       <!-- Main content -->
@@ -97,7 +83,7 @@ if (isset($_GET['edit']) && $_GET['edit'] == 'true' && isset($_GET['productid'])
               <!-- general form elements disabled -->
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Add Products</h3>
+                  <h3 class="card-title">Products</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

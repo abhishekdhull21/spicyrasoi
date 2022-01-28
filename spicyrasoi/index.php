@@ -40,9 +40,19 @@ require_once('logininfo.php');
           <div class="row mb-2">
             <div class="col-sm-12">
               <?php
-              $sql = "SELECT name FROM `restaurant` WHERE restaurantid = $restaurant";
+              $sql = "SELECT name FROM `restaurant` WHERE restaurantid = $restaurant and status = 1";
               $res = mysqli_query($con, $sql);
-
+              if(mysqli_num_rows($res)<1)
+              {
+                ?>
+                <script>
+                  swal("Contact to Administration ","Your ID is Not Activated","warning")
+                  .then((res)=>{
+                    window.location = "./user/logout.php";
+                  })
+                </script>
+              <?php
+              }
               ?>
               <marquee behavior="alternate"; direction="right"; class="font-effect-fire">
               <h1 class="m-0" style="color: green; font-family: cursive;" ><?php echo mysqli_fetch_assoc($res)['name']; ?> </h1>
