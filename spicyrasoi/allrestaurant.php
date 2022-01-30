@@ -219,8 +219,6 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
   <!-- ./wrapper -->
 
   <script>
-    << << << < Updated upstream
-
     function res_status(check_box, rest_id) {
       const id_rest_text = "rest_status_text_" + rest_id;
       //  document.getElementById(id_rest_text).innerText="Changed";
@@ -258,54 +256,6 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
           console.info(json.success);
           // $("#btnAddCategory").attr("disabled");
           // $("#btnAddCategory").html("Submit");
-
-        }
-      })
-    }
-
-    ===
-    ===
-    =
-    function res_status(check_box, rest_id) {
-      const id_rest_text = "rest_status_text_" + rest_id;
-      document.getElementById(id_rest_text).innerText = "Changed";
-      // check_box.innerHTML="Changed";
-      $("#" + id_rest_text).html("Nothing");
-      $("#abc").html("Activate");
-      var check_box_status = !check_box.checked;
-      //  alert(check_box_status);
-      var status = check_box_status == true ? 0 : 1;
-      $.ajax({
-        url: constant.url + "restaurant/rest_status.php",
-        method: "POST",
-        data: JSON.stringify({
-          rest_id: rest_id,
-          status: status
-        }),
-        contentType: "application/json",
-        dataType: "json",
-        success: function(result) {
-          // console.log(result.success);
-
-          const json = result;
-          if (json.success) {
-            $("#rest_status_text_" + rest_id).html("Activate");
-            console.log(`#rest_status_text_${rest_id}`);
-            // swal({ title: "Success", text: json.error, icon: "success" })
-            if (check_box_status != true)
-              $(`#rest_status_text_${rest_id}`).html("Activate");
-            else $("#rest_status_text_" + rest_id).html("Deactivate");
-          } else swal({
-            title: "Error Occured",
-            text: json.error,
-            icon: "error"
-          });
-          // console.info(json.success);
-          // $("#btnAddCategory").attr("disabled");
-          // $("#btnAddCategory").html("Submit");
-          >>>
-          >>>
-          > Stashed changes
 
         }
       })
