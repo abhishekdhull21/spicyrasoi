@@ -4,6 +4,17 @@ const constant = {
   url: "http://localhost/apidevelopment/",
   url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
+
+function ajaxRequest(url, data, success) {
+  $.ajax({
+    url: constant.url + url,
+    method: "POST",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json",
+    success: success,
+  });
+}
 $(document).ready(function () {
   //add new category
   $("#btnAddCategory").click(function (e) {
