@@ -107,10 +107,14 @@ require_once("islogin.php");
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title"> <?php 
-                                $date = date("M d Y");
-                                print(" ".$date);
-                                // echo date("1"); ?> </h3>
+                                    <h3 class="card-title"> <?php
+                                                            // $date = date("M d Y");
+                                                            $date = date("Y-m-d");
+                                                            print(" " . $date);
+                                                            if (isset($_GET['date']))
+                                                                $date = $_GET['date'];
+                                                            // echo date("1"); 
+                                                            ?> </h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -134,7 +138,7 @@ require_once("islogin.php");
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = "SELECT a.orderid,a.name,a.bill_no,a.order_value,a.order_type,a.tableid,a.date,b.title FROM orders a, dashboard b where a.restaurant = b.restaurant and b.id = a.tablegroup and a.restaurant = $restaurant and DATE(a.date) = DATE(NOW()) order by a.date desc";
+                                                        echo  $sql = "SELECT a.orderid,a.name,a.bill_no,a.order_value,a.order_type,a.tableid,a.date,b.title FROM orders a, dashboard b where a.restaurant = b.restaurant and b.id = a.tablegroup and a.restaurant = $restaurant and Date(a.date) = Date('$date') order by a.date desc";
                                                         $res = $con->query($sql);
                                                         while ($row = $res->fetch_assoc()) {
                                                             //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
