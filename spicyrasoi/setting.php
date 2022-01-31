@@ -176,14 +176,14 @@ if (mysqli_num_rows($res) > 0)
 
                             <i class="fas fa-file"></i> Day Book
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
+                          <!-- <a href="#" class="btn btn-app bg-success">
 
                             <i class="fas fa-file"></i> Transaction
-                          </a>
-                          <a href="customer_report.php" class="btn btn-app bg-success">
+                          </a> -->
+                          <!-- <a href="customer_report.php" class="btn btn-app bg-success">
 
                             <i class="fas fa-file"></i> Customer Report
-                          </a>
+                          </a> -->
 
                           <a href="expense.php" class="btn btn-app bg-success">
 
@@ -213,10 +213,7 @@ if (mysqli_num_rows($res) > 0)
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-users"></i> GST Report
                           </a>
-                          <a href="user_report" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> User Report
-                          </a>
+                        
                           <a href="#" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-users"></i> Payment / Account
@@ -233,15 +230,7 @@ if (mysqli_num_rows($res) > 0)
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-users"></i> Stock Managment
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Purchase Report
-                          </a>
-
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Expense Report
-                          </a>
+                       
 
 
                         </div>
