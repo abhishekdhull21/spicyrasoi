@@ -255,11 +255,11 @@ if (mysqli_num_rows($res) > 0) {
         $('#discount,#recived').on('input', (e) => {
           bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
           bill.grand_total = bill.total - bill.discount + bill.gst_amount;
-          updateui()
+          updateui(e.currentTarget.id)
           if (e.currentTarget.id == "discount")
             bill.recived = $('#recived').val() != null ? $('#recived').val() : 0;
           bill.balance = bill.grand_total - bill.recived;
-          // console.log(bill)
+          console.log(bill)
         })
         // $('#discount').on('input', () => {
         //   bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
@@ -269,16 +269,17 @@ if (mysqli_num_rows($res) > 0) {
         //   $('#grand_total').html(bill.grand_total);
         //   console.log(bill)
         // })
-        $('#gst').on('change', () => {
+        $('#gst').on('change', (e) => {
           bill.gst = $('#gst').val();
           bill.gst_amount = bill.total * bill.gst / 100;
           bill.grand_total = Math.round(bill.total + bill.gst_amount);
-          updateui();
+          updateui(e.currentTarget.id);
           // console.log(bill);
         })
 
-        function updateui() {
+        function updateui(id) {
           $('#gst_amount').html(bill.gst_amount);
+          if(id!="recived")
           $('#recived').val(bill.grand_total);
           $('#grand_total').html(bill.grand_total);
 
