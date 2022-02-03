@@ -172,8 +172,8 @@ if (mysqli_num_rows($res) > 0) {
                     </tr>
                     <tr>
                       <!-- <td></td> -->
-                      <td><b>Recived</b></td>
-                      <td><input type="number" min=0 class="form-control" id="recived" value=<?php echo floor($row['total']); ?>></td>
+                      <td><b>received</b></td>
+                      <td><input type="number" min=0 class="form-control" id="received" value=<?php echo floor($row['total']); ?>></td>
                       <td><b>Grand Total</b></td>
                       <td id="grand_total">00</td>
                     </tr>
@@ -220,7 +220,7 @@ if (mysqli_num_rows($res) > 0) {
           total: 0,
           discount: 0,
           balance: 0,
-          recived: 0,
+          received: 0,
           grand_total: 0,
           gst: 0,
           gst_amount: 0,
@@ -241,7 +241,7 @@ if (mysqli_num_rows($res) > 0) {
           contentType: "application/json",
           dataType: "json",
           success: function(result) {
-            console.log(result);
+            // console.log(result);
             if (result.success == true) {
               bill.total = parseInt(result.data[0].order_value);
               bill.grand_total = parseInt(result.data[0].order_value);
@@ -252,34 +252,35 @@ if (mysqli_num_rows($res) > 0) {
         $('#mode').on('change', () => {
           bill.mode = $('#mode').val();
         })
-        $('#discount,#recived').on('input', (e) => {
+        $('#discount,#received').on('input', (e) => {
           bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
           bill.grand_total = bill.total - bill.discount + bill.gst_amount;
-          updateui()
-          if (e.currentTarget.id == "discount")
-            bill.recived = $('#recived').val() != null ? $('#recived').val() : 0;
-          bill.balance = bill.grand_total - bill.recived;
+          updateUI(e.currentTarget.id);
+          if (e.currentTarget.id != "discount")
+            bill.received = $('#received').val() != null ? $('#received').val() : 0;
+          bill.balance = bill.grand_total - bill.received;
           // console.log(bill)
         })
         // $('#discount').on('input', () => {
         //   bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
-        //   $('#recived').val(bill.total - bill.discount);
-        //   bill.recived = bill.total - bill.discount;
+        //   $('#received').val(bill.total - bill.discount);
+        //   bill.received = bill.total - bill.discount;
 
         //   $('#grand_total').html(bill.grand_total);
         //   console.log(bill)
         // })
-        $('#gst').on('change', () => {
+        $('#gst').on('change', (e) => {
           bill.gst = $('#gst').val();
           bill.gst_amount = bill.total * bill.gst / 100;
-          bill.grand_total = Math.round(bill.total + bill.gst_amount);
-          updateui();
+          bill.grand_total = Math.round(bill.grand_total + bill.gst_amount);
+          updateUI(e.currentTarget.id);
           // console.log(bill);
         })
 
-        function updateui() {
+        function updateUI(id) {
           $('#gst_amount').html(bill.gst_amount);
-          $('#recived').val(bill.grand_total);
+          if (id != "received")
+            $('#received').val(bill.grand_total);
           $('#grand_total').html(bill.grand_total);
 
           // $('#grand_total').html(bill.grand_total);
@@ -287,7 +288,7 @@ if (mysqli_num_rows($res) > 0) {
         }
 
         $('#btnprintbill').on('click', () => {
-          bill.recived = $('#recived').val() != null ? $('#recived').val() : 0;
+          bill.received = $('#received').val() != null ? $('#received').val() : 0;
           // bill.grand_total=bill.total;
           $.ajax({
             url: constant.url + "order/orderidupdate.php",
@@ -298,7 +299,7 @@ if (mysqli_num_rows($res) > 0) {
             success: function(result) {
               console.log(result);
               if (result.success == true) {
-                window.location.replace('posprint.php?orderid=' + bill.orderid);
+                // window.location.replace('posprint.php?orderid=' + bill.orderid);
               }
             },
           });

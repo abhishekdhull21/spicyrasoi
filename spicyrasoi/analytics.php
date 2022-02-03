@@ -293,7 +293,7 @@ require_once('logininfo.php');
       ajaxRequest("analytics/salepaymenttype.php", {
         start: start,
         end: end,
-        restaurant: 14,
+        restaurant: restaurant,
       }, (data) => {
         if (data.success) {
           // console.log(data)
