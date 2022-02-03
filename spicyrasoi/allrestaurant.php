@@ -90,7 +90,7 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
         <div class="container">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">All Listed Customer </h1>
+              <h1 class="m-0">All Listed Resturant</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -113,7 +113,7 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
 
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">All Listed Customer </h3>
+                  <h3 class="card-title">All Listed Resurant </h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -125,9 +125,11 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
                           <thead>
                             <tr role="row">
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Name</th>
                               <th class="sorting" tabindex="0" id="abc" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Reg. Date</th>
+                            
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Restaurant ID</th>
-                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
+                             
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Mob. No.</th>
                               <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Phone. No.</th> -->
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Email</th>
@@ -150,39 +152,22 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
                                 <td>
                                   <div class="form-check">
                                     <input class="form-check-input" id="r_status_<?php echo $row['restaurantid']; ?>" type="checkbox" hidden onclick="res_status(this,<?php echo $row['restaurantid']; ?>);">
-                                    <label class="form-check-label" id="rest_status_text_<?php echo $row['restaurantid']; ?>" for="r_status_<?php echo $row['restaurantid']; ?>">Deactivate</label>
-                                  </div>
-                                  | <a href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>"> <i class="fas fa-edit"> Assign </a>
-                                </td>
+                                    <label class="form-check-label" id="rest_status_text_<?php echo $row['restaurantid']; ?>" for="r_status_<?php echo $row['restaurantid']; ?>" style="font-weight: bold; cursor:pointer"> Deactivate </label>
+                                  <a href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>"> <i class="fas fa-edit"> Assign </i></a> </div></td>
+                                <td class="sorting_1"><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['add_on']; ?> </td>
                                 <td class="dtr-control"><?php echo $row['restaurantid']; ?> </td>
-                                <td class="sorting_1"><?php echo $row['name']; ?></td>
-                                <<<<<<< Updated upstream <td><?php echo $row['mobile']; ?> </td>
+                                
+                                <td><?php echo $row['mobile']; ?> </td>
                                   <!-- <td><?php echo $row['phone']; ?></td> -->
-                                  <!-- <td><?php echo $row['email']; ?></td> -->
+                                  <td><?php echo $row['email']; ?></td>
                                   <td><?php echo $row['gst']; ?></td>
                                   <!-- <td><?php echo $row['country']; ?></td> -->
                                   <!-- <td><?php echo $row['state']; ?></td> -->
                                   <!-- <td><?php echo $row['district']; ?></td> -->
                                   <td><?php echo $row['city']; ?></td>
 
-                                  =======
-                                  <td> <?php echo $row['mobile']; ?> </td>
-                                  <td><?php echo $row['phone']; ?></td>
-                                  <td><?php echo $row['email']; ?></td>
-                                  <td><?php echo $row['gst']; ?></td>
-                                  <td><?php echo $row['country']; ?></td>
-                                  <td><?php echo $row['state']; ?></td>
-                                  <td><?php echo $row['district']; ?></td>
-                                  <td id="rest_status_text_<?php echo $row['restaurantid']; ?>"><?php echo $row['city']; ?></td>
-                                  <td>
-                                    <!-- <div class="form-check"> -->
-                                    <input class="form-check-input" id="r_status_<?php echo $row['restaurantid']; ?>" type="checkbox" hidden onclick="res_status(this,<?php echo $row['restaurantid']; ?>);">
-                                    <label class="form-check-label" for="r_status_<?php echo $row['restaurantid']; ?>">Deactivate</label>
-                                    <!-- </div> -->
-                                    <!-- | <a href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>"> <i class="fas fa-edit"> Assign </a> -->
-                                  </td>
-                                  >>>>>>> Stashed changes
+                                 
 
                                   <!-- <td  >U</td>
                     <td  >U</td>

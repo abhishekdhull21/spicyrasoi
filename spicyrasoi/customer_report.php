@@ -231,7 +231,7 @@ require_once("islogin.php");
 
                               <tr class="odd">
                                 <td class="dtr-control"><?php echo $row['date']; ?> </td>
-                                <td class="dtr-control"><?php echo $orderid ?> </td>
+                                <td class="dtr-control"><?php echo $row['bill_no']; ?> </td>
                                 <td class="sorting_1"><?php echo ("Debit/Credit"); ?></td>
                                 <td><?php echo $row['order_value']; ?> </td>
                                 <td class="dtr-control"><?php echo $row['order_type'] // TODO: change this paymode
