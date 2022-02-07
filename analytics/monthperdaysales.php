@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $restaurant = $data['restaurant'];
         //    $start = $data['start'];
         //     $category =  filter_var($data['category'], FILTER_SANITIZE_STRING);
-        if ($result = mysqli_query($con, "SELECT sum(a.order_value) as day_sale, a.date FROM orders a WHERE a.date BETWEEN date('$start') and date('$end') and restaurant = $restaurant group by a.date;")) {
+        if ($result = mysqli_query($con, "SELECT sum(a.paid) as day_sale, a.date FROM orders a WHERE a.date BETWEEN date('$start') and date('$end') and restaurant = $restaurant group by a.date;")) {
             if (mysqli_num_rows($result) > 0) {
 
                 $response = array(
