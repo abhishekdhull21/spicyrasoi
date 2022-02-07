@@ -24,12 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // print_r($data);
     // condition to check request in json 
     // if(strpos($content_type, "application/json") !== false){
+        // {"total":149,"discount":"9","balance":140,"received":"147","grand_total":147,"gst":"5","gst_amount":7.45,"orderid":"900000123460023722211106000000","mode":"Cash"}
 
-    if (isset($data['orderid']) && isset($data['mode']) && isset($data['recived']) && isset($data['grand_total']) && isset($data['discount']) && isset($data['balance'])) {
+    if (isset($data['orderid']) && isset($data['mode']) && isset($data['received']) && isset($data['grand_total']) && isset($data['discount']) && isset($data['balance'])) {
         $orderid = $data['orderid'];
         $mode = $data['mode'];
         $discount = $data['discount'];
-        $recived = $data['recived'];
+        $recived = $data['received'];
         $grand_total = $data['grand_total'];
         $balance = $data['balance'];
         $gst = $data['gst'] != null ? $data['gst'] : 0;
