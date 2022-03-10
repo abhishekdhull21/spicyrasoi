@@ -152,13 +152,13 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
                                 <td>
                                   <div class="form-check">
                                    
-                                 <?php if ($row['status']==1) { ?>  <label class="form-check-label btn btn-danger btn-sm" id="rest_status_text_<?php echo $row['restaurantid']; ?>" for="r_status_<?php echo $row['restaurantid']; ?>" style="font-weight: bold; cursor:pointer; "> Stop </label> 
+                                 <?php if ($row['status']==1) { ?>  <label class="form-check-label btn btn-danger btn-sm" id="rest_status_text_<?php echo $row['restaurantid']; ?>" for="r_status_<?php echo $row['restaurantid']; ?>" style="font-weight: bold; cursor:pointer; margin: 2px; "> Stop </label> 
                                   <input class="form-check-input" id="r_status_<?php echo $row['restaurantid']; ?>" type="checkbox" hidden onclick="res_status(this,<?php echo $row['restaurantid']; ?>);">
                                   <?php } else { ?>
-                                  <label class="form-check-label btn btn-success btn-sm" id="rest_status_text_<?php echo $row['restaurantid']; ?>" for="r_status_<?php echo $row['restaurantid']; ?>" style="font-weight: bold; cursor:pointer; "> Start </label>
+                                  <label class="form-check-label btn btn-success btn-sm" id="rest_status_text_<?php echo $row['restaurantid']; ?>"  for="r_status_<?php echo $row['restaurantid']; ?>" style="font-weight: bold; cursor:pointer; margin: 2px;"> Start </label>
                                   <input class="form-check-input" id="r_status_<?php echo $row['restaurantid']; ?>" type="checkbox" hidden checked onclick="res_status(this,<?php echo $row['restaurantid']; ?>);">
                                    <?php } ?>
-                                  <a class="btn btn-dark btn-sm"  href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>" style="margin: 5px;">  Assign </a> </div></td>
+                                  <a class="btn btn-dark btn-sm"  href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>" style="margin: 2px;">  Assign </a> </div></td>
                                 <td class="sorting_1"><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['add_on']; ?> </td>
                                 <td class="dtr-control"><?php echo $row['restaurantid']; ?> </td>

@@ -154,14 +154,26 @@ if (mysqli_num_rows($res) > 0) {
                           <option value="UPI">UPI</option>
                           <option value="Other">Other</option>
                         </select></td>
-                      <td><b>Discount</b></td>
-                      <td> <input type="number" min=0 class="form-control" id="discount" value=0>
-                      
+                      <td> </td>
+                      <td> 
                       </td>
                     </tr>
                     <tr>
                       <!-- <td></td> -->
-                      <td><b>Offer Discount</b></td>
+                      <td><b>Discount (%)</b></td>
+                      <td><select id="gst" class="js-example-basic-single form-control">
+                          <option selected value=0>00</option>
+                          <option value=5>5%</option>
+                          <option value=8>8%</option>
+                          <option value=12>12%</option>
+                          <option value=18>18%</option>
+                        </select></td>
+                      <td><b>Discount Amount</b></td>
+                      <td id="discount_amount">00</td>
+                    </tr>
+                    <tr>
+                      <!-- <td></td> -->
+                      <td><b>Offer (%)</b></td>
                       <td><select id="offer_discount" class="js-example-basic-single form-control">
                           <option selected value=0>00</option>
                           <option value=5>5%</option>
@@ -174,7 +186,7 @@ if (mysqli_num_rows($res) > 0) {
                     </tr>
                     <tr>
                       <!-- <td></td> -->
-                      <td><b>GST</b></td>
+                      <td><b>GST (%)</b></td>
                       <td><select id="gst" class="js-example-basic-single form-control">
                           <option selected value=0>00</option>
                           <option value=5>5%</option>
@@ -187,7 +199,7 @@ if (mysqli_num_rows($res) > 0) {
                     </tr>
                     <tr>
                       <!-- <td></td> -->
-                      <td><b>Service Charge</b></td>
+                      <td><b>Service Charge (%)</b></td>
                       <td><select id="sc" class="js-example-basic-single form-control">
                           <option selected value=0>00</option>
                           <option value=5>5%</option>
@@ -203,7 +215,7 @@ if (mysqli_num_rows($res) > 0) {
                     </tr>
                     <tr>
                       <!-- <td></td> -->
-                      <td><b>received</b></td>
+                      <td><b>Received</b></td>
                       <td><input type="number" min=0 class="form-control" id="received" value=<?php echo floor($row['total']); ?>></td>
                       <td><b>Grand Total</b></td>
                       <td id="grand_total">00</td>

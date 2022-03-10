@@ -161,16 +161,6 @@ require_once 'islogin.php';
                             <input type="text" class="form-control" id="rcity" placeholder="City / Village">
                           </div>
                         </div>
-
-                        <!-- <div class="form-group row">
-                          <div class="offset-sm-2 col-sm-10">
-                            <div class="checkbox">
-                              <label>
-                                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                              </label>
-                            </div>
-                          </div>
-                        </div> -->
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
                             <button type="submit" id="btnAddRestaurant" class="btn btn-danger">Add Restaurant </button>

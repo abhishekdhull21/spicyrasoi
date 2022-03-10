@@ -98,23 +98,14 @@ if (mysqli_num_rows($res) > 0)
                       </div>
                     </div>
                   </div>
-                  <!-- <a href="#" class="btn btn-app bg-success">
-                    <span class="badge bg-purple" id="totalsell">0</span>
-                    <i class="fas fa-money-check-alt"></i> Income
-                  </a>
-                  <a href="#" class="btn btn-app bg-danger">
-                    <span class="badge bg-purple" id="totalexpense">0</span>
-                    <i class="fas fa-money-check-alt"></i> Out
-                  </a> -->
                   <a href="addOffer.php" class="btn btn-app bg-warning">
                     <i class="fas fa-plus-circle"></i> Add Offer
                   </a>
-                  <?php if (in_array('add_category', $permissions) || $isSuperadmin) { ?>
+                  
                     <a href="addcategory.php" class="btn btn-app bg-danger">
-                      <!-- <span class="badge bg-success">300</span> -->
                       <i class="fas fa-plus-circle"></i> Add Category
                     </a>
-                  <?php } ?>
+                
                   <a href="addproduct.php" class="btn btn-app bg-secondary">
                     <i class="fas fa-plus-circle"></i> Add Product
                   </a>
@@ -179,14 +170,6 @@ if (mysqli_num_rows($res) > 0)
 
                             <i class="fas fa-file"></i> Day Book
                           </a>
-                          <!-- <a href="#" class="btn btn-app bg-success">
-
-                            <i class="fas fa-file"></i> Transaction
-                          </a> -->
-                          <!-- <a href="customer_report.php" class="btn btn-app bg-success">
-
-                            <i class="fas fa-file"></i> Customer Report
-                          </a> -->
 
                           <a href="expense.php" class="btn btn-app bg-success">
 
