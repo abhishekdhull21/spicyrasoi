@@ -155,7 +155,7 @@ if (mysqli_num_rows($res) > 0) {
                           <option value="Other">Other</option>
                         </select></td>
                       <td><b> Remark </b> </td>
-                      <td> <input type="text" class="form-control" id="remark" value= >
+                      <td> <input type="text" class="form-control" id="remark" value=>
                       </td>
                     </tr>
                     <tr>
@@ -317,7 +317,7 @@ if (mysqli_num_rows($res) > 0) {
           bill.gst_amount = Math.round(bill.total * bill.gst / 100);
           bill.grand_total = Math.round(bill.grand_total + bill.gst_amount);
           updateUI(e.currentTarget.id);
-          $('#gst').attr('disabled',true)
+          $('#gst').attr('disabled', true)
           // console.log(bill);
         })
 
@@ -344,8 +344,8 @@ if (mysqli_num_rows($res) > 0) {
               console.log(result);
               if (result.success == true) {
                 window.location.replace('posprint.php?orderid=' + bill.orderid);
-              }else{
-                swal("Error Ocurred","Contact to admin")
+              } else {
+                swal("Error Ocurred", "Contact to admin")
               }
             },
           });

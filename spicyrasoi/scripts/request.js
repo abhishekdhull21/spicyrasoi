@@ -1,8 +1,8 @@
 // fetch category
 const constant = {
   // url: "https://spicyrasoi.com/api/",
-  url: "http://localhost/apidevelopment/",
-  // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
+  // url: "http://localhost/apidevelopment/",
+  url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 
 function ajaxRequest(url, data, success) {
@@ -778,21 +778,24 @@ $(document).ready(function () {
       url: constant.url + "customer/add_amt.php",
       method: "POST",
       data: JSON.stringify({
-        admin_id: admin_id,
-        restaurant: restaurant,
-        cust_id: 0,
-        type: type,
-        amt: amt,
-        remark: remark,
+        admin_id,
+        restaurant,
+        cust_id,
+        type,
+        amt,
+        remark,
       }),
       contentType: "application/json",
       dataType: "json",
       success: function (result) {
         const json = result;
         if (json.success)
-          swal("Good Job", "Amount Added Sccessfully", "success");
+          swal("Amount Credit", "Successfully amount credit", "success").then(
+            function () {
+              window.reload();
+            }
+          );
         else swal({ title: "Error Occured", text: json.error, icon: "error" });
-        console.info(json.success);
         $("#btnAddAmt").html("Submit");
       },
     });

@@ -67,6 +67,10 @@ require_once('logininfo.php');
                 <div class="card-header border-0">
                   <div class="d-flex justify-content-between">
                     <h3 class="card-title">Payment Mode</h3>
+                    <div id="payment_mode_sale_report_range" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 45%">
+                      <i class="fa fa-calendar"></i>&nbsp;
+                      <span></span> <i class="fa fa-caret-down"></i>
+                    </div>
                   </div>
                 </div>
                 <div class="card-body">
@@ -120,8 +124,6 @@ require_once('logininfo.php');
                       </tr>
                     </thead>
                     <tbody id="productSaleList">
-
-
                     </tbody>
                   </table>
                 </div>
@@ -291,7 +293,7 @@ require_once('logininfo.php');
     // fetch product max sales between dates
     function fetchSaleType(start, end) {
       ajaxRequest("analytics/salepaymenttype.php", {
-        start: start,
+        start: start, 
         end: end,
         restaurant: restaurant,
       }, (data) => {
@@ -307,7 +309,7 @@ require_once('logininfo.php');
 
           });
           const dataset = [{
-            label: label,
+            label: 'Sale',
             data: total,
             backgroundColor: colorize.backgroundColor[0],
             borderColor: colorize.borderColor[0],
@@ -324,7 +326,7 @@ require_once('logininfo.php');
 
     fetchMonthPerDaySales(start, end);
     fetchMaxSaleProducts(start, end);
-    fetchSaleType(start, end);
+    fetchSaleType(start, end); //payment mode
 
 
 
@@ -341,8 +343,24 @@ require_once('logininfo.php');
           datasets: [{
             label: 'sale',
             data: data,
-            backgroundColor: colorize.backgroundColor,
-            borderColor: colorize.borderColor,
+            backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
             borderWidth: 1
           }]
         },
@@ -386,10 +404,10 @@ require_once('logininfo.php');
       var end = moment();
 
       function cb(start, end) {
-        $('#salepermonthreportrange span,#productmaxsalesreportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        $('#salepermonthreportrange span,#productmaxsalesreportrange span, #payment_mode_sale_report_range span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
       }
 
-      $('#salepermonthreportrange,#productmaxsalesreportrange').daterangepicker({
+      $('#salepermonthreportrange,#productmaxsalesreportrange,#payment_mode_sale_report_range').daterangepicker({
         startDate: start,
         endDate: end,
         ranges: {
@@ -406,6 +424,11 @@ require_once('logininfo.php');
 
 
 
+    // $('#payment_mode_sale_report_range').daterangepicker();
+    $('#payment_mode_sale_report_range').on('apply.daterangepicker', function(ev, picker) {
+
+      fetchSaleType(picker.startDate.format('YYYY-MM-DD'), picker.endDate.format('YYYY-MM-DD'))
+    });
     // $('#salepermonthreportrange').daterangepicker();
     $('#salepermonthreportrange').on('apply.daterangepicker', function(ev, picker) {
 
