@@ -110,12 +110,12 @@
 
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="addCategoryInput">Name of Offer</label>
-                    <input type="text" class="form-control" id="addCategoryInput" placeholder="Enter Category">
+                    <label for="offerText">Name of Offer</label>
+                    <input type="text" class="form-control" id="offerText" placeholder="">
                   </div>
                   <div class="form-group">
-                    <label for="addCategoryInput">Amount (In %)</label>
-                    <select id="sc" class="form-control js-example-basic-single ">
+                    <label for="offerValue">Amount (In %)</label>
+                    <select id="offerValue" class="form-control js-example-basic-single ">
                           <option selected value=0>00</option>
                           <option value=5>5%</option>
                           <option value=8>8%</option>
@@ -128,7 +128,7 @@
                   </div>
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary form-control" id="btnAddCategory">Create Offer</button>
+                  <button type="submit" class="btn btn-primary form-control" id="createOffer" onclick="addOffer()">Create Offer</button>
                 </div>
 
               </div>
@@ -158,27 +158,26 @@
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">S.No.</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Amount (%)</th>
-                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Action</th>
+                              <!-- <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Action</th> -->
 
                             </tr>
                           </thead>
                           <tbody>
                             <?php
-                            $i = 0;
-                            $res = mysqli_query($con, $swl);
-                            while ($row = $res->fetch_assoc()) {
-
+                            $i = 1;
+                            echo $sql = "SELECT * FROM offers where restaurant = $restaurant and status = 1";
+                            $res = mysqli_query($con, $sql);
+                            print_r($res);
+                            while ($row = mysqli_fetch_assoc($res)) {
                               $i++;
-
-
                             ?>
 
                               <tr class="odd">
                                 <td class="dtr-control"><?php echo ($i); ?>
                                 </td>
-                                <td class="sorting_1"><?php echo $row['cat_name']; ?></td>
-                                <td class="sorting_1"><?php echo ("Offer Amount"); ?></td>
-                                <td><a href="#"> <i class="fas fa-trash-alt" data-catid="<?php echo $row['cat_id']; ?>" onclick="deleteCategory(this);"> Remove</i></a> </td>
+                                <td class="sorting_1"><?php echo $row['offer_text']; ?></td>
+                                <td class="sorting_1"><?php echo $row['offer_value']; ?></td>
+                                <!-- <td><a href="#"> <i class="fas fa-trash-alt" data-catid="<?php  ?>" onclick="deleteCategory(this);"> Remove</i></a> </td> -->
 
 
 
@@ -269,33 +268,26 @@
   <!-- Page specific script -->
 
   <script>
-    //delete category
-    function deleteCategory(e) {
-      ele = $(e)
-      // e.preventDefault();
-      const processing = "Deleting...";
-      const text = e.innerHTML;
-
-      const category = ele.attr("data-catid");
-      $(document).ajaxSend(() => {
-        $(e).prop("disabled", true);
-        $(e).html(processing);
-      });
+    //add new offer
+    function addOffer() {
+      const offerText = $('#offerText').val();
+      const offerValue = $('#offerValue').val();
       $.ajax({
-        url: constant.url + "/category/remove.php",
+        url: constant.url + "offers/add.php",
         method: "POST",
         data: JSON.stringify({
-          admin_id: admin_id,
-          restaurant: restaurant,
-          category: category,
+          admin_id,
+          restaurant,
+          offerText,
+          offerValue
         }),
         contentType: "application/json",
         dataType: "json",
-        success: function(result) {
+        success: function(json) {
           // console.log(result.success);
 
-          const json = result;
-          if (json.success) swal("Good Job", " Category Removed", "success");
+        
+          if (json.success) swal("Offer Added", "You  Successfully Created Offer", "success");
           else swal({
             title: "Error Occured",
             text: json.error,
@@ -317,6 +309,7 @@
         $(e).html(text);
       });
     }
+
   </script>
 
   <script>
