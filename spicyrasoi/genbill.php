@@ -209,9 +209,9 @@ function fetchSubCategory($cat_id)
                   <div class="col-md-4 ">
                     <div class="card card-primary collapsed-card">
                       <div class="card-header" data-card-widget="collapse">
-                        <h3 class="card-title" ><?php echo ($row['cat_name']); ?></h3>
+                        <h3 class="card-title"><?php echo ($row['cat_name']); ?></h3>
                         <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
                           </button>
                         </div>
                         <!-- /.card-tools -->
@@ -493,6 +493,7 @@ function fetchSubCategory($cat_id)
       kot: 0,
       orderid: 0,
       billNo: 0,
+      todayOrderNo: 0,
       totalPrice: 0,
       discount: 0,
       recived: 0,
@@ -723,12 +724,13 @@ function fetchSubCategory($cat_id)
           if (result.success == true) {
             // clearTable();
             products.orderid = result.data.orderid;
-
+            products.todayOrderNo = result.data.today_orders;
+            console.log(result.data);
             // alert("redirected to print page")
             localStorage.setItem("kotbill", JSON.stringify(products));
-            var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=400,width=800");
+            var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=400,width=200");
             // print.document.close();
-            print.print();
+            // print.print();
             // print.close();
             // printDiv("print");
             location.reload();
@@ -753,6 +755,7 @@ function fetchSubCategory($cat_id)
             clearTable();
             products.orderid = result.data.orderid;
             // alert("redirected to print page")
+            console.log(products);
             localStorage.setItem("bill", JSON.stringify(products));
             window.open("printbill.php?orderid=" + products.orderid, "_blank");
             location.reload();
