@@ -59,8 +59,7 @@ if ($data != null) {
                 setOrderIdTable($con, $orderid, $table, $restaurant);
                 $response = array(
                     "success" => true,
-                    "data" => array("orderid" => $orderid),
-                    "more" => $sql,
+                    "data" => array("orderid" => $orderid, "today_orders" => getTodayOrderNo($con, $restaurant)),
                     "error" => ""
                 );
             } else
@@ -94,5 +93,15 @@ function getbillno($con,  $restaurant)
     $res = mysqli_query($con, $sql);
     if (mysqli_num_rows($res) > 0)
         return mysqli_fetch_assoc($res)['bill_no'] + 1;
+    return 1;
+}
+function getTodayOrderNo($con,  $restaurant)
+{
+    global $admin_id, $err;
+    $date = date('Y-m-d');
+    $sql = "SELECT count(bill_no) as today_orders FROM `orders` where  restaurant = $restaurant and date like concat('$date','%')";
+    $res = mysqli_query($con, $sql);
+    if (mysqli_num_rows($res) > 0)
+        return mysqli_fetch_assoc($res)['today_orders'] + 1;
     return 1;
 }
