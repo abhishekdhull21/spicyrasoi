@@ -16,6 +16,7 @@ if (mysqli_num_rows($res) > 0) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Spicy Rasoi</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -241,7 +242,7 @@ if (mysqli_num_rows($res) > 0) {
           contentType: "application/json",
           dataType: "json",
           success: function(result) {
-            // console.log(result);
+            console.log(result);
             if (result.success == true) {
               bill.total = parseInt(result.data[0].order_value);
               bill.grand_total = parseInt(result.data[0].order_value);
@@ -254,11 +255,11 @@ if (mysqli_num_rows($res) > 0) {
         })
         $('#discount,#received').on('input', (e) => {
           bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
-          bill.grand_total = bill.total - bill.discount + bill.gst_amount;
+          bill.grand_total = Math.round(bill.total - bill.discount + bill.gst_amount);
           updateUI(e.currentTarget.id);
           if (e.currentTarget.id != "discount")
             bill.received = $('#received').val() != null ? $('#received').val() : 0;
-          bill.balance = bill.grand_total - bill.received;
+          bill.balance = Math.round(bill.grand_total - bill.received);
           // console.log(bill)
         })
         // $('#discount').on('input', () => {
@@ -271,9 +272,10 @@ if (mysqli_num_rows($res) > 0) {
         // })
         $('#gst').on('change', (e) => {
           bill.gst = $('#gst').val();
-          bill.gst_amount = bill.total * bill.gst / 100;
+          bill.gst_amount = Math.round(bill.total * bill.gst / 100);
           bill.grand_total = Math.round(bill.grand_total + bill.gst_amount);
           updateUI(e.currentTarget.id);
+          $('#gst').attr('disabled',true)
           // console.log(bill);
         })
 
@@ -299,7 +301,9 @@ if (mysqli_num_rows($res) > 0) {
             success: function(result) {
               console.log(result);
               if (result.success == true) {
-                // window.location.replace('posprint.php?orderid=' + bill.orderid);
+                window.location.replace('posprint.php?orderid=' + bill.orderid);
+              }else{
+                swal("Error Ocurred","Contact to admin")
               }
             },
           });

@@ -170,7 +170,7 @@ require_once("islogin.php");
                                                                         </button>
                                                                         <div class="dropdown-menu" role="menu">
                                                                             <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>">View</a>
-                                                                            <!-- <a class="dropdown-item" href="#">Edit</a> -->
+                                                                            <a class="dropdown-item" href="https://api.whatsapp.com/send/?phone=918570996916&text=https://spicyrasoi.com/spicyrasoi/posprint.php?orderid=<?php echo $orderid;?>&app_absent=0">Share</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>
