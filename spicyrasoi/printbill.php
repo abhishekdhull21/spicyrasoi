@@ -154,14 +154,14 @@ if (mysqli_num_rows($res) > 0) {
                           <option value="UPI">UPI</option>
                           <option value="Other">Other</option>
                         </select></td>
-                      <td> </td>
-                      <td> 
+                      <td><b> Remark </b> </td>
+                      <td> <input type="text" class="form-control" id="remark" value= >
                       </td>
                     </tr>
                     <tr>
                       <!-- <td></td> -->
                       <td><b>Discount (%)</b></td>
-                      <td><select id="gst" class="js-example-basic-single form-control">
+                      <td><select id="discount" class="js-example-basic-single form-control">
                           <option selected value=0>00</option>
                           <option value=5>5%</option>
                           <option value=8>8%</option>
@@ -174,7 +174,7 @@ if (mysqli_num_rows($res) > 0) {
                     <tr>
                       <!-- <td></td> -->
                       <td><b>Offer (%)</b></td>
-                      <td><select id="offer_discount" class="js-example-basic-single form-control">
+                      <td><select id="offer" class="js-example-basic-single form-control">
                           <option selected value=0>00</option>
                           <option value=5>5%</option>
                           <option value=8>8%</option>
@@ -182,7 +182,7 @@ if (mysqli_num_rows($res) > 0) {
                           <option value=18>18%</option>
                         </select></td>
                       <td><b>Offer Amount</b></td>
-                      <td id="Offer">00</td>
+                      <td id="offer_amt">00</td>
                     </tr>
                     <tr>
                       <!-- <td></td> -->
