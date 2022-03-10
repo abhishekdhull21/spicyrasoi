@@ -106,6 +106,9 @@ if (mysqli_num_rows($res) > 0)
                     <span class="badge bg-purple" id="totalexpense">0</span>
                     <i class="fas fa-money-check-alt"></i> Out
                   </a> -->
+                  <a href="addOffer.php" class="btn btn-app bg-warning">
+                    <i class="fas fa-plus-circle"></i> Add Offer
+                  </a>
                   <?php if (in_array('add_category', $permissions) || $isSuperadmin) { ?>
                     <a href="addcategory.php" class="btn btn-app bg-danger">
                       <!-- <span class="badge bg-success">300</span> -->
@@ -113,13 +116,13 @@ if (mysqli_num_rows($res) > 0)
                     </a>
                   <?php } ?>
                   <a href="addproduct.php" class="btn btn-app bg-secondary">
-
                     <i class="fas fa-plus-circle"></i> Add Product
                   </a>
-                  <a href="allproduct.php" class="btn btn-app bg-secondary">
 
+                  <a href="allproduct.php" class="btn btn-app bg-secondary">
                     <i class="fab fa-product-hunt"></i> All Product
                   </a>
+
                   <a href="invoice.php" class="btn btn-app bg-primary">
                     <!-- <span class="badge bg-purple">891</span> -->
                     <i class="fas fa-file-invoice"></i> Invoice
@@ -206,31 +209,21 @@ if (mysqli_num_rows($res) > 0)
                         <div class="card-body">
                           <a href="invoice.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Invoice
+                            <i class="fas fa-file-invoice"></i> Invoice
                           </a>
 
                           <a href="#" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> GST Report
+                            <i class="fas fa-file-invoice"></i> GST Report
                           </a>
-                        
-                          <a href="#" class="btn btn-app bg-success">
+                         <a href="stock.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Payment / Account
+                            <i class="fas fa-cubes"></i> Stock Managment
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
+                          <a href="analytics.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Table Report
+                            <i class="fas fa-chart-pie"></i> Analytics 
                           </a>
-                          <a href="#" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Room Report
-                          </a>
-                          <a href="stock.php" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-users"></i> Stock Managment
-                          </a>
-                       
 
 
                         </div>

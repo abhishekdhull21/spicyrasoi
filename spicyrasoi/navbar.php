@@ -39,9 +39,9 @@
         <li class="nav-item">
           <a href="process.php" class="nav-link"><i class="fas fa-sync"> Process</i></a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="analytics.php" class="nav-link"><b><i class="fas fa-chart-pie"> Analytics</i></b></a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a href="setting.php" class="nav-link"><b><i class="fas fa-cog"> Settings</i></b></a>
         </li>

@@ -151,9 +151,14 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
                               <tr class="odd">
                                 <td>
                                   <div class="form-check">
-                                    <input class="form-check-input" id="r_status_<?php echo $row['restaurantid']; ?>" type="checkbox" hidden onclick="res_status(this,<?php echo $row['restaurantid']; ?>);">
-                                    <label class="form-check-label" id="rest_status_text_<?php echo $row['restaurantid']; ?>" for="r_status_<?php echo $row['restaurantid']; ?>" style="font-weight: bold; cursor:pointer"> Deactivate </label>
-                                  <a href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>"> <i class="fas fa-edit"> Assign </i></a> </div></td>
+                                   
+                                 <?php if ($row['status']==1) { ?>  <label class="form-check-label btn btn-danger btn-sm" id="rest_status_text_<?php echo $row['restaurantid']; ?>" for="r_status_<?php echo $row['restaurantid']; ?>" style="font-weight: bold; cursor:pointer; "> Stop </label> 
+                                  <input class="form-check-input" id="r_status_<?php echo $row['restaurantid']; ?>" type="checkbox" hidden onclick="res_status(this,<?php echo $row['restaurantid']; ?>);">
+                                  <?php } else { ?>
+                                  <label class="form-check-label btn btn-success btn-sm" id="rest_status_text_<?php echo $row['restaurantid']; ?>" for="r_status_<?php echo $row['restaurantid']; ?>" style="font-weight: bold; cursor:pointer; "> Start </label>
+                                  <input class="form-check-input" id="r_status_<?php echo $row['restaurantid']; ?>" type="checkbox" hidden checked onclick="res_status(this,<?php echo $row['restaurantid']; ?>);">
+                                   <?php } ?>
+                                  <a class="btn btn-dark btn-sm"  href="?assign=1&restaurant=<?php echo $row['restaurantid']; ?>" style="margin: 5px;">  Assign </a> </div></td>
                                 <td class="sorting_1"><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['add_on']; ?> </td>
                                 <td class="dtr-control"><?php echo $row['restaurantid']; ?> </td>
@@ -205,6 +210,7 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
 
   <script>
     function res_status(check_box, rest_id) {
+      
       const id_rest_text = "rest_status_text_" + rest_id;
       //  document.getElementById(id_rest_text).innerText="Changed";
       // check_box.innerHTML="Changed";
@@ -230,9 +236,7 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
             // $("#rest_status_text_"+rest_id).html("Activate");
             console.log("#rest_status_text_" + rest_id);
             // swal({ title: "Success", text: json.error, icon: "success" })
-            if (check_box_status != true)
-              $("#rest_status_text_" + rest_id).html("Activate");
-            else $("#rest_status_text_" + rest_id).html("Deactivate");
+           restSwitch(rest_id,check_box_status);
           } else swal({
             title: "Error Occured",
             text: json.error,
@@ -244,6 +248,18 @@ if (isset($_GET['assign']) && isset($_GET['restaurant'])) {
 
         }
       })
+    }
+    function restSwitch(rest_id,check_box_status){
+      console.log(check_box_status==true)
+      if (check_box_status != true) {
+              $("#rest_status_text_" + rest_id).html("Start");
+              $("#rest_status_text_" + rest_id).attr("class", "form-check-label btn btn-success btn-sm");
+              $
+            }
+            else {
+              $("#rest_status_text_" + rest_id).html("Stop");
+              $("#rest_status_text_" + rest_id).attr("class", "form-check-label btn btn-danger btn-sm");
+            }
     }
   </script>
 

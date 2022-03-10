@@ -156,7 +156,21 @@ if (mysqli_num_rows($res) > 0) {
                         </select></td>
                       <td><b>Discount</b></td>
                       <td> <input type="number" min=0 class="form-control" id="discount" value=0>
+                      
                       </td>
+                    </tr>
+                    <tr>
+                      <!-- <td></td> -->
+                      <td><b>Offer Discount</b></td>
+                      <td><select id="offer_discount" class="js-example-basic-single form-control">
+                          <option selected value=0>00</option>
+                          <option value=5>5%</option>
+                          <option value=8>8%</option>
+                          <option value=12>12%</option>
+                          <option value=18>18%</option>
+                        </select></td>
+                      <td><b>Offer Amount</b></td>
+                      <td id="Offer">00</td>
                     </tr>
                     <tr>
                       <!-- <td></td> -->
@@ -170,6 +184,22 @@ if (mysqli_num_rows($res) > 0) {
                         </select></td>
                       <td><b>GST Amount</b></td>
                       <td id="gst_amount">00</td>
+                    </tr>
+                    <tr>
+                      <!-- <td></td> -->
+                      <td><b>Service Charge</b></td>
+                      <td><select id="sc" class="js-example-basic-single form-control">
+                          <option selected value=0>00</option>
+                          <option value=5>5%</option>
+                          <option value=8>8%</option>
+                          <option value=10>10%</option>
+                          <option value=12>12%</option>
+                          <option value=15>15%</option>
+                          <option value=18>18%</option>
+                          <option value=20>20%</option>
+                        </select></td>
+                      <td><b>Service Charge Amt</b></td>
+                      <td id="sc_amount">00</td>
                     </tr>
                     <tr>
                       <!-- <td></td> -->
