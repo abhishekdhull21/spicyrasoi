@@ -76,6 +76,13 @@ if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
                 }
             </style>
             <title>Receipt</title>
+            <style>
+                @media print {
+                    #print {
+                        display: none;
+                    }
+                }
+            </style>
         </head>
 
         <body>
@@ -84,7 +91,8 @@ if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
                 Place : <b> <?php echo $title; ?> - <?php echo $tableid; ?> </b>
                 <hr>
                 Date: <?php echo date('Y-m-d'); ?><br>
-                Bill No. <span id="billno">::bill_no::</span>
+                Order No. <span id="billno">::bill_no::</span><br>
+                Kot No. <span id="kotno">::kot_no::</span>
                 <table>
                     <thead>
                         <tr>
@@ -98,18 +106,33 @@ if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
                     <tbody>
                 </table>
 
+                <div style="margin-top:50px;">
+                    <button class="btn btn-default" id="print">Print</button>
+                </div>
             </div>
             <!-- <button id="btnPrint" class="hidden-print">Print</button> -->
             <!-- <script src="script.js"></script> -->
             <script src="plugins/jquery/jquery.min.js"></script>
-
+            <script src="./scripts/request.js"></script>
             <script type="text/javascript">
                 $(document).ready(function() {
                     console.log(JSON.parse(localStorage.getItem("kotbill")));
                     const products = JSON.parse(localStorage.getItem("kotbill"));
                     $('#orderid').html(products.orderid);
                     $('#customerType').html(products.customerType);
-                    $('#billno').html(products.billNo);
+                    $('#billno').html(products.todayOrderNo);
+
+                    ajaxRequest("order/kotInfo.php", {
+                        'today_kots': ""
+                    }, (res) => {
+                        console.log(res);
+                        if (res.success == true) {
+                            $('#kotno').html(res.data.kot_no);
+
+                        } else {
+                            swal("Error", res.error, "error");
+                        }
+                    });
                     products.data.map((d, index) => {
 
 
@@ -123,7 +146,10 @@ if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
                         $("#cartItems").prepend(itemRow)
                     });
                     // $("#grandtotalprice").html(products.totalPrice);
-                    window.addEventListener("load", window.print());
+                    $("#print").on('click', () => {
+                        window.print()
+                    });
+                    // window.print();
                 });
             </script>
         </body>
