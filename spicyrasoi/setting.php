@@ -283,13 +283,15 @@ if (mysqli_num_rows($res) > 0)
                       </div>
 
                     </div>
-                    <a href="addrestaurant.php" class="btn btn-app bg-primary">
+                    <a href="addrestaurant.php" class="btn btn-app bg-warning">
                       <!-- <span class="badge bg-purple">891</span> -->
                       <i class="fas fa-hotel"></i> Add Restaurant
                     </a>
                     <a href="allrestaurant.php" class="btn btn-app bg-primary">
-                      <!-- <span class="badge bg-purple">891</span> -->
                       <i class="fas fa-hotel"></i> View Restaurant
+                    </a>
+                    <a href="restAnalytics.php" class="btn btn-app bg-success">
+                      <i class="fas fa-chart-pie"></i> Restaurant Reoport
                     </a>
                   </div>
                   <!-- /.card-body -->
