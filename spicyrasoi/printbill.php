@@ -154,9 +154,8 @@ if (mysqli_num_rows($res) > 0) {
                           <option value="UPI">UPI</option>
                           <option value="Other">Other</option>
                         </select></td>
-                      <td><b> Remark </b> </td>
-                      <td> <input type="text" class="form-control" id="remark" value=>
-                      </td>
+
+
                     </tr>
                     <tr>
                       <!-- <td></td> -->
@@ -200,7 +199,7 @@ if (mysqli_num_rows($res) > 0) {
                     <tr>
                       <!-- <td></td> -->
                       <td><b>Service Charge (%)</b></td>
-                      <td><select id="sc" class="js-example-basic-single form-control">
+                      <td><select id="service_charge" class="js-example-basic-single form-control">
                           <option selected value=0>00</option>
                           <option value=5>5%</option>
                           <option value=8>8%</option>
@@ -211,7 +210,7 @@ if (mysqli_num_rows($res) > 0) {
                           <option value=20>20%</option>
                         </select></td>
                       <td><b>Service Charge Amt</b></td>
-                      <td id="sc_amount">00</td>
+                      <td id="service_charge_amt">00</td>
                     </tr>
                     <tr>
                       <!-- <td></td> -->
@@ -219,6 +218,12 @@ if (mysqli_num_rows($res) > 0) {
                       <td><input type="number" min=0 class="form-control" id="received" value=<?php echo floor($row['total']); ?>></td>
                       <td><b>Grand Total</b></td>
                       <td id="grand_total">00</td>
+                    </tr>
+                    <tr id="receivedRemarks" style="display: none">
+                      <td><b> Remark </b> </td>
+                      <td>
+                        <textarea type="text" class="form-control form-input" id="remarks"></textarea>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -265,10 +270,16 @@ if (mysqli_num_rows($res) > 0) {
           balance: 0,
           received: 0,
           grand_total: 0,
+          offerPercentage: 0,
+          offerAmount: 0,
+          discountPercentage: 0,
+          serviceChargePercent: 0,
+          serviceChargeAmount: 0,
           gst: 0,
           gst_amount: 0,
           orderid: orderid,
           mode: "Cash",
+          remarks: ""
         }
         // console.log(JSON.parse(localStorage.getItem("bill")));
         // const products = JSON.parse(localStorage.getItem("bill"));
@@ -287,6 +298,7 @@ if (mysqli_num_rows($res) > 0) {
             console.log(result);
             if (result.success == true) {
               bill.total = parseInt(result.data[0].order_value);
+              console.log(bill)
               bill.grand_total = parseInt(result.data[0].order_value);
               $('#grand_total').html(bill.total);
             }
@@ -296,14 +308,34 @@ if (mysqli_num_rows($res) > 0) {
           bill.mode = $('#mode').val();
         })
         $('#discount,#received').on('input', (e) => {
-          bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
-          bill.grand_total = Math.round(bill.total - bill.discount + bill.gst_amount);
-          updateUI(e.currentTarget.id);
-          if (e.currentTarget.id != "discount")
-            bill.received = $('#received').val() != null ? $('#received').val() : 0;
-          bill.balance = Math.round(bill.grand_total - bill.received);
+          const billDiscountPercentage = $('#discount').val() != null ? $('#discount').val() : 0;
+          const billDiscountAmount = Math.round(bill.total / 100) * billDiscountPercentage;
+          bill.discount = parseInt(billDiscountAmount);
+          $('#discount_amount').html(billDiscountAmount);
+
+          console.log(bill.discount);
+          // bill.grand_total = Math.round(bill.total - bill.discount + bill.gst_amount);
+          finalAmount(e.currentTarget.id);
+          if (e.currentTarget.id != "discount") {
+            if ($('#received').val() == 0)
+              $('#receivedRemarks').css("display", "block");
+            else
+              $('#receivedRemarks').css("display", "none");
+
+            bill.received = parseInt($('#received').val() != null ? $('#received').val() : 0);
+          }
+          bill.balance = parseInt(Math.round(bill.grand_total - bill.received));
           // console.log(bill)
         })
+        $('#offer').on('change', () => {
+          billOfferPercentage = parseInt($('#offer').val() != null ? $('#offer').val() : 0);
+          billOfferAmount = parseInt(Math.round(bill.total / 100) * billOfferPercentage);
+          bill.offerPercentage = billOfferPercentage;
+          bill.offerAmount = billOfferAmount;
+          $('#offer_amt').html(billOfferAmount);
+
+          finalAmount();
+        });
         // $('#discount').on('input', () => {
         //   bill.discount = $('#discount').val() != null ? $('#discount').val() : 0;
         //   $('#received').val(bill.total - bill.discount);
@@ -314,12 +346,23 @@ if (mysqli_num_rows($res) > 0) {
         // })
         $('#gst').on('change', (e) => {
           bill.gst = $('#gst').val();
-          bill.gst_amount = Math.round(bill.total * bill.gst / 100);
-          bill.grand_total = Math.round(bill.grand_total + bill.gst_amount);
+          bill.gst_amount = parseInt(Math.round(bill.total * bill.gst / 100));
+          // bill.grand_total = Math.round(bill.grand_total + bill.gst_amount);
           updateUI(e.currentTarget.id);
           $('#gst').attr('disabled', true)
           // console.log(bill);
         })
+        $('#service_charge').on('change', function() {
+          const serviceChargePercent = parseInt($('#service_charge').val());
+          const serviceChargeAmount = parseInt(Math.round(bill.total / 100) * serviceChargePercent);
+          bill.serviceChargeAmount = serviceChargeAmount;
+          bill.serviceChargePercent = serviceChargePercent;
+          $('#service_charge_amt').html(serviceChargeAmount);
+          finalAmount();
+        });
+        $('#receivedRemarks').change(() => {
+          bill.remarks = $('#remarks').val();
+        });
 
         function updateUI(id) {
           $('#gst_amount').html(bill.gst_amount);
@@ -331,6 +374,13 @@ if (mysqli_num_rows($res) > 0) {
 
         }
 
+        function finalAmount(id) {
+          bill.grand_total = bill.total - (bill.discount + bill.offerAmount) + bill.gst_amount + bill.serviceChargeAmount;
+          console.log('finalAmount', bill)
+          if (id)
+            updateUI(id);
+          else updateUI();
+        }
         $('#btnprintbill').on('click', () => {
           bill.received = $('#received').val() != null ? $('#received').val() : 0;
           // bill.grand_total=bill.total;
