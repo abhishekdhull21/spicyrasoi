@@ -101,11 +101,11 @@ if (mysqli_num_rows($res) > 0)
                   <a href="addOffer.php" class="btn btn-app bg-warning">
                     <i class="fas fa-plus-circle"></i> Add Offer
                   </a>
-                  
-                    <a href="addcategory.php" class="btn btn-app bg-danger">
-                      <i class="fas fa-plus-circle"></i> Add Category
-                    </a>
-                
+
+                  <a href="addcategory.php" class="btn btn-app bg-danger">
+                    <i class="fas fa-plus-circle"></i> Add Category
+                  </a>
+
                   <a href="addproduct.php" class="btn btn-app bg-secondary">
                     <i class="fas fa-plus-circle"></i> Add Product
                   </a>
@@ -199,13 +199,13 @@ if (mysqli_num_rows($res) > 0)
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-file-invoice"></i> GST Report
                           </a>
-                         <a href="stock.php" class="btn btn-app bg-success">
+                          <a href="stock.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-cubes"></i> Stock Managment
+                            <i class="fas fa-cubes"></i> Stock Management
                           </a>
                           <a href="analytics.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-chart-pie"></i> Analytics 
+                            <i class="fas fa-chart-pie"></i> Analytics
                           </a>
 
 
@@ -241,7 +241,7 @@ if (mysqli_num_rows($res) > 0)
                         <div class="card-header">
                           <h4 class="card-title w-100">
                             <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false">
-                              Resturant Admin Panel <i class="fas fa-caret-down float-right"></i>
+                              Restaurant Admin Panel <i class="fas fa-caret-down float-right"></i>
                             </a>
                           </h4>
                         </div>
@@ -290,7 +290,7 @@ if (mysqli_num_rows($res) > 0)
                       <i class="fas fa-hotel"></i> View Restaurant
                     </a>
                     <a href="restAnalytics.php" class="btn btn-app bg-success">
-                      <i class="fas fa-chart-pie"></i> Restaurant Reoport
+                      <i class="fas fa-chart-pie"></i> Restaurant Reports
                     </a>
                   </div>
                   <!-- /.card-body -->
