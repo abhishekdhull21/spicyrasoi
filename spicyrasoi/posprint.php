@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once "../config.php";
-// session_start();
-// if (isset($_GET['table'])) {
-//   $tableid = $_GET['table'];
-//   if (!isset($_SESSION['tables']))
-//     $_SESSION['tables'] = array();
-//   $arr = $_SESSION['tables'];
 
-//   $activeTables = sizeof($arr);
-//   if (!in_array($tableid, $arr))
-//     $_SESSION['tables'][$activeTables] = $tableid;
-// }
-// print_r(file_get_contents('php://input'));
 $orderid = isset($_GET['orderid']) ? $_GET['orderid'] : null;
 $sql = "SELECT a.name as restaurant,a.city,a.gst,a.state,a.country,a.district,a.mobile,
 b.name as name,b.bill_no,b.date,b.orderid,b.order_value as total
@@ -24,9 +13,7 @@ $row = mysqli_fetch_assoc($res);
 
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="style.css"> -->
     <style type="text/css">
         * {
             font-size: 12px;
@@ -116,16 +103,16 @@ $row = mysqli_fetch_assoc($res);
                 $sql = "SELECT a.product_name as name, b.price,b.qty,b.subtotal, c.order_value,c.recived, c.pay_type as mode, c.balance, c.gst, c.gst_amount, c.paid as grand_total, c.discount   from product a, orders_product b, orders c where a.product_id = b.product_id and b.orderid = c.orderid and b.orderid = '$orderid'";
                 $rest = mysqli_query($con, $sql);
                 $i = 1;
-                if(mysqli_num_rows($rest)>0)
-                while ($order = mysqli_fetch_assoc($rest)) {
-                    $recived = $order['recived'];
-                    $grand_total = floor($order['grand_total']);
-                    $mode = $order['mode'];
-                    $balance = floor($order['balance']);
-                    $total = floor($order['order_value']);
-                    $discount = $order['discount'];
-                    $gst = $order['gst'];
-                    $gst_amount = $order['gst_amount'];
+                if (mysqli_num_rows($rest) > 0)
+                    while ($order = mysqli_fetch_assoc($rest)) {
+                        $recived = $order['recived'];
+                        $grand_total = floor($order['grand_total']);
+                        $mode = $order['mode'];
+                        $balance = floor($order['balance']);
+                        $total = floor($order['order_value']);
+                        $discount = $order['discount'];
+                        $gst = $order['gst'];
+                        $gst_amount = $order['gst_amount'];
                 ?>
                     <tr>
 
@@ -171,7 +158,7 @@ $row = mysqli_fetch_assoc($res);
 
                         <td class="description"><b>GST</b></td>
                         <!-- <td class="quantity"></td> -->
-                        <td colspan="2" class="price"><b><?php echo ($gst."%"); ?></b></td>
+                        <td colspan="2" class="price"><b><?php echo ($gst . "%"); ?></b></td>
                     </tr>
                 <?php } ?>
                 <?php if (($total - $grand_total) != 0) { ?>
@@ -197,13 +184,14 @@ $row = mysqli_fetch_assoc($res);
         <br>
         <hr>
     </div>
+
+    <div style="margin-top:100px; margin-left:60px;" class="hidden-print">
+        <button onclick="window.print()">Print</button>
+    </div>
     <!-- <button id="btnPrint" class="hidden-print">Print</button> -->
     <!-- <script src="script.js"></script> -->
     <script type="text/javascript">
-  window.addEventListener("load", window.print());
-
-
-
+        window.addEventListener("load", window.print());
     </script>
 </body>
 

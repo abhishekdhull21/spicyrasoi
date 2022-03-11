@@ -9,7 +9,7 @@ from restaurant a, orders b where b.restaurant = a.restaurantid and b.orderid  =
 $res = mysqli_query($con, $sql);
 if (mysqli_num_rows($res) > 0) {
   $row = mysqli_fetch_assoc($res);
-
+  $customerName = $row['name'];
 ?>
 
   <head>
@@ -74,7 +74,7 @@ if (mysqli_num_rows($res) > 0) {
               <div class="col-sm-4 invoice-col">
                 To
                 <address>
-                  <strong><span id="customerName"><?php echo $row['name']; ?></strong><br>
+                  <strong><span id="customerName"><?php echo $customerName; ?></strong><br>
                   <!-- 795 Folsom Ave, Suite 600<br>
           San Francisco, CA 94107<br>
           Phone: (555) 539-1037<br>
@@ -212,19 +212,20 @@ if (mysqli_num_rows($res) > 0) {
                       <td><b>Service Charge Amt</b></td>
                       <td id="service_charge_amt">00</td>
                     </tr>
-                    <tr>
-                      <!-- <td></td> -->
-                      <td><b>Received</b></td>
-                      <td><input type="number" min=0 class="form-control" id="received" value=<?php echo floor($row['total']); ?>></td>
-                      <td><b>Grand Total</b></td>
-                      <td id="grand_total">00</td>
-                    </tr>
-                    <tr id="receivedRemarks" style="display: none">
-                      <td><b> Remark </b> </td>
-                      <td>
-                        <textarea type="text" class="form-control form-input" id="remarks"></textarea>
-                      </td>
-                    </tr>
+                    <?php if (strtolower($customerName)  != 'cash') { ?>
+                      <tr>
+                        <!-- <td></td> -->
+                        <td><b>Received</b></td>
+                        <td><input type="number" min=0 class="form-control" id="received" value=<?php echo floor($row['total']); ?>></td>
+                        <td id="receivedRemarks" style="display: none">
+                          <textarea type="text" class="form-control form-input" placeholder="Remarks for this Payment" id="remarks"></textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Grand Total</b></td>
+                        <td id="grand_total">00</td>
+                      </tr>
+                    <?php  } ?>
                   </tbody>
                 </table>
                 <div class="row no-print">
@@ -395,7 +396,7 @@ if (mysqli_num_rows($res) > 0) {
               if (result.success == true) {
                 window.location.replace('posprint.php?orderid=' + bill.orderid);
               } else {
-                swal("Error Ocurred", "Contact to admin")
+                swal("Error Ocurred", "Contact to administrator")
               }
             },
           });
