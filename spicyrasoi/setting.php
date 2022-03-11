@@ -284,7 +284,6 @@ if (mysqli_num_rows($res) > 0)
 
                     </div>
                     <a href="addrestaurant.php" class="btn btn-app bg-warning">
-                      <!-- <span class="badge bg-purple">891</span> -->
                       <i class="fas fa-hotel"></i> Add Restaurant
                     </a>
                     <a href="allrestaurant.php" class="btn btn-app bg-primary">
