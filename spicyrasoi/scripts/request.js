@@ -1,8 +1,8 @@
 // fetch category
 const constant = {
-  // url: "https://spicyrasoi.com/api/",
+  url: "https://spicyrasoi.com/api/",
   // url: "http://localhost/apidevelopment/",
-  url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
+  // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 
 function ajaxRequest(url, data, success) {

@@ -75,6 +75,7 @@ if (mysqli_num_rows($res) > 0) {
                 To
                 <address>
                   <strong><span id="customerName"><?php echo $customerName; ?></strong><br>
+                  <strong><span id="customerName"><?php echo $customerMob; ?></strong><br>
                   <!-- 795 Folsom Ave, Suite 600<br>
           San Francisco, CA 94107<br>
           Phone: (555) 539-1037<br>
@@ -154,7 +155,8 @@ if (mysqli_num_rows($res) > 0) {
                           <option value="UPI">UPI</option>
                           <option value="Other">Other</option>
                         </select></td>
-
+                      <td><b>Remark</b></td>
+                      <td><input type="text" class="form-control" id="remark" placeholder=""></td>
 
                     </tr>
                     <tr>
@@ -166,6 +168,13 @@ if (mysqli_num_rows($res) > 0) {
                           <option value=8>8%</option>
                           <option value=12>12%</option>
                           <option value=18>18%</option>
+                          <option value=20>20%</option>
+                          <option value=25>25%</option>
+                          <option value=30>30%</option>
+                          <option value=40>40%</option>
+                          <option value=50>50%</option>
+                          <option value=70>70%</option>
+                          <option value=100>100%</option>
                         </select></td>
                       <td><b>Discount Amount</b></td>
                       <td id="discount_amount">00</td>
@@ -174,28 +183,23 @@ if (mysqli_num_rows($res) > 0) {
                       <!-- <td></td> -->
                       <td><b>Offer (%)</b></td>
                       <td><select id="offer" class="js-example-basic-single form-control">
-                          <option selected value=0>00</option>
+                      <option selected value=0>00</option>
                           <option value=5>5%</option>
                           <option value=8>8%</option>
+                          <option value=10>10%</option>
                           <option value=12>12%</option>
+                          <option value=15>15%</option>
                           <option value=18>18%</option>
+                          <option value=20>20%</option>
+                          <option value=25>25%</option>
+                          <option value=30>30%</option>
+                          <option value=40>40%</option>
+                          <option value=50>50%</option>
                         </select></td>
                       <td><b>Offer Amount</b></td>
                       <td id="offer_amt">00</td>
                     </tr>
-                    <tr>
-                      <!-- <td></td> -->
-                      <td><b>GST (%)</b></td>
-                      <td><select id="gst" class="js-example-basic-single form-control">
-                          <option selected value=0>00</option>
-                          <option value=5>5%</option>
-                          <option value=8>8%</option>
-                          <option value=12>12%</option>
-                          <option value=18>18%</option>
-                        </select></td>
-                      <td><b>GST Amount</b></td>
-                      <td id="gst_amount">00</td>
-                    </tr>
+                  
                     <tr>
                       <!-- <td></td> -->
                       <td><b>Service Charge (%)</b></td>
@@ -212,6 +216,19 @@ if (mysqli_num_rows($res) > 0) {
                       <td><b>Service Charge Amt</b></td>
                       <td id="service_charge_amt">00</td>
                     </tr>
+                    <tr>
+                      <!-- <td></td> -->
+                      <td><b>GST (%)</b></td>
+                      <td><select id="gst" class="js-example-basic-single form-control">
+                          <option selected value=0>00</option>
+                          <option value=5>5%</option>
+                          <option value=8>8%</option>
+                          <option value=12>12%</option>
+                          <option value=18>18%</option>
+                        </select></td>
+                      <td><b>GST Amount</b></td>
+                      <td id="gst_amount">00</td>
+                    </tr>
                     <?php if (strtolower($customerName)  != 'cash') { ?>
                       <tr>
                         <!-- <td></td> -->
@@ -221,11 +238,12 @@ if (mysqli_num_rows($res) > 0) {
                           <textarea type="text" class="form-control form-input" placeholder="Remarks for this Payment" id="remarks"></textarea>
                         </td>
                       </tr>
+                      <?php  } ?>
                       <tr>
                         <td><b>Grand Total</b></td>
                         <td id="grand_total">00</td>
                       </tr>
-                    <?php  } ?>
+                    
                   </tbody>
                 </table>
                 <div class="row no-print">
@@ -310,7 +328,7 @@ if (mysqli_num_rows($res) > 0) {
         })
         $('#discount,#received').on('input', (e) => {
           const billDiscountPercentage = $('#discount').val() != null ? $('#discount').val() : 0;
-          const billDiscountAmount = Math.round(bill.total / 100) * billDiscountPercentage;
+          const billDiscountAmount = Math.round(bill.total  * billDiscountPercentage/ 100);
           bill.discount = parseInt(billDiscountAmount);
           $('#discount_amount').html(billDiscountAmount);
 
@@ -330,7 +348,7 @@ if (mysqli_num_rows($res) > 0) {
         })
         $('#offer').on('change', () => {
           billOfferPercentage = parseInt($('#offer').val() != null ? $('#offer').val() : 0);
-          billOfferAmount = parseInt(Math.round(bill.total / 100) * billOfferPercentage);
+          billOfferAmount = parseInt(Math.round(bill.total  * billOfferPercentage / 100));
           bill.offerPercentage = billOfferPercentage;
           bill.offerAmount = billOfferAmount;
           $('#offer_amt').html(billOfferAmount);
@@ -355,7 +373,7 @@ if (mysqli_num_rows($res) > 0) {
         })
         $('#service_charge').on('change', function() {
           const serviceChargePercent = parseInt($('#service_charge').val());
-          const serviceChargeAmount = parseInt(Math.round(bill.total / 100) * serviceChargePercent);
+          const serviceChargeAmount = parseInt(Math.round(bill.total  * serviceChargePercent / 100));
           bill.serviceChargeAmount = serviceChargeAmount;
           bill.serviceChargePercent = serviceChargePercent;
           $('#service_charge_amt').html(serviceChargeAmount);

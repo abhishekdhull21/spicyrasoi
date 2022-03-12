@@ -20,6 +20,8 @@ require_once('logininfo.php');
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
@@ -54,8 +56,9 @@ require_once('logininfo.php');
               <?php
               }
               ?>
-              <marquee behavior="alternate"; direction="right"; class="font-effect-fire">
-              <h1 class="m-0" style="color: green; font-family: cursive;" ><?php echo mysqli_fetch_assoc($res)['name']; ?> </h1>
+              <marquee behavior="alternate"; direction="right"; onmouseover="this.stop();" onmouseout="this.start();" >
+              <h2 class="btn btn-success m-0"  ><?php echo mysqli_fetch_assoc($res)['name']; ?> </h2>
+              <!-- <span class="btn btn-warning btn-sm"> To Know Update's Click Here</span> -->
               </marquee>
             </div><!-- /.col -->
             <!-- <div class="col-sm-6">
@@ -144,8 +147,11 @@ require_once('logininfo.php');
   <script src="dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
+  <!-- Toastr -->
+<script src="plugins/toastr/toastr.min.js"></script>
 
   <?php include_once('isloginfooter.php'); ?>
+  
 </body>
 
 </html>

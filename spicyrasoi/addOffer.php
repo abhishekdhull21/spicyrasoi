@@ -115,7 +115,7 @@
                   </div>
                   <div class="form-group">
                     <label for="offerValue">Amount (In %)</label>
-                    <select id="offerValue" class="form-control js-example-basic-single ">
+                    <select id="offerValue" class="form-control  ">
                           <option selected value=0>00</option>
                           <option value=5>5%</option>
                           <option value=8>8%</option>
@@ -124,6 +124,23 @@
                           <option value=15>15%</option>
                           <option value=18>18%</option>
                           <option value=20>20%</option>
+                          <option value=25>25%</option>
+                          <option value=30>30%</option>
+                          <option value=40>40%</option>
+                          <option value=50>50%</option>
+                        </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="offerTime">Valid UpTo</label>
+                    <select id="offerTime" class="form-control  ">
+                          <option selected value=1>1 Day</option>
+                          <option value=2>2 Day</option>
+                          <option value=3>3 Day</option>
+                          <option value=5>5 Day</option>
+                          <option value=7>1 Week</option>
+                          <option value=15>15 Days</option>
+                          <option value=30>1 Month</option>
+                          <option value=100>Always</option>
                         </select>
                   </div>
                 </div>
@@ -158,16 +175,17 @@
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">S.No.</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Amount (%)</th>
-                              <!-- <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Action</th> -->
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Created On</th>
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Valid UpTo (Days)</th>
 
                             </tr>
                           </thead>
                           <tbody>
                             <?php
                             $i = 1;
-                            echo $sql = "SELECT * FROM offers where restaurant = $restaurant and status = 1";
+                             $sql = "SELECT * FROM offers where restaurant = $restaurant and status = 1";
                             $res = mysqli_query($con, $sql);
-                            print_r($res);
+                            // print_r($res);
                             while ($row = mysqli_fetch_assoc($res)) {
                               $i++;
                             ?>
@@ -177,6 +195,8 @@
                                 </td>
                                 <td class="sorting_1"><?php echo $row['offer_text']; ?></td>
                                 <td class="sorting_1"><?php echo $row['offer_value']; ?></td>
+                                <td class="sorting_1"><?php echo $row['offer_date']; ?></td>
+                                <td class="sorting_1"><?php echo $row['offer_upto']; ?></td>
                                 <!-- <td><a href="#"> <i class="fas fa-trash-alt" data-catid="<?php  ?>" onclick="deleteCategory(this);"> Remove</i></a> </td> -->
 
 
@@ -272,6 +292,7 @@
     function addOffer() {
       const offerText = $('#offerText').val();
       const offerValue = $('#offerValue').val();
+      const offerTime = $('#offerTime').val();
       $.ajax({
         url: constant.url + "offers/add.php",
         method: "POST",
@@ -279,7 +300,8 @@
           admin_id,
           restaurant,
           offerText,
-          offerValue
+          offerValue,
+          offerTime
         }),
         contentType: "application/json",
         dataType: "json",
