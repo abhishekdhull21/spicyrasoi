@@ -100,7 +100,7 @@ $row = mysqli_fetch_assoc($res);
             </thead>
             <tbody>
                 <?php
-                $sql = "SELECT a.product_name as name, b.price,b.qty,b.subtotal, c.order_value,c.recived, c.pay_type as mode, c.balance, c.gst, c.gst_amount, c.paid as grand_total, c.discount   from product a, orders_product b, orders c where a.product_id = b.product_id and b.orderid = c.orderid and b.orderid = '$orderid'";
+                $sql = "SELECT a.product_name as name, b.price,b.qty,b.subtotal, c.order_value,c.recived, c.pay_type as mode, c.balance, c.gst, c.gst_amount, c.paid as grand_total, c.discount,c.offer, c.service_charge  from product a, orders_product b, orders c where a.product_id = b.product_id and b.orderid = c.orderid and b.orderid = '$orderid'";
                 $rest = mysqli_query($con, $sql);
                 $i = 1;
                 if (mysqli_num_rows($rest) > 0)
@@ -179,14 +179,14 @@ $row = mysqli_fetch_assoc($res);
                         <td colspan="2" class="price"><b><?php echo ($service_charge . "%"); ?></b></td>
                     </tr>
                 <?php } ?>
-                
-                    <tr>
 
-                        <td class="description"><b>Grand Total</b></td>
-                        <td class="quantity"></td>
-                        <td colspan="2" class="price"><b><?php echo $grand_total; ?></b></td>
-                    </tr>
-               
+                <tr>
+
+                    <td class="description"><b>Grand Total</b></td>
+                    <td class="quantity"></td>
+                    <td colspan="2" class="price"><b><?php echo $grand_total; ?></b></td>
+                </tr>
+
                 <tr>
 
                     <td class="description">By</td>
