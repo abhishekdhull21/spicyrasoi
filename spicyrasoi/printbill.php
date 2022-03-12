@@ -312,7 +312,8 @@ if (mysqli_num_rows($res) > 0) {
             console.log(result);
             if (result.success == true) {
               bill.total = parseInt(result.data[0].order_value);
-              console.log(bill)
+              // console.log(bill)
+              bill.received = bill.total;
               bill.grand_total = parseInt(result.data[0].order_value);
               $('#grand_total').html(bill.total);
             }
