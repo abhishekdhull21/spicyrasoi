@@ -75,7 +75,7 @@ if (mysqli_num_rows($res) > 0) {
                 To
                 <address>
                   <strong><span id="customerName"><?php echo $customerName; ?></strong><br>
-                  <strong><span id="customerName"><?php echo $customerMob; ?></strong><br>
+                  <!-- <strong><span id="customerName"><?php echo $customerMob; ?></strong><br> -->
                   <!-- 795 Folsom Ave, Suite 600<br>
           San Francisco, CA 94107<br>
           Phone: (555) 539-1037<br>
@@ -183,23 +183,18 @@ if (mysqli_num_rows($res) > 0) {
                       <!-- <td></td> -->
                       <td><b>Offer (%)</b></td>
                       <td><select id="offer" class="js-example-basic-single form-control">
-                      <option selected value=0>00</option>
-                          <option value=5>5%</option>
-                          <option value=8>8%</option>
-                          <option value=10>10%</option>
-                          <option value=12>12%</option>
-                          <option value=15>15%</option>
-                          <option value=18>18%</option>
-                          <option value=20>20%</option>
-                          <option value=25>25%</option>
-                          <option value=30>30%</option>
-                          <option value=40>40%</option>
-                          <option value=50>50%</option>
+                          <option selected value=0>00</option>
+                          <?php
+                          $sql = "SELECT * FROM `offers` WHERE status =1 order by offer_value";
+                          $res = mysqli_query($con, $sql);
+                          while ($row = mysqli_fetch_assoc($res)) { ?>
+                            <option value="<?php echo $row['offer_value']; ?>"><?php echo $row['offer_text']; ?></option>
+                          <?php } ?>
                         </select></td>
                       <td><b>Offer Amount</b></td>
                       <td id="offer_amt">00</td>
                     </tr>
-                  
+
                     <tr>
                       <!-- <td></td> -->
                       <td><b>Service Charge (%)</b></td>
@@ -238,12 +233,12 @@ if (mysqli_num_rows($res) > 0) {
                           <textarea type="text" class="form-control form-input" placeholder="Remarks for this Payment" id="remarks"></textarea>
                         </td>
                       </tr>
-                      <?php  } ?>
-                      <tr>
-                        <td><b>Grand Total</b></td>
-                        <td id="grand_total">00</td>
-                      </tr>
-                    
+                    <?php  } ?>
+                    <tr>
+                      <td><b>Grand Total</b></td>
+                      <td id="grand_total">00</td>
+                    </tr>
+
                   </tbody>
                 </table>
                 <div class="row no-print">
@@ -328,7 +323,7 @@ if (mysqli_num_rows($res) > 0) {
         })
         $('#discount,#received').on('input', (e) => {
           const billDiscountPercentage = $('#discount').val() != null ? $('#discount').val() : 0;
-          const billDiscountAmount = Math.round(bill.total  * billDiscountPercentage/ 100);
+          const billDiscountAmount = Math.round(bill.total * billDiscountPercentage / 100);
           bill.discount = parseInt(billDiscountAmount);
           $('#discount_amount').html(billDiscountAmount);
 
@@ -348,7 +343,7 @@ if (mysqli_num_rows($res) > 0) {
         })
         $('#offer').on('change', () => {
           billOfferPercentage = parseInt($('#offer').val() != null ? $('#offer').val() : 0);
-          billOfferAmount = parseInt(Math.round(bill.total  * billOfferPercentage / 100));
+          billOfferAmount = parseInt(Math.round(bill.total * billOfferPercentage / 100));
           bill.offerPercentage = billOfferPercentage;
           bill.offerAmount = billOfferAmount;
           $('#offer_amt').html(billOfferAmount);
@@ -373,7 +368,7 @@ if (mysqli_num_rows($res) > 0) {
         })
         $('#service_charge').on('change', function() {
           const serviceChargePercent = parseInt($('#service_charge').val());
-          const serviceChargeAmount = parseInt(Math.round(bill.total  * serviceChargePercent / 100));
+          const serviceChargeAmount = parseInt(Math.round(bill.total * serviceChargePercent / 100));
           bill.serviceChargeAmount = serviceChargeAmount;
           bill.serviceChargePercent = serviceChargePercent;
           $('#service_charge_amt').html(serviceChargeAmount);
@@ -388,7 +383,7 @@ if (mysqli_num_rows($res) > 0) {
           if (id != "received")
             $('#received').val(bill.grand_total);
           $('#grand_total').html(bill.grand_total);
-          finalAmount();
+          // finalAmount();
           // $('#grand_total').html(bill.grand_total);
 
         }
