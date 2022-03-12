@@ -361,9 +361,10 @@ if (mysqli_num_rows($res) > 0) {
         // })
         $('#gst').on('change', (e) => {
           bill.gst = $('#gst').val();
-          bill.gst_amount = parseInt(Math.round(bill.total * bill.gst / 100));
+          billGstAmount = parseInt(Math.round(bill.total * bill.gst / 100));
+          bill.gst_amount = billGstAmount;
           // bill.grand_total = Math.round(bill.grand_total + bill.gst_amount);
-          updateUI(e.currentTarget.id);
+          finalAmount(e.currentTarget.id);
           $('#gst').attr('disabled', true)
           // console.log(bill);
         })
