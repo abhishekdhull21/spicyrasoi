@@ -113,6 +113,8 @@ $row = mysqli_fetch_assoc($res);
                         $discount = $order['discount'];
                         $gst = $order['gst'];
                         $gst_amount = $order['gst_amount'];
+                        $offer = $order['offer'];
+                        $service_charge = $order['service_charge'];
                 ?>
                     <tr>
 
@@ -161,14 +163,30 @@ $row = mysqli_fetch_assoc($res);
                         <td colspan="2" class="price"><b><?php echo ($gst . "%"); ?></b></td>
                     </tr>
                 <?php } ?>
-                <?php if (($total - $grand_total) != 0) { ?>
+                <?php if ($offer > 0) { ?>
+                    <tr>
+
+                        <td class="description"><b>Offer</b></td>
+                        <!-- <td class="quantity"></td> -->
+                        <td colspan="2" class="price"><b><?php echo ($offer . "%"); ?></b></td>
+                    </tr>
+                <?php } ?>
+                <?php if ($service_charge > 0) { ?>
+                    <tr>
+
+                        <td class="description"><b>Service Charge</b></td>
+                        <!-- <td class="quantity"></td> -->
+                        <td colspan="2" class="price"><b><?php echo ($service_charge . "%"); ?></b></td>
+                    </tr>
+                <?php } ?>
+                
                     <tr>
 
                         <td class="description"><b>Grand Total</b></td>
                         <td class="quantity"></td>
                         <td colspan="2" class="price"><b><?php echo $grand_total; ?></b></td>
                     </tr>
-                <?php } ?>
+               
                 <tr>
 
                     <td class="description">By</td>

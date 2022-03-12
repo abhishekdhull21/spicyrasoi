@@ -388,7 +388,7 @@ if (mysqli_num_rows($res) > 0) {
           if (id != "received")
             $('#received').val(bill.grand_total);
           $('#grand_total').html(bill.grand_total);
-
+          finalAmount();
           // $('#grand_total').html(bill.grand_total);
 
         }
