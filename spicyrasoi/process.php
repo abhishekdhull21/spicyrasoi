@@ -160,7 +160,7 @@ require_once("islogin.php");
                                 <!-- <td><?php echo $row['pay_type']; ?></td> -->
 
 
-                                <td><a target="_blank" href="printbill.php?orderid=<?php echo $orderid; ?>"><i class="fas fa-print"> Print</i></a> | <a href="genbill.php?table=<?php echo  $tableid . '&group=' . $table_cat . '&name=' . $tablename; ?>"> <i class="fas fa-edit"> Add Item</i> </a></td>
+                                <td><a target="_blank" class="btn btn-success btn-sm" href="printbill.php?orderid=<?php echo $orderid; ?>"><i class="fas fa-print"> Print</i></a> | <a class="btn btn-warning btn-sm" href="genbill.php?table=<?php echo  $tableid . '&group=' . $table_cat . '&name=' . $tablename; ?>"> <i class="fas fa-edit"> Add Item</i> </a> | <a target="_blank" class="btn btn-success btn-sm" href="posprint.php?orderid=<?php echo $orderid; ?>"><i class="fas fa-receipt"> Preview</i></a></td>
                               </tr>
                             <?php } ?>
                           </tbody>

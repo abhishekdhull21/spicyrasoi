@@ -117,10 +117,11 @@ require_once("islogin.php");
             <!-- left column -->
             <div class="col-md-4">
               <?php
-              $swl = "SELECT user_name from customer where  user_id = $customerid";
+              $swl = "SELECT user_name, user_mobile from customer where  user_id = $customerid";
               $res = mysqli_query($con, $swl);
               $row = mysqli_fetch_assoc($res);
               $cust_name = $row['user_name'];
+              $cust_mobile = $row['user_mobile'];
               ?>
               <div class="row">
                 <!-- left column -->
@@ -218,13 +219,14 @@ require_once("islogin.php");
                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Balance</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Mode</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Remarks</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Share</th>
                              
 
                             </tr>
                           </thead>
                           <tbody>
                             <?php
-                            $sql = "SELECT id,orderid,order_value,pay_type,paid balance,order_type,date,remarks FROM `orders` WHERE restaurant = $restaurant and user_id = $customerid order by date desc";
+                            $sql = "SELECT id,orderid,order_value,pay_type,paid, balance,order_type,date,remarks FROM `orders` WHERE restaurant = $restaurant and user_id = $customerid order by date desc";
                             $res = $con->query($sql);
                             while ($row = $res->fetch_assoc()) {
                               //echo "id: " . $row["user_id"]. " - Name: " . $row["user_name"]. " " . $row["user_email"]. "<br>";
@@ -233,28 +235,18 @@ require_once("islogin.php");
 
                               <tr class="odd">
                                 <td class="dtr-control"><?php echo $row['date']; ?> </td>
-                                <td class="dtr-control"><a href="printbill.php?orderid=<?php echo $orderid;?>" target="_blank">
+                                <td class="dtr-control"><a href="posprint.php?orderid=<?php echo $orderid;?>" target="_blank">
                                   <?php echo $row['id']; ?> </a></td>
                                 <td class="sorting_1"><?php echo $row['pay_type']; ?></td>
-                                <td><?php echo $row['order_value']; ?> </td>
+                                <td><?php echo $row['paid']; ?> </td>
                                 <td><?php echo $row['balance']; ?> </td>
                                 <td class="dtr-control"><?php echo $row['order_type']; // TODO: change this paymode
                                                         ?>
                                 </td>
 
                                 <td><?php echo $row['remarks']; ?></td>
-                                <!-- <td>
-                                    <div class="btn-group">
-                                        <button type="button" onclick="href.location='printbill.php?orderid=<?php echo $orderid; ?>'" class="btn btn-info">View</button>
-                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <div class="dropdown-menu" role="menu">
-                                            <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>">View</a>
-                                            <a class="dropdown-item" href="#">Edit</a>
-                                        </div>
-                                    </div>
-                                </td> -->
+                                <td><a href="https://api.whatsapp.com/send/?phone=91<?php echo $cust_mobile; ?>&text=https://spicyrasoi.com/spicyrasoi/posprint.php?orderid=<?php echo $orderid;?>" class="btn btn-success btn-sm">Share</a></td>
+                               
                               </tr>
                             <?php } ?>
 

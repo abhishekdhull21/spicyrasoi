@@ -155,8 +155,8 @@ if (mysqli_num_rows($res) > 0) {
                           <option value="UPI">UPI</option>
                           <option value="Other">Other</option>
                         </select></td>
-                      <td><b>Remark</b></td>
-                      <td><input type="text" class="form-control" id="remark" placeholder=""></td>
+                      <td><b></b></td>
+                      <td></td>
 
                     </tr>
                     <tr>

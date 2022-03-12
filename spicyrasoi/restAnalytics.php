@@ -138,8 +138,8 @@ require_once("islogin.php");
 
                                                             <tr class="odd">
                                                                 <td class="dtr-control"><?php echo $row['name']; ?> </td>
-                                                                <td class="dtr-control"><?php echo  $row['mobile']; ?> </td>
-                                                                <td class="sorting_1"><?php echo $row['address']; ?></td>
+                                                                <td class="dtr-control"><?php echo  $row['address']; ?> </td>
+                                                                <td class="sorting_1"><?php echo $row['mobile']; ?></td>
                                                                 <td><?php echo $row['order_value']; ?> </td>
                                                                 <!-- <td class="dtr-control"><?php echo $mode; 
                                                                                         ?>
@@ -153,7 +153,7 @@ require_once("islogin.php");
                                                                 </td> -->
                                                                 <td>
                                                                     <div class="btn-group">
-                                                                        <button type="button" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>" class="btn btn-info">Action</button>
+                                                                        <button type="button" target="_blank" href="#" class="btn btn-info">Action</button>
                                                                         <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
                                                                             <span class="sr-only">Toggle Dropdown</span>
                                                                         </button>
