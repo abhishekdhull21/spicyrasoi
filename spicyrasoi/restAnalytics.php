@@ -131,9 +131,10 @@ require_once("islogin.php");
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = "SELECT a.name, a.mobile, a.address, sum(b.order_value) AS order_value FROM restaurant a, orders b where a.restaurantid = b.restaurant GROUP BY a.name;";
+                                                        $sql = "SELECT a.restaurantid,a.name, a.mobile, a.address, sum(b.order_value) AS order_value FROM restaurant a, orders b where a.restaurantid = b.restaurant GROUP BY a.name;";
                                                         $res = $con->query($sql);
                                                         while ($row = $res->fetch_assoc()) {
+                                                            $restaurant_id = $row['restaurantid'];
                                                         ?>
 
                                                             <tr class="odd">
@@ -147,7 +148,7 @@ require_once("islogin.php");
 
                                                                 <!-- <td>
                                                                     <ul>
-                                                                        <li><?php echo ("Pednding"); ?></li>
+                                                                        <li><?php echo ("Pending"); ?></li>
                                                                         <li>Table:<?php echo ("Pending"); ?></li>
                                                                     </ul>
                                                                 </td> -->
@@ -158,66 +159,66 @@ require_once("islogin.php");
                                                                             <span class="sr-only">Toggle Dropdown</span>
                                                                         </button>
                                                                         <div class="dropdown-menu" role="menu">
-                                                                            <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>"><span class="btn btn-warning btn-sm">View </span></a>
+                                                                            <!-- <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>"><span class="btn btn-warning btn-sm">View </span></a> -->
                                                                             <a class="dropdown-item" href="https://api.whatsapp.com/send/?phone=91<?php echo  $row['mobile']; ?>&text=Hi *<?php echo $row['name']; ?>*. Your Total Sale Value  is Rs *<?php echo $row['order_value']; ?>*. Sales Report From Spicy Rasoi."> <span class="btn btn-success btn-sm">Whatsapp</span></a>
                                                                             <a class="dropdown-item"> </a>
-                                                                           
+
                                                                         </div>
                                                                     </div>
-                                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default1">
-                                                                                    Reset ID
-                                                                                </button>
-                                                                                 <!-- Pop Window Body -->
-                                                                            <div class="modal fade" id="modal-default1" style="display: none;" aria-hidden="true">
-                                                                                <div class="modal-dialog">
-                                                                                    <div class="modal-content">
-                                                                                        <div class="modal-header">
-                                                                                            <h4 class="modal-title">Reset </h4>
-                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                                <span aria-hidden="true">×</span>
-                                                                                            </button>
+                                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default<?php echo $restaurant_id; ?>">
+                                                                        Reset ID
+                                                                    </button>
+                                                                    <!-- Pop Window Body -->
+                                                                    <div class="modal fade" id="modal-default<?php echo $restaurant_id; ?>" style="display: none;" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h4 class="modal-title">Reset </h4>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">×</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <div class="card card-success">
+                                                                                        <div class="card-header">
+                                                                                            <h3 class="card-title">Verify</h3>
                                                                                         </div>
-                                                                                        <div class="modal-body">
-                                                                                            <div class="card card-success">
-                                                                                                <div class="card-header">
-                                                                                                    <h3 class="card-title">Verify</h3>
-                                                                                                </div>
-                                                                                                <!-- /.card-header -->
-                                                                                                <!-- form start -->
-                                                                                                <form>
-                                                                                                    <div class="card-body">
-                                                                                                        <div class="form-group">
-                                                                                                            <label for="customer_mob_no">Enter OTP</label>
-                                                                                                            <input type="number" class="form-control" id="customer_mob_no" placeholder="Enter OTP"><br>
+                                                                                        <!-- /.card-header -->
+                                                                                        <!-- form start -->
 
-                                                                                                        </div>
-                                                                                                        <div class="form-group">
-                                                                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                                                                        </div>
-
-                                                                                                    </div>
+                                                                                        <div class="card-body">
+                                                                                            <div class="form-group">
+                                                                                                <label for="customer_mob_no">Enter OTP</label>
+                                                                                                <input type="number" class="form-control" id="verify_otp_<?php echo $restaurant_id; ?>" placeholder="Enter OTP"><br>
+                                                                                                <input type="hidden" id="restaurant_id_<?php echo $restaurant_id; ?>">
 
                                                                                             </div>
-                                                                                            <!-- /.card-body -->
+                                                                                            <div class="form-group">
+                                                                                                <button id="btn_verify_otp_<?php echo $restaurant_id; ?>" onclick="verifyOtp(<?php echo $restaurant_id; ?>);" class="btn btn-primary">Submit</button>
+                                                                                            </div>
 
-                                                                                            <!-- <div class="card-footer">
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <!-- /.card-body -->
+
+                                                                                    <!-- <div class="card-footer">
                                                                                                 
                                                                                                 <button type="submit" disabled="true" class="btn btn-primary" id="btnCustomerSelect">Select</button>
                                                                                             </div> -->
-                                                                                            </form>
 
 
-                                                                                        </div>
-                                                                                        <!-- <div class="modal-footer justify-content-between">
+                                                                                </div>
+                                                                                <!-- <div class="modal-footer justify-content-between">
                                                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                                                             <button type="button" class="btn btn-primary">Save changes</button>
                                                                                         </div> -->
-                                                                                    </div>
-                                                                                    <!-- /.modal-content -->
-                                                                                </div>
-                                                                                <!-- /.modal-dialog -->
                                                                             </div>
-                                                                            <!-- /popup -->
+                                                                            <!-- /.modal-content -->
+                                                                        </div>
+                                                                        <!-- /.modal-dialog -->
+                                                                    </div>
+                                                                    <!-- /popup -->
                                                                 </td>
                                                             </tr>
                                                         <?php } ?>
@@ -294,6 +295,7 @@ require_once("islogin.php");
     <script src="plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
     <script src="plugins/sparklines/sparkline.js"></script>
+
     <!-- Sweetalert2 -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- JQVMap -->
@@ -316,8 +318,45 @@ require_once("islogin.php");
     <script src="dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
+    <!-- <script src="./scripts/request.js"></script> -->
 
     <?php require_once("isloginfooter.php"); ?>
 </body>
+<script>
+    function verifyOtp(restaurant) {
+        // $(e).preventDefault();
+        // alert(restaurant)
+        const otp = $(`#verify_otp_${restaurant}`).val();
+        // const restaurantID = $(`#restaurant_id_${restaurant}`).val();
+
+        swal({
+            title: 'Warning',
+            text: "Action not reversible it delete all data permanently...",
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true
+        }).then((res) => {
+            if (res) {
+                ajaxRequest('verify.php', {
+                    restaurant,
+                    otp
+                }, (data) => {
+                    if (data.success) {
+                        swal("Deleted", "You deleted restaurant orders", "success");
+                    } else {
+                        swal("Not Deleted!!", "error:" + data.error, 'error');
+                    }
+                }, {
+                    send: () => {
+                        console.log('sent...')
+                    }
+                });
+
+            }
+        });
+
+
+    }
+</script>
 
 </html>

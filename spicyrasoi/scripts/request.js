@@ -5,7 +5,13 @@ const constant = {
   url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 
-function ajaxRequest(url, data, success) {
+function ajaxRequest(url, data, success, optional) {
+  const { error, complete, send } = optional;
+  // console.log(optional);
+  if (error != null) $(document).ajaxError(error);
+  if (complete != null) $(document).ajaxComplete(complete);
+  if (send != null) $(document).ajaxSend(send);
+
   $.ajax({
     url: constant.url + url,
     method: "POST",
@@ -13,6 +19,7 @@ function ajaxRequest(url, data, success) {
     contentType: "application/json",
     dataType: "json",
     success: success,
+    error: error != null ? error : null,
   });
 }
 $(document).ready(function () {
