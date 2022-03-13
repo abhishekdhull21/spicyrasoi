@@ -15,7 +15,7 @@ define('ROOTPATH', dirname(__FILE__));
 $file = fopen("./logs/" . date("d-m-y") . ".txt", "a");
 
 fwrite($file, (date('H:i:s') . " verify.php," . file_get_contents('php://input') . "\n"));
-
+sleep(1);
 $response = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // The request is using the POST method
