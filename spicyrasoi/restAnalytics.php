@@ -40,9 +40,15 @@ require_once("islogin.php");
     <div class="wrapper">
 
         <!-- Preloader -->
-        <!-- <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-    </div> -->
+        <div id="loader" class=" flex-column justify-content-center align-items-center" style="
+            display:none;
+            height: 100%;
+            width: 100%;
+            z-index: 10000;
+            position: absolute;
+            background: #23232396;">
+            <img class=" animation__shake" src="dist/img/ripple.svg" alt="loading..." style="margin-top:45vh; margin-left:40vw;">
+        </div>
 
         <!-- Navbar -->
         <?php
@@ -187,10 +193,10 @@ require_once("islogin.php");
                                                                                         <!-- form start -->
 
                                                                                         <div class="card-body">
-                                                                                        <div class="overlay">
+                                                                                            <!-- <div class="overlay">
                                                                                                 <i class="fas fa-3x fa-sync-alt"></i>
-                                                                                                </div>
-                                                                                                <div class="form-group">
+                                                                                            </div> -->
+                                                                                            <div class="form-group">
                                                                                                 <label for="customer_mob_no">Enter OTP</label>
                                                                                                 <input type="number" class="form-control" id="verify_otp_<?php echo $restaurant_id; ?>" placeholder="Enter OTP"><br>
                                                                                                 <input type="hidden" id="restaurant_id_<?php echo $restaurant_id; ?>">
@@ -345,13 +351,22 @@ require_once("islogin.php");
                     otp
                 }, (data) => {
                     if (data.success) {
+                        $("#loader").css('display', 'none');
+
                         swal("Deleted", "You deleted restaurant orders", "success");
                     } else {
                         swal("Not Deleted!!", "error:" + data.error, 'error');
                     }
                 }, {
                     send: () => {
-                        console.log('sent...')
+                        $("#loader").css('display', 'block');
+
+                    },
+                    complete: () => {
+                        $("#loader").css('display', 'none');
+                    },
+                    error: () => {
+                        $("#loader").css('display', 'none');
                     }
                 });
 
