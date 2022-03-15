@@ -204,7 +204,7 @@ if (mysqli_num_rows($res) > 0)
                             <i class="fas fa-cubes"></i> Stock Management
                           </a>
                           <a href="analytics.php" class="btn btn-app bg-success">
-                            <!-- <span class="badge bg-purple">891</span> -->
+                            <span class="badge bg-purple">Beta</span>
                             <i class="fas fa-chart-pie"></i> Analytics
                           </a>
 

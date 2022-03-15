@@ -49,29 +49,10 @@ require_once("islogin.php");
         include_once("navbar.php");
         // require_once("../config.php");
         require_once("logininfo.php");
-        //  $con = mysqli_connect($host, $username, $password, $db);
-
-        //  if (mysqli_connect_errno()){
-        //  echo("Error");
-        //  }
-        //  else
-        //  {
-        //    //echo("Successfull");
-        //    if ($res->num_rows > 0) {
-        //       //echo "Output fetched successfully";
-
-        //       }
-        //  }
-        //die("error");
+       
         date_default_timezone_set("Asia/Calcutta");
 
-        //  $sql = "SELECT * FROM users ";
-        //  $result = $conn->query($sql);
-
-        // if ($result->num_rows > 0) {
-        // 	echo "Output fetched successfully";
-
-        //}
+       
 
         ?>
         <!-- /.navbar -->
@@ -131,7 +112,7 @@ require_once("islogin.php");
                                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Total Amount</th>
                                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Mode</th>
                                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">From</th>
-                                                            <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th> -->
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Action</th>
                                                             <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >Unite Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending"  >HSN Code</th> -->
                                                         </tr>
@@ -160,6 +141,7 @@ require_once("islogin.php");
                                                                         <li>Table:<?php echo $row['tableid']; ?></li>
                                                                     </ul>
                                                                 </td>
+                                                                <td class="dtr-control"> <a class="btn btn-success btn-sm" href="posprint.php?orderid=<?php echo $orderid;?>" target="_blank">View</a> </td>
                                                                 <!-- <td>
                                                                     <div class="btn-group">
                                                                         <button type="button" onclick="href.location='printbill.php?orderid=<?php echo $orderid; ?>'" class="btn btn-info">View</button>

@@ -177,6 +177,7 @@
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Amount (%)</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Created On</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Valid UpTo (Days)</th>
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Action</th>
 
                             </tr>
                           </thead>
@@ -197,10 +198,8 @@
                                 <td class="sorting_1"><?php echo $row['offer_value']; ?></td>
                                 <td class="sorting_1"><?php echo $row['offer_date']; ?></td>
                                 <td class="sorting_1"><?php echo $row['offer_upto']; ?></td>
-                                <!-- <td><a href="#"> <i class="fas fa-trash-alt" data-catid="<?php  ?>" onclick="deleteCategory(this);"> Remove</i></a> </td> -->
-
-
-
+                                <td class="sorting_1"><a href="#" class="btn btn-danger btn-sm">Stop</a></td>
+                                
                               </tr>
                             <?php } ?>
 

@@ -193,10 +193,10 @@ require_once("islogin.php");
                                                                                         <!-- form start -->
 
                                                                                         <div class="card-body">
-                                                                                            <!-- <div class="overlay">
-                                                                                                <i class="fas fa-3x fa-sync-alt"></i>
-                                                                                            </div> -->
-                                                                                            <div class="form-group">
+                                                                                        <!-- <div class="overlay">
+                                                                                                <i class="fas fa-3x fa-sync-alt"></i> 
+                                                                                        </div> -->
+                                                                                                <div class="form-group">
                                                                                                 <label for="customer_mob_no">Enter OTP</label>
                                                                                                 <input type="number" class="form-control" id="verify_otp_<?php echo $restaurant_id; ?>" placeholder="Enter OTP"><br>
                                                                                                 <input type="hidden" id="restaurant_id_<?php echo $restaurant_id; ?>">
@@ -353,7 +353,7 @@ require_once("islogin.php");
                     if (data.success) {
                         $("#loader").css('display', 'none');
 
-                        swal("Deleted", "You deleted restaurant orders", "success");
+                        swal("Deleted", "You deleted restaurant Orders and Expense", "success");
                     } else {
                         swal("Not Deleted!!", "error:" + data.error, 'error');
                     }

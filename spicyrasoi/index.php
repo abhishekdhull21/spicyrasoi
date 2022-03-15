@@ -56,10 +56,10 @@ require_once('logininfo.php');
               <?php
               }
               ?>
-              <marquee behavior="alternate"; direction="right"; onmouseover="this.stop();" onmouseout="this.start();" >
+             
               <h2 class="btn btn-success m-0"  ><?php echo mysqli_fetch_assoc($res)['name']; ?> </h2>
               <!-- <span class="btn btn-warning btn-sm"> To Know Update's Click Here</span> -->
-              </marquee>
+             
             </div><!-- /.col -->
             <!-- <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -149,6 +149,8 @@ require_once('logininfo.php');
   <script src="dist/js/demo.js"></script>
   <!-- Toastr -->
 <script src="plugins/toastr/toastr.min.js"></script>
+
+
 
   <?php include_once('isloginfooter.php'); ?>
   
