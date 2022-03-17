@@ -2,15 +2,28 @@
 const constant = {
   // url: "https://spicyrasoi.com/api/",
   url: "http://localhost/apidevelopment/",
-  // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
+  url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 
 function ajaxRequest(url, data, success, optional) {
-  const { error, complete, send } = optional;
-  // console.log(optional);
-  if (error != null) $(document).ajaxError(error);
-  if (complete != null) $(document).ajaxComplete(complete);
-  if (send != null) $(document).ajaxSend(send);
+  if (optional != null || optional != undefined)
+    Object.keys(optional).map((key) => {
+      console.log(key);
+      // switch (key) {
+      //   case "error":
+      //     if (key != null) $(document).ajaxError(key);
+      //     break;
+      //   case "send":
+      //     if (key != null) $(document).ajaxSend(key);
+      //     break;
+      //   case "complete":
+      //     if (key != null) $(document).ajaxComplete(key);
+      //     break;
+
+      //   default:
+      //     break;
+      // }
+    });
 
   $.ajax({
     url: constant.url + url,
@@ -19,7 +32,6 @@ function ajaxRequest(url, data, success, optional) {
     contentType: "application/json",
     dataType: "json",
     success: success,
-    error: error != null ? error : null,
   });
 }
 $(document).ready(function () {

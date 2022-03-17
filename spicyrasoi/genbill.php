@@ -728,12 +728,12 @@ function fetchSubCategory($cat_id)
             console.log(result.data);
             // alert("redirected to print page")
             localStorage.setItem("kotbill", JSON.stringify(products));
-            var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=400,width=200");
+            var print = window.open(`poskotprint.php?table=${products.table.table}&tablegroup=${products.table.tablegroup}`, 'PRINT', "height=800,width=800");
             // print.document.close();
             // print.print();
             // print.close();
             // printDiv("print");
-            location.reload();
+            // location.reload();
           }
         },
       });

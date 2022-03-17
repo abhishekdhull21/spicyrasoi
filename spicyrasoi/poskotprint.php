@@ -118,6 +118,7 @@ if (isset($_GET['table']) && isset($_GET['tablegroup'])) {
                 $(document).ready(function() {
                     console.log(JSON.parse(localStorage.getItem("kotbill")));
                     const products = JSON.parse(localStorage.getItem("kotbill"));
+                    console.log(products);
                     $('#orderid').html(products.orderid);
                     $('#customerType').html(products.customerType);
                     $('#billno').html(products.todayOrderNo);
