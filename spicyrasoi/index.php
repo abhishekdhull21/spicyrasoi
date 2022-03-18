@@ -25,17 +25,38 @@ require_once('logininfo.php');
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
+  <style>
+    #restName{
+      font-family: Hack, sans-serif;
+      font-weight: bolder;
+      text-transform: uppercase;
+      font-size: 2rem;
+      text-shadow: 1px 1px 1px yellow,
+                  2px 2px 1px yellow;
+      text-align: center;
+      /* border: 1px solid black; */
+      border-radius: 3px;
+      color: green;
+      letter-spacing: 2px;
+      word-spacing: 4px;
+      /* display: inline-block; */
+
+    }
+  </style>
 </head>
 
-<body class="layout-top-nav control-sidebar-slide-open" style="height: auto;">
+<body class="layout-top-nav control-sidebar-slide-open" style="height: auto; font-family: 'georgia';">
   <div class="wrapper">
 
     <!-- Navbar -->
     <?php include("navbar.php") ?>
     <!-- /.navbar -->
-
+   
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" style="min-height: 1145.31px;">
+    <marquee>
+      <h4 style="color: red;">Under Maintance on 20 March 2022 8:00 AM to 12:00 PM</h4>
+    </marquee>
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container">
@@ -57,7 +78,7 @@ require_once('logininfo.php');
               }
               ?>
              
-              <h2 class="btn btn-success m-0"  ><?php echo mysqli_fetch_assoc($res)['name']; ?> </h2>
+              <h2 id="restName" ><?php echo mysqli_fetch_assoc($res)['name']; ?> </h2>
               <!-- <span class="btn btn-warning btn-sm"> To Know Update's Click Here</span> -->
              
             </div><!-- /.col -->

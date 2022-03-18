@@ -38,14 +38,28 @@
           <a href="#" class="nav-link"><i class="fas fa-truck-pickup"> Dilvery</i></a>
         </li> -->
         <li class="nav-item">
-          <a href="process.php" class="nav-link"><i class="fas fa-sync"> Process</i></a>
+          <a href="process.php" class="nav-link">  
+          <i class="fas fa-sync"> Process </i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+          
         </li>
         <!-- <li class="nav-item">
           <a href="analytics.php" class="nav-link"><b><i class="fas fa-chart-pie"> Analytics</i></b></a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="setting.php" class="nav-link"><b><i class="fas fa-cog"> Settings</i></b></a>
           
+        </li> -->
+        <li class="nav-item dropdown">
+          <a id="dropdownSubMenu1" href="index.php" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"> <i class="fas fa-info-circle"> More </i></a>
+          <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+            <li><a href="setting.php" class="dropdown-item"><b><i class="fas fa-cog"> Settings</i></b></a></li>
+            <!-- <li><a href="#" class="dropdown-item">Media Guide Lines</a></li> -->
+
+            <li class="dropdown-divider"></li>
+            <li><a href="contact.php" class="dropdown-item"><i class="fas fa-hands-helping"> Contact Us</i></a></li>
+          </ul>
         </li>
         <!-- <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
@@ -86,7 +100,7 @@
             <span class="float-right text-muted text-sm">2 days</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="notifaction.php" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
      

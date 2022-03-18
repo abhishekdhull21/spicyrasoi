@@ -277,6 +277,10 @@ if (mysqli_num_rows($res) > 0)
                               <!-- <span class="badge bg-purple">891</span> -->
                               <i class="fas fa-users"></i> Permission
                             </a>
+                            <a class="btn btn-app bg-success" href="permissions.php">
+                              <span class="badge bg-purple">Beta</span>
+                              <i class="fas fa-bell"></i> Notifaction
+                            </a>
                           </div>
 
                         </div>
