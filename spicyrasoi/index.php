@@ -26,13 +26,13 @@ require_once('logininfo.php');
   <script src="dist/js/demo.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
   <style>
-    #restName{
+    #restName {
       font-family: Hack, sans-serif;
       font-weight: bolder;
       text-transform: uppercase;
       font-size: 2rem;
       text-shadow: 1px 1px 1px yellow,
-                  2px 2px 1px yellow;
+        2px 2px 1px yellow;
       text-align: center;
       /* border: 1px solid black; */
       border-radius: 3px;
@@ -51,12 +51,16 @@ require_once('logininfo.php');
     <!-- Navbar -->
     <?php include("navbar.php") ?>
     <!-- /.navbar -->
-   
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" style="min-height: 1145.31px;">
-    <marquee>
-      <h4 style="color: red;">Under Maintance on 20 March 2022 8:00 AM to 12:00 PM</h4>
-    </marquee>
+      <div class="p-3" hidden>
+        <marquee>
+          <h4 style="color: red;">Under Maintance on 20 March 2022 8:00 AM to 12:00 PM</h4>
+        </marquee>
+      </div>
+
+
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container">
@@ -65,22 +69,21 @@ require_once('logininfo.php');
               <?php
               $sql = "SELECT name FROM `restaurant` WHERE restaurantid = $restaurant and status = 1";
               $res = mysqli_query($con, $sql);
-              if(mysqli_num_rows($res)<1)
-              {
-                ?>
+              if (mysqli_num_rows($res) < 1) {
+              ?>
                 <script>
-                  swal("Contact to Administration ","Your ID is Not Activated","warning")
-                  .then((res)=>{
-                    window.location = "./user/logout.php";
-                  })
+                  swal("Contact to Administration ", "Your ID is Not Activated", "warning")
+                    .then((res) => {
+                      window.location = "./user/logout.php";
+                    })
                 </script>
               <?php
               }
               ?>
-             
-              <h2 id="restName" ><?php echo mysqli_fetch_assoc($res)['name']; ?> </h2>
+
+              <h2 id="restName"><?php echo mysqli_fetch_assoc($res)['name']; ?> </h2>
               <!-- <span class="btn btn-warning btn-sm"> To Know Update's Click Here</span> -->
-             
+
             </div><!-- /.col -->
             <!-- <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -169,12 +172,12 @@ require_once('logininfo.php');
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
   <!-- Toastr -->
-<script src="plugins/toastr/toastr.min.js"></script>
+  <script src="plugins/toastr/toastr.min.js"></script>
 
 
 
   <?php include_once('isloginfooter.php'); ?>
-  
+
 </body>
 
 </html>

@@ -12,7 +12,7 @@ require_once('logininfo.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Spicy Rasoi</title>
+    <title><?php echo $siteName; ?></title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
@@ -22,6 +22,8 @@ require_once('logininfo.php');
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
@@ -51,10 +53,10 @@ require_once('logininfo.php');
                             </div>
                             <div class="form-group">
                                 <label for="inputMessage">Message</label>
-                                <textarea id="inputMessage" class="form-control" rows="4" spellcheck="false"></textarea>
+                                <div id="inputMessage" class="form-control" rows="4" spellcheck="false"></div>
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary" value="Create Notifaction">
+                                <input type="submit" id="btnAddNotification" class="btn btn-primary" value="Create Notifaction">
                             </div>
                         </div>
 
@@ -64,18 +66,21 @@ require_once('logininfo.php');
                                     <h5 class="card-title m-0"><?php echo ("All Notifaction ") ?></h5>
                                 </div>
                                 <div class="card-body">
-                                   <?php for($i=1;$i<=10;$i++) { ?>
-                                        <ul class="todo-list " >
-                                            
+                                    <?php
+                                    $sql  = "SELECT * FROM `notifications` WHERE status =1";
+                                    $res = mysqli_query($con, $sql);
+                                    while ($row = mysqli_fetch_assoc($res)) { ?>
+                                        <ul class="todo-list ">
+
                                             <li class="m-1">
                                                 <a href="#">
-                                                <span class="text">Make the theme responsive</span>
-                                                <!-- <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small> -->
+                                                    <span class="text"><?php echo $row['title']; ?></span>
+                                                    <!-- <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small> -->
                                                 </a>
                                             </li>
-                                            
+
                                         </ul>
-                                   <?php } ?>
+                                    <?php } ?>
                                 </div>
                             </div>
 
@@ -106,11 +111,51 @@ require_once('logininfo.php');
     <script src="dist/js/demo.js"></script>
     <!-- Toastr -->
     <script src="plugins/toastr/toastr.min.js"></script>
+    <!-- Summernote -->
+    <script src="plugins/summernote/summernote-bs4.min.js"></script>
 
 
 
     <?php include_once('isloginfooter.php'); ?>
 
+    <script>
+        $('#btnAddNotification').on('click', function() {
+            const post = $('#inputMessage').summernote('code');
+            const title = $('#inputTitle').val();
+            console.log(title);
+            if (post == '<p><br></p>' || title == '') {
+                alert('both field required');
+                return;
+
+            }
+            $.ajax({
+                Type: 'POST',
+                url: constant.url + 'notification',
+                datatype: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    title,
+                    post,
+                    restaurant,
+                    isPublic: 1
+                }),
+                success: (res) => {
+                    if (res.success) {
+                        swal('Success', 'Notification Created Successfully', 'success');
+                    } else {
+                        swal('Notification Not Created', res.error, 'error');
+
+                    }
+                }
+            })
+            // console.log(message);
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#inputMessage').summernote();
+        });
+    </script>
 </body>
 
 </html>

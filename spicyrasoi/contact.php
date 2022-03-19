@@ -86,7 +86,7 @@ require_once('logininfo.php');
                     <div class="row">
                         <div class="col-12 text-center m-2">
                             <span>
-                                If face any problem, You can contact to us on given Helpline No. 
+                                If you face any problem, You can contact to us on given Helpline No.
                             </span>
                         </div>
                     </div>
@@ -100,24 +100,25 @@ require_once('logininfo.php');
                             else
                                 while ($row = mysqli_fetch_assoc($res)) {
                                     $cat_id = $row['id'];
+                                }
                             ?>
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="card-title m-0"><?php echo ("Help Desk ") ?></h5>
-                                    </div>
-                                    <div class="card-body">
-                                        HelpLine No.: <br> <b> 70153-93229,98137-61709</b> <br>
-                                        <a href="#" target="_blank" class="btn btn-success m-2" >Whatsapp</a>
-                                        <a href="mailto:ajaysheokand.as@gmail.com" target="_blank" class="btn btn-info m-2" >Email</a>
-                                        <hr>
-
-                                        Technical Support: <br> <b> 85709-96916</b> <br>
-                                        <a href="https://wa.me/918570996916" target="_blank" class="btn btn-success m-2" >Whatsapp</a>
-                                        <a href="mailto:ajaysheokand.as@gmail.com" target="_blank" class="btn btn-info m-2" >Email</a>
-
-                                    </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title m-0"><?php echo ("Help Desk ") ?></h5>
                                 </div>
-                            <?php } ?>
+                                <div class="card-body">
+                                    HelpLine No.: <br> <b> 70153-93229,98137-61709</b> <br>
+                                    <a href="#" target="_blank" class="btn btn-success m-2">Whatsapp</a>
+                                    <a href="mailto:ajaysheokand.as@gmail.com" target="_blank" class="btn btn-info m-2">Email</a>
+                                    <hr>
+
+                                    Technical Support: <br> <b> 85709-96916</b> <br>
+                                    <a href="https://wa.me/918570996916" target="_blank" class="btn btn-success m-2">Whatsapp</a>
+                                    <a href="mailto:ajaysheokand.as@gmail.com" target="_blank" class="btn btn-info m-2">Email</a>
+
+                                </div>
+                            </div>
+                            <?php  ?>
 
                             <!-- /.card -->
                         </div>
