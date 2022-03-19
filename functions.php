@@ -70,3 +70,10 @@ function get_user_id($con, $token)
     $res["error"] = mysqli_error($con);
     return $res;
 }
+
+function saveRequest($request, $path = "")
+{
+    $file = fopen("../logs/" . date("d-m-y") . ".txt", "a");
+
+    fwrite($file, (date('H:i:s',) . $path .  file_get_contents('php://input') . "\n"));
+}
