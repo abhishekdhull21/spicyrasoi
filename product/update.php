@@ -22,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // condition to check request in json 
     // if(strpos($content_type, "application/json") !== false){
 
-    if (isset($data['productid']) && isset($data['admin_id']) && isset($data['restaurant']) && isset($data['product']) && isset($data['store-price']) && isset($data['swiggy-price']) && isset($data['zomato-price']) && isset($data['local-price']) && isset($data['discount']) && isset($data['unit-name']) && isset($data['hsn-code'])) {
-        // $category = $data['category'] != '' ? $data['category'] : 0;
-        // $subcategory = $data['subcategory'] != '' ? $data['subcategory'] : 0;
+    if (isset($data['productid']) && isset($data['admin_id']) && isset($data['restaurant']) && isset($data['category']) && isset($data['subcategory']) && isset($data['product']) && isset($data['store-price']) && isset($data['swiggy-price']) && isset($data['zomato-price']) && isset($data['local-price']) && isset($data['discount']) && isset($data['unit-name']) && isset($data['hsn-code'])) {
+        $category = $data['category'] != '' ? $data['category'] : 0;
+        $subcategory = $data['subcategory'] != '' ? $data['subcategory'] : 0;
         $store_price = $data['store-price'] != '' ? $data['store-price'] : 0;
         $swiggy_price = $data['swiggy-price'] != '' ? $data['swiggy-price'] : 0;
         $zomato_price = $data['zomato-price'] != '' ? $data['zomato-price'] : 0;
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // echo  "SELECT product_name FROM `product` where restaurant = $restaurant and product_id = $productid";
         if ($result = mysqli_query($con, "SELECT product_name FROM `product` where restaurant = $restaurant and product_id = $productid")) {
             if (mysqli_num_rows($result) > 0) {
-                $sql = "UPDATE `product` SET  `product_name` = '$product', `store_price` = $store_price, `swiggy_price` = $swiggy_price, `zomato_price` = $zomato_price, `local_price` = $local_price,`food_type` = '$food_type', `discount` = $discount, `unit_name` = '$unit', `hsn_code` = '$hsn' where  restaurant = $restaurant and product_id = $productid";
+                $sql = "UPDATE `product` SET  `product_name` = '$product', `store_price` = $store_price, `swiggy_price` = $swiggy_price, `zomato_price` = $zomato_price, `local_price` = $local_price,`food_type` = '$food_type', `category` = $category, `sub_category` = '$subcategory', `discount` = $discount, `unit_name` = '$unit', `hsn_code` = '$hsn' where  restaurant = $restaurant and product_id = $productid";
 
 
                 if ($result =  mysqli_query($con, $sql)) {
