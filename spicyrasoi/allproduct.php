@@ -113,7 +113,7 @@ require_once("islogin.php");
 
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">All Listed Product </h3>
+                  <h3 class="card-title float-right"><a href="addproduct.php" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"> Add Product</i>  </a></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
