@@ -128,15 +128,15 @@ if (mysqli_num_rows($res) > 0)
                   </a>
                   <a href="invoiceday.php" class="btn btn-app bg-success">
 
-                    <i class="fas fa-file"></i> Day Book
+                  <i class="fas fa-calendar-day"></i> Day Book
                   </a>
                   <a href="expense.php" class="btn btn-app bg-success">
 
-                    <i class="fas fa-file"></i> Expense
+                  <i class="fas fa-dollar-sign"></i> Expense
                   </a>
                   <a href="day_expense.php" class="btn btn-app bg-success">
 
-                    <i class="fas fa-file"></i> Today Expense
+                  <i class="fas fa-suitcase"></i> Today Expense
                   </a>
 
                 </div>
@@ -168,7 +168,7 @@ if (mysqli_num_rows($res) > 0)
 
                           <a href="invoiceday.php" class="btn btn-app bg-success">
 
-                            <i class="fas fa-file"></i> Day Book
+                          <i class="fas fa-calendar-day"></i> Day Book
                           </a>
 
                           <a href="expense.php" class="btn btn-app bg-success">
@@ -195,10 +195,10 @@ if (mysqli_num_rows($res) > 0)
                             <i class="fas fa-file-invoice"></i> Invoice
                           </a>
 
-                          <a href="#" class="btn btn-app bg-success">
+                          <!-- <a href="#" class="btn btn-app bg-success"> -->
                             <!-- <span class="badge bg-purple">891</span> -->
-                            <i class="fas fa-file-invoice"></i> GST Report
-                          </a>
+                            <!-- <i class="fas fa-file-invoice"></i> GST Report
+                          </a> -->
                           <a href="stock.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->
                             <i class="fas fa-cubes"></i> Stock Management
@@ -274,7 +274,7 @@ if (mysqli_num_rows($res) > 0)
                               <i class="fas fa-users"></i> View Users
                             </a>
                             <a class="btn btn-app bg-success" href="permissions.php">
-                              <!-- <span class="badge bg-purple">891</span> -->
+                              <span class="badge bg-purple">Beta</span>
                               <i class="fas fa-users"></i> Permission
                             </a>
                             <a class="btn btn-app bg-success" href="createNotifaction.php">

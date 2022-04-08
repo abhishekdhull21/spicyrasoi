@@ -1,7 +1,7 @@
 // fetch category
 const constant = {
-  // url: "https://spicyrasoi.com/api/",
-  url: "http://localhost/apidevelopment/",
+  url: "https://spicyrasoi.com/api/",
+  // url: "http://localhost/apidevelopment/",
   // url: "http://localhost/projects/spicyrasoi/website/spicyrasoi/",
 };
 
@@ -293,8 +293,8 @@ $(document).ready(function () {
     // alert();
     const product = $("#productName").val();
     const productid = $("#productid").val();
-    // const category = $("#dropdownCategory").val();
-    // const subcategory = $("#dropdownSubCategory").val();
+    const category = $("#dropdownCategory").val();
+    const subcategory = $("#dropdownSubCategory").val();
     const storePrice = $("#productStorePrice").val(); //("#addCategoryInput").val();
     const localPrice = $("#localPrice").val(); //("#addCategoryInput").val();
     // const gst_type = $("#gst_type").val();
@@ -319,8 +319,8 @@ $(document).ready(function () {
         productid: productid,
         admin_id: admin_id,
         restaurant: restaurant,
-        // category: category,
-        // subcategory: subcategory,
+        category: category,
+        subcategory: subcategory,
         discount: discount,
         // gst: gstProduct,
         gst_type: gst_type,
@@ -339,7 +339,7 @@ $(document).ready(function () {
         // console.log(result.success);
 
         const json = result;
-        if (json.success) swal("Good Job", "New Product added", "success");
+        if (json.success) swal("Good Job", " Product Updated", "success");
         else swal({ title: "Error Occured", text: json.error, icon: "error" });
         console.info(json.success);
         // $("#btnAddCategory").attr("disabled");

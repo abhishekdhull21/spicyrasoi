@@ -83,8 +83,8 @@
 
     <!-- Right navbar links -->
     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
+      
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <?php
@@ -117,7 +117,7 @@
           <div class="dropdown-divider"></div>
           <a href="notifaction.php" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
-      </li>
+      </li> -->
 
       <li class="nav-item">
         <div class="btn-group">
@@ -127,8 +127,6 @@
           </button>
           <div class="dropdown-menu" role="menu">
             <a class="dropdown-item" href="profile.php">Edit</a>
-            <!-- <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a> -->
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="user/logout.php">Log Out</a>
           </div>
