@@ -48,8 +48,8 @@
     session_start();
     include("../config.php");
     include("class/User.php");
-    include("navbar.php");
     require_once("islogin.php");
+    include("navbar.php");
     // $host = "sql487.main-hosting.eu";
     // $username = "u709711065_spicyrasoi";
     // $password = "NewPassword@1234";
@@ -347,7 +347,7 @@
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-        "buttons": [ "pdf", "print", "colvis"]
+        "buttons": ["pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,

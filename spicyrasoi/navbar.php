@@ -44,8 +44,8 @@
               <?php
               // echo $admin_type;
               $sql = "SELECT COUNT(a.orderid) as total FROM orders a, `tables_session` b,`dashboard` c where a.orderid=b.orderid and c.id = b.table_cat and b.status =1 and a.restaurant = $restaurant";
-              $res = mysqli_query($con, $sql);
-              echo mysqli_num_rows($res) > 0 ? mysqli_fetch_assoc($res)['total'] : 0;
+              if ($res = mysqli_query($con, $sql))
+                echo mysqli_num_rows($res) > 0 ? mysqli_fetch_assoc($res)['total'] : 0;
               ?>
             </span>
           </a>
