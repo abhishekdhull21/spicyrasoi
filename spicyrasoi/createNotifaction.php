@@ -44,7 +44,7 @@ require_once('logininfo.php');
             <div class="content ">
                 <div class="container">
                     <div class="row ">
-                        <div class="col-6 mt-5">
+                        <div class="col-lg-6 mt-5">
                             <grammarly-extension data-grammarly-shadow-root="true" style="position: absolute; top: 0px; left: 0px; pointer-events: none;" class="cGcvT"></grammarly-extension>
                             <grammarly-extension data-grammarly-shadow-root="true" style="mix-blend-mode: darken; position: absolute; top: 0px; left: 0px; pointer-events: none;" class="cGcvT"></grammarly-extension>
                             <div class="form-group">

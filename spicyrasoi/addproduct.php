@@ -83,7 +83,7 @@ if (isset($_GET['edit']) && $_GET['edit'] == 'true' && isset($_GET['productid'])
               <!-- general form elements disabled -->
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Products</h3>
+                  <h3 class="card-title">Products</h3> <a href="allproduct.php" class="float-right"><i class="fas fa-eye"> All Product's</i> </a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -92,7 +92,7 @@ if (isset($_GET['edit']) && $_GET['edit'] == 'true' && isset($_GET['productid'])
                       <div class="col-sm-6">
                         <!-- select -->
                         <div class="form-group">
-                          <label>Select Category </label>
+                          <label>Select Category </label> <a href="addcategory.php" class="float-right"> <i class="fas fa-plus-circle"> New</i> </a>
                           <select class="form-control" id="dropdownCategory">
                             <option value=1>Select Category</option>
                           </select>

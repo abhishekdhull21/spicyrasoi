@@ -82,7 +82,7 @@ $user = unserialize($_SESSION['user']);
                             <!-- general form elements disabled -->
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Add Customer</h3>
+                                    <h3 class="card-title float-right"><a href="all_customer.php"><i class="fas fa-eye"> All Customer</i> </a></h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">

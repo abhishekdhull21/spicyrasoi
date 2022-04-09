@@ -217,7 +217,7 @@ function fetchSubCategory($cat_id)
                         <!-- /.card-tools -->
                       </div>
                       <!-- /.card-header -->
-                      <div class="card-body">
+                      <div class="card-body" style="padding-left: 0; padding-right:0; padding-bottom:0; padding-top:4px">
                         <?php
                         fetchSubCategory($cat_id);
                         ?>
