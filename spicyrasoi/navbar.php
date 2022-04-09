@@ -84,7 +84,7 @@
     <!-- Right navbar links -->
     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
       
-      <!-- <li class="nav-item dropdown">
+       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <?php
@@ -98,26 +98,19 @@
           <?php } ?>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <span class="dropdown-item dropdown-header"> <?php echo $total; ?> Notifications</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+          <a href="notifaction.php" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> Title
+            <!-- TODO To Show time (How old this notifaction) -->
+            <!-- <span class="float-right text-muted text-sm">3 mins</span> -->
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
+         
+          
           <div class="dropdown-divider"></div>
           <a href="notifaction.php" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
-      </li> -->
+      </li>
 
       <li class="nav-item">
         <div class="btn-group">
