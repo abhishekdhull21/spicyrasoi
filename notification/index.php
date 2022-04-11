@@ -8,12 +8,13 @@ require_once('../functions.php');
 
 $request = json_decode(file_get_contents('php://input'), true);
 saveRequest($request, ROOTPATH);
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($request['request']))
         die(sendPostRes($request, "`request` parameter not sent..."));
     switch ($request['request']) {
         case 'add':
-            verify($request, array("title", "post", "isPublic"));
+            verify($request, array("title", "post", "isPublic", "restaurant"));
             add($request);
             $response['data'] = 'Notification created successfully';
             break;
@@ -48,19 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             # code...
             break;
     }
-} else $err = "Request should be POST";
+} else $err = "Request should be POST current " . $_SERVER['REQUEST_METHOD'];
 
 sendPostRes($response, $err);
 
 
-function verify($check, $keys)
-{
-    foreach ($keys as $key) {
-        if (!array_key_exists($key, $check)) {
-            die(sendPostRes(false, "$key is required to proceed"));
-        }
-    }
-}
+
 
 function get($data)
 {

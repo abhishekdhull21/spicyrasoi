@@ -71,6 +71,15 @@ function get_user_id($con, $token)
     return $res;
 }
 
+function verify($check, $keys)
+{
+    foreach ($keys as $key) {
+        if (!array_key_exists($key, $check)) {
+            die(sendPostRes(false, "$key is required to proceed"));
+        }
+    }
+}
+
 function saveRequest($request, $path = "")
 {
     $file = fopen("../logs/" . date("d-m-y") . ".txt", "a");
