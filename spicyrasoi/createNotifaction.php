@@ -129,11 +129,12 @@ require_once('logininfo.php');
 
             }
             $.ajax({
-                Type: 'POST',
-                url: constant.url + 'notification',
+                method: "POST",
+                url: constant.url + 'notification/index.php',
                 datatype: 'json',
                 contentType: 'application/json',
                 data: JSON.stringify({
+                    request: "add",
                     title,
                     post,
                     restaurant,
