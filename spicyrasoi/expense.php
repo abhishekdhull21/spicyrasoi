@@ -192,6 +192,7 @@
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Category</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Amount</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Remark</th>
+                              <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Action</th>
 
                               <!-- <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Action</th> -->
 
@@ -216,6 +217,7 @@
                                 <td><?php echo $row['cat_name']; ?></td>
                                 <td class="sorting_1"><?php echo $row['amount']; ?></td>
                                 <td><?php echo $row['remarks']; ?></td>
+                                <td><button class="btn btn-danger"><i class="fas fa-trash"> </i> Delete *</button></td>
                                 <!-- <td><a href=""> <i class="fas fa-trash-alt"> Remove</i></a> </td> -->
 
 

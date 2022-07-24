@@ -139,7 +139,7 @@ $row = mysqli_fetch_assoc($res);
                         <td colspan="2" class="price"><b><?php echo $discount; ?></b></td>
                     </tr>
                 <?php } ?>
-                <?php if ($recived != $grand_total) { ?>
+                <?php if ($recived != $grand_total && $recived != 0) { ?>
                     <tr>
 
                         <td class="description">Recived</td>

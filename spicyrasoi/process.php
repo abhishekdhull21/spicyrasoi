@@ -114,10 +114,10 @@ require_once("islogin.php");
                         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                           <thead>
                             <tr role="row">
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Location</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Order ID</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Date</th>
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Name</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Location</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Grand Total</th>
                               <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Mode</th> -->
                               <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status</th> -->
@@ -146,20 +146,20 @@ require_once("islogin.php");
                             ?>
 
                               <tr class="odd">
-                                <td class="dtr-control"><?php echo $row['bill_no']; ?></td>
-                                <td class="sorting_1"><?php echo $row['date']; ?></td>
-                                <td><?php echo $row['name']; ?> </td>
                                 <td>
                                   <ul>
                                     <li><?php echo $row['title']; ?></li>
                                     <li>Table:<?php echo $row['table_id']; ?></li>
                                   </ul>
                                 </td>
+                                <td class="dtr-control"><?php echo $row['bill_no']; ?></td>
+                                <td class="sorting_1"><?php echo $row['date']; ?></td>
+                                <td><?php echo $row['name']; ?> </td>
                                 <td><?php echo $row['order_value']; ?></td>
                                 <!-- <td><?php echo $row['pay_type']; ?></td> -->
 
 
-                                <td><a target="_blank" class="btn btn-success btn-sm" href="printbill.php?orderid=<?php echo $orderid; ?>"><i class="fas fa-print"> Print</i></a> | <a class="btn btn-warning btn-sm" href="genbill.php?table=<?php echo  $tableid . '&group=' . $table_cat . '&name=' . $tablename; ?>"> <i class="fas fa-edit"> Add Item</i> </a> | <a target="_blank" class="btn btn-success btn-sm" href="posprint.php?orderid=<?php echo $orderid; ?>"><i class="fas fa-receipt"> Preview</i></a></td>
+                                <td><a target="_blank" class="btn btn-warning btn-sm" href="printbill.php?orderid=<?php echo $orderid; ?>"><i class="fas fa-print"> Print</i></a> | <a class="btn btn-success btn-sm" href="genbill.php?table=<?php echo  $tableid . '&group=' . $table_cat . '&name=' . $tablename; ?>"> <i class="fas fa-plus"> Add Item</i> </a> | <a target="_blank" class="btn btn-primary btn-sm" href="posprint.php?orderid=<?php echo $orderid; ?>"><i class="fas fa-receipt"> Preview</i></a></td>
                               </tr>
                             <?php } ?>
                           </tbody>

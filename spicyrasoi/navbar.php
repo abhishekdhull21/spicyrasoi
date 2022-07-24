@@ -134,12 +134,16 @@ if (mysqli_num_rows($res) > 0)
 
       <li class="nav-item">
         <div class="btn-group">
+
           <button type="button" class="btn btn-success">Profile</button>
+
           <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
             <span class="sr-only">Toggle Dropdown</span>
           </button>
           <div class="dropdown-menu" role="menu">
-            <a class="dropdown-item" href="profile.php">Edit</a>
+            <?php if (in_array('settings', $permissions) || in_array('super_admin', $permissions)) {  ?>
+              <a class="dropdown-item" href="profile.php">Edit</a>
+            <?php } ?>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="user/logout.php">Log Out</a>
           </div>

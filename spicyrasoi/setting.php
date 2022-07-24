@@ -205,6 +205,39 @@ if ($admintype == 2)
                         </div>
                       </div>
                     </div>
+                    <!-- TO DO COMPLETE SECTION HAVE TO SHOW THESE THREE TYPE OF HISTORY  -->
+                    <div class="card card-primary">
+                      <div class="card-header">
+                        <h4 class="card-title w-100">
+                          <a class="d-block w-100 collapsed" data-toggle="collapse" href="#collapseHistory" aria-expanded="false">
+                            HISTORY <i class="fas fa-caret-down float-right"></i>
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseHistory" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                          <a href="invoice.php" class="btn btn-app bg-success">
+                            <span class="badge bg-purple">Beta</span>
+                            <i class="fas fa-file-invoice"></i> Table & Room
+                          </a>
+
+                          <!-- <a href="#" class="btn btn-app bg-success"> -->
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <!-- <i class="fas fa-file-invoice"></i> GST Report
+                          </a> -->
+                          <a href="stock.php" class="btn btn-app bg-success">
+                            <span class="badge bg-purple">Beta</span>
+                            <i class="fas fa-cubes"></i> KOT
+                          </a>
+                          <a href="analytics.php" class="btn btn-app bg-success">
+                            <span class="badge bg-purple">Beta</span>
+                            <i class="fas fa-chart-pie"></i> Transastion
+                          </a>
+
+
+                        </div>
+                      </div>
+                    </div>
 
 
                   </div>

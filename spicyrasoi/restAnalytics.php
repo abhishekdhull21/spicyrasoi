@@ -145,7 +145,7 @@ require_once("islogin.php");
 
                                                             <tr class="odd">
                                                                 <td class="dtr-control"><?php echo $row['name']; ?> </td>
-                                                                <td class="dtr-control"><?php echo  $row['address']; ?> </td>
+                                                                <td class="dtr-control"><?php echo  $row['Paid (Rs)']; ?> </td>
                                                                 <td class="sorting_1"><?php echo $row['mobile']; ?></td>
                                                                 <td><?php echo $row['order_value']; ?> </td>
                                                                 <!-- <td class="dtr-control"><?php echo $mode;
@@ -193,10 +193,10 @@ require_once("islogin.php");
                                                                                         <!-- form start -->
 
                                                                                         <div class="card-body">
-                                                                                        <!-- <div class="overlay">
+                                                                                            <!-- <div class="overlay">
                                                                                                 <i class="fas fa-3x fa-sync-alt"></i> 
                                                                                         </div> -->
-                                                                                                <div class="form-group">
+                                                                                            <div class="form-group">
                                                                                                 <label for="customer_mob_no">Enter OTP</label>
                                                                                                 <input type="number" class="form-control" id="verify_otp_<?php echo $restaurant_id; ?>" placeholder="Enter OTP"><br>
                                                                                                 <input type="hidden" id="restaurant_id_<?php echo $restaurant_id; ?>">

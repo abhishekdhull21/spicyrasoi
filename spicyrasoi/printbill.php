@@ -165,16 +165,19 @@ if (mysqli_num_rows($res) > 0) {
                       <td><select id="discount" class="js-example-basic-single form-control">
                           <option selected value=0>00</option>
                           <option value=5>5%</option>
-                          <option value=8>8%</option>
-                          <option value=12>12%</option>
-                          <option value=18>18%</option>
+                          <option value=10>10%</option>
+                          <option value=15>15%</option>
+
                           <option value=20>20%</option>
                           <option value=25>25%</option>
                           <option value=30>30%</option>
+
                           <option value=40>40%</option>
+
                           <option value=50>50%</option>
+                          <option value=60>60%</option>
                           <option value=70>70%</option>
-                          <option value=100>100%</option>
+                          <option value=80>80%</option>
                         </select></td>
                       <td><b>Discount Amount</b></td>
                       <td id="discount_amount">00</td>
@@ -201,12 +204,13 @@ if (mysqli_num_rows($res) > 0) {
                       <td><select id="service_charge" class="js-example-basic-single form-control">
                           <option selected value=0>00</option>
                           <option value=5>5%</option>
-                          <option value=8>8%</option>
-                          <option value=10>10%</option>
+
+
                           <option value=12>12%</option>
-                          <option value=15>15%</option>
+
                           <option value=18>18%</option>
-                          <option value=20>20%</option>
+                          <option value=28>28%</option>
+
                         </select></td>
                       <td><b>Service Charge Amt</b></td>
                       <td id="service_charge_amt">00</td>

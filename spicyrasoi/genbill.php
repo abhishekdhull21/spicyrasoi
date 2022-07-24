@@ -354,6 +354,7 @@ function fetchSubCategory($cat_id)
                       <th>Qty</th>
                       <th>Price</th>
                       <th>Subtotal</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody id="cartItems">
@@ -371,6 +372,7 @@ function fetchSubCategory($cat_id)
                       <td> </td>
                       <td><b>Grand Total</b></td>
                       <td id="grandtotalprice">00</td>
+                      <td> </td>
                     </tr>
                     <!-- <tr>                   
                     <td><input type="number" class="form-control" value=0 id="cartRecived"></td>
@@ -635,6 +637,7 @@ function fetchSubCategory($cat_id)
         itemRow += '<td><input min="1" style="width:42px" onchange="calPrice(this.parentNode,this.value,' + i + ' );" type="number" value=' + qty + ' / ></td>';
         itemRow += '<td id="price">' + price + '</td>';
         itemRow += '<td id="subTotal">' + subtotal + '</td>';
+        itemRow += '<td id="subTotal">' + '<i class="fas fa-trash" style="cursor:pointer"></i>' + '</td>';
         itemRow += ' </tr>';
         $("#cartItems").prepend(itemRow)
         // console.log($("#cartItems"));
