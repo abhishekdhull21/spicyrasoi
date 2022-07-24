@@ -65,7 +65,7 @@ require_once('logininfo.php');
       <div class="content-header">
         <div class="container">
           <div class="row mb-2">
-            <div class="col-sm-12">
+            <div class=" col-sm-12">
               <?php
               $sql = "SELECT name FROM `restaurant` WHERE restaurantid = $restaurant and status = 1";
               $res = mysqli_query($con, $sql);
@@ -80,11 +80,13 @@ require_once('logininfo.php');
               <?php
               }
               ?>
-
-              <h2 id="restName"><?php echo mysqli_fetch_assoc($res)['name']; ?> </h2>
               <!-- <span class="btn btn-warning btn-sm"> To Know Update's Click Here</span> -->
 
             </div><!-- /.col -->
+            <marquee behavior="slide" direction="right">
+
+              <h2 id="restName"><?php echo mysqli_fetch_assoc($res)['name']; ?> </h2>
+            </marquee>
             <!-- <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>

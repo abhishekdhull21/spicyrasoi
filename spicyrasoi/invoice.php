@@ -169,8 +169,9 @@ require_once("islogin.php");
                                                                             <span class="sr-only">Toggle Dropdown</span>
                                                                         </button>
                                                                         <div class="dropdown-menu" role="menu">
-                                                                            <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>">View</a>
-                                                                            <a class="dropdown-item" href="https://api.whatsapp.com/send/?phone=918570996916&text=https://spicyrasoi.com/spicyrasoi/posprint.php?orderid=<?php echo $orderid;?>&app_absent=0">Share</a>
+                                                                            <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>"> <i class="fas fa-eye mr-2" style="color:blue"> View </i></a>
+                                                                            <a class="dropdown-item" href="https://api.whatsapp.com/send/?phone=918570996916&text=https://spicyrasoi.com/spicyrasoi/posprint.php?orderid=<?php echo $orderid; ?>&app_absent=0"><i class="fas fa-share mr-2" style="color:green"> Share </i></a>
+                                                                            <a class="dropdown-item" href="#"><i class="fas fa-trash mr-2" style="color:red"> Delete *</i></a>
                                                                         </div>
                                                                     </div>
                                                                 </td>

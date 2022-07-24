@@ -318,6 +318,7 @@ if (isset($_GET['method'])) {
                       <th>Qty</th>
                       <th>Price</th>
                       <th>Subtotal</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody id="cartItems">
@@ -335,6 +336,7 @@ if (isset($_GET['method'])) {
                       <td> </td>
                       <td><b>Grand Total</b></td>
                       <td id="grandtotalprice">00</td>
+                      <td> </td>
                     </tr>
                     <!-- <tr>                   
                     <td><input type="number" class="form-control" value=0 id="cartRecived"></td>
@@ -592,6 +594,7 @@ if (isset($_GET['method'])) {
         itemRow += '<td><input min="1" style="width:42px" onchange="calPrice(this.parentNode,this.value,' + i + ' );" type="number" value=' + qty + ' / ></td>';
         itemRow += '<td id="price">' + price + '</td>';
         itemRow += '<td id="subTotal">' + subtotal + '</td>';
+        itemRow += '<td id="subTotal" >' + '<i class="fas fa-trash" style="cursor:pointer"></i>' + '</td>';
         itemRow += ' </tr>';
         $("#cartItems").prepend(itemRow)
         // console.log($("#cartItems"));

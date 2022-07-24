@@ -102,8 +102,8 @@ function fetchSubCategory($cat_id)
 
 
       <div class="row">
-        <div class="col-md-12">
-          <div class="card card-primary collapsed-card">
+        <div class="col-md-12 collapsed-card">
+          <div class="card card-primary ">
             <div class="card-header" data-card-widget="collapse">
               <h3 class="card-title"><?php echo ($sub['name']); ?></h3>
               <div class="card-tools">
@@ -238,8 +238,8 @@ function fetchSubCategory($cat_id)
             <div class="col-lg-4 table-responsive">
               <div class="row no-print">
                 <div class="col-12">
-                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                    Book
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
+                    <i class="fas fa-plus"> Book </i>
                   </button>
                   <!-- Pop Window Body -->
                   <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
@@ -293,8 +293,9 @@ function fetchSubCategory($cat_id)
                     <!-- /.modal-dialog -->
                   </div>
                   <!-- /popup -->
-                  <a href="#" class="btn btn-default" id="#"><i class="fas fa-print"></i> Add Food</a>
-                  <a href="#" class="btn btn-default float-right" id="billingprint"><i class="fas fa-print"></i> Billing</a>
+
+                  <a href="posprint.php?orderid=<?php echo $orderid; ?>" class="btn btn-warning" id="#"><i class="fas fa-eye"> View Order * </i></a>
+                  <a href="#" class="btn btn-secondary float-right" id="billingprint"><i class="fas fa-rupee-sign"> Billing </i> </a>
                   <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
                   <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
                   <!-- <button type="button" class="btn btn-primary float-right" id="btnprintbill" style="margin-right: 5px;">
@@ -391,14 +392,14 @@ function fetchSubCategory($cat_id)
                 <div class="col-12">
                   <div class="row">
                     <div class="col-4">
-                      <a href="#" class="btn btn-default" id="btnprintbill" disabled><i class="fas fa-print"></i> Final Print</a>
+                      <a href="#" class="btn btn-success" id="btnprintbill" disabled><i class="fas fa-print"> Final Print </i></a>
                     </div>
                     <div class="col-4">
-                      <a href="#" class="btn btn-default float-left" id="btnkotprint" disabled><i class="fas fa-print"></i> KOT</a>
+                      <a href="#" class="btn btn-warning float-left" id="btnkotprint" disabled><i class="fas fa-print"> KOT </i></a>
                     </div>
                     <!-- <a href="#" class="btn btn-default float-right" id="btnprintbill"><i class="fas fa-print"></i> COT and Save</a> -->
                     <div class="col-4">
-                      <a href="#" class="btn btn-danger float-right" id="btnbillclear"><i class="fas fa-broom"></i> Clear Table</a>
+                      <a href="#" class="btn btn-default float-right" id="btnbillclear"><i class="fas fa-trash" style="color:red"> Clear Order </i></a>
                     </div>
                     <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment </button> -->
                     <!-- <a href="#"  target="_blank" class="btn btn-default float-right" ><i class="fas fa-print"></i> COT and Save</a> -->
