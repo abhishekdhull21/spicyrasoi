@@ -8,19 +8,12 @@ require_once "class/Admin.php";
 require_once "islogin.php";
 $user = unserialize($_SESSION['user']);
 $isSuperadmin = false;
-$admin = new Admin($con);
+$admin = new Admin($con, $admin_id);
 $admintype = $admin->getAdminType($user->userid);
+$permissions = $admin->getPermissions();
 if ($admintype == 2)
   $isSuperadmin = true;
-// $sql = "SELECT admin_type from users where user_id = $user->admin_id";
-$sql = "SELECT a.permission_id,a.admin,b.permission FROM admin_permission a, permissions b where a.permission_id = b.id and a.admin=$admin_id";
-$res = mysqli_query($con, $sql);
-// print_r($res);
-$permissions = array();
-if (mysqli_num_rows($res) > 0)
 
-  while ($permission = mysqli_fetch_assoc($res))
-    array_push($permissions, $permission['permission']);
 
 // print_r($permissions);
 ?>
@@ -128,15 +121,15 @@ if (mysqli_num_rows($res) > 0)
                   </a>
                   <a href="invoiceday.php" class="btn btn-app bg-success">
 
-                  <i class="fas fa-calendar-day"></i> Day Book
+                    <i class="fas fa-calendar-day"></i> Day Book
                   </a>
                   <a href="expense.php" class="btn btn-app bg-success">
 
-                  <i class="fas fa-dollar-sign"></i> Expense
+                    <i class="fas fa-dollar-sign"></i> Expense
                   </a>
                   <a href="day_expense.php" class="btn btn-app bg-success">
 
-                  <i class="fas fa-suitcase"></i> Today Expense
+                    <i class="fas fa-suitcase"></i> Today Expense
                   </a>
 
                 </div>
@@ -168,7 +161,7 @@ if (mysqli_num_rows($res) > 0)
 
                           <a href="invoiceday.php" class="btn btn-app bg-success">
 
-                          <i class="fas fa-calendar-day"></i> Day Book
+                            <i class="fas fa-calendar-day"></i> Day Book
                           </a>
 
                           <a href="expense.php" class="btn btn-app bg-success">
@@ -196,8 +189,8 @@ if (mysqli_num_rows($res) > 0)
                           </a>
 
                           <!-- <a href="#" class="btn btn-app bg-success"> -->
-                            <!-- <span class="badge bg-purple">891</span> -->
-                            <!-- <i class="fas fa-file-invoice"></i> GST Report
+                          <!-- <span class="badge bg-purple">891</span> -->
+                          <!-- <i class="fas fa-file-invoice"></i> GST Report
                           </a> -->
                           <a href="stock.php" class="btn btn-app bg-success">
                             <!-- <span class="badge bg-purple">891</span> -->

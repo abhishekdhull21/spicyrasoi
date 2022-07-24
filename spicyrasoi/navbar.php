@@ -1,3 +1,15 @@
+<?php
+$sql = "SELECT a.permission_id,a.admin,b.permission FROM admin_permission a, permissions b where a.permission_id = b.id and a.admin=$admin_id and a.status = 1";
+$res = mysqli_query($con, $sql);
+// print_r($res);
+$permissions = array();
+if (mysqli_num_rows($res) > 0)
+
+  while ($permission = mysqli_fetch_assoc($res))
+    array_push($permissions, $permission['permission']);
+
+// print_r($permissions);
+?>
 <!-- Sweetalert2 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -44,8 +56,8 @@
               <?php
               // echo $admin_type;
               $sql = "SELECT COUNT(a.orderid) as total FROM orders a, `tables_session` b,`dashboard` c where a.orderid=b.orderid and c.id = b.table_cat and b.status =1 and a.restaurant = $restaurant";
-              $res = mysqli_query($con, $sql);
-              echo mysqli_num_rows($res) > 0 ? mysqli_fetch_assoc($res)['total'] : 0;
+              if ($res = mysqli_query($con, $sql))
+                echo mysqli_num_rows($res) > 0 ? mysqli_fetch_assoc($res)['total'] : 0;
               ?>
             </span>
           </a>
@@ -61,9 +73,10 @@
         <li class="nav-item dropdown">
           <a id="dropdownSubMenu1" href="index.php" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"> <i class="fas fa-info-circle"> More </i></a>
           <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-            <li><a href="setting.php" class="dropdown-item"><b><i class="fas fa-cog"> Settings</i></b></a></li>
-            <!-- <li><a href="#" class="dropdown-item">Media Guide Lines</a></li> -->
-
+            <?php if (in_array('settings', $permissions) || in_array('super_admin', $permissions)) {  ?>
+              <li><a href="setting.php" class="dropdown-item"><b><i class="fas fa-cog"> Settings</i></b></a></li>
+              <!-- <li><a href="#" class="dropdown-item">Media Guide Lines</a></li> -->
+            <?php } ?>
             <li class="dropdown-divider"></li>
             <li><a href="contact.php" class="dropdown-item"><i class="fas fa-hands-helping"> Contact Us</i></a></li>
           </ul>
@@ -83,8 +96,8 @@
 
     <!-- Right navbar links -->
     <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-      
-       <li class="nav-item dropdown">
+
+      <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <?php
@@ -99,16 +112,23 @@
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header"> <?php echo $total; ?> Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="notifaction.php" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> Title
+
+          <?php
+          $sql = "SELECT title FROM `notifications` a WHERE a.id not in (SELECT b.notification_id from notification_show b where b.restaurant = $restaurant) order by id DESC LIMIT 7";
+          $res = mysqli_query($con, $sql);
+          while ($row = mysqli_fetch_assoc($res)) { ?>
+
+            <div class="dropdown-divider"></div>
+            <a href="notifaction.php" class="dropdown-item">
+              <i class="fas fa-envelope mr-2"></i> <?php echo $row['title']; ?>
+            <?php } ?>
             <!-- TODO To Show time (How old this notifaction) -->
             <!-- <span class="float-right text-muted text-sm">3 mins</span> -->
-          </a>
-         
-          
-          <div class="dropdown-divider"></div>
-          <a href="notifaction.php" class="dropdown-item dropdown-footer">See All Notifications</a>
+            </a>
+
+
+            <div class="dropdown-divider"></div>
+            <a href="notifaction.php" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
 
