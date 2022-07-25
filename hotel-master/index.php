@@ -10,8 +10,7 @@
     <title>Spicy Rasoi</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Taviraj:300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Taviraj:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
@@ -56,7 +55,7 @@
                                             <li><a href="#">Single Room</a></li>
                                         </ul>
                                     </li>
-                                    
+
                                     <li><a href="./contact.php">Contact</a></li>
                                     <li><a href="./news.php">Register</a></li>
                                     <li><a href="./news.php">Login</a></li>
@@ -214,7 +213,7 @@
             <div class="about-room">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
-                        <h2>“Customers may forget what you said  but they will never forget how you made themfeel”.</h2>
+                        <h2>“Customers may forget what you said but they will never forget how you made themfeel”.</h2>
                     </div>
                 </div>
                 <div class="about-para">
@@ -462,9 +461,13 @@
         </div>
         <div class="copyright-area">
             <div class="container">
-                <div class="copyright-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved @ </i> by <a href="#" target="_blank">spicyrasoi.com</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+                <div class="copyright-text">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved @ </i> by <a href="#" target="_blank">spicyrasoi.com</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
                 <div class="privacy-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Photo Requests</a>

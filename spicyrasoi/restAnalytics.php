@@ -125,7 +125,7 @@ require_once("islogin.php");
                                                     <thead>
                                                         <tr role="row">
                                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Name</th>
-                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Address</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending">Paid Rs</th>
                                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column descending" aria-sort="ascending">Contact No</th>
                                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Total Sales</th>
                                                             <!-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Total Bill</th> -->
@@ -145,7 +145,7 @@ require_once("islogin.php");
 
                                                             <tr class="odd">
                                                                 <td class="dtr-control"><?php echo $row['name']; ?> </td>
-                                                                <td class="dtr-control"><?php echo  $row['Paid (Rs)']; ?> </td>
+                                                                <td class="dtr-control">Fully Paid </td>
                                                                 <td class="sorting_1"><?php echo $row['mobile']; ?></td>
                                                                 <td><?php echo $row['order_value']; ?> </td>
                                                                 <!-- <td class="dtr-control"><?php echo $mode;
@@ -167,7 +167,8 @@ require_once("islogin.php");
                                                                         <div class="dropdown-menu" role="menu">
                                                                             <!-- <a class="dropdown-item" target="_blank" href="posprint.php?orderid=<?php echo $orderid; ?>"><span class="btn btn-warning btn-sm">View </span></a> -->
                                                                             <a class="dropdown-item" href="https://api.whatsapp.com/send/?phone=91<?php echo  $row['mobile']; ?>&text=Hi *<?php echo $row['name']; ?>*. Your Total Sale Value  is Rs *<?php echo $row['order_value']; ?>*. Sales Report From Spicy Rasoi."> <span class="btn btn-success btn-sm">Whatsapp</span></a>
-                                                                            <a class="dropdown-item"> </a>
+                                                                            <!-- TODO TO ADD AMOUNT FOR RESTAURANT USING POP UP -->
+                                                                            <a class="dropdown-item "> <span class="btn btn-warning btn-sm "> Add Amount </span> </a>
 
                                                                         </div>
                                                                     </div>

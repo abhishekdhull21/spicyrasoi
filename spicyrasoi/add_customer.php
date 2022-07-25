@@ -216,10 +216,10 @@ $user = unserialize($_SESSION['user']);
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label>Customer Photo</label>
+                                                    <label>Number of Person</label>
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="customFile">
-                                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                                        <input type="number" class="form-control" id="customFile">
+                                                        <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
                                                     </div>
                                                 </div>
                                             </div>
